@@ -1,0 +1,101 @@
+.vol-body {
+  height: 647px;
+  width: 100%;
+  background: url("/public/login.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.vol-login {
+  height: 350px;
+  width: 350px;
+  /* background-color: #e0e0e0; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid #fffbefc4;
+  border-radius: 20px;
+}
+.vol-components {
+  height: 350px;
+  width: 300px;
+  /* background-color: rgb(141, 196, 130); */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: justify;
+  color: white;
+}
+.vol-components1 {
+  width: 100%;
+  height: auto;
+  /* background-color: rgb(79, 181, 59); */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.vol-login-input {
+  height: 40px;
+  width: 85%;
+  border: 0px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 10px 0px;
+  /* text-transform: capitalize; */
+  padding: 0px 10px;
+}
+.vol-login-input:focus {
+  outline: 2px solid #ffecbc;
+}
+
+.vol-h1 {
+  margin: 20px 0px;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+}
+.vol-h4 {
+  margin: 0px;
+  /* color: #735400; */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+#vol-anchor {
+  text-decoration: none;
+  color: rgb(255, 248, 234);
+  font-size: 15px;
+  font-weight: 700;
+}
+#vol-anchor:hover {
+  color: rgb(255, 181, 84);
+}
+.vol-login-submit {
+  width: 90%;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  /* background-color: #010e37; */
+  background-color: #372001;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  margin: 10px 0px;
+  transition: background-color 0.2s, color.2s;
+}
+.vol-login-submit:hover {
+  transition-timing-function: ease;
+  background-color: rgb(255, 181, 84);
+  color: rgb(0, 0, 0);
+}

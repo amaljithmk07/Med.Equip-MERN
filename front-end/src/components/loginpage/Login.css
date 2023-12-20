@@ -1,0 +1,116 @@
+.body {
+height: 647px;
+  width: 100%;
+  background: url("/public/login-wallpaper2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  height: 350px;
+  width: 350px;
+  background-color: #ffffff3c;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  border: 2px solid #ffffff90;
+  border-radius: 20px;
+}
+.components {
+  height: 350px;
+  width: 300px;
+  /* background-color: rgb(141, 196, 130); */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: justify;
+  color: white;
+}
+.components1 {
+  width: 100%;
+  height: auto;
+  /* background-color: rgb(79, 181, 59); */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-input-box{
+  height: auto;
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.login-input {
+  height: 40px;
+  width: 80%;
+  border: 0px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 10px 0px;
+  /* text-transform: capitalize; */
+  padding: 0px 10px;
+}
+.login-input:focus {
+  outline: 2px solid #ffe8bc;
+}
+.login-png{
+  height: 23px;
+  width: auto;
+}
+.login-h1 {
+  margin: 20px 0px;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+}
+.login-h4 {
+  margin: 0px;
+  /* color: #735400; */
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;}
+#anchor {
+  text-decoration: none;
+  color: rgb(44, 43, 41);
+  font-size: 15px;
+  font-weight: 700;
+}
+#anchor:hover {
+  color: rgb(255, 181, 84);
+}
+.login-submit {
+  width: 90%;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  /* background-color: #010e37; */
+  background-color: #372001;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  margin: 10px 0px;
+  transition:background-color .2s,color.2s ;
+}
+.login-submit:hover {
+  transition-timing-function: ease;
+  background-image: url("/public/navbar1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(255, 181, 84); */
+  color: rgb(0, 0, 0);
+}

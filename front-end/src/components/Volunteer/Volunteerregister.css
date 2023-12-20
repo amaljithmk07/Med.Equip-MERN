@@ -1,0 +1,95 @@
+.vol-body-reg {
+  height: 647px;
+  width: 100%;
+  background: url("/public/volunteer.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.vol-content {
+  min-height: 500px;
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 0px 30px 0px;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgb(62, 6, 6); */
+  backdrop-filter: blur(14px);
+  border: 1px solid #ffecbc;
+  border-radius: 15px;
+}
+.vol-registrationform {
+  /* height: 100%; */
+  width: 90%;
+  /* background-color: rgb(237, 120, 120); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.vol-registrationform1 {
+  height: auto;
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.vol-input-reg {
+  height: 40px;
+  width: 85%;
+  margin: 5px 0px;
+  border: 0px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  font-weight: 600;
+}
+
+.vol-input-reg:focus {
+  outline: 2px solid #ffecbc;
+}
+.vol-create {
+  width: 90%;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  background-color: #372001;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  margin: 10px 0px;
+  transition: background-color 0.2s, color.2s;
+}
+.vol-create:hover {
+  background-color: rgb(255, 181, 84);
+
+  color: rgb(0, 0, 0);
+}
+h1 {
+  margin: 20px 0px;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  text-shadow: 0.1px 0.2px 2px rgb(1, 1, 41);
+}
+h4 {
+  color: white;
+}
+#vol-anchor-reg {
+  text-decoration: none;
+  color: rgb(255, 248, 234);
+  font-size: 15px;
+  font-weight: 700;
+}
+#vol-anchor-reg:hover {
+  color: rgb(255, 181, 84);
+}

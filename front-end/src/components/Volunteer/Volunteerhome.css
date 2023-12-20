@@ -1,0 +1,70 @@
+.vol-home-body {
+  /* background-color: red; */
+  width: 100%;
+  height: 647px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vol-home-container {
+  /* background-color: rgb(162, 186, 45); */
+  width: 80%;
+  height: 80%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.vol-home-quotes-box {
+  /* background-color: rgb(67, 226, 43); */
+  height: 60%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.vol-home-quote {
+  background-image: url("/public/quotes.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 600;
+  padding: 0px 5%;
+  height: 100%;
+  width: 30%;
+  /* background-color: blue; */
+  /* border: 1px solid white; */
+}
+.vol-home-submit {
+  /* background-color: aquamarine; */
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  align-items: center;
+}
+.vol-home-create {
+    width: 100px;
+    height: 40px;
+    border: 0px ;
+    /* border-radius: 10px; */
+    background-color: #ffffff;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    margin: 0px 5px;
+    transition: background-color 0.2s, color.2s;
+  }
+  .vol-home-create:hover {
+    background-color: rgb(255, 181, 84);
+  
+    color: rgb(0, 0, 0);
+  }

@@ -1,0 +1,145 @@
+.usermain-body {
+  height: 640px;
+  width: 100%;
+  background-color: rgb(255, 246, 234);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.userproduct-sub-body {
+  height: 90%;
+  width: 90%;
+  /* background-color: #ffffff; */
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border: 1px solid rgb(223, 223, 255);
+  display: flex;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.userproduct-content {
+  height: 90%;
+  width: 80%;
+  /* background-color: rgb(182, 117, 117); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* text-align: center; */
+}
+span {
+  text-align: center;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* color: #001a48;
+  background-color: red; */
+
+  background-image: url("/public/navbar.jpeg");
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.userproduct-image {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: auto;
+  margin: 30px 0px 0px 0px;
+  height: 30%;
+  /* background-color: rebeccapurple; */
+}
+.user-img {
+  max-height: 100%;
+  max-width: 100%;
+  /* background-color: red; */
+}
+
+.home-p {
+  /* width: 80%; */
+  color: #061a3d;
+  /* background-color: rgb(69, 54, 54); */
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0.5px;
+}
+#button-arrow {
+  width: 330px;
+  /* background-color: red;   */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 43px;
+  justify-content: space-evenly;
+}
+#donate-button {
+  margin: 10px 0px;
+  height: 43px;
+  text-transform: uppercase;
+  width: 260px;
+  font-size: 18px;
+  /* background-color: #f47920; */
+  background-image: url("/public/navbar.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border: 1px solid rgba(255, 237, 211, 0.83);
+  letter-spacing: 1.3px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  transition: border-radius 0.3s;
+}
+#donate-button:hover {
+  border-radius: 30px;
+  transition-timing-function: ease;
+  /* transform: scale(.98); */
+  /* background-color: #e06f1e; */
+}
+#right-arrow {
+  width: 50px;
+  /* margin: 0px 0px 0px -10px; */
+  height: auto;
+  /* background-color: #f47920; */
+  /* padding-left: 50px; */
+  /* filter: hue-rotate(45 deg); */
+}
+#button-arrow:hover #right-arrow {
+  transition: transform 0.2s ease-in-out;
+  transform: translate3d(10px, 0px, 0px);
+}
+
+@media screen and (max-width:750px) {
+
+  .userproduct-image {
+    width: 80%;
+    /* height: auto; */
+    margin: 30px 0px 0px 0px;
+    height: 30%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .user-img {
+    
+    max-height: 80%;
+    max-width: 180%;
+    background-color: red;
+  }
+}

@@ -1,0 +1,100 @@
+.body-reg {
+  height: 647px;
+  width: 100%;
+  background: url("/public/login-wallpaper2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  height: 500px;
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff3c;
+
+  backdrop-filter: blur(5px);
+  border: 2px solid #ffffff90;
+  border-radius: 20px;
+}
+.registrationform {
+  /* height: 100%; */
+  width: 90%;
+  /* background-color: rgb(237, 120, 120); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.registrationform1 {
+  height: auto;
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.input-reg {
+  height: 40px;
+  width: 85%;
+  margin: 5px 0px;
+  border: 0px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  font-weight: 600;
+}
+
+.input-reg:focus {
+  outline: 2px solid #ffecbc;
+}
+.create {
+  width: 90%;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  background-color: #372001;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  margin: 10px 0px;
+  transition: background-color 0.2s, color.2s;
+}
+.create:hover {
+  transition-timing-function: ease;
+  background-image: url("/public/navbar1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(255, 181, 84); */
+  color: rgb(0, 0, 0);
+}
+.reg-h1 {
+  margin: 20px 0px;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  text-shadow: 0.1px 0.2px 2px rgb(1, 1, 41);
+}
+.reg-h4 {
+  color: rgb(0, 0, 0);
+}
+#anchor-reg {
+  text-decoration: none;
+  color: rgb(32, 21, 0);
+  font-size: 15px;
+  font-weight: 700;
+}
+#anchor-reg:hover {
+  color: rgb(255, 255, 255);
+}

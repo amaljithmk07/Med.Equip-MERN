@@ -1,0 +1,101 @@
+.edit-main-body {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.edit-body {
+  height: 647px;
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-sub-body {
+  height: 80%;
+  width: 90%;
+  background-color: rgb(232, 255, 232);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 35px;
+  color: rgb(0, 0, 0);
+}
+.edit-content {
+  height: 400px;
+  width: 60%;
+  border: 1px solid rgb(142, 142, 142);
+  border-radius: 20px;
+
+  background-color: rgb(255, 155, 155);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-left {
+  width: 40%;
+  height: 100%;
+  /* background-color: beige; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.edit-image-sec {
+  height: 60%;
+  width: 70%;
+  /* background-color: blue; */
+  border-radius: 20px;
+  border: 3px dashed rgb(24, 24, 24);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#edit-product-add {
+  height: 100px;
+  width: 100px;
+}
+.edit-right {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: rgb(220, 220, 38); */
+}
+.edit-input-field {
+  height: 95%;
+  width: 90%;
+  background-color: blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.edit-product-input {
+  padding: 0px 10px;
+  height: 30px;
+  width: 80%;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.edit-product-input:focus {
+  outline: none;
+}
+.edit-product-submit {
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: rgb(166, 166, 166);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0px;
+}
