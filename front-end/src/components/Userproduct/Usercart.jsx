@@ -33,6 +33,8 @@ const Usercart = () => {
           theme: "light",
         });
         setTimeout(() => {
+          localStorage.clear();
+
           navigate("/login");
         }, 7000);
       });
@@ -40,24 +42,6 @@ const Usercart = () => {
   console.log(cartitems);
   const [qty, setQty] = useState(1);
 
-  const incrementqty = (id) => {
-    // setQty(qty + 1);
-    // try {
-    //   axios
-    //     .get(`http://localhost:2222/api/user/cartincrement/${id}`)
-    //     .then((data) => {
-    //       console.log(data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-  const decrementqty = () => {
-    setQty(qty - 1);
-  };
   const cartremove = (id) => {
     console.log(id);
     axios
@@ -76,6 +60,35 @@ const Usercart = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const incrementqty = (id, cart_qty) => {
+    const prev_qty = cart_qty;
+    console.log(prev_qty);
+
+    // setQty(qty + 1);
+    try {
+      axios
+        .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          const incrementdata = cartitems.filter((details) => {
+            return details.cart_qty != prev_qty;
+          });
+          setCartitems(incrementdata);
+          console.log(incrementdata);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const decrementqty = () => {
+    setQty(qty - 1);
   };
   console.log(cartitems.length);
   return (
@@ -104,18 +117,21 @@ const Usercart = () => {
                     />
                   </div>
                   <div className="cart-items-type">{item.name}</div>
+                  <div className="cart-items-available-qty">
+                    {item.available_qty}
+                  </div>
                   <div className="cart-items-category">{item.category}</div>
                   <div className="cart-items-sub-category">
                     {item.sub_category}{" "}
                   </div>
                   <div className="cart-items-qty">
                     <button
-                      onClick={() => incrementqty(item._id)}
+                      onClick={() => incrementqty(item._id, item.cart_qty)}
                       className="cart-qty-btn"
                     >
                       +
                     </button>
-                    {item.available_qty}
+                    {item.cart_qty}
                     <button
                       onClick={() => decrementqty(item._id)}
                       className="cart-qty-btn"

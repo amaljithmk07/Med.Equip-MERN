@@ -252,6 +252,7 @@ userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
     login_id: req.userData.userId,
     image: req.body.image,
     available_qty: req.body.available_qty,
+    cart_qty: req.body.cart_qty,
     name: req.body.name,
     description: req.body.description,
     category: req.body.category,
@@ -336,32 +337,53 @@ userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
 
 // Cart increment
 
-userroutes.get("/cartincrement/:id", (req, res) => {
-  cartproducts
-    .findOne({
-      _id: req.params.id,
-    })
+userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
+  try {
+    const userId = req.userData.userId;
+    cartproducts
+      .findOne({
+        login_id: userId,
+        _id: req.params.id,
+      })
+      .then(async (data) => {
+        // console.log(data.cart_qty+1);
+        var qty = data.cart_qty;
+        var availablle_qty = data.available_qty;
+        if (availablle_qty > qty) {
+          var incre_qty = qty + 1;
+          console.log(incre_qty);
 
-    .then((data) => {
-      data.available_qty = req.body.available_qty + 1;
-    });
-  data
-    .save()
-    .then((data) => {
-      res.status(200).json({
-        success: true,
-        error: false,
-        data: data,
-        message: "cart increment successful",
-      }); // console.log("incre :", available_qty);
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        error: true,
-        ErrorMessage: "not find",
+          const update_qty = await cartproducts.updateOne(
+            { login_id: userId, _id: req.params.id },
+            { $set: { cart_qty: incre_qty } }
+          );
+
+          if (update_qty) {
+            return res.status(200).json({
+              success: true,
+              error: false,
+              data: data,
+              message: "cart increment successful",
+            });
+          }
+        }
+        else{
+          return res.status(200).json({
+            success: true,
+            error: false,
+            data: data,
+            message: "Yoou added maximum quantity",
+          });
+        }
       });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "internal server Error",
     });
+  }
 });
 
 module.exports = userroutes;

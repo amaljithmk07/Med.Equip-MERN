@@ -40,7 +40,7 @@ loginroutes.post("/", async (req, res) => {
           email: oldUser.email,
         },
         "secret_this_should_be_longer",
-        { expiresIn: "1m" }
+        { expiresIn: "1h" }
       );
       // console.log("token:", token);
       // console.log("Role:", userRole);

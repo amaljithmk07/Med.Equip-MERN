@@ -17,6 +17,8 @@ import Usercart from "./components/Userproduct/Usercart";
 import Footer from "./components/footer/Footer";
 
 function App() {
+
+  
   return (
     <Router>
       <Navbar />

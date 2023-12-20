@@ -40,6 +40,8 @@ const Profilehome = () => {
           theme: "light",
         });
         setTimeout(() => {
+          localStorage.clear();
+
           navigate("/login");
         }, 7000);
       });
