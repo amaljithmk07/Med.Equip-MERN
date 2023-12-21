@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Usercart = () => {
   const navigate = useNavigate();
   const [cartitems, setCartitems] = useState([]);
+  console.log(cartitems.length);
+
   const token = localStorage.getItem("Token");
   useEffect(() => {
     axios
@@ -22,25 +24,25 @@ const Usercart = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.warning("Ran out of time !!!", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        setTimeout(() => {
-          localStorage.clear();
+        // toast.warning("Ran out of time !!!", {
+        //   position: "bottom-center",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        // });
+        // setTimeout(() => {
+        //   localStorage.clear();
 
-          navigate("/login");
-        }, 7000);
+        //   navigate("/login");
+        // }, 5000);
       });
   }, []);
-  console.log(cartitems);
-  const [qty, setQty] = useState(1);
+  // console.log(cartitems);
+  // const [qty, setQty] = useState(1);
 
   const cartremove = (id) => {
     console.log(id);
@@ -61,24 +63,56 @@ const Usercart = () => {
         console.log(err);
       });
   };
-  const incrementqty = (id, cart_qty) => {
-    const prev_qty = cart_qty;
-    console.log(prev_qty);
 
-    // setQty(qty + 1);
+  // const incrementqty = async(id, item) => {
+  //   try {
+  //     const qty = item.cart_qty;
+  //     const updated_qty = qty + 1;
+  //     console.log(updated_qty);
+
+  //     const response =await axios.get(
+  //       `http://localhost:2222/api/user/cartincrement/${id}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     const incrementdata = cartitems.map((details) =>
+  //       details._id === id ? { ...cartitems, cart_qty: updated_qty } : item
+  //     );
+  //     setCartitems(incrementdata);
+  //     console.log(incrementdata);
+  //     console.log(response);
+  //   } catch (err) {
+  //     console.log(err);
+  //     console.log(err.message);
+  //   }
+  // };
+
+  const incrementqty = async (id, cart_qty) => {
+    const prev_qty = cart_qty;
+
     try {
-      axios
+      await axios
         .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((data) => {
-          const incrementdata = cartitems.filter((details) => {
-            return details.cart_qty != prev_qty;
+          const updatedQty = data.data.data.cart_qty;
+          console.log(updatedQty);
+
+          const updatedCartItems = cartitems.map((item) => {
+            if (item._id === id) {
+              return { ...item, cart_qty: updatedQty };
+            }
+            return item;
           });
-          setCartitems(incrementdata);
-          console.log(incrementdata);
+
+          setCartitems(updatedCartItems);
+          console.log(updatedCartItems);
         })
         .catch((err) => {
           console.log(err);
@@ -87,10 +121,33 @@ const Usercart = () => {
       console.log(err);
     }
   };
-  const decrementqty = () => {
-    setQty(qty - 1);
+
+  const decrementqty = (id, cart_qty) => {
+    const prev_qty = cart_qty;
+    console.log(prev_qty);
+
+    // setQty(qty + 1);
+    try {
+      axios
+        .get(`http://localhost:2222/api/user/cartdecrement/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          // const incrementdata = cartitems.filter((details) => {
+          //   return details.cart_qty != prev_qty;
+          // });
+          // setCartitems(incrementdata);
+          // console.log(incrementdata);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
-  console.log(cartitems.length);
   return (
     <div className="cart-home">
       <ToastContainer />
@@ -126,14 +183,14 @@ const Usercart = () => {
                   </div>
                   <div className="cart-items-qty">
                     <button
-                      onClick={() => incrementqty(item._id, item.cart_qty)}
+                      onClick={() => incrementqty(item._id, item)}
                       className="cart-qty-btn"
                     >
                       +
                     </button>
                     {item.cart_qty}
                     <button
-                      onClick={() => decrementqty(item._id)}
+                      onClick={() => decrementqty(item._id, item)}
                       className="cart-qty-btn"
                     >
                       -

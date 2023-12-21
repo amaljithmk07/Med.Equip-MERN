@@ -27,7 +27,7 @@ function LoginPage() {
         localStorage.setItem("Role", data.data.userRole);
         // setTimeout(() => {
         // }, 5000);
-        // setload(false);
+        // setload(false);s
         
         navigate("/user");
         // window.location.reload();

@@ -31,7 +31,7 @@ const Profilehome = () => {
         console.log(err);
         toast.warning("Ran out of time !!!", {
           position: "bottom-center",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -43,7 +43,7 @@ const Profilehome = () => {
           localStorage.clear();
 
           navigate("/login");
-        }, 7000);
+        }, 5000);
       });
   }, []);
   const profileEdit = (e) => {

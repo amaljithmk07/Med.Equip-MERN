@@ -81,7 +81,7 @@ adminroutes.get("/view", Checkauth, (req, res) => {
 });
 
 //Single view
-adminroutes.get("/view/:id", (req, res) => {
+adminroutes.get("/viewone/:id", (req, res) => {
   products
     .findOne({
       _id: req.params.id,
@@ -105,7 +105,7 @@ adminroutes.get("/view/:id", (req, res) => {
 });
 //update
 
-adminroutes.put("/update/:id", upload.single("image"), (req, res) => {
+adminroutes.put("/update/:id", upload.single("image"),Checkauth, (req, res) => {
   products
     .findOne({
       _id: req.params.id,
@@ -113,6 +113,9 @@ adminroutes.put("/update/:id", upload.single("image"), (req, res) => {
     .then((data) => {
       (data.image = req.file.filename),
         (data.name = req.body.name),
+        (data.available_qty = req.body.available_qty),
+        (data.category = req.body.category),
+        (data.sub_category = req.body.sub_category),
         (data.description = req.body.description),
         (data.purchased_date = req.body.purchased_date),
         (data.phone_number = req.body.phone_number),

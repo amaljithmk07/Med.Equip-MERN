@@ -327,7 +327,7 @@ userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
       });
     })
     .catch((err) => {
-      res.status.json({
+      res.status(200).json({
         success: false,
         error: true,
         ErrorMessage: err.message,
@@ -366,8 +366,57 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
               message: "cart increment successful",
             });
           }
+        } else {
+          return res.status(200).json({
+            success: true,
+            error: false,
+            data: data,
+            message: "Yoou added maximum quantity",
+          });
         }
-        else{
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "internal server Error",
+    });
+  }
+});
+
+// Cart decrement
+
+userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
+  try {
+    const userId = req.userData.userId;
+    cartproducts
+      .findOne({
+        login_id: userId,
+        _id: req.params.id,
+      })
+      .then(async (data) => {
+        // console.log(data.cart_qty+1);
+        var qty = data.cart_qty;
+        var availablle_qty = data.available_qty;
+        if (availablle_qty > qty) {
+          var decre_qty = qty - 1;
+          console.log(decre_qty);
+
+          const update_qty = await cartproducts.updateOne(
+            { login_id: userId, _id: req.params.id },
+            { $set: { cart_qty: decre_qty } }
+          );
+
+          if (update_qty) {
+            return res.status(200).json({
+              success: true,
+              error: false,
+              data: data,
+              message: "cart decrement successful",
+            });
+          }
+        } else {
           return res.status(200).json({
             success: true,
             error: false,

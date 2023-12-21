@@ -7,7 +7,7 @@
 }
 
 .product-body {
-  height: 628px;
+  height: 647px;
   width: 100%;
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -41,6 +41,15 @@
   justify-content: center;
   align-items: center;
 }
+.form-input-field {
+  height: 95%;
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-direction: column; */
+}
 .content-left {
   width: 40%;
   height: 100%;
@@ -71,15 +80,7 @@
   align-items: center;
   /* background-color: rgb(220, 220, 38); */
 }
-.form-input-field {
-  height: 95%;
-  width: 100%;
-  /* background-color: blue; */
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* flex-direction: column; */
-}
+
 .input-field {
   height: 95%;
   width: 90%;
@@ -99,11 +100,14 @@
   border: 1px solid rgb(231, 231, 231);
   font-weight: 700;
 }
+.admin-product-input:focus {
+  outline: 1px solid rgba(255, 170, 0, 0.651);
+}
 .admin-product-input-dropdown {
   padding: 0px 5px;
   height: 30px;
   width: 85%;
-  color: rgb(112, 112, 112);
+  color: rgb(64, 64, 64);
   border-radius: 5px;
   border: 0px;
   font-size: 14px;
@@ -115,9 +119,6 @@
   outline: 1px solid rgba(255, 170, 0, 0.651);
 }
 
-.admin-product-input:focus {
-  outline: 1px solid rgba(255, 170, 0, 0.651);
-}
 .admin-product-submit {
   width: 80%;
   height: 50px;

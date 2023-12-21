@@ -17,7 +17,7 @@
 .edit-sub-body {
   height: 80%;
   width: 90%;
-  background-color: rgb(232, 255, 232);
+  /* background-color: rgb(232, 255, 232); */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -27,15 +27,28 @@
   color: rgb(0, 0, 0);
 }
 .edit-content {
-  height: 400px;
+  height: 450px;
   width: 60%;
-  border: 1px solid rgb(142, 142, 142);
+  border: 2px solid rgb(255, 244, 208);
   border-radius: 20px;
-
-  background-color: rgb(255, 155, 155);
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(255, 155, 155); */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.edit-form-input-field {
+  height: 95%;
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-direction: column; */
 }
 .edit-left {
   width: 40%;
@@ -70,7 +83,7 @@
 .edit-input-field {
   height: 95%;
   width: 90%;
-  background-color: blue;
+  /* background-color: blue; */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -81,21 +94,45 @@
   height: 30px;
   width: 80%;
   border-radius: 5px;
-  border: 0px;
+  border: 1px solid rgb(231, 231, 231);
   font-size: 14px;
   font-weight: 700;
   text-transform: capitalize;
 }
 .edit-product-input:focus {
-  outline: none;
+  outline: 1px solid rgba(255, 170, 0, 0.651);
 }
-.edit-product-submit {
+.edit-product-input-dropdown {
+  padding: 0px 5px;
+  height: 30px;
+  /* background-color: red; */
+  width: 85%;
+  color: rgb(64, 64, 64);
+  border-radius: 5px;
+  border: 0px;
+  font-size: 14px;
+  border: 1px solid rgb(231, 231, 231);
+  font-weight: 600;
+}
+.edit-product-input-dropdown:focus {
+
+  outline: 1px solid rgba(255, 170, 0, 0.651);
+}
+.edit-product-update {
   width: 80%;
   height: 50px;
   border-radius: 10px;
   border: 0px;
-  background-color: rgb(166, 166, 166);
+  color: white;
+  background-color: #915328;
   font-size: 20px;
   font-weight: 700;
   margin: 10px 0px;
+}
+.edit-product-update:hover {
+  background-image: url("/public/navbar.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
 }

@@ -2,9 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Viewproduct.css";
-import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Viewproduct = () => {
+  const navigate=useNavigate()
   const [product, setproduct] = useState([]);
   const token = localStorage.getItem("Token");
   useEffect(() => {
@@ -20,6 +23,21 @@ const Viewproduct = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.warning("Ran out of time !!!", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          localStorage.clear();
+
+          navigate("/login");
+        }, 5000);
       });
   }, []);
 
@@ -40,6 +58,7 @@ const Viewproduct = () => {
   return (
     <div className="view-main-body">
       {/* <Navbar /> */}
+      <ToastContainer/>
       {product.length > 0 ? (
         <div className="view-content-body">
           <div className="view-cards-body">

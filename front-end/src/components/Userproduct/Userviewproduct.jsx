@@ -27,7 +27,7 @@ const Userviewproduct = () => {
         console.log(err);
         toast.warning("Ran out of time !!!", {
           position: "bottom-center",
-          autoClose: 4000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -35,10 +35,10 @@ const Userviewproduct = () => {
           progress: undefined,
           theme: "light",
         });
-        setTimeout(() => {
-          localStorage.clear();
-          navigate("/login");
-        }, 6000);
+        // setTimeout(() => {
+        //   localStorage.clear();
+        //   navigate("/login");
+        // }, 5000);
       });
   }, []);
 
