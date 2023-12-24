@@ -23,21 +23,22 @@ const Viewproduct = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.warning("Ran out of time !!!", {
+        // toast.warning("Ran out of time !!!", {
+        toast.warning(err.message, {
           position: "bottom-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: true, 
           draggable: true,
           progress: undefined,
           theme: "light",
         });
-        setTimeout(() => {
-          localStorage.clear();
+        // setTimeout(() => {
+        //   localStorage.clear();
 
-          navigate("/login");
-        }, 5000);
+        //   navigate("/login");
+        // }, 5000);
       });
   }, []);
 
@@ -74,13 +75,13 @@ const Viewproduct = () => {
                 <div className="view-card-details">
                   <h3> {item.name}</h3>
                   <h4> {item.available_qty}</h4>
+                  <h4> {item.category}</h4>
+                  <h4> {item.sub_category}</h4>
                   <h4> {item.description}</h4>
-                  <h4> {item.phone_number}</h4>
-                  <h4> {item.purchased_date}</h4>
                 </div>
                 <div className="view-card-buttons">
                   <Link className="edit" to={`/admin/editproduct/${item._id}`}>
-                    <button className="edit">Edit</button>
+                    <button className="edit" >Edit</button>
                   </Link>
                   {/* <Link className="delete"> */}
                   <button

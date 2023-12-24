@@ -60,24 +60,35 @@ adminroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
 
 adminroutes.get("/view", Checkauth, (req, res) => {
   // formData
-  products
-    .find()
-    .then((data) => {
-      res.status(200).json({
-        Success: true,
-        Error: false,
-        Message: "Data fetched successfully",
-        data: data,
+  try {
+    products
+      .find()
+      .then((data) => {
+        res.status(200).json({
+          Success: true,
+          Error: false,
+          Message: "Data fetched successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          Success: false,
+          Error: true,
+          ErrorMessage: "Data fetched Unsuccessfull",
+          // ErrorMessage: err.message,
+        });
       });
-    })
-    .catch((err) => {
-      res.status(400).json({
-        Success: false,
-        Error: true,
-        Message: "Data fetched Unsuccessfull",
-        ErrorMessage: err.message,
-      });
+  } catch (err) {
+    res.status(500).json({
+      Success: false,
+      Error: true,
+      // Message: "Internal server error",
+      ErrorMessage: "Data fetched Unsuccessfull",
+
+      // ErrorMessage: err.message,
     });
+  }
 });
 
 //Single view
@@ -105,33 +116,66 @@ adminroutes.get("/viewone/:id", (req, res) => {
 });
 //update
 
-adminroutes.put("/update/:id", upload.single("image"),Checkauth, (req, res) => {
-  products
-    .findOne({
-      _id: req.params.id,
-    })
-    .then((data) => {
-      (data.image = req.file.filename),
-        (data.name = req.body.name),
-        (data.available_qty = req.body.available_qty),
-        (data.category = req.body.category),
-        (data.sub_category = req.body.sub_category),
-        (data.description = req.body.description),
-        (data.purchased_date = req.body.purchased_date),
-        (data.phone_number = req.body.phone_number),
-        (data.address = req.body.address),
-        (data.email = req.body.email),
-        (data.pin_code = req.body.pin_code),
-        data
-          .save()
-          .then((data) => {
-            res.send(data);
-          })
-          .catch((err) => {
-            res.send(err);
-          });
-    });
-});
+adminroutes.put(
+  "/update/:id",
+  Checkauth,
+  upload.single("image"),
+  (req, res) => {
+    try {
+      products
+        .findOne({
+          _id: req.params.id,
+        })
+        .then((data) => {
+          (data.image = req.file ? req.file.filename : data.image),
+            // data.image = req.file ? req.file.filename : null ,
+            (data.name = req.body ? req.body.name : data.name),
+            (data.available_qty = req.body
+              ? req.body.available_qty
+              : data.available_qty),
+            (data.category = req.body ? req.body.category : data.category),
+            (data.sub_category = req.body
+              ? req.body.sub_category
+              : data.sub_category),
+            (data.description = req.body
+              ? req.body.description
+              : data.description),
+            (data.purchased_date = req.body
+              ? req.body.purchased_date
+              : data.purchased_date),
+            (data.phone_number = req.body
+              ? req.body.phone_number
+              : data.phone_number),
+            (data.address = req.body ? req.body.address : data.address),
+            (data.email = req.body ? req.body.email : data.email),
+            (data.pin_code = req.body ? req.body.pin_code : data.pin_code),
+            data
+              .save()
+              .then((data) => {
+                res.status(200).json({
+                  message: "updated successfully",
+                  success: true,
+                  error: false,
+                  data: data,
+                });
+              })
+              .catch((err) => {
+                res.status(400).json({
+                  success: false,
+                  error: true,
+                  ErrorMessage: err.message,
+                });
+              });
+        });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        error: true,
+        ErrorMessage: "Internal server error",
+      });
+    }
+  }
+);
 
 //delete
 

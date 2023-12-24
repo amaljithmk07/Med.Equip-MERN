@@ -74,14 +74,14 @@
 
   color: rgb(0, 0, 0);
 }
-h1 {
+.vol-h1 {
   margin: 20px 0px;
   font-size: 40px;
   font-weight: 700;
   color: rgb(255, 255, 255);
   text-shadow: 0.1px 0.2px 2px rgb(1, 1, 41);
 }
-h4 {
+.vol-h4 {
   color: white;
 }
 #vol-anchor-reg {

@@ -12,14 +12,13 @@
   align-items: center;
 }
 .content {
-  height: 500px;
+  min-height: 500px;
   width: 450px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background-color: #ffffff3c;
-
   backdrop-filter: blur(5px);
   border: 2px solid #ffffff90;
   border-radius: 20px;

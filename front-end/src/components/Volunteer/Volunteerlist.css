@@ -1,0 +1,85 @@
+.volunteerlist-body {
+  height: 600px;
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.volunteerlist-sub-body {
+  height: 90%;
+  width: 90%;
+
+  background-image: url("/public/cardbody.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.volunteerlist-sub-body-heading {
+  height: 15%;
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 28px;
+  flex-direction: column;
+  /* background-color: rgb(195, 195, 255); */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.volunteerlist-content {
+  height: 90%;
+  width: 100%;
+
+  /* background-color: rgb(191, 255, 0); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.volunteerlist-card-body {
+  height: 350px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 250px;
+  flex-direction: column;
+  box-shadow: 1px 5px 10px rgba(53, 53, 53, 0.256);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.volunteerlist-card-image-sec {
+  width: 100%;
+  height: 30%;
+  flex-direction: column;
+  /* background-color: cadetblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.volunteerlist-card-img {
+  height: 100%;
+  width: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0px 5px 5px rgba(72, 72, 72, 0.522));
+}
+
+.volunteerlist-card-details {
+  width: 100%;
+  height: 60%;
+  flex-direction: column;
+  display: flex;
+  /* background-color: violet; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+.volunteerlist-h3 {
+  color: rgb(28, 28, 28);
+}

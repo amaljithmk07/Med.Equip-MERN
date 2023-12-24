@@ -6,6 +6,7 @@ const registerroutes = require("./Routes/registerroutes");
 const loginroutes = require("./Routes/loginroutes");
 const cors = require("cors");
 const userroutes = require("./Routes/userroutes");
+const volunteerroutes = require("./Routes/volunteerroutes");
 mongoose
   .connect(
     "mongodb+srv://amaljithmk123:8086171296@medical.tctqxnz.mongodb.net/Medical-equipment",
@@ -28,6 +29,7 @@ server.use("/api/register", registerroutes);
 server.use("/api/login", loginroutes);
 server.use("/api/admin", adminroutes);
 server.use("/api/user", userroutes);
+server.use("/api/volunteer", volunteerroutes);
 
 const port = 2222;
 server.listen(port, () => {

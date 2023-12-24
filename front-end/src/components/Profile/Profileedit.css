@@ -1,0 +1,72 @@
+.profile-edit-body {
+    height: 647px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .profile-edit-sub-body {
+    height: 80%;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: red; */
+  }
+  .profile-edit-content {
+    background-image: linear-gradient(327deg, rgb(255, 0, 102), rgb(255 223 181));
+    border-radius: 15px;
+    height: 90%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: blueviolet; */
+  }
+  #profile-edit-photo {
+    height: 100px;
+    width: auto;
+  }
+  .profile-edit-input-box {
+    width: 80%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .profile-edit-input {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    /* text-transform: capitalize; */
+    border: 0px;
+    border-bottom: 1px solid rgba(212, 133, 15, 0.603);
+    height: 20px;
+    width: 90%;
+    background-color: rgba(255, 0, 0, 0);
+  }
+  .profile-edit-input:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+  }
+  #profile-input-edit {
+    height: 20px;
+    width: auto;
+  }
+  #profile-edit-update {
+    height: 40px;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 40%;
+    background-color: rgb(255, 221, 183);
+  }
+  #profile-edit-update:hover {
+    background-color: rgb(255, 234, 210);
+  }
+  

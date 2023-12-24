@@ -218,10 +218,10 @@ userroutes.put("/profileupdate/:id", (req, res) => {
       _id: req.params.id,
     })
     .then((data) => {
-      (data.name = req.body.name),
+      (data.name = req.body ? req.body.name : data.name),
         // (data.email = req.body.email),
-        (data.age = req.body.age),
-        (data.phone_number = req.body.phone_number);
+        (data.age = req.body ? req.body.age : data.age),
+        (data.phone_number = req.body ? req.body.age : data.phone_number);
     });
   data
     .save()
@@ -399,9 +399,9 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
         // console.log(data.cart_qty+1);
         var qty = data.cart_qty;
         var availablle_qty = data.available_qty;
-        if (availablle_qty > qty) {
+        if (qty > 1) {
           var decre_qty = qty - 1;
-          console.log(decre_qty);
+          console.log("decrement :", decre_qty);
 
           const update_qty = await cartproducts.updateOne(
             { login_id: userId, _id: req.params.id },
@@ -421,7 +421,7 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
             success: true,
             error: false,
             data: data,
-            message: "Yoou added maximum quantity",
+            message: "Yoou removed minimum quantity",
           });
         }
       });

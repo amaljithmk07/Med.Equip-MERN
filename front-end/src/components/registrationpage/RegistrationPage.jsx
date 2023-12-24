@@ -5,7 +5,6 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const RegistrationPage = () => {
   const Navigate = useNavigate();
   const [letter, setletter] = useState({});
@@ -17,7 +16,7 @@ const RegistrationPage = () => {
   const createHandler = (event) => {
     event.preventDefault();
     axios
-      .post(`http://localhost:2222/api/register/`, letter)
+      .post(`http://localhost:2222/api/register/user`, letter)
       .then((data) => {
         console.log(data);
         Navigate("/login");
@@ -36,6 +35,17 @@ const RegistrationPage = () => {
         });
       });
   };
+  const [pass, setpass] = useState(false);
+
+  const showpass = (e) => {
+    setpass(true);
+    // console.log(e);
+  };
+  const hidepass = (e) => {
+    setpass(false);
+    // console.log(e);
+  };
+
   return (
     <div>
       <div className="body-reg">
@@ -43,6 +53,8 @@ const RegistrationPage = () => {
           <div className="registrationform">
             <h1 className="reg-h1">Register</h1>
             <form action="" className="registrationform1">
+              {/* //User Part */}
+
               <input
                 type="text"
                 placeholder="Name"
@@ -74,18 +86,23 @@ const RegistrationPage = () => {
               {/* <input type="text" placeholder="Address" className="input-reg"/>
             <input type="text" placeholder="Pin code" className="input-reg"/> */}
               <input
-                type="password"
+                type={!pass ? "password" : "text"}
                 name="password"
                 placeholder="Password"
                 className="input-reg"
                 onChange={letterHandler}
+                onClick={showpass}
+                onMouseLeave={hidepass}
               />
-              <input
+              <button
                 type="submit"
-                value={"Create Account"}
+                // value={"Create Account"}
                 className="create"
                 onClick={createHandler}
-              />
+              >
+                Create Account
+              </button>
+              {/* //Volunteer Part */}
             </form>
             <h4 className="reg-h4">
               Already have an account?
@@ -96,7 +113,7 @@ const RegistrationPage = () => {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

@@ -24,7 +24,7 @@ const Volunteerhome = () => {
         </div>
         <div className="vol-home-submit">
           BE A PART OF US -
-          <Link to={"/register"}>
+          <Link to={"/volunteer/register"}>
             {" "}
             <input
               type="submit"

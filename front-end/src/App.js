@@ -15,6 +15,8 @@ import Profilehome from "./components/Profile/Profilehome";
 import Uuidverify from "./components/uuid/Uuidverify";
 import Usercart from "./components/Userproduct/Usercart";
 import Footer from "./components/footer/Footer";
+import Volunteerregister from "./components/Volunteer/Volunteerregister";
+import Volunteerlist from "./components/Volunteer/Volunteerlist";
 
 function App() {
 
@@ -27,22 +29,29 @@ function App() {
 
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
+     
+     
         <Route path="/admin" element={<Viewproduct />} />
         <Route path="/admin/addproduct" element={<Addproduct />} />
         <Route path="/admin/editproduct/:id" element={<Editproduct />} />
         <Route path="/admin/viewproduct" element={<Viewproduct />} />
-        <Route path="/user" element={<Userproduct />} />
         {/* <Route path="/user" element={<ReactOne />} /> */}
+    
+        <Route path="/profile" element={<Profilehome />} />
 
         {/* <Route path="/" element={<Useraddproduct />} /> */}
         
+        <Route path="/user" element={<Userproduct />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Userviewproduct />} />
-        <Route path="/volunteer" element={<Volunteerhome />} />
-        <Route path="/profile" element={<Profilehome />} />
         {/* <Route path="/profileedit" element={<Profileedit />} /> */}
         <Route path="/uuidverify" element={<Uuidverify />} />
         <Route path="/usercart" element={<Usercart />} />
+
+
+        <Route path="/volunteer" element={<Volunteerhome />} />
+        <Route path="/volunteer/register" element={<Volunteerregister />} />
+        <Route path="/volunteer/list" element={<Volunteerlist />} />
       </Routes>
       <Footer />
     </Router>

@@ -43,7 +43,7 @@ const Footer = () => {
               <p className="footer-data">View More</p>
             </div>
             <div className="footer-content">
-              <img src="./footer-icon.png" alt="" className="footer-icon" />
+              <img src="/footer-icon.png" alt="" className="footer-icon" />
             </div>
           </div>
           <div className="footer-footer">

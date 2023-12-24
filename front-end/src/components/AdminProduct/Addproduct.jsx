@@ -23,7 +23,7 @@ const Addproduct = () => {
   };
   console.log(products);
   const productSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const formData = new FormData();
     formData.append("image", products.image);
     formData.append("name", products.name);
@@ -66,7 +66,7 @@ const Addproduct = () => {
                   action=""
                   className="form-input-field"
                   encType="multipart/formdata"
-                  onSubmit={productSubmit}
+                  // onSubmit={productSubmit}
                 >
                   <div className="content-left">
                     <div className="image-sec">
@@ -274,10 +274,10 @@ const Addproduct = () => {
                         onChange={keyHandler}
                       />
                       <input
-                        type="submit"
+                        type="button"
                         value={"SUBMIT"}
                         className="admin-product-submit"
-                        // onClick={productSubmit}
+                        onClick={productSubmit}
                       />
                     </div>
                   </div>

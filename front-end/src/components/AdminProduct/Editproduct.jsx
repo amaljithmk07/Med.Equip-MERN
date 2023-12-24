@@ -6,13 +6,15 @@ import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 const Editproduct = () => {
   const token = localStorage.getItem("Token");
-  const navigate = useNavigate();
   const ref = useRef();
   const { id } = useParams();
   //   console.log(id);
   const [products, setProducts] = useState({
     name: "",
-
+    image: "",
+    available_qty: "",
+    category: "",
+    sub_category: "",
     description: "",
     purchased_date: "",
     pin_code: "",
@@ -39,16 +41,23 @@ const Editproduct = () => {
   const editHandler = (event) => {
     const { name, value } = event.target;
     setProducts({ ...products, [name]: value });
-    console.log(products);
+    // console.log(products);
   };
 
   const handlePhoto = (e) => {
-    const { name } = e.target.value;
-    // console.log(e);
+    const { name } = e.target;
+    console.log(name);
     setProducts({ ...products, [name]: e.target.files[0] });
   };
-  // console.log(products);
-  const productSubmit = () => {
+  console.log("new:", products);
+  const navigate = useNavigate();
+
+  //////////////////////////////////
+
+  const productSubmit = async ( id) => {
+    // console.log(id);
+    // event.preventDefault();
+    // try {
     const formData = new FormData();
     formData.append("image", products.image);
     formData.append("name", products.name);
@@ -61,20 +70,27 @@ const Editproduct = () => {
     formData.append("phone_number", products.phone_number);
     formData.append("address", products.address);
     formData.append("pin_code", products.pin_code);
-    axios
-      .put(`http://localhost:2222/api/admin/update/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-        navigate("/admin/viewproduct");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("form data:", formData);
+    try {
+      await axios
+        .put(`http://localhost:2222/api/admin/update/${id}`, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          navigate("/admin/viewproduct");
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    navigate("/admin/viewproduct");
   };
+
   return (
     <div>
       {/* <Navbar/> */}
@@ -86,8 +102,8 @@ const Editproduct = () => {
               <form
                 action=""
                 className="edit-form-input-field"
-                onSubmit={() => productSubmit(products._id)}
-                encType="multipart/formdata"
+                // onSubmit={() => productSubmit(products._id)}
+                encType="multipart/form-data"
               >
                 <div className="edit-left">
                   <div className="edit-image-sec">
@@ -113,7 +129,7 @@ const Editproduct = () => {
                       type="text"
                       placeholder="Name"
                       name="name"
-                      value={products?.name}
+                      value={products.name}
                       className="edit-product-input"
                       onChange={editHandler}
                     />
@@ -303,11 +319,18 @@ const Editproduct = () => {
                       onChange={editHandler}
                     />
                     <input
-                      type="submit"
+                      type="button"
                       value={"UPDATE"}
                       className="edit-product-update"
-                      //   onClick={productSubmit}
-                    />
+                      onClick={()=>productSubmit(products._id)}
+                      />
+                    {/* <button
+                      type="button"
+                      // value={"UPDATE"}
+                      className="edit-product-update"
+                        onClick={()=>productSubmit(products._id)}
+                    >Update</button> */}
+
                   </div>
                 </div>
               </form>

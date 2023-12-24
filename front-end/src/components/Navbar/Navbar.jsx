@@ -7,12 +7,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const Token = localStorage.getItem("Token");
   const Role = localStorage.getItem("Role");
-  console.log("Role:",Role);
+  console.log("Role:", Role);
   const Logout = () => {
     localStorage.removeItem("Token");
     localStorage.removeItem("Role");
     localStorage.removeItem("uuid");
-    navigate('/');
+    navigate("/");
     window.location.reload();
   };
   return (
@@ -42,34 +42,50 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/usercart"} className="general-a">Cart</Link>
+                  <Link to={"/usercart"} className="general-a">
+                    Cart
+                  </Link>
                 </li>
               </>
             ) : (
-              <> </>
-            )}
-
-            {Token !== null && Role == 1 ? (
               <>
-                <li>
-                  <Link to={"/admin/Addproduct"} className="general-a">
-                    Add Products
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/admin/viewproduct"} className="general-a">
-                    View Products
-                  </Link>
-                </li>
-                <li>
-                  <Link className="general-a">Volunteer Request</Link>
-                </li>
-                <li>
-                  <Link className="general-a"> volunteer List</Link>
-                </li>
+                {" "}
+                {Token !== null && Role == 1 ? (
+                  <>
+                    <li>
+                      <Link to={"/admin/Addproduct"} className="general-a">
+                        Add Products
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/admin/viewproduct"} className="general-a">
+                        View Products
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/volunteer/list"} className="general-a">
+                        {" "}
+                        volunteer List
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="general-a">Volunteer Request</Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    {Token !== null && Role == 3 ? (
+                      <>
+                        <li>
+                          <Link className="general-a">Order Request</Link>
+                        </li>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                )}
               </>
-            ) : (
-              <></>
             )}
 
             {Token !== null ? (

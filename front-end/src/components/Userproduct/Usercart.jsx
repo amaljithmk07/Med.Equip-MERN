@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Usercart = () => {
   const navigate = useNavigate();
   const [cartitems, setCartitems] = useState([]);
-  console.log(cartitems.length);
+  console.log('cart length:',cartitems.length);
 
   const token = localStorage.getItem("Token");
   useEffect(() => {
@@ -90,33 +90,62 @@ const Usercart = () => {
   //   }
   // };
 
+  // const incrementqty = async (id, cart_qty) => {
+  //   const prev_qty = cart_qty;
+
+  //   try {
+  //     await axios
+  //       .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((data) => {
+  //         const updatedQty = data.data.data.cart_qty;
+  //         console.log(updatedQty);
+
+  //         const updatedCartItems = cartitems.map((item) => {
+  //           if (item._id === id) {
+  //             return { ...item, cart_qty: updatedQty };
+  //           }
+  //           return item;
+  //         });
+
+  //         setCartitems(updatedCartItems);
+  //         console.log(updatedCartItems);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+
   const incrementqty = async (id, cart_qty) => {
     const prev_qty = cart_qty;
-
+  
     try {
-      await axios
-        .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((data) => {
-          const updatedQty = data.data.data.cart_qty;
-          console.log(updatedQty);
-
-          const updatedCartItems = cartitems.map((item) => {
-            if (item._id === id) {
-              return { ...item, cart_qty: updatedQty };
-            }
-            return item;
-          });
-
-          setCartitems(updatedCartItems);
-          console.log(updatedCartItems);
-        })
-        .catch((err) => {
-          console.log(err);
+      const response = await axios.get(`http://localhost:2222/api/user/cartincrement/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      const updatedQty = response.data.data.cart_qty;
+  
+      setCartitems((prevCartItems) => {
+        const updatedCartItems = prevCartItems.map((item) => {
+          if (item._id === id) {
+            return { ...item, cart_qty: updatedQty };
+          }
+          return item;
         });
+  
+        console.log(updatedCartItems);
+        return updatedCartItems;
+      });
     } catch (err) {
       console.log(err);
     }
@@ -135,11 +164,11 @@ const Usercart = () => {
           },
         })
         .then((data) => {
-          // const incrementdata = cartitems.filter((details) => {
-          //   return details.cart_qty != prev_qty;
-          // });
-          // setCartitems(incrementdata);
-          // console.log(incrementdata);
+          const decrementdata = cartitems.filter((details) => {
+            return details.cart_qty != prev_qty;
+          });
+          setCartitems(decrementdata);
+          console.log('decrement:',decrementdata);
         })
         .catch((err) => {
           console.log(err);

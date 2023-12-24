@@ -69,7 +69,7 @@
   align-items: center;
 }
 #edit-product-add {
-  height: 100px;
+  height: auto;
   width: 100px;
 }
 .edit-right {
