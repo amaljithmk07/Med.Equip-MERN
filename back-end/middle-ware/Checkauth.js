@@ -9,11 +9,10 @@ module.exports = (req, res, next) => {
       userEmail: decodedToken.email,
       userRole: decodedToken.userRole,
     };
-    console.log(req.userData);
+    console.log("req.userdata:", req.userData);
 
     next();
   } catch (error) {
     res.status(401).json({ message: "Auth failed!" });
   }
 };
-7;

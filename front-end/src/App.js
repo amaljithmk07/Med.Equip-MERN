@@ -16,7 +16,8 @@ import Uuidverify from "./components/uuid/Uuidverify";
 import Usercart from "./components/Userproduct/Usercart";
 import Footer from "./components/footer/Footer";
 import Volunteerregister from "./components/Volunteer/Volunteerregister";
-import Volunteerlist from "./components/Volunteer/Volunteerlist";
+import Volunteerlist from "./components/AdminProduct/Volunteerlist";
+import Volunteerrequest from "./components/AdminProduct/Volunteerrequest";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/volunteer" element={<Volunteerhome />} />
         <Route path="/volunteer/register" element={<Volunteerregister />} />
         <Route path="/volunteer/list" element={<Volunteerlist />} />
+        <Route path="/volunteer/request" element={<Volunteerrequest />} />
       </Routes>
       <Footer />
     </Router>

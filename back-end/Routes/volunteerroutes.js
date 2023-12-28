@@ -143,7 +143,7 @@ volunteerroutes.put(
 
 //Volunteer list
 
-volunteerroutes.get("/volunteerlist", Checkauth, (req, res) => {
+volunteerroutes.get("/volunteerlist", (req, res) => {
   volunteerDB
     .find()
     .then((data) => {
@@ -165,4 +165,44 @@ volunteerroutes.get("/volunteerlist", Checkauth, (req, res) => {
     });
 });
 
+// Status Update
+
+volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
+  try {
+    console.log(req.params.id);
+    await volunteerDB
+      .updateOne(
+        {
+          _id: req.params.id,
+        },
+        {
+          status: "Approved",
+        }
+      )
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Updated  successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        // console.log(err);
+        res.status(400).json({
+          success: true,
+          error: false,
+          message: "Update unsuccessfull",
+          ErrorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: true,
+      error: false,
+      message: "Internal Server Error",
+      ErrorMessage: err.message,
+    });
+  }
+});
 module.exports = volunteerroutes;

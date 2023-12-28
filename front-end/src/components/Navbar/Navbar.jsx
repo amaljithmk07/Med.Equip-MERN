@@ -69,7 +69,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link className="general-a">Volunteer Request</Link>
+                      <Link to={"/volunteer/request"} className="general-a">Volunteer Request</Link>
                     </li>
                   </>
                 ) : (
