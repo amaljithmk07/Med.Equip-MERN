@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import axios from "axios";
 import "./Userviewproduct.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import Navbar from "../Navbar/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Usernavbar from "../UserNavbar/Usernavbar";
-
 const Userviewproduct = () => {
   const navigate = useNavigate();
   const [product, setproduct] = useState([]);
@@ -82,10 +81,14 @@ const Userviewproduct = () => {
         console.log(err);
       });
   };
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
   return (
     <div className="user-view-main-body">
       <ToastContainer />
-
       {/* <Usernavbar/> */}
       {product.length > 0 ? (
         <div className="user-view-content-body">

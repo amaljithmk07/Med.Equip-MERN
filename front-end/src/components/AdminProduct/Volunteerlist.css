@@ -1,5 +1,5 @@
 .volunteerlist-body {
-  height: 600px;
+  min-height: 700px;
   width: 100%;
   /* background-color: blue; */
   display: flex;
@@ -7,9 +7,9 @@
   align-items: center;
 }
 .volunteerlist-sub-body {
-  height: 90%;
+  min-height: 500px;
   width: 90%;
-
+padding: 0px 0px 50px 0px;
   background-image: url("/public/cardbody.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@
   align-items: center;
 }
 .volunteerlist-sub-body-heading {
-  height: 15%;
+  height: 5rem;
   width: 100%;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -29,13 +29,15 @@
   flex-direction: column;
   /* background-color: rgb(195, 195, 255); */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
 .volunteerlist-content {
-  height: 90%;
+  min-height: 500px;
   width: 100%;
+  flex-wrap: wrap;
+  row-gap: 30px;
 
   /* background-color: rgb(191, 255, 0); */
   display: flex;
@@ -47,7 +49,7 @@
   height: 350px;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  width: 250px;
+  width: 230px;
   flex-direction: column;
   box-shadow: 1px 5px 10px rgba(53, 53, 53, 0.256);
   display: flex;

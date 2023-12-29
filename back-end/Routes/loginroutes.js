@@ -7,6 +7,7 @@ const register = require("../models/registerschema");
 const Checkauth = require("../middle-ware/Checkauth");
 const loginroutes = express.Router();
 
+
 loginroutes.post("/", async (req, res) => {
   // const { email, password } = req.body;
 
@@ -40,7 +41,7 @@ loginroutes.post("/", async (req, res) => {
           email: oldUser.email,
         },
         "secret_this_should_be_longer",
-        { expiresIn: "1h" }
+        { expiresIn: 1 }
       );
       // console.log("token:", token);
       // console.log("Role:", userRole);
@@ -104,6 +105,27 @@ loginroutes.post("/uuidverify", Checkauth, async (req, res) => {
       success: false,
       error: true,
       message: "Internal server error",
+      errMessage: err.message,
+    });
+  }
+});
+
+//Auth Timeout
+
+loginroutes.get("/authtime", Checkauth, (req, res) => {
+  try {
+    if (Checkauth) {
+      return res.status(200).json({
+        success: true,
+        error: false,
+        message: "Session Started",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: true,
+      message: "Session Time Out",
       errMessage: err.message,
     });
   }

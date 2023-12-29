@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Userproduct from "../Userproduct/Userproduct";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Navbar = () => {
     navigate("/");
     window.location.reload();
   };
+
   return (
     <div className="general-navbar">
       <div className="general-med-logo">
@@ -69,7 +71,9 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/volunteer/request"} className="general-a">Volunteer Request</Link>
+                      <Link to={"/volunteer/request"} className="general-a">
+                        Volunteer Request
+                      </Link>
                     </li>
                   </>
                 ) : (

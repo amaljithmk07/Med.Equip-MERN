@@ -8,10 +8,10 @@ const Volunteerrequest = () => {
   const [volunteerreqlist, setVolunteerreqlist] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:2222/api/volunteer/volunteerlist", {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
+      .get("http://localhost:2222/api/volunteer/volunteerrequestlist", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((data) => {
         console.log(data.data.data);
@@ -25,59 +25,96 @@ const Volunteerrequest = () => {
   ///////////
 
   const approveHandler = async (id) => {
-    console.log(token);
     console.log(id);
     try {
+      console.log(token);
       await axios
-        .put(`http://localhost:2222/api/volunteer/statusupdate/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .put(
+          `http://localhost:2222/api/volunteer/statusupdate/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((data) => {
           console.log(data);
-          // setVolunteerreqlist(data.data.data);
+          const updatedstatus = volunteerreqlist.filter((details) => {
+            if (details._id == id) {
+              details.status = "Approved";
+            }
+            return details;
+          });
+          setVolunteerreqlist(updatedstatus);
         })
         .catch((err) => {
-          console.log(err.message);
+          console.log(err);
         });
-      // window.location.reload();
     } catch (err) {
       console.log("catch error:", err);
     }
+  };
+
+  ////
+
+  const rejectHandler = (id) => {
+    axios
+      .delete(`http://localhost:2222/api/volunteer/reject/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        // setVolunteerreqlist(data.data.data);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // window.location.reload();
   };
   return (
     <div>
       <div className="vol-req-main-body">
         <div className="vol-req-sub-body">
           <div className="vol-req-container">
-            <table className="vol-req-table" border={1}>
-              <tr>
-                <th>Login ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-                <th>Qualification</th>
-                <th>Status</th>
-                <th>Decision</th>
-              </tr>
-              {volunteerreqlist.map((data) => (
-                <tr key={data._id}>
-                  <td>{data._id}</td>
-                  <td>{data.name}</td>
-                  <td>{data.address}</td>
-                  <td>{data.phone_number}</td>
-                  <td>{data.qualification}</td>
-                  <td>{data.status}</td>
-                  <td>
-                    <button onClick={() => approveHandler(data._id)}>
-                      Approve
-                    </button>
-                    <button>Decline</button>
-                  </td>
-                </tr>
-              ))}
-            </table>
+            <div className="vol-req-container-head">New Volunteer Request</div>
+            <div className="vol-req-container-components">
+              <div className="vol-req-title"> ID</div>
+              <div className="vol-req-title"> Name</div>
+              <div className="vol-req-title">Age</div>
+              <div className="vol-req-title">Phone Number</div>
+              <div className="vol-req-title">Qualification</div>
+              <div className="vol-req-title">Status</div>
+              <div className="vol-req-title">Decision</div>
+            </div>
+            {volunteerreqlist.map((data) => (
+              <div className="vol-req-container-body" key={data._id}>
+                <div className="vol-req-data">{data._id}</div>
+                <div className="vol-req-data">{data.name}</div>
+                <div className="vol-req-data">{data.age}</div>
+                <div className="vol-req-data">{data.phone_number}</div>
+                <div className="vol-req-data">{data.qualification}</div>
+                <div className="vol-req-data">{data.status}</div>
+                <div className="vol-req-btn">
+                  <button
+                    id="btn-approve"
+                    onClick={() => approveHandler(data._id)}
+                  >
+                    {data.status === "Approved" ? <>Accepted</> : <>Accept</>}
+                  </button>
+
+                  <button
+                    onClick={() => rejectHandler(data._id)}
+                    id="btn-reject"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

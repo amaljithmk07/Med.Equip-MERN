@@ -1,5 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import LoginPage from "./components/loginpage/LoginPage";
 import RegistrationPage from "./components/registrationpage/RegistrationPage";
 import Addproduct from "./components/AdminProduct/Addproduct";
@@ -18,37 +23,53 @@ import Footer from "./components/footer/Footer";
 import Volunteerregister from "./components/Volunteer/Volunteerregister";
 import Volunteerlist from "./components/AdminProduct/Volunteerlist";
 import Volunteerrequest from "./components/AdminProduct/Volunteerrequest";
+import axios from "axios";
 
 function App() {
+  // const navigate=useNavigate()
+  const token = localStorage.getItem("Token");
+  useEffect(() => {
+    axios
+      .get(`http://localhost:2222/api/login/authtime`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // navigate('/login')
+      });
+  });
 
-  
   return (
     <Router>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Userproduct />} />
 
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
-     
-     
+
         <Route path="/admin" element={<Viewproduct />} />
         <Route path="/admin/addproduct" element={<Addproduct />} />
         <Route path="/admin/editproduct/:id" element={<Editproduct />} />
         <Route path="/admin/viewproduct" element={<Viewproduct />} />
         {/* <Route path="/user" element={<ReactOne />} /> */}
-    
+
         <Route path="/profile" element={<Profilehome />} />
 
         {/* <Route path="/" element={<Useraddproduct />} /> */}
-        
+
         <Route path="/user" element={<Userproduct />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Userviewproduct />} />
         {/* <Route path="/profileedit" element={<Profileedit />} /> */}
         <Route path="/uuidverify" element={<Uuidverify />} />
         <Route path="/usercart" element={<Usercart />} />
-
 
         <Route path="/volunteer" element={<Volunteerhome />} />
         <Route path="/volunteer/register" element={<Volunteerregister />} />

@@ -145,6 +145,33 @@ volunteerroutes.put(
 
 volunteerroutes.get("/volunteerlist", (req, res) => {
   volunteerDB
+    .find({
+      status:"Approved"
+    })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "volunteer List display successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      res.status(400).json({
+        success: true,
+        error: false,
+        message: "volunteer List display unsuccessfull",
+        ErrorMessage: err.message,
+      });
+    });
+});
+
+
+//Volunteer Request list
+
+volunteerroutes.get("/volunteerrequestlist",Checkauth, (req, res) => {
+  volunteerDB
     .find()
     .then((data) => {
       res.status(200).json({
@@ -205,4 +232,31 @@ volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
     });
   }
 });
+
+// Reject Request
+
+volunteerroutes.delete("/reject/:id", Checkauth, (req, res) => {
+  volunteerDB
+    .deleteOne({
+      _id: req.params.id,
+    })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "Rejected  successfully",
+        // data: data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      res.status(400).json({
+        success: true,
+        error: false,
+        message: "Rejected Failed",
+        ErrorMessage: err.message,
+      });
+    });
+});
+
 module.exports = volunteerroutes;
