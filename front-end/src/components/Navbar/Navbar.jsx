@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Userproduct from "../Userproduct/Userproduct";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Navbar = () => {
 
   return (
     <div className="general-navbar">
+      <Toaster />
+
       <div className="general-med-logo">
         <img src="/logo1.png" alt="" id="general-med-logo-png" />
         Medical Equipment

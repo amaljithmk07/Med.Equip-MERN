@@ -107,8 +107,39 @@
 
 
 }
+#btn-accepted {
+  background-image:
+  linear-gradient(to bottom, rgb(0, 255, 213), rgb(0, 151, 121));
+
+  border: 0px solid rgb(15, 100, 0);
+  border-radius: 8px;
+  height: 30px;
+  /* background-color: yellow; */
+  letter-spacing: 0.5px;
+  width: 40%;
+  cursor: pointer;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.652);
+
+
+
+}
 #btn-reject {
   background-image: linear-gradient(to bottom, rgb(255, 0, 0), rgb(209, 4, 4));
+  border: 0px solid rgb(255, 255, 255);
+  border-radius: 8px;
+  height: 30px;
+  cursor: pointer;
+
+  letter-spacing: 0.5px;
+  width: 40%;
+  font-weight: 600;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.652);
+  color: #fff;
+}
+#btn-declined {
+  background-image: linear-gradient(to bottom, rgb(255, 77, 0), rgb(157, 5, 0));
   border: 0px solid rgb(255, 255, 255);
   border-radius: 8px;
   height: 30px;

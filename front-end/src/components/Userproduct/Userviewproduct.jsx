@@ -4,8 +4,7 @@ import axios from "axios";
 import "./Userviewproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 const Userviewproduct = () => {
   const navigate = useNavigate();
@@ -24,20 +23,15 @@ const Userviewproduct = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.warning("Ran out of time !!!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        // setTimeout(() => {
-        //   localStorage.clear();
-        //   navigate("/login");
-        // }, 5000);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out",{
+            position:'bottom-center'
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 3000);
+        }
       });
   }, []);
 
@@ -63,32 +57,26 @@ const Userviewproduct = () => {
       })
       .then((data) => {
         console.log(data);
-        toast.success("Add to cart successfully !!!", {
+        toast.success("Add to cart successfully !",  {
           position: "bottom-center",
-          autoClose: 400,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+          
         });
         setTimeout(() => {
           navigate("/usercart");
-        }, 1500);
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const override = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-  };
+  // const override = {
+  //   display: "block",
+  //   margin: "0 auto",
+  //   borderColor: "red",
+  // };
   return (
     <div className="user-view-main-body">
-      <ToastContainer />
+      <Toaster />
       {/* <Usernavbar/> */}
       {product.length > 0 ? (
         <div className="user-view-content-body">
@@ -104,11 +92,11 @@ const Userviewproduct = () => {
                   />
                 </div>
                 <div className="user-view-card-details">
-                  <h3> {item.name}</h3>
-                  <h4> {item.available_qty}</h4>
-                  <h4> {item.category}</h4>
-                  <h4> {item.sub_category}</h4>
-                  <h4> {item.description}</h4>
+                  <h3 className="user-view-card-details-h3"> {item.name}</h3>
+                  <h4 className="user-view-card-details-h4"> {item.available_qty}</h4>
+                  <h4 className="user-view-card-details-h4"> {item.category}</h4>
+                  <h4 className="user-view-card-details-h4"> {item.sub_category}</h4>
+                  <h4 className="user-view-card-details-h4"> {item.description}</h4>
                   {/* {anime == true ? (
                     <img
                       src="/addtocartanimation.gif"

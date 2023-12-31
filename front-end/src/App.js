@@ -26,23 +26,8 @@ import Volunteerrequest from "./components/AdminProduct/Volunteerrequest";
 import axios from "axios";
 
 function App() {
-  // const navigate=useNavigate()
-  const token = localStorage.getItem("Token");
-  useEffect(() => {
-    axios
-      .get(`http://localhost:2222/api/login/authtime`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-        // navigate('/login')
-      });
-  });
+  // const navigate = useNavigate();
+
 
   return (
     <Router>

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./Usercart.css";
 import { useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const Usercart = () => {
   const navigate = useNavigate();
@@ -24,21 +23,16 @@ const Usercart = () => {
       })
       .catch((err) => {
         console.log(err);
-        // toast.warning("Ran out of time !!!", {
-        //   position: "bottom-center",
-        //   autoClose: 2000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "light",
-        // });
-        // setTimeout(() => {
-        //   localStorage.clear();
-
-        //   navigate("/login");
-        // }, 5000);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out",{
+            position:'bottom-center'
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 3000);
+        }
+    
       });
   }, []);
   // console.log(cartitems);
@@ -179,7 +173,7 @@ const Usercart = () => {
   };
   return (
     <div className="cart-home">
-      <ToastContainer />
+      <Toaster />
       <div className="cart-content">
         <div className="cart-header">
           <div className="cart-heading">EQUIPMENTS CART</div>

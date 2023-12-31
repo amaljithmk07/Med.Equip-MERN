@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Volunteerrequest.css";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Volunteerrequest = () => {
   const token = localStorage.getItem("Token");
-
+  const navigate = useNavigate();
   const [volunteerreqlist, setVolunteerreqlist] = useState([]);
   useEffect(() => {
     axios
@@ -19,6 +21,15 @@ const Volunteerrequest = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out", {
+            position: "bottom-center",
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 3000);
+        }
       });
   }, []);
 
@@ -60,15 +71,26 @@ const Volunteerrequest = () => {
 
   const rejectHandler = (id) => {
     axios
-      .delete(`http://localhost:2222/api/volunteer/reject/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .put(
+        `http://localhost:2222/api/volunteer/reject/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((data) => {
         console.log(data);
         // setVolunteerreqlist(data.data.data);
-        window.location.reload();
+        const rejecteddata = volunteerreqlist.filter((data) => {
+          if (data._id == id) {
+            data.status = "Rejected";
+          }
+          return data;
+        });
+        setVolunteerreqlist(rejecteddata);
+        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -77,6 +99,8 @@ const Volunteerrequest = () => {
   };
   return (
     <div>
+      <Toaster />
+
       <div className="vol-req-main-body">
         <div className="vol-req-sub-body">
           <div className="vol-req-container">
@@ -99,19 +123,36 @@ const Volunteerrequest = () => {
                 <div className="vol-req-data">{data.qualification}</div>
                 <div className="vol-req-data">{data.status}</div>
                 <div className="vol-req-btn">
-                  <button
-                    id="btn-approve"
-                    onClick={() => approveHandler(data._id)}
-                  >
-                    {data.status === "Approved" ? <>Accepted</> : <>Accept</>}
-                  </button>
-
-                  <button
-                    onClick={() => rejectHandler(data._id)}
-                    id="btn-reject"
-                  >
-                    Reject
-                  </button>
+                  {data.status === "Approved" ? (
+                    <button
+                      id="btn-accepted"
+                      onClick={() => approveHandler(data._id)}
+                    >
+                      Accepted
+                    </button>
+                  ) : (
+                    <button
+                      id="btn-approve"
+                      onClick={() => approveHandler(data._id)}
+                    >
+                      Accept
+                    </button>
+                  )}
+                  {data.status === "Rejected" ? (
+                    <button
+                      onClick={() => rejectHandler(data._id)}
+                      id="btn-declined"
+                    >
+                      Rejected
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => rejectHandler(data._id)}
+                      id="btn-reject"
+                    >
+                      Reject
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

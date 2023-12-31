@@ -21,7 +21,7 @@
 .view-cards-body {
   height: 90%;
   width: 98%;
-  background-color:#fffdf8;
+  background-color: #fffdf8;
   display: flex;
   flex-wrap: wrap;
   padding: 30px 0px;
@@ -35,7 +35,7 @@
   height: 400px;
   width: 250px;
   /* background-color: rgb(255, 255, 255); */
-  background-image: url('/public/cardbody1.jpg');
+  background-image: url("/public/cardbody1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -62,7 +62,7 @@
 }
 
 .view-card-details {
-  height:30%;
+  height: 30%;
   width: 90%;
   background-color: rgb(241, 241, 241);
   border-radius: 5px;
@@ -74,10 +74,10 @@
   align-items: center;
   text-align: center;
 }
-h3,
-h4 {
+.view-card-details-h3,
+.view-card-details-h4 {
   text-transform: capitalize;
-  
+
   margin: 0px;
   color: black;
 }
@@ -91,7 +91,7 @@ h4 {
   align-items: center;
 }
 .edit {
-  height:70%;
+  height: 70%;
   width: 40%;
   background-color: rgb(0, 47, 255);
   border-radius: 6px;
@@ -106,7 +106,7 @@ h4 {
   /* font-weight: 600; */
 }
 .delete {
-  height:70%;
+  height: 70%;
   width: 40%;
   background-color: rgb(255, 51, 51);
   border-radius: 6px;
@@ -120,7 +120,7 @@ h4 {
   text-decoration: none;
   /* font-weight: 600; */
 }
-.no-data{
+.no-data {
   height: 600px;
   width: auto;
 }

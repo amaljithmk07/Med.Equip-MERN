@@ -3,6 +3,7 @@ const Checkauth = require("../middle-ware/Checkauth");
 const volunteerroutes = express.Router();
 const volunteerDB = require("../models/volunteerRegisterschema");
 const multer = require("multer");
+const { default: mongoose } = require("mongoose");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -32,6 +33,11 @@ volunteerroutes.get("/profile", Checkauth, (req, res) => {
         {
           $unwind: {
             path: "$results",
+          },
+        },
+        {
+          $match: {
+            login_id: new mongoose.Types.ObjectId(req.userData.userId),
           },
         },
         {
@@ -86,7 +92,7 @@ volunteerroutes.get("/profile", Checkauth, (req, res) => {
           message: "Profile data fetched unsuccessful",
         });
       });
-  } catch {
+  } catch (err) {
     res.status(500).json({
       success: false,
       error: true,
@@ -102,51 +108,59 @@ volunteerroutes.put(
   "/profileupdate/:id",
   Checkauth,
   upload.single("image"),
-  (req, res) => {
-    volunteerDB
-      .findOne({
+  async (req, res) => {
+    try {
+      console.log(req.body);
+      const olddata = volunteerDB.findOne({
         _id: req.params.id,
-      })
-      .then((data) => {
-        (data.image = req.file ? req.file.filename : data.image),
-          (data.name = req.body ? req.body.name : data.name),
-          (data.age = req.body ? req.body.age : data.age),
-          (data.qualification = req.body
-            ? req.body.qualification
-            : data.qualification),
-          (data.phone_number = req.body
-            ? req.body.phone_number
-            : data.phone_number),
-          (data.email = req.body ? req.body.email : data.email);
       });
-    data
-      .save()
-      .then((data) => {
-        res.status(200).json({
+
+      const profile = {
+        image: req.file ? req.file.filename : olddata.image,
+        name: req.body ? req.body.name : olddata.name,
+        age: req.body ? req.body.age : olddata.age,
+        qualification: req.body
+          ? req.body.qualification
+          : olddata.qualification,
+        phone_number: req.body ? req.body.phone_number : olddata.phone_number,
+        email: req.body ? req.body.email : olddata.email,
+      };
+
+      const updatedData = await volunteerDB.updateOne(
+        {
+          _id: req.params.id,
+        },
+        {
+          $set: profile,
+        }
+      );
+
+      if (updatedData) {
+        return res.status(200).json({
           success: true,
           error: false,
           message: "data updated successfully",
           data: data,
         });
-      })
-      .catch((err) => {
-        // console.log(err);
-        res.status(400).json({
-          success: true,
-          error: false,
-          message: "data updated unsuccessfull",
-          ErrorMessage: err.message,
-        });
+      }
+    } catch (err) {
+      // console.log(err);
+      res.status(400).json({
+        success: true,
+        error: false,
+        message: "data updated unsuccessfull",
+        ErrorMessage: err.message,
       });
+    }
   }
 );
 
 //Volunteer list
 
-volunteerroutes.get("/volunteerlist", (req, res) => {
+volunteerroutes.get("/volunteerlist", Checkauth, (req, res) => {
   volunteerDB
     .find({
-      status:"Approved"
+      status: "Approved",
     })
     .then((data) => {
       res.status(200).json({
@@ -167,10 +181,9 @@ volunteerroutes.get("/volunteerlist", (req, res) => {
     });
 });
 
-
 //Volunteer Request list
 
-volunteerroutes.get("/volunteerrequestlist",Checkauth, (req, res) => {
+volunteerroutes.get("/volunteerrequestlist", Checkauth, (req, res) => {
   volunteerDB
     .find()
     .then((data) => {
@@ -235,11 +248,16 @@ volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
 
 // Reject Request
 
-volunteerroutes.delete("/reject/:id", Checkauth, (req, res) => {
+volunteerroutes.put("/reject/:id", Checkauth, (req, res) => {
   volunteerDB
-    .deleteOne({
-      _id: req.params.id,
-    })
+    .updateOne(
+      {
+        _id: req.params.id,
+      },
+      {
+        status: "Rejected",
+      }
+    )
     .then((data) => {
       res.status(200).json({
         success: true,

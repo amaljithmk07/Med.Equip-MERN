@@ -2,12 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Viewproduct.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 const Viewproduct = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [product, setproduct] = useState([]);
   const token = localStorage.getItem("Token");
   useEffect(() => {
@@ -23,22 +22,15 @@ const Viewproduct = () => {
       })
       .catch((err) => {
         console.log(err);
-        // toast.warning("Ran out of time !!!", {
-        toast.warning(err.message, {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true, 
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        // setTimeout(() => {
-        //   localStorage.clear();
-
-        //   navigate("/login");
-        // }, 5000);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out", {
+            position: "bottom-center",
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 3000);
+        }
       });
   }, []);
 
@@ -59,7 +51,7 @@ const Viewproduct = () => {
   return (
     <div className="view-main-body">
       {/* <Navbar /> */}
-      <ToastContainer/>
+      <Toaster />
       {product.length > 0 ? (
         <div className="view-content-body">
           <div className="view-cards-body">
@@ -73,15 +65,15 @@ const Viewproduct = () => {
                   />
                 </div>
                 <div className="view-card-details">
-                  <h3> {item.name}</h3>
-                  <h4> {item.available_qty}</h4>
-                  <h4> {item.category}</h4>
-                  <h4> {item.sub_category}</h4>
-                  <h4> {item.description}</h4>
+                  <h3 className="view-card-details-h3"> {item.name}</h3>
+                  <h4 className="view-card-details-h4"> {item.available_qty}</h4>
+                  <h4 className="view-card-details-h4"> {item.category}</h4>
+                  <h4 className="view-card-details-h4"> {item.sub_category}</h4>
+                  <h4 className="view-card-details-h4"> {item.description}</h4>
                 </div>
                 <div className="view-card-buttons">
                   <Link className="edit" to={`/admin/editproduct/${item._id}`}>
-                    <button className="edit" >Edit</button>
+                    <button className="edit">Edit</button>
                   </Link>
                   {/* <Link className="delete"> */}
                   <button

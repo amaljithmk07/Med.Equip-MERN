@@ -1,5 +1,5 @@
 .profile-home-body {
-  height: 647px;
+  min-height: 627px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .profile-home-sub-body {
-  height: 80%;
+  height: 35rem;
   width: 50%;
   display: flex;
   justify-content: space-evenly;
@@ -23,72 +23,85 @@
 }
 .profile-home-sub-body-form {
   /* background-color: rgb(0, 255, 85); */
+  /* background-color: rgb(255, 0, 0); */
+
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-
 }
 .profile-home-image {
-  background-image: url("/public/user-profile.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: cover;
+  width: 90%;
   display: flex;
-  border-top: 1px solid #ffd6b6;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
-  border-radius: 15px;
-  height: 30%;
-  width: 60%;
-  /* margin: 0px 0px 8px 0px; */
+  /* background-color: yellow; */
+  column-gap: 40px;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
-.profile-home-image{
-  /* background-color: red; */
+
+.profile-photo {
+  height: 120px;
+  max-width: 120px;  
+  border-radius: 50%;
+  box-shadow: 2px 5px 10px rgba(85, 85, 85, 0.429);
+  border: 10px solid rgb(255, 255, 255);
 }
 .profile-home-content {
-  /* background-image: linear-gradient(327deg, rgb(255 171 112), rgb(255 223 181)); */
-  background-image: url("/public/user-profile.jpeg");
+  box-shadow: 10px 10px 20px rgba(47, 47, 47, 0.125);
+
+  border-radius: 35px;
+  height: 50rem;
+  width: 60%;
+  display: flex;
+  /* border: 2px solid #00000046; */
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background-color: rgb(255, 255, 255); */
+  background-image: url("/public/cardbody.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
-  border-radius: 15px;
-  height: 90%;
-  width: 60%;
-  display: flex;
-  /* border-right: 1px solid #ffd6b6; */
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-}
-#profile-photo {
-  height: 100px;
-  width: auto;
 }
 .profile-input-box {
   width: 80%;
   /* background-color: red; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: auto;
+  font-size: 1rem;
+  font-weight: 700;
+  column-gap: 5px;
+  height: 20px;
+}
+.profile-input-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(62, 26, 0);
+  min-width: 28%;
+  /* background-color: rgb(238, 180, 180); */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 20px;
 }
 .profile-input {
-  text-align: center;
+  text-align: start;
   font-size: 16px;
   font-weight: 600;
+  /* text-align: start; */
   /* text-transform: capitalize; */
   border: 0px;
-  border-bottom: 1px solid rgba(212, 133, 15, 0.603);
+  /* border-bottom: 1px solid rgba(212, 133, 15, 0.603); */
+  color: rgb(62, 26, 0);
   height: 20px;
-  width: 90%;
-  background-color: rgba(255, 255, 255, 0);
+  min-width: 20%;
+  background-color: rgba(117, 251, 0, 0);
 }
 .profile-input:focus {
   outline: none;
@@ -108,15 +121,20 @@
   text-align: center;
   width: 40%;
 
-  background-color: rgb(212, 113, 0);
-  transition: background-image 5s;
-}
-.profile-update:hover {
-  transition-timing-function: ease;
-  /* background-color: rgb(255, 234, 210); */
   background-image: url("/public/navbar1.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
+  transition: box-shadow 0.2s;
+}
+.profile-update:hover {
+  transition-timing-function: ease;
+  /* background-color: rgb(255, 234, 210); */
+  /* background-image: url("/public/navbar1.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover; */
+  box-shadow: 0px 1px 8px rgba(47, 47, 47, 0.538);
 }
