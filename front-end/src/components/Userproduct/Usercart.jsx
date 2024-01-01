@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Usercart = () => {
   const navigate = useNavigate();
   const [cartitems, setCartitems] = useState([]);
-  console.log('cart length:',cartitems.length);
+  // console.log("cart length:", cartitems.length);
 
   const token = localStorage.getItem("Token");
   useEffect(() => {
@@ -24,15 +24,14 @@ const Usercart = () => {
       .catch((err) => {
         console.log(err);
         if (err.response.status == 401) {
-          toast.error("Session Time Out",{
-            position:'bottom-center'
+          toast.error("Session Time Out", {
+            position: "bottom-center",
           });
           setTimeout(() => {
             localStorage.clear();
             navigate("/login");
-          }, 3000);
+          }, 2000);
         }
-    
       });
   }, []);
   // console.log(cartitems);
@@ -116,30 +115,27 @@ const Usercart = () => {
   //   }
   // };
 
-
-  const incrementqty = async (id, cart_qty) => {
-    const prev_qty = cart_qty;
-  
+  const incrementqty = async (id, item) => {
+    var cart_qty = item.cart_qty;
+    var availableQty = item.available_qty;
+    // console.log(cart_qty, availableQty);
     try {
-      const response = await axios.get(`http://localhost:2222/api/user/cartincrement/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      const updatedQty = response.data.data.cart_qty;
-  
-      setCartitems((prevCartItems) => {
-        const updatedCartItems = prevCartItems.map((item) => {
-          if (item._id === id) {
-            return { ...item, cart_qty: updatedQty };
-          }
-          return item;
+      await axios
+        .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          var incre_qty = data.data.incre_qty;
+          const updatedQty = cartitems.filter((data) => {
+            if (availableQty !== incre_qty) {
+              // return data;
+              return (cart_qty = cart_qty + 1);
+            }
+            setCartitems(updatedQty);
+          });
         });
-  
-        console.log(updatedCartItems);
-        return updatedCartItems;
-      });
     } catch (err) {
       console.log(err);
     }
@@ -162,7 +158,7 @@ const Usercart = () => {
             return details.cart_qty != prev_qty;
           });
           setCartitems(decrementdata);
-          console.log('decrement:',decrementdata);
+          console.log("decrement:", decrementdata);
         })
         .catch((err) => {
           console.log(err);

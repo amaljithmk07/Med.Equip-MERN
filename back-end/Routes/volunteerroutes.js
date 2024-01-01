@@ -104,14 +104,15 @@ volunteerroutes.get("/profile", Checkauth, (req, res) => {
 
 //Volunteer update
 
-volunteerroutes.put(
+volunteerroutes.post(
   "/profileupdate/:id",
   Checkauth,
   upload.single("image"),
   async (req, res) => {
     try {
       console.log(req.body);
-      const olddata = volunteerDB.findOne({
+      console.log("Image file:", req.file);
+      const olddata = await volunteerDB.findOne({
         _id: req.params.id,
       });
 
@@ -140,14 +141,14 @@ volunteerroutes.put(
           success: true,
           error: false,
           message: "data updated successfully",
-          data: data,
+          data: updatedData,
         });
       }
     } catch (err) {
       // console.log(err);
       res.status(400).json({
-        success: true,
-        error: false,
+        success: false,
+        error: true,
         message: "data updated unsuccessfull",
         ErrorMessage: err.message,
       });

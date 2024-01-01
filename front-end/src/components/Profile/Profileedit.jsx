@@ -2,12 +2,63 @@ import React, { useEffect, useState } from "react";
 import "./Profileedit.css";
 import axios from "axios";
 const Profileedit = () => {
-  const [letters, setletters] = useState({});
-  const profileInput = (event) => {
-    const { name, value } = event.target;
-    setletters({ ...letters, [name]: value });
-    // console.log(letters);
+  const profileEdit = (e) => {
+    const { name, value } = e.target;
+    // console.log(e.target.value);
+    setProfile({ ...profile, [name]: value });
   };
+  const profilePhoto = (e) => {
+    const { name } = e.target;
+    setProfile({ ...profile, [name]: e.target.files[0] });
+  };
+  const profileUpdate = (id, e) => {
+    // if (role == 3) {
+    var formDetails = new FormData();
+    formDetails.append("image", profile.image);
+    formDetails.append("name", profile.name);
+    formDetails.append("age", profile.age);
+    formDetails.append("qualification", profile.qualification);
+    formDetails.append("phone_number", profile.phone_number);
+    formDetails.append("email", profile.email);
+    console.log("form data image:", formDetails.image);
+    axios
+      .post(
+        `http://localhost:2222/api/volunteer/profileupdate/${id}`,
+        formDetails,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      .then((data) => {
+        // console.log("data :", data);
+        // console.log("data :", data.data.data[0]);
+        setProfile(data);
+        navigate("/profile");
+        // var ProfileUpdated = response.data.data[0];
+
+        // const updatedprofile = profile.filter((data) => {
+        //   if (data._id == id) {
+        //     return { ...profile, profile: ProfileUpdated };
+        //   }
+        //   return data;
+        // });
+        // setProfile(updatedprofile);
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+    console.log(profile);
+    e.preventDefault();
+  };
+  // const profileImage = profile.image;
+  // const imgLength=profileImage.length
+  // console.log(imgLength);
+  console.log(profile.image);
+
+
 
   return (
     <div>

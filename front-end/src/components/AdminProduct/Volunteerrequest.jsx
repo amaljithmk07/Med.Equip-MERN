@@ -28,7 +28,7 @@ const Volunteerrequest = () => {
           setTimeout(() => {
             localStorage.clear();
             navigate("/login");
-          }, 3000);
+          }, 2000);
         }
       });
   }, []);

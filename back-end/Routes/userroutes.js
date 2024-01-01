@@ -348,21 +348,22 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
       .then(async (data) => {
         // console.log(data.cart_qty+1);
         var qty = data.cart_qty;
-        var availablle_qty = data.available_qty;
-        if (availablle_qty > qty) {
+        var available_qty = data.available_qty;
+        if (available_qty > qty) {
           var incre_qty = qty + 1;
-          console.log(incre_qty);
+          console.log("Increment:", incre_qty);
 
           const update_qty = await cartproducts.updateOne(
             { login_id: userId, _id: req.params.id },
             { $set: { cart_qty: incre_qty } }
           );
-
+          // console.log("updateQty:", update_qty);
           if (update_qty) {
             return res.status(200).json({
               success: true,
               error: false,
               data: data,
+              incre_qty: incre_qty,
               message: "cart increment successful",
             });
           }
@@ -371,7 +372,7 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
             success: true,
             error: false,
             data: data,
-            message: "Yoou added maximum quantity",
+            message: "You added maximum quantity",
           });
         }
       });

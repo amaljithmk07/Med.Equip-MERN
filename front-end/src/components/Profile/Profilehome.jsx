@@ -3,17 +3,18 @@ import "./Profilehome.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+
 const Profilehome = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState([
-    {
-      image: "",
-      name: "",
-      age: "",
-      qualification: "",
-      phone_number: "",
-      email: "",
-    },
+    // {
+    // image: "",
+    // name: "",
+    // age: "",
+    // qualification: "",
+    // phone_number: "",
+    // email: "",
+    // },
   ]);
   const token = localStorage.getItem("Token");
   const role = localStorage.getItem("Role");
@@ -43,7 +44,7 @@ const Profilehome = () => {
               localStorage.clear();
 
               navigate("/login");
-            }, 3000);
+            }, 2000);
           }
         });
     } else {
@@ -66,56 +67,13 @@ const Profilehome = () => {
             setTimeout(() => {
               localStorage.clear();
               navigate("/login");
-            }, 3000);
+            }, 2000);
           }
         });
     }
   }, []);
-  const profileEdit = (e) => {
-    const { name, value } = e.target;
-    // console.log(e.target.value);
-    setProfile({ ...profile, [name]: value });
-  };
-  const profilePhoto = (e) => {
-    const { name } = e.target;
-    setProfile({ ...profile, [name]: e.target.files[0] });
-  };
-  const profileUpdate = (id, e) => {
-    if (role == 3) {
-      const formData = new FormData();
-      formData.append("image", profile.image);
-      formData.append("name", profile.name);
-      formData.append("age", profile.age);
-      formData.append("qualification", profile.qualification);
-      formData.append("phone_number", profile.phone_number);
-      formData.append("email", profile.email);
-      console.log(formData);
-      axios
-        .put(
-          `http://localhost:2222/api/volunteer/profileupdate/${id}`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((data) => {
-          console.log("data :", data);
-          navigate("/profile");
-          // const updatedprofile = profile.filter((data) => {
-          //   cmp.profile(data);
-          //   return data;
-          // });
-          // setProfile(updatedprofile);
-        })
-        .catch((err) => {
-          console.log("err:", err);
-        });
-    } else {
-    }
-  };
-  console.log(profile);
+
+  
 
   return (
     <div>
@@ -133,9 +91,9 @@ const Profilehome = () => {
                   type="file"
                   name="image"
                   hidden
-                  onChange={profilePhoto}
                   id="image"
                   className="profile-home-upload"
+                  accept="image/*"
                 />
                 <label htmlFor="image">
                   {" "}
@@ -171,7 +129,6 @@ const Profilehome = () => {
                       value={profile.name}
                       placeholder="Name"
                       className="profile-input"
-                      onChange={profileEdit}
                     />
                   </div>
                   <div className="profile-input-box">
@@ -182,7 +139,6 @@ const Profilehome = () => {
                       // name="user_id"
                       value={profile.status}
                       className="profile-input"
-                      onChange={profileEdit}
                       disabled
                     />
                   </div>
@@ -194,7 +150,6 @@ const Profilehome = () => {
                       name="age"
                       value={profile.age}
                       className="profile-input"
-                      onChange={profileEdit}
                     />
                   </div>
                   <div className="profile-input-box">
@@ -205,7 +160,6 @@ const Profilehome = () => {
                       name="qualification"
                       value={profile.qualification}
                       className="profile-input"
-                      onChange={profileEdit}
                     />
                   </div>
                   <div className="profile-input-box">
@@ -215,7 +169,6 @@ const Profilehome = () => {
                       placeholder="Phone Number"
                       name="phone_number"
                       value={profile.phone_number}
-                      onChange={profileEdit}
                       className="profile-input"
                     />
                   </div>
@@ -224,7 +177,6 @@ const Profilehome = () => {
                     <input
                       type="text"
                       name="email"
-                      onChange={profileEdit}
                       placeholder="Email"
                       value={profile.email}
                       className="profile-input"
@@ -234,7 +186,8 @@ const Profilehome = () => {
                   <button
                     type="submit"
                     className="profile-update"
-                    onClick={() => profileUpdate(profile._id)}
+                    Link
+                    // onClick={() => profileUpdate(profile._id)}
                   >
                     Update
                   </button>
@@ -249,7 +202,6 @@ const Profilehome = () => {
                       value={profile.name}
                       placeholder="Name"
                       className="profile-input"
-                      onChange={profileEdit}
                     />
                   </div>
                   {role == 2 ? (
@@ -261,7 +213,6 @@ const Profilehome = () => {
                         name="user_id"
                         value={profile.user_id}
                         className="profile-input"
-                        onChange={profileEdit}
                         disabled
                       />
                     </div>
@@ -276,7 +227,6 @@ const Profilehome = () => {
                       name="age"
                       value={profile.age}
                       className="profile-input"
-                      onChange={profileEdit}
                     />
                   </div>
                   <div className="profile-input-box">
@@ -286,7 +236,6 @@ const Profilehome = () => {
                       placeholder="Phone Number"
                       name="phone_number"
                       value={profile.phone_number}
-                      onChange={profileEdit}
                       className="profile-input"
                     />
                   </div>
@@ -295,7 +244,6 @@ const Profilehome = () => {
                     <input
                       type="text"
                       name="email"
-                      onChange={profileEdit}
                       placeholder="Email"
                       value={profile.email}
                       className="profile-input"

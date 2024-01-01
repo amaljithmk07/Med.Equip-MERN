@@ -44,7 +44,7 @@
 }
 
 .profile-photo {
-  height: 120px;
+  max-height: 120px;
   max-width: 120px;  
   border-radius: 50%;
   box-shadow: 2px 5px 10px rgba(85, 85, 85, 0.429);

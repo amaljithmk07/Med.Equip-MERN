@@ -11,7 +11,7 @@ const cartschema = new mongoose.Schema({
     required: true,
   },
   available_qty: {
-    type: String,
+    type: Number,
     required: true,
   },
   cart_qty: {
