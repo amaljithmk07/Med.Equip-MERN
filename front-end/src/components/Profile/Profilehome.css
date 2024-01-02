@@ -120,7 +120,7 @@
   font-weight: 600;
   text-align: center;
   width: 40%;
-
+cursor: pointer;
   background-image: url("/public/navbar1.jpeg");
   background-position: center;
   background-repeat: no-repeat;

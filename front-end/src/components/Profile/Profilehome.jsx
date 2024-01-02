@@ -6,20 +6,20 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Profilehome = () => {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState([
-    // {
-    // image: "",
-    // name: "",
-    // age: "",
-    // qualification: "",
-    // phone_number: "",
-    // email: "",
-    // },
-  ]);
   const token = localStorage.getItem("Token");
   const role = localStorage.getItem("Role");
-  console.log(token);
-  console.log(role);
+
+  const [profile, setProfile] = useState([
+    {
+      // image: "",
+      // name: "",
+      // age: "",
+      // qualification: "",
+      // phone_number: "",
+      // email: "",
+    },
+  ]);
+
   useEffect(() => {
     const userprofile = `http://localhost:2222/api/user/profile`;
     const volunteerprofile = `http://localhost:2222/api/volunteer/profile`;
@@ -72,8 +72,13 @@ const Profilehome = () => {
         });
     }
   }, []);
-
-  
+  const profileNavigate = (id) => {
+    if (role == 2) {
+      navigate("/userprofileupdate");
+    } else if (role == 3) {
+      navigate("/userprofilelllupdate");
+    }
+  };
 
   return (
     <div>
@@ -87,36 +92,32 @@ const Profilehome = () => {
           >
             <div className="profile-home-content">
               <div className="profile-home-image">
-                <input
+                {/* <input
                   type="file"
                   name="image"
                   hidden
                   id="image"
                   className="profile-home-upload"
                   accept="image/*"
-                />
-                <label htmlFor="image">
-                  {" "}
-                  {role == 3 ? (
-                    <>
-                      {profile.image !== "" ? (
-                        <img
-                          src={`/upload/${profile.image}`}
-                          alt=""
-                          className="profile-photo"
-                        />
-                      ) : (
-                        <img
-                          src="/profile1.png"
-                          alt=""
-                          className="profile-photo"
-                        />
-                      )}
-                    </>
+                /> */}
+                {/* <label htmlFor="image"> */}
+                {/* {" "}
+                  {role == 3 ? (*/}
+                {/* <> */}
+                {profile.image !== "" ? (
+                  <img
+                    src={`/upload/${profile.image}`}
+                    alt=""
+                    className="profile-photo"
+                  />
+                ) : (
+                  <img src="/profile1.png" alt="" className="profile-photo" />
+                )}
+                {/*    </>
                   ) : (
                     <img src="/profile1.png" alt="" className="profile-photo" />
-                  )}
-                </label>
+                  )} */}
+                {/* </label> */}
                 PROFILE
               </div>
               {role == 3 ? (
@@ -182,15 +183,6 @@ const Profilehome = () => {
                       className="profile-input"
                     />
                   </div>
-
-                  <button
-                    type="submit"
-                    className="profile-update"
-                    Link
-                    // onClick={() => profileUpdate(profile._id)}
-                  >
-                    Update
-                  </button>
                 </>
               ) : (
                 <>
@@ -249,16 +241,16 @@ const Profilehome = () => {
                       className="profile-input"
                     />
                   </div>
-
-                  <button
-                    type="submit"
-                    className="profile-update"
-                    // onClick={profileUpdate}
-                  >
-                    Update
-                  </button>
                 </>
               )}
+              <button
+                type="submit"
+                className="profile-update"
+                Link
+                onClick={() => profileNavigate(profile._id)}
+              >
+                Update
+              </button>
             </div>
           </form>
         </div>

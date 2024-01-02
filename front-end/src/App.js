@@ -23,11 +23,11 @@ import Footer from "./components/footer/Footer";
 import Volunteerregister from "./components/Volunteer/Volunteerregister";
 import Volunteerlist from "./components/AdminProduct/Volunteerlist";
 import Volunteerrequest from "./components/AdminProduct/Volunteerrequest";
-import axios from "axios";
+import Userprofileupdate from "./components/Profile/Userprofileupdate";
+import Volunteerprofileupdate from "./components/Profile/Volunteerprofileupdate";
 
 function App() {
   // const navigate = useNavigate();
-
 
   return (
     <Router>
@@ -46,8 +46,8 @@ function App() {
         {/* <Route path="/user" element={<ReactOne />} /> */}
 
         <Route path="/profile" element={<Profilehome />} />
-
-        {/* <Route path="/" element={<Useraddproduct />} /> */}
+        <Route path="/Userprofileupdate" element={<Userprofileupdate />} />
+        <Route path="/volunteerprofileupdate" element={<Volunteerprofileupdate />} />
 
         <Route path="/user" element={<Userproduct />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />

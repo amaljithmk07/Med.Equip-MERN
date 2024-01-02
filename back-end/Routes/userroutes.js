@@ -172,6 +172,9 @@ userroutes.get("/profile", Checkauth, (req, res) => {
       {
         $group: {
           _id: "$_id",
+          image: {
+            $first: "$image",
+          },
           name: {
             $first: "$name",
           },
@@ -212,38 +215,49 @@ userroutes.get("/profile", Checkauth, (req, res) => {
 
 //Profile update
 
-userroutes.put("/profileupdate/:id", (req, res) => {
-  registerDB
-    .findOne({
-      _id: req.params.id,
-    })
-    .then((data) => {
-      (data.name = req.body ? req.body.name : data.name),
-        // (data.email = req.body.email),
-        (data.age = req.body ? req.body.age : data.age),
-        (data.phone_number = req.body ? req.body.age : data.phone_number);
-    });
-  data
-    .save()
-    .then((data) => {
-      res.status(200),
-        json({
+userroutes.post(
+  "/profileupdate/:id",Checkauth,
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const olddata = registerDB.findOne({
+        _id: req.params.id,
+      });
+      const userprofile = {
+        image: req.file ? req.file.filename : olddata.image,
+        name: req.body ? req.body.name : olddata.name,
+        email: req.body ? req.body.email : olddata.email,
+        age: req.body ? req.body.age : olddata.age,
+        phone_number: req.body ? req.body.phone_number : olddata.phone_number,
+      };
+
+      const updatedProfile = await registerDB.updateOne(
+        {
+          _id: req.params.id,
+        },
+        {
+          $set: userprofile,
+        }
+      );
+      if (updatedProfile) {
+        return res.status(200).json({
           success: true,
           error: false,
           message: "data updated successfully",
-          data: data,
+          data: updatedProfile,
         });
-    })
-    .catch((err) => {
+      }
+    } catch (err) {
       // console.log(err);
       res.status(400).json({
         success: true,
         error: false,
-        message: "data updated unsuccessfull",
+        message: "data Fetched unsuccessful",
         ErrorMessage: err.message,
       });
-    });
-});
+    }
+  }
+);
 
 // Cart Add
 
