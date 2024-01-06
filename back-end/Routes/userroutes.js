@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const userroutes = express.Router();
 const registerDB = require("../models/registerschema");
+const LoginDB = require("../models/loginschema");
 const products = require("../models/productschema");
 const cartproducts = require("../models/cartschema");
 const Checkauth = require("../middle-ware/Checkauth");
@@ -213,10 +214,11 @@ userroutes.get("/profile", Checkauth, (req, res) => {
     });
 });
 
-//Profile update
+//User Profile update
 
 userroutes.post(
-  "/profileupdate/:id",Checkauth,
+  "/profileupdate/:id",
+  Checkauth,
   upload.single("image"),
   async (req, res) => {
     try {
@@ -239,7 +241,16 @@ userroutes.post(
           $set: userprofile,
         }
       );
-      if (updatedProfile) {
+      const newemail = await LoginDB.updateOne(
+        {
+          _id: olddata.login_id,
+        },
+        {
+          $set: { email: req.body ? req.body.email : olddata.email },
+        }
+      );
+      console.log(newemail);
+      if (updatedProfile && newemail) {
         return res.status(200).json({
           success: true,
           error: false,

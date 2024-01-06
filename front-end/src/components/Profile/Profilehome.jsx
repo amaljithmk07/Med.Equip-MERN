@@ -9,16 +9,7 @@ const Profilehome = () => {
   const token = localStorage.getItem("Token");
   const role = localStorage.getItem("Role");
 
-  const [profile, setProfile] = useState([
-    {
-      // image: "",
-      // name: "",
-      // age: "",
-      // qualification: "",
-      // phone_number: "",
-      // email: "",
-    },
-  ]);
+  const [profile, setProfile] = useState([{}]);
 
   useEffect(() => {
     const userprofile = `http://localhost:2222/api/user/profile`;
@@ -75,8 +66,8 @@ const Profilehome = () => {
   const profileNavigate = (id) => {
     if (role == 2) {
       navigate("/userprofileupdate");
-    } else if (role == 3) {
-      navigate("/userprofilelllupdate");
+    } else {
+      navigate("/volunteerprofileupdate");
     }
   };
 
@@ -129,6 +120,7 @@ const Profilehome = () => {
                       name="name"
                       value={profile.name}
                       placeholder="Name"
+                      disabled
                       className="profile-input"
                     />
                   </div>
@@ -149,6 +141,7 @@ const Profilehome = () => {
                       type="text"
                       placeholder="Age"
                       name="age"
+                      disabled
                       value={profile.age}
                       className="profile-input"
                     />
@@ -158,6 +151,7 @@ const Profilehome = () => {
                     <input
                       type="text"
                       placeholder="Qualification"
+                      disabled
                       name="qualification"
                       value={profile.qualification}
                       className="profile-input"
@@ -167,6 +161,7 @@ const Profilehome = () => {
                     <div className="profile-input-label">Phone </div>:
                     <input
                       type="text"
+                      disabled
                       placeholder="Phone Number"
                       name="phone_number"
                       value={profile.phone_number}
@@ -178,6 +173,7 @@ const Profilehome = () => {
                     <input
                       type="text"
                       name="email"
+                      disabled
                       placeholder="Email"
                       value={profile.email}
                       className="profile-input"
@@ -190,6 +186,7 @@ const Profilehome = () => {
                     <div className="profile-input-label">Name </div>:
                     <input
                       type="text"
+                      disabled
                       name="name"
                       value={profile.name}
                       placeholder="Name"
@@ -215,6 +212,7 @@ const Profilehome = () => {
                     <div className="profile-input-label">Age </div>:
                     <input
                       type="text"
+                      disabled
                       placeholder="Age"
                       name="age"
                       value={profile.age}
@@ -226,6 +224,7 @@ const Profilehome = () => {
                     <input
                       type="text"
                       placeholder="Phone Number"
+                      disabled
                       name="phone_number"
                       value={profile.phone_number}
                       className="profile-input"
@@ -236,6 +235,7 @@ const Profilehome = () => {
                     <input
                       type="text"
                       name="email"
+                      disabled
                       placeholder="Email"
                       value={profile.email}
                       className="profile-input"

@@ -52,7 +52,6 @@ function App() {
         <Route path="/user" element={<Userproduct />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Userviewproduct />} />
-        {/* <Route path="/profileedit" element={<Profileedit />} /> */}
         <Route path="/uuidverify" element={<Uuidverify />} />
         <Route path="/usercart" element={<Usercart />} />
 

@@ -7,7 +7,6 @@ const register = require("../models/registerschema");
 const Checkauth = require("../middle-ware/Checkauth");
 const loginroutes = express.Router();
 
-
 loginroutes.post("/", async (req, res) => {
   // const { email, password } = req.body;
 
@@ -41,7 +40,7 @@ loginroutes.post("/", async (req, res) => {
           email: oldUser.email,
         },
         "secret_this_should_be_longer",
-        { expiresIn: '1h'}
+        { expiresIn: "1h" }
       );
       // console.log("token:", token);
       // console.log("Role:", userRole);

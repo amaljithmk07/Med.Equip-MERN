@@ -1,8 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Volunteerprofileupdate.css";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const Volunteerprofileupdate = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("Token");
+  const role = localStorage.getItem("Role");
+  const [profile, setProfile] = useState([
+    {
+      image: "",
+      name: "",
+      age: "",
+      qualification: "",
+      email: "",
+      phone_number: "",
+    },
+  ]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:2222/api/volunteer/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        setProfile(data.data.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out", {
+            position: "bottom-center",
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 2000);
+        }
+      });
+  }, []);
 
+  const volProfileedit = (e) => {
+    const { name, value } = e.target;
+    // console.log(e.target.value);
+    setProfile({ ...profile, [name]: value });
+  };
+  // console.log(profile);
 
+  const volProfilephoto = (e) => {
+    const { name } = e.target;
+    setProfile({ ...profile, [name]: e.target.files[0] });
+  };
+
+  const profileUpdate = (id) => {
+    // e.preventDefault();
+    console.log(id);
+    var formDetails = new FormData();
+    formDetails.append("image", profile.image);
+    formDetails.append("name", profile.name);
+    formDetails.append("age", profile.age);
+    formDetails.append("qualification", profile.qualification);
+    formDetails.append("phone_number", profile.phone_number);
+    formDetails.append("email", profile.email);
+    axios
+      .post(
+        `http://localhost:2222/api/volunteer/profileupdate/${id}`,
+        formDetails,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      .then((data) => {
+        navigate("/profile");
+        // console.log(" item", data);
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+    console.log(profile);
+  };
 
   return (
     <div>
@@ -21,7 +103,7 @@ const Volunteerprofileupdate = () => {
                   name="image"
                   hidden
                   id="image"
-                  onChange={volprofilephoto}
+                  onChange={volProfilephoto}
                   className="vol-profile-home-upload"
                   accept="image/*"
                 />
@@ -42,7 +124,7 @@ const Volunteerprofileupdate = () => {
                   name="name"
                   value={profile.name}
                   placeholder="Name"
-                  onChange={vol-profileedit}
+                  onChange={volProfileedit}
                   className="vol-profile-input"
                 />
               </div>
@@ -51,7 +133,7 @@ const Volunteerprofileupdate = () => {
                 <input
                   type="text"
                   placeholder="Age"
-                  onChange={vol-profileedit}
+                  onChange={volProfileedit}
                   name="age"
                   value={profile.age}
                   className="vol-profile-input"
@@ -62,9 +144,20 @@ const Volunteerprofileupdate = () => {
                 <input
                   type="text"
                   placeholder="Phone Number"
-                  onChange={vol-profileedit}
+                  onChange={volProfileedit}
                   name="phone_number"
                   value={profile.phone_number}
+                  className="vol-profile-input"
+                />
+              </div>
+              <div className="vol-profile-input-box">
+                <div className="vol-profile-input-label">Qualification </div>:
+                <input
+                  type="text"
+                  placeholder="Qualification"
+                  onChange={volProfileedit}
+                  name="qualification"
+                  value={profile.qualification}
                   className="vol-profile-input"
                 />
               </div>
@@ -72,7 +165,7 @@ const Volunteerprofileupdate = () => {
                 <div className="vol-profile-input-label">Email </div>:
                 <input
                   type="text"
-                  onChange={vol-profileedit}
+                  onChange={volProfileedit}
                   name="email"
                   placeholder="Email"
                   value={profile.email}
@@ -81,11 +174,14 @@ const Volunteerprofileupdate = () => {
               </div>
 
               <button
-                type="submit"
+                type="button"
                 className="vol-profile-update"
-                onClick={() => profileUpdate(profile._id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  profileUpdate(profile._id);
+                }}
               >
-                Update
+                Submit
               </button>
             </div>
           </form>

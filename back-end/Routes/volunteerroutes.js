@@ -2,6 +2,7 @@ const express = require("express");
 const Checkauth = require("../middle-ware/Checkauth");
 const volunteerroutes = express.Router();
 const volunteerDB = require("../models/volunteerRegisterschema");
+const LoginDB = require("../models/loginschema");
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
 
@@ -102,7 +103,7 @@ volunteerroutes.get("/profile", Checkauth, (req, res) => {
   }
 });
 
-//Volunteer update
+//Volunteer profile update
 
 volunteerroutes.post(
   "/profileupdate/:id",
@@ -126,7 +127,7 @@ volunteerroutes.post(
         phone_number: req.body ? req.body.phone_number : olddata.phone_number,
         email: req.body ? req.body.email : olddata.email,
       };
-
+console.log(req.body.email);
       const updatedData = await volunteerDB.updateOne(
         {
           _id: req.params.id,
@@ -135,8 +136,17 @@ volunteerroutes.post(
           $set: profile,
         }
       );
+      const newemail = await LoginDB.updateOne(
+        {
+          _id: olddata.login_id,
+        },
+        {
+          $set: { email: req.body ? req.body.email : olddata.email },
+        }
+      );
+      console.log('newemail',newemail);
 
-      if (updatedData) {
+      if (updatedData && newemail) {
         return res.status(200).json({
           success: true,
           error: false,

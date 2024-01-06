@@ -14,16 +14,13 @@ const Userprofileupdate = () => {
       image: "",
       name: "",
       age: "",
-      // qualification: "",
       email: "",
       phone_number: "",
     },
   ]);
   useEffect(() => {
-    const userprofile = `http://localhost:2222/api/user/profile`;
-
     axios
-      .get(userprofile, {
+      .get(`http://localhost:2222/api/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +55,8 @@ const Userprofileupdate = () => {
     setProfile({ ...profile, [name]: e.target.files[0] });
   };
 
-  const profileUpdate = (id) => {
+  const profileUpdate = (e,id) => {
+    e.preventDefault();
     var formDetails = new FormData();
     formDetails.append("image", profile.image);
     formDetails.append("name", profile.name);
@@ -73,13 +71,21 @@ const Userprofileupdate = () => {
       })
 
       .then((data) => {
-        setProfile(data);
+        console.log("data", data);
+        navigate("/profile");
       })
       .catch((err) => {
         console.log("err:", err);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out", {
+            position: "bottom-center",
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            navigate("/login");
+          }, 2000);
+        }
       });
-    console.log(profile);
-    navigate("/profile");
   };
 
   return (
@@ -159,11 +165,14 @@ const Userprofileupdate = () => {
               </div>
 
               <button
-                type="submit"
+                type="button"
                 className="userprofile-update"
-                onClick={() => profileUpdate(profile._id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  profileUpdate(e, profile._id);
+                }}
               >
-                Update
+                Submit
               </button>
             </div>
           </form>
