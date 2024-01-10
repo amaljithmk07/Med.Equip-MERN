@@ -1,0 +1,495 @@
+.homemain-body {
+  min-height: 640px;
+  width: 100%;
+  background-color: rgb(255, 246, 234);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.homeproduct-sub-body {
+  min-height: 570px;
+  width: 90%;
+  /* background-color: #55ff00; */
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border: 1px solid rgb(223, 223, 255);
+  display: flex;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.homeproduct-content {
+  min-height: 450px;
+  top: 100px;
+
+  width: 80%;
+  /* background-color: rgb(182, 117, 117); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* text-align: center; */
+}
+.home-head {
+  text-align: center;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* color: #001a48;
+  background-color: red; */
+
+  background-image: url("/public/navbar.jpeg");
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.homeproduct-image {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 30px 0px 0px 0px;
+  min-height: 150px;
+  /* background-color: rebeccapurple; */
+}
+.home-img {
+  height: 140px;
+  width: auto;
+  /* background-color: red; */
+}
+
+.home-p {
+  /* width: 80%; */
+  color: #061a3d;
+  /* background-color: rgb(69, 54, 54); */
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0.5px;
+}
+#button-arrow {
+  width: 330px;
+  /* background-color: red;   */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 43px;
+  justify-content: space-evenly;
+}
+#donate-button {
+  margin: 10px 0px;
+  height: 43px;
+  text-transform: uppercase;
+  width: 260px;
+  font-size: 18px;
+  /* background-color: #f47920; */
+  background-image: url("/public/navbar.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border: 1px solid rgba(255, 237, 211, 0.83);
+  letter-spacing: 1.3px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  transition: border-radius 0.3s;
+}
+#donate-button:hover {
+  border-radius: 30px;
+  transition-timing-function: ease;
+  /* transform: scale(.98); */
+  /* background-color: #e06f1e; */
+}
+#right-arrow {
+  width: 50px;
+  /* margin: 0px 0px 0px -10px; */
+  height: auto;
+  /* background-color: #f47920; */
+  /* padding-left: 50px; */
+  /* filter: hue-rotate(45 deg); */
+}
+#button-arrow:hover #right-arrow {
+  transition: transform 0.2s ease-in-out;
+  transform: translate3d(10px, 0px, 0px);
+}
+
+@media screen and (max-width: 980px) and (min-width: 750px) {
+  .homemain-body {
+    min-height: 640px;
+    width: 100%;
+    background-color: rgb(255, 246, 234);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .homeproduct-sub-body {
+    height: 90%;
+    /* position: absolute;
+    top: 130px;
+    bottom: -110px; */
+    width: 90%;
+    /* background-color: #ffffff; */
+    background-image: url("/public/cardbody1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    border: 1px solid#fffcdf;
+    display: flex;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: 700;
+    /* color: #001a48;
+    background-color: red; */
+
+    background-image: url("/public/navbar.jpeg");
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    -webkit-font-smoothing: antialiased;
+  }
+  .homeproduct-content {
+    height: 90%;
+    width: 80%;
+    /* background-color: rgb(182, 117, 117); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    /* text-align: center; */
+  }
+  .homeproduct-image {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    margin: 30px 0px 0px 0px;
+    height: 30%;
+    /* background-color: rebeccapurple; */
+  }
+  .home-img {
+    height: 110px;
+    width: auto;
+    /* background-color: red; */
+  }
+  .home-p {
+    /* width: 80%; */
+    color: #061a3d;
+    /* background-color: rgb(69, 54, 54); */
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0.5px;
+  }
+  #button-arrow {
+    width: 200px;
+    /* background-color: red;   */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 43px;
+    justify-content: space-evenly;
+  }
+  #donate-button {
+    margin: 10px 0px;
+    height: 2rem;
+    text-transform: uppercase;
+    width: 260px;
+    font-size: 13px;
+    /* background-color: #140b05; */
+    /* background-image: url("/public/navbar.jpeg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    border: 1px solid rgba(255, 237, 211, 0.83);
+    letter-spacing: 1.3px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    transition: border-radius 0.3s;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 750px) and (min-width: 640px) {
+  .homeproduct-sub-body {
+    height: 550px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+  }
+  .home-img {
+    height: 108px;
+  }
+  .home-p {
+    font-size: 13px;
+  }
+  #button-arrow {
+    max-width: 262px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 13px;
+    /* background-color: #ff6905; */
+    /* background-image: url("/public/navbar.jpeg"); */
+
+    border: 1px solid rgba(255, 237, 211, 0.83);
+    letter-spacing: 1.3px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    transition: border-radius 0.3s;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 640px) and (min-width: 580px) {
+  .homeproduct-sub-body {
+    min-height: 550px;
+    padding: 20px 0px 20px 0px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+  }
+
+  .home-p {
+    font-size: 13px;
+  }
+  .home-img {
+    height: 90px;
+    width: auto;
+  }
+  #button-arrow {
+    max-width: 262px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 13px;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 580px) and (min-width: 485px) {
+  .homemain-body {
+    min-height: 689px;
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+  }
+  .homeproduct-sub-body {
+    min-height: 560px;
+    padding: 2px 0px 20px 0px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .homeproduct-image {
+    /* background-color: red; */
+    margin: 0px;
+    min-height: 150px;
+    flex-wrap: wrap;
+  }
+  .home-img {
+    height: 80px;
+    width: auto;
+  }
+  .home-p {
+    font-size: 11px;
+  }
+  #button-arrow {
+    max-width: 262px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 13px;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 485px) and (min-width: 455px) {
+  .homemain-body {
+    min-height: 689px;
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+  }
+  .homeproduct-sub-body {
+    min-height: 560px;
+    padding: 20px 0px 20px 0px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .homeproduct-image {
+    /* background-color: red; */
+    margin: 10px;
+    width: 90%;
+    min-height: 150px;
+    flex-wrap: wrap;
+  }
+  .home-img {
+    /* height: 70px; */
+    width: 80px;
+    height: auto;
+  }
+
+  .home-p {
+    font-size: 11px;
+  }
+  #button-arrow {
+    max-width: 195px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 12px;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 455px) and (min-width: 407px) {
+  .homemain-body {
+    min-height: 890px;
+  }
+  .home-head {
+    text-align: center;
+    font-size: 28px;
+  }
+  .homeproduct-sub-body {
+    min-height: 560px;
+    padding: 20px 0px 20px 0px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .homeproduct-image {
+    /* background-color: red; */
+    margin: 20px;
+    height: auto;
+    width: 90%;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-wrap: wrap;
+  }
+  .home-img {
+    height: auto;
+
+    width: 100px;
+  }
+
+  .home-p {
+    font-size: 11px;
+  }
+  #button-arrow {
+    max-width: 195px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 12px;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 407px) and (min-width: 300px) {
+  .homemain-body {
+    min-height: 830px;
+    padding: 30px 0px 30px 0px;
+  }
+  .home-head {
+    text-align: center;
+    font-size: 22px;
+  }
+  .homeproduct-sub-body {
+    min-height: 560px;
+    padding: 20px 0px 20px 0px;
+    width: 90%;
+    /* background-image: #ff0000; */
+  }
+  .homeproduct-image {
+    /* background-color: red; */
+    margin: 20px;
+    height: auto;
+    width: 90%;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-wrap: wrap;
+  }
+  .home-img {
+    height: auto;
+
+    width: 90px;
+  }
+
+  .home-p {
+    font-size: 11px;
+  }
+  #button-arrow {
+    max-width: 195px;
+  }
+  #donate-button {
+    margin: 5px 0px;
+    height: 2rem;
+    width: 210px;
+    font-size: 12px;
+  }
+  #right-arrow {
+    width: 20px;
+    height: auto;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import Userproduct from "../Userproduct/Userproduct";
+import Userproduct from "../Userproduct/Home";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="general-sub">
           <ul>
             <li>
-              <Link to={"/user"} className="general-a">
+              <Link to={"/home"} className="general-a">
                 Home
               </Link>
             </li>

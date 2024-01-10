@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema; //schema definition
 
-const cartschema = new mongoose.Schema({
+const orderschema = new mongoose.Schema({
   image: {
     type: String,
   },
@@ -16,6 +16,7 @@ const cartschema = new mongoose.Schema({
   },
   cart_qty: {
     type: Number,
+    required: true,
     default: 1,
   },
   name: {
@@ -54,6 +55,15 @@ const cartschema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  orderstatus: {
+    default: "pending",
+    type: String,
+  },
+
+  volunteerdetails: {
+    type: Schema.Types.ObjectId,
+    require: true,
+  },
 });
-const data=mongoose.model("Cart Details", cartschema)
+const data = mongoose.model("orders_tb", orderschema);
 module.exports = data;

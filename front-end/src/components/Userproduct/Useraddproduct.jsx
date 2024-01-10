@@ -48,6 +48,7 @@ const Useraddproduct = () => {
         })
         .then((data) => {
           console.log(data);
+          // window.location.reload()
           navigate("/user/viewproduct");
         })
         .catch((err) => {

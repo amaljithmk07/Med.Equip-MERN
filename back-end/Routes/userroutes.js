@@ -4,7 +4,8 @@ const userroutes = express.Router();
 const registerDB = require("../models/registerschema");
 const LoginDB = require("../models/loginschema");
 const products = require("../models/productschema");
-const cartproducts = require("../models/cartschema");
+const CartDB = require("../models/cartschema");
+const OrdersDB = require("../models/orderschema");
 const Checkauth = require("../middle-ware/Checkauth");
 const { default: mongoose } = require("mongoose");
 
@@ -273,7 +274,7 @@ userroutes.post(
 // Cart Add
 
 userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
-  const Data = new cartproducts({
+  const Data = new CartDB({
     login_id: req.userData.userId,
     image: req.body.image,
     available_qty: req.body.available_qty,
@@ -310,8 +311,7 @@ userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
 
 userroutes.get("/cartview", Checkauth, (req, res) => {
   try {
-    cartproducts
-      .find()
+    CartDB.find()
       .then((data) => {
         res.status(200).json({
           success: true,
@@ -339,10 +339,9 @@ userroutes.get("/cartview", Checkauth, (req, res) => {
 
 // Cart Delete
 userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
-  cartproducts
-    .deleteOne({
-      _id: req.params.id,
-    })
+  CartDB.deleteOne({
+    _id: req.params.id,
+  })
 
     .then((data) => {
       res.status(200).json({
@@ -365,42 +364,40 @@ userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
 userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
   try {
     const userId = req.userData.userId;
-    cartproducts
-      .findOne({
-        login_id: userId,
-        _id: req.params.id,
-      })
-      .then(async (data) => {
-        // console.log(data.cart_qty+1);
-        var qty = data.cart_qty;
-        var available_qty = data.available_qty;
-        if (available_qty > qty) {
-          var incre_qty = qty + 1;
-          console.log("Increment:", incre_qty);
+    CartDB.findOne({
+      login_id: userId,
+      _id: req.params.id,
+    }).then(async (data) => {
+      // console.log(data.cart_qty+1);
+      var qty = data.cart_qty;
+      var available_qty = data.available_qty;
+      if (available_qty > qty) {
+        var incre_qty = qty + 1;
+        console.log("Increment:", incre_qty);
 
-          const update_qty = await cartproducts.updateOne(
-            { login_id: userId, _id: req.params.id },
-            { $set: { cart_qty: incre_qty } }
-          );
-          // console.log("updateQty:", update_qty);
-          if (update_qty) {
-            return res.status(200).json({
-              success: true,
-              error: false,
-              data: data,
-              incre_qty: incre_qty,
-              message: "cart increment successful",
-            });
-          }
-        } else {
+        const update_qty = await CartDB.updateOne(
+          { login_id: userId, _id: req.params.id },
+          { $set: { cart_qty: incre_qty } }
+        );
+        // console.log("updateQty:", update_qty);
+        if (update_qty) {
           return res.status(200).json({
             success: true,
             error: false,
             data: data,
-            message: "You added maximum quantity",
+            incre_qty: incre_qty,
+            message: "cart increment successful",
           });
         }
-      });
+      } else {
+        return res.status(200).json({
+          success: true,
+          error: false,
+          data: data,
+          message: "You added maximum quantity",
+        });
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -416,41 +413,40 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
 userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
   try {
     const userId = req.userData.userId;
-    cartproducts
-      .findOne({
-        login_id: userId,
-        _id: req.params.id,
-      })
-      .then(async (data) => {
-        // console.log(data.cart_qty+1);
-        var qty = data.cart_qty;
-        var availablle_qty = data.available_qty;
-        if (qty > 1) {
-          var decre_qty = qty - 1;
-          console.log("decrement :", decre_qty);
+    CartDB.findOne({
+      login_id: userId,
+      _id: req.params.id,
+    }).then(async (data) => {
+      // console.log(data.cart_qty+1);
+      var qty = data.cart_qty;
+      var availablle_qty = data.available_qty;
+      if (qty > 1) {
+        var decre_qty = qty - 1;
+        console.log("decrement :", decre_qty);
 
-          const update_qty = await cartproducts.updateOne(
-            { login_id: userId, _id: req.params.id },
-            { $set: { cart_qty: decre_qty } }
-          );
+        const update_qty = await CartDB.updateOne(
+          { login_id: userId, _id: req.params.id },
+          { $set: { cart_qty: decre_qty } }
+        );
 
-          if (update_qty) {
-            return res.status(200).json({
-              success: true,
-              error: false,
-              data: data,
-              message: "cart decrement successful",
-            });
-          }
-        } else {
+        if (update_qty) {
           return res.status(200).json({
             success: true,
             error: false,
             data: data,
-            message: "Yoou removed minimum quantity",
+            decre_qty: decre_qty,
+            message: "cart decrement successful",
           });
         }
-      });
+      } else {
+        return res.status(200).json({
+          success: true,
+          error: false,
+          data: data,
+          message: "Yoou removed minimum quantity",
+        });
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -459,6 +455,91 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
       message: "internal server Error",
     });
   }
+});
+
+// Order Place
+userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    const cartdata = await CartDB.find({
+      login_id: req.params.id,
+    });
+    const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
+    const orderdetail = await OrdersDB.insertMany(orderdata);
+    const deletedcart = await CartDB.deleteMany({
+      login_id: req.params.id,
+    });
+    
+    const [{ _id }] = orderdata;
+    // console.log(available_qty);
+    // console.log(cart_qty);
+
+    var new_available_qty = orderdata.map((data) => ({
+      ...data,
+      [available_qty]: data.available_qty - data.cart_qty,
+    }));
+
+    // console.log('data',data)
+    // console.log("type", typeof new_available_qty);
+    // console.log(new_available_qty);
+    var updated_qty = await products.updateMany(
+      {
+        _id: _id,
+      },
+      {
+        $set: {
+          available_qty: new_available_qty.Updated_Qty,
+        },
+      }
+    );
+    var updated = await products(updated_qty).save();
+
+    if (orderdetail && deletedcart && updated) {
+      return res.status(200).json({
+        success: true,
+        error: false,
+        data: orderdetail,
+        message: "Order placed successful",
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: true,
+        message: "Network error",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: true,
+      message: "Order failed",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
+//Order Details
+
+userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
+  OrdersDB.find({
+    login_id: req.params.id,
+  })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: "OrderSummary successfully displayed",
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        success: false,
+        error: true,
+        ErrorMessage: err.message,
+        message: "Network error",
+      });
+    });
 });
 
 module.exports = userroutes;

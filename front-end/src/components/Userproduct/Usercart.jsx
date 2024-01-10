@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Usercart.css";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
+
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +12,9 @@ const Usercart = () => {
   // console.log("cart length:", cartitems.length);
 
   const token = localStorage.getItem("Token");
+  var login_id = localStorage.getItem("LoginId");
+
+  // console.log(login_id);
   useEffect(() => {
     axios
       .get(`http://localhost:2222/api/user/cartview`, {
@@ -37,6 +42,8 @@ const Usercart = () => {
   // console.log(cartitems);
   // const [qty, setQty] = useState(1);
 
+  //Cart delete
+
   const cartremove = (id) => {
     console.log(id);
     axios
@@ -57,63 +64,7 @@ const Usercart = () => {
       });
   };
 
-  // const incrementqty = async(id, item) => {
-  //   try {
-  //     const qty = item.cart_qty;
-  //     const updated_qty = qty + 1;
-  //     console.log(updated_qty);
-
-  //     const response =await axios.get(
-  //       `http://localhost:2222/api/user/cartincrement/${id}`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     const incrementdata = cartitems.map((details) =>
-  //       details._id === id ? { ...cartitems, cart_qty: updated_qty } : item
-  //     );
-  //     setCartitems(incrementdata);
-  //     console.log(incrementdata);
-  //     console.log(response);
-  //   } catch (err) {
-  //     console.log(err);
-  //     console.log(err.message);
-  //   }
-  // };
-
-  // const incrementqty = async (id, cart_qty) => {
-  //   const prev_qty = cart_qty;
-
-  //   try {
-  //     await axios
-  //       .get(`http://localhost:2222/api/user/cartincrement/${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((data) => {
-  //         const updatedQty = data.data.data.cart_qty;
-  //         console.log(updatedQty);
-
-  //         const updatedCartItems = cartitems.map((item) => {
-  //           if (item._id === id) {
-  //             return { ...item, cart_qty: updatedQty };
-  //           }
-  //           return item;
-  //         });
-
-  //         setCartitems(updatedCartItems);
-  //         console.log(updatedCartItems);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  //Cart increment
 
   const incrementqty = async (id, item) => {
     var cart_qty = item.cart_qty;
@@ -127,23 +78,34 @@ const Usercart = () => {
           },
         })
         .then((data) => {
+          // console.log(data);
           var incre_qty = data.data.incre_qty;
-          const updatedQty = cartitems.filter((data) => {
-            if (availableQty !== incre_qty) {
-              // return data;
-              return (cart_qty = cart_qty + 1);
+          // console.log(incre_qty);
+          const updatedData = cartitems.filter((details) => {
+            if (details._id == id) {
+              setCartitems([{ [cart_qty]: availableQty }]);
+              if (details.cart_qty != incre_qty) {
+                if (details.cart_qty < availableQty) {
+                  return (details.cart_qty += 1);
+                }
+              }
             }
-            setCartitems(updatedQty);
           });
+          setCartitems([...cartitems], updatedData);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     } catch (err) {
       console.log(err);
     }
   };
 
-  const decrementqty = (id, cart_qty) => {
-    const prev_qty = cart_qty;
-    console.log(prev_qty);
+  //Cart decrement
+
+  const decrementqty = (id, item) => {
+    var cart_qty = item.cart_qty;
+    var availableQty = item.available_qty;
 
     // setQty(qty + 1);
     try {
@@ -154,17 +116,71 @@ const Usercart = () => {
           },
         })
         .then((data) => {
-          const decrementdata = cartitems.filter((details) => {
-            return details.cart_qty != prev_qty;
+          console.log(data);
+          var decre_qty = data.data.decre_qty;
+          console.log(decre_qty);
+          const updatedData = cartitems.filter((details) => {
+            if (details._id == id) {
+              setCartitems([{ [cart_qty]: availableQty }]);
+              if (details.cart_qty != decre_qty) {
+                if (decre_qty > 0) {
+                  return (details.cart_qty = details.cart_qty - 1);
+                }
+              }
+            }
           });
-          setCartitems(decrementdata);
-          console.log("decrement:", decrementdata);
+          setCartitems([...cartitems], updatedData);
+          // console.log("decrement:", decrementdata);
         })
         .catch((err) => {
           console.log(err);
         });
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  ///Order Place
+
+  const orderplace = () => {
+    console.log(login_id);
+    if (cartitems != 0) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#24df00",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Place Order!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Order Placed!",
+            text: "Your order has been placed.",
+            icon: "success",
+          });
+          axios
+            .post(
+              `http://localhost:2222/api/user/orderplace/${login_id}`,
+              {},
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((data) => {
+              console.log(data.data);
+              navigate("/order-summary");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
+    } else {
+      navigate("/user/viewproduct");
     }
   };
   return (
@@ -232,7 +248,13 @@ const Usercart = () => {
           </>
         )}
       </div>
-      <button className="cart-orderplace">Make Order</button>
+      {cartitems[0] == null ? (
+        <></>
+      ) : (
+        <button className="cart-orderplace" onClick={orderplace}>
+          Make Order
+        </button>
+      )}
     </div>
   );
 };

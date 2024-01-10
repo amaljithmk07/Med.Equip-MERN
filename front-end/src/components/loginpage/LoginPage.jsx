@@ -25,11 +25,12 @@ function LoginPage() {
         console.log(data);
         localStorage.setItem("Token", data.data.token);
         localStorage.setItem("Role", data.data.userRole);
+        localStorage.setItem("LoginId", data.data.loginId);
         // setTimeout(() => {
         // }, 5000);
         // setload(false);s
         
-        navigate("/user");
+        navigate("/home");
         // window.location.reload();
       })
       .catch((err) => {
@@ -39,7 +40,7 @@ function LoginPage() {
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: "colored",

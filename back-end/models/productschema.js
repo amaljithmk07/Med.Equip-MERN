@@ -11,7 +11,7 @@ const productschema = new mongoose.Schema({
     required: true,
   },
   available_qty: {
-    type: String,
+    type: Number,
     required: true,
   },
   name: {
@@ -51,4 +51,5 @@ const productschema = new mongoose.Schema({
     required: true,
   },
 });
-module.exports = mongoose.model("details", productschema);
+const data = mongoose.model("Product_details", productschema);
+module.exports = data;
