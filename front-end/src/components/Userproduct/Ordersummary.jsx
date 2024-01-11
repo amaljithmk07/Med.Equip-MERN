@@ -77,9 +77,10 @@ const Ordersummary = () => {
           <div className="order-card-product">
             <div className="order-card-product-head">
               <div className="product-head-title">Name</div>
-              <div className="product-head-title">Qty</div>
+              <div className="product-head-title-qty">Qty</div>
               <div className="product-head-title">Category</div>
               <div className="product-head-title">Sub Category</div>
+              <div className="product-head-title">Status</div>
             </div>
             {orders.length != 0 ? (
               <>
@@ -87,11 +88,12 @@ const Ordersummary = () => {
                 {orders.map((data) => (
                   <div className="order-card-product-details" key={data._id}>
                     <div className="product-details-data">{data.name}</div>
-                    <div className="product-details-data">{data.cart_qty}</div>
+                    <div className="product-details-data-qty">{data.cart_qty}</div>
                     <div className="product-details-data">{data.category}</div>
                     <div className="product-details-data">
                       {data.sub_category}
                     </div>
+                    <div className="product-details-data">{data.orderstatus}</div>
                   </div>
                 ))}
               </>

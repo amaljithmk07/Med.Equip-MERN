@@ -3,6 +3,7 @@ const Checkauth = require("../middle-ware/Checkauth");
 const volunteerroutes = express.Router();
 const volunteerDB = require("../models/volunteerRegisterschema");
 const LoginDB = require("../models/loginschema");
+const OrdersDB = require("../models/orderschema");
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
 
@@ -127,7 +128,7 @@ volunteerroutes.post(
         phone_number: req.body ? req.body.phone_number : olddata.phone_number,
         email: req.body ? req.body.email : olddata.email,
       };
-console.log(req.body.email);
+      console.log(req.body.email);
       const updatedData = await volunteerDB.updateOne(
         {
           _id: req.params.id,
@@ -144,7 +145,7 @@ console.log(req.body.email);
           $set: { email: req.body ? req.body.email : olddata.email },
         }
       );
-      console.log('newemail',newemail);
+      console.log("newemail", newemail);
 
       if (updatedData && newemail) {
         return res.status(200).json({
@@ -216,7 +217,7 @@ volunteerroutes.get("/volunteerrequestlist", Checkauth, (req, res) => {
     });
 });
 
-// Status Update
+//volunteer  Status Update to accepted
 
 volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
   try {
@@ -257,7 +258,7 @@ volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
   }
 });
 
-// Reject Request
+//volunteer status Reject Request
 
 volunteerroutes.put("/reject/:id", Checkauth, (req, res) => {
   volunteerDB
@@ -286,6 +287,104 @@ volunteerroutes.put("/reject/:id", Checkauth, (req, res) => {
         ErrorMessage: err.message,
       });
     });
+});
+
+//OrderStatus 'pending' list in volunteer
+
+volunteerroutes.get("/order-status", Checkauth, async (req, res) => {
+  try {
+    const Order = await OrdersDB.find({
+      orderstatus: "pending",
+    });
+    // const status = Order.map((data) => {
+    //   return data.orderstatus;
+    // });
+    // console.log(status);
+
+    if (Order) {
+      // console.log(data);
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "Order status passed successfull",
+        data: Order,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: true,
+        message: "Order status passed failed",
+        ErrorMessage: err.message,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Network error",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
+//OrderStatus  'Accept' if volunteer accept the order
+
+volunteerroutes.put("/order-accept/:id", Checkauth, async (req, res) => {
+  const vol_id = req.userData.userId;
+  const accepted = await OrdersDB.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: {
+        orderstatus: "Order Accepted",
+
+        volunteerdetails: vol_id,
+      },
+    }
+  );
+  if (accepted) {
+    res.status(200).json({
+      success: true,
+      error: false,
+      message: "Accepted Successfull",
+      data: accepted,
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      error: true,
+      message: "Accepted failed",
+      ErrorMessage: err.message,
+    });
+  }
+  // console.log("accepted", accepted);
+});
+
+// Displaying accepted orders for the individual volunteers
+
+volunteerroutes.get("/accepted-orders", Checkauth, async (req, res) => {
+  const vol_id = req.userData.userId;
+  const display = await OrdersDB.find({
+    volunteerdetails: vol_id,
+  });
+
+  if (display) {
+    res.status(200).json({
+      success: true,
+      error: false,
+      message: "Accepted orders displayed successful",
+      data: display,
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      error: true,
+      message: " failed",
+      ErrorMessage: err.message,
+    });
+  }
+  // console.log("accepted", accepted);
 });
 
 module.exports = volunteerroutes;

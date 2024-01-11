@@ -26,6 +26,8 @@ import Userprofileupdate from "./components/Profile/Userprofileupdate";
 import Volunteerprofileupdate from "./components/Profile/Volunteerprofileupdate";
 import Home from "./components/Userproduct/Home";
 import Ordersummary from "./components/Userproduct/Ordersummary";
+import Orderrequest from "./components/Volunteer/Orderrequest";
+import Acceptedorders from "./components/Volunteer/Acceptedorders";
 
 function App() {
   // const navigate = useNavigate();
@@ -36,7 +38,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/order-summary" element={<Ordersummary />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/user/order-summary" element={<Ordersummary />} />
 
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -53,7 +56,6 @@ function App() {
           element={<Volunteerprofileupdate />}
         />
 
-        <Route path="/home" element={<Home />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Userviewproduct />} />
         <Route path="/uuidverify" element={<Uuidverify />} />
@@ -63,6 +65,8 @@ function App() {
         <Route path="/volunteer/register" element={<Volunteerregister />} />
         <Route path="/volunteer/list" element={<Volunteerlist />} />
         <Route path="/volunteer/request" element={<Volunteerrequest />} />
+        <Route path="/volunteer/order-request" element={<Orderrequest />} />
+        <Route path="/volunteer/accepted-orders" element={<Acceptedorders />} />
       </Routes>
       <Footer />
     </Router>

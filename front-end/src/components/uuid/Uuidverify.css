@@ -35,7 +35,7 @@
   border-radius: 20px;
   background-color: #ecf0f1;
 }
-.uuid-heading{
+.uuid-heading {
   /* background-color: red; */
   width: 48%;
   display: flex;
@@ -63,7 +63,7 @@
   border: 0px;
   /* background-color: rgb(0, 136, 255); */
   /* background-color: #f49959; */
-    background-image: url("/public/navbar.jpeg");
+  background-image: url("/public/navbar.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,6 +72,7 @@
   border-radius: 15px;
   font-size: 23px;
   font-weight: 700;
+  cursor: pointer;
 }
 .h1 {
   margin: 0px;
@@ -81,16 +82,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.giphy-embed{
+.giphy-embed {
   /* background-color: rgb(68, 68, 68); */
   height: 70px;
   width: 200px;
 }
-.uuid-loading{
+.uuid-loading {
   height: 70px;
   width: auto;
-position: relative;
-border: 2px solid red;
+  position: relative;
+  border: 2px solid red;
   /* background-color: red; */
 }
-

@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatcher, useSelector } from "react-redux";
+import { decrement, increment } from "../../redux/reducer/Reducer";
 const Usercart = () => {
   const navigate = useNavigate();
   const [cartitems, setCartitems] = useState([]);
@@ -160,6 +162,9 @@ const Usercart = () => {
             text: "Your order has been placed.",
             icon: "success",
           });
+
+          // ---------Order place -----//
+
           axios
             .post(
               `http://localhost:2222/api/user/orderplace/${login_id}`,
@@ -172,17 +177,38 @@ const Usercart = () => {
             )
             .then((data) => {
               console.log(data.data);
-              navigate("/order-summary");
             })
             .catch((err) => {
               console.log(err);
             });
+
+          // ---------User sending order status 'pending' to volunteer-----//
+
+          axios
+            .post(
+              `http://localhost:2222/api/volunteer/order-status/${login_id}`,
+              {},
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((data) => {
+              console.log(data.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+
+          // navigate("/order-summary");
         }
       });
     } else {
       navigate("/user/viewproduct");
     }
   };
+
   return (
     <div className="cart-home">
       <Toaster />

@@ -469,7 +469,7 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
     const deletedcart = await CartDB.deleteMany({
       login_id: req.params.id,
     });
-    
+
     const [{ _id }] = orderdata;
     // console.log(available_qty);
     // console.log(cart_qty);
@@ -494,7 +494,7 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
     );
     var updated = await products(updated_qty).save();
 
-    if (orderdetail && deletedcart && updated) {
+    if (orderdetail && deletedcart) {
       return res.status(200).json({
         success: true,
         error: false,

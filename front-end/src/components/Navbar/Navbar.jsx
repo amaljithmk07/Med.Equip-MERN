@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Userproduct from "../Userproduct/Home";
@@ -17,7 +17,26 @@ const Navbar = () => {
     navigate("/");
     window.location.reload();
   };
-
+  const [cartitems, setCartitems] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:2222/api/user/cartview`, {
+        headers: {
+          Authorization: `Bearer ${Token}`,
+        },
+      })
+      .then((data) => {
+        // console.log(data.data.data);
+        const cart_number=cartitems.filter((data)=>{
+          return data
+        })
+        setCartitems(data.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  // console.log();
   return (
     <div className="general-navbar">
       <Toaster />
@@ -48,7 +67,16 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link to={"/usercart"} className="general-a">
-                    Cart
+                    Cart{" "}
+                    <sup>
+                      {" "}
+                      <div className="cart-sup"> {cartitems.length}</div>
+                    </sup>
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/user/order-summary"} className="general-a">
+                    Orders
                   </Link>
                 </li>
               </>
@@ -73,6 +101,7 @@ const Navbar = () => {
                         volunteer List
                       </Link>
                     </li>
+
                     <li>
                       <Link to={"/volunteer/request"} className="general-a">
                         Volunteer Request
@@ -84,7 +113,20 @@ const Navbar = () => {
                     {Token !== null && Role == 3 ? (
                       <>
                         <li>
-                          <Link className="general-a">Order Request</Link>
+                          <Link
+                            to={"/volunteer/order-request"}
+                            className="general-a"
+                          >
+                            Order Request
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to={"/volunteer/accepted-orders"}
+                            className="general-a"
+                          >
+                            Accepted Orders
+                          </Link>
                         </li>
                       </>
                     ) : (
