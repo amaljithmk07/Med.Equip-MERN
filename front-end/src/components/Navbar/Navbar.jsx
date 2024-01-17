@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import Userproduct from "../Userproduct/Home";
+import Userproduct from "../User/Home";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { cartView } from "../../redux/reducer/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const Token = localStorage.getItem("Token");
   const Role = localStorage.getItem("Role");
@@ -17,26 +20,24 @@ const Navbar = () => {
     navigate("/");
     window.location.reload();
   };
-  const [cartitems, setCartitems] = useState([]);
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:2222/api/user/cartview`, {
-        headers: {
-          Authorization: `Bearer ${Token}`,
-        },
-      })
-      .then((data) => {
-        // console.log(data.data.data);
-        const cart_number=cartitems.filter((data)=>{
-          return data
-        })
-        setCartitems(data.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  // console.log();
+    dispatch(cartView());
+  }, [dispatch]);
+
+  const cartitems = useSelector((state) => state.content.cartitems);
+  const isLoading = useSelector((state) => state.content.isLoading);
+  const error = useSelector((state) => state.content.error);
+
+  if (isLoading) {
+    // return "loading...";
+  }
+
+  if (error) {
+    // return error;
+  }
+  // console.log(contents);
+  // console.log(contents.length);
   return (
     <div className="general-navbar">
       <Toaster />
@@ -69,8 +70,11 @@ const Navbar = () => {
                   <Link to={"/usercart"} className="general-a">
                     Cart{" "}
                     <sup>
-                      {" "}
-                      <div className="cart-sup"> {cartitems.length}</div>
+                      {cartitems != 0 ? (
+                        <div className="cart-sup"> {cartitems.length}</div>
+                      ) : (
+                        <></>
+                      )}{" "}
                     </sup>
                   </Link>
                 </li>

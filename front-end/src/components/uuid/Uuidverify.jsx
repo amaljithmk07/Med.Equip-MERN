@@ -57,7 +57,7 @@ const Uuidverify = () => {
             <div className="uuid-heading">
               {" "}
               SECRET KEY{" "}
-              <img src="/uuid-key.png" alt="" style={{ height: "19px" }} />
+              <img src="/uuid-key.png" alt=""  className="head-key-img"/>
             </div>{" "}
             {wrong == null || loading.length !== 4 ? (
               <>

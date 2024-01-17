@@ -4,19 +4,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
+import store from "./redux/store/Store";
+import { Provider } from "react-redux";
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
+// {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>; */}
 // import LoginPage from "./components/loginpage/LoginPage";
 // import RegistrationPage from "./components/registrationpage/RegistrationPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
-<App/>
-{/* <Processing/> */}
-  </>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

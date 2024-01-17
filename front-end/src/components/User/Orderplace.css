@@ -1,0 +1,203 @@
+.order-place-body {
+  min-height: 630px;
+  width: 100%;
+  /* background-color: #56ff0e; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-place-card {
+  margin: 30px 0px;
+  padding: 30px 0px;
+  min-height: 580px;
+  row-gap: 30px;
+  width: 70%;
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(218, 27, 27); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+.order-place-card-head {
+  height: 10%;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 32px;
+  color: rgb(41, 41, 41);
+  font-weight: 700;
+  /* background-color: rgb(115, 255, 0); */
+}
+.order-place-card-body {
+  min-height: 350px;
+  width: 90%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* flex-direction: column; */
+  row-gap: 20px;
+}
+.order-place-card-personal-info {
+  min-height: 250px;
+  width: 30%;
+  /* background-color: rgb(203, 156, 156); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+.order-place-card-profile {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* color: red; */
+  /* background-color: red; */
+  font-size: 0.78rem;
+  width: 100%;
+}
+.order-place-card-profile-input {
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 0.78rem;
+  max-width: 80%;
+  border: 0px;
+}
+.order-place-card-profile-input:focus {
+outline: none;
+border-bottom: 1px solid rgb(194, 194, 194);
+
+}
+.order-place-card-product {
+  min-height: 250px;
+  width: 55%;
+  margin: 30px 0px;
+  padding: 10px 0px;
+  row-gap: 20px;
+  /* background-color: rgb(78, 22, 22); */
+  border: 1px solid rgb(231, 231, 231);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.order-place-card-product-head {
+  width: 100%;
+  margin: 5px 0px;
+
+  /* background-color: chartreuse;  */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.order-place-product-head-title {
+  width: 30%;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.order-place-product-head-title-qty {
+  width: 10%;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.order-place-card-product-details {
+  width: 100%;
+  /* height: 60%; */
+  /* background-color: chartreuse; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.order-place-product-details-data-qty {
+  width: 10%;
+  font-size: 0.95rem;
+  /* background-color: red; */
+  font-weight: 600;
+  color: rgb(45, 45, 45);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: justify;
+}
+
+.order-place-product-details-data {
+  width: 30%;
+  font-size: 0.95rem;
+  /* background-color: red; */
+  font-weight: 600;
+  color: rgb(45, 45, 45);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: justify;
+}
+.order-place-product-details-data-orderplaced {
+  width: 22%;
+  font-size: 0.95rem;
+  /* background-color: red; */
+  font-weight: 600;
+  color: rgb(45, 45, 45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+.order-place-button {
+  width: 50%;
+
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.order-place-home-link {
+  width: 40%;
+  height: 40px;
+  border: 1px solid rgb(255, 244, 244);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  background-image: url("/public/navbar.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(255, 255, 255); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.order-place-home-link:hover {
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.195);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

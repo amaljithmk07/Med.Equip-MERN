@@ -3,13 +3,12 @@ import "./Profilehome.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-
 const Profilehome = () => {
   const navigate = useNavigate();
+  const [profile, setProfile] = useState([{}]);
+
   const token = localStorage.getItem("Token");
   const role = localStorage.getItem("Role");
-
-  const [profile, setProfile] = useState([{}]);
 
   useEffect(() => {
     const userprofile = `http://localhost:2222/api/user/profile`;

@@ -7,6 +7,7 @@ const products = require("../models/productschema");
 const CartDB = require("../models/cartschema");
 const OrdersDB = require("../models/orderschema");
 const Checkauth = require("../middle-ware/Checkauth");
+const AddressDB = require("../models/addressschema");
 const { default: mongoose } = require("mongoose");
 
 const storage = multer.diskStorage({
@@ -17,8 +18,12 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
+
 const upload = multer({ storage: storage });
-//add
+
+// ----------Product-------------
+
+//---Product add
 
 userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
   const Data = new products({
@@ -44,7 +49,7 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
     });
 });
 
-//view
+//---Product view
 
 userroutes.get("/view", Checkauth, (req, res) => {
   products
@@ -67,7 +72,7 @@ userroutes.get("/view", Checkauth, (req, res) => {
     });
 });
 
-// Single View
+//---Product Single View
 
 userroutes.get("view/:id", (req, res) => {
   products
@@ -92,7 +97,7 @@ userroutes.get("view/:id", (req, res) => {
     });
 });
 
-//update
+//---Product update
 
 userroutes.put("/update/:id", (req, res) => {
   products
@@ -132,7 +137,7 @@ userroutes.put("/update/:id", (req, res) => {
     });
 });
 
-//delete
+//---Product delete
 
 userroutes.delete("/delete/:id", (req, res) => {
   products
@@ -147,55 +152,60 @@ userroutes.delete("/delete/:id", (req, res) => {
     });
 });
 
-//Profile view
+// -------------Profile---------------
+
+//---Profile view
 
 userroutes.get("/profile", Checkauth, (req, res) => {
   registerDB
     .aggregate([
-      {
-        $lookup: {
-          from: "login_tbs",
-          localField: "login_id",
-          foreignField: "_id",
-          as: "result",
+      [
+        {
+          $lookup: {
+            from: "login_tbs",
+            localField: "login_id",
+            foreignField: "_id",
+            as: "result",
+          },
         },
-      },
-      {
-        $unwind: {
-          path: "$result",
+        {
+          $unwind: {
+            path: "$result",
+          },
         },
-      },
-      {
-        $match: {
-          login_id: new mongoose.Types.ObjectId(req.userData.userId),
+        {
+          $match: {
+            login_id: new mongoose.Types.ObjectId(req.userData.userId),
+          },
         },
-      },
+        {
+          $group: {
+            _id: "$_id",
+            login_id: {
+              $first: "$login_id",
+            },
+            image: {
+              $first: "$image",
+            },
+            name: {
+              $first: "$name",
+            },
+            age: {
+              $first: "$age",
+            },
+            phone_number: {
+              $first: "$phone_number",
+            },
+            email: {
+              $first: "$result.email",
+            },
 
-      {
-        $group: {
-          _id: "$_id",
-          image: {
-            $first: "$image",
-          },
-          name: {
-            $first: "$name",
-          },
-
-          user_id: {
-            $first: "$user_id",
-          },
-
-          age: {
-            $first: "$age",
-          },
-          phone_number: {
-            $first: "$phone_number",
-          },
-          email: {
-            $first: "$result.email",
+            user_id: {
+              $first: "$user_id",
+            },
           },
         },
-      },
+      ],
     ])
     .then((data) => {
       res.status(200).json({
@@ -215,7 +225,7 @@ userroutes.get("/profile", Checkauth, (req, res) => {
     });
 });
 
-//User Profile update
+//---User Profile update
 
 userroutes.post(
   "/profileupdate/:id",
@@ -223,7 +233,7 @@ userroutes.post(
   upload.single("image"),
   async (req, res) => {
     try {
-      const olddata = registerDB.findOne({
+      const olddata = await registerDB.findOne({
         _id: req.params.id,
       });
       const userprofile = {
@@ -256,14 +266,14 @@ userroutes.post(
           success: true,
           error: false,
           message: "data updated successfully",
-          data: updatedProfile,
+          data: userprofile,
         });
       }
     } catch (err) {
       // console.log(err);
       res.status(400).json({
-        success: true,
-        error: false,
+        success: false,
+        error: true,
         message: "data Fetched unsuccessful",
         ErrorMessage: err.message,
       });
@@ -271,7 +281,9 @@ userroutes.post(
   }
 );
 
-// Cart Add
+//----------------Cart -----------------
+
+//--- Cart Add
 
 userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
   const Data = new CartDB({
@@ -307,11 +319,13 @@ userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
     });
 });
 
-// cart products View
+// ---cart products View
 
-userroutes.get("/cartview", Checkauth, (req, res) => {
+userroutes.get("/cartview/:id", Checkauth, async (req, res) => {
   try {
-    CartDB.find()
+    await CartDB.find({
+      login_id: req.params.id,
+    })
       .then((data) => {
         res.status(200).json({
           success: true,
@@ -337,21 +351,27 @@ userroutes.get("/cartview", Checkauth, (req, res) => {
   }
 });
 
-// Cart Delete
-userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
-  CartDB.deleteOne({
-    _id: req.params.id,
-  })
+//--- Cart Delete
 
-    .then((data) => {
+userroutes.get("/cartdelete/:id", Checkauth, async (req, res) => {
+  await CartDB.deleteOne({
+    _id: req.params.id,
+    login_id: req.userData.userId,
+  })
+    .then((ids) => {
+      var ids = req.params.id;
+      // var id = ids;
+
+      // console.log("id", ids);
       res.status(200).json({
         success: true,
         error: false,
-        message: "cart delete successful",
+        id: ids,
+        // message: "cart delete successful",
       });
     })
     .catch((err) => {
-      res.status(200).json({
+      res.status(400).json({
         success: false,
         error: true,
         ErrorMessage: err.message,
@@ -359,7 +379,7 @@ userroutes.get("/cartdelete/:id", Checkauth, (req, res) => {
     });
 });
 
-// Cart increment
+// ---Cart increment
 
 userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
   try {
@@ -381,19 +401,23 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
         );
         // console.log("updateQty:", update_qty);
         if (update_qty) {
-          return res.status(200).json({
-            success: true,
-            error: false,
-            data: data,
-            incre_qty: incre_qty,
-            message: "cart increment successful",
+          CartDB.findOne({
+            login_id: userId,
+            _id: req.params.id,
+          }).then((datas) => {
+            return res.status(200).json({
+              success: true,
+              error: false,
+              data: datas,
+              incre_qty: incre_qty,
+              message: "cart increment successful",
+            });
           });
         }
       } else {
-        return res.status(200).json({
-          success: true,
-          error: false,
-          data: data,
+        return res.status(400).json({
+          success: false,
+          error: true,
           message: "You added maximum quantity",
         });
       }
@@ -408,7 +432,7 @@ userroutes.get("/cartincrement/:id", Checkauth, async (req, res) => {
   }
 });
 
-// Cart decrement
+//--- Cart decrement
 
 userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
   try {
@@ -430,12 +454,17 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
         );
 
         if (update_qty) {
-          return res.status(200).json({
-            success: true,
-            error: false,
-            data: data,
-            decre_qty: decre_qty,
-            message: "cart decrement successful",
+          CartDB.findOne({
+            login_id: userId,
+            _id: req.params.id,
+          }).then((data) => {
+            return res.status(200).json({
+              success: true,
+              error: false,
+              data: data,
+              decre_qty: decre_qty,
+              message: "cart decrement successful",
+            });
           });
         }
       } else {
@@ -457,7 +486,10 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
   }
 });
 
-// Order Place
+// ---------Order Details-----------
+
+//--- Order Place
+
 userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
   // console.log(req.params.id);
   try {
@@ -518,7 +550,7 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
   }
 });
 
-//Order Details
+//---Order Details
 
 userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
   OrdersDB.find({
@@ -540,6 +572,137 @@ userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
         message: "Network error",
       });
     });
+});
+
+// ---------Address-------------
+
+//---Add Address
+
+userroutes.post("/add-address", Checkauth, async (req, res) => {
+  try {
+    const data = new AddressDB({
+      login_id: req.userData.userId,
+      name: req.body.name,
+      state: req.body.state,
+      address: req.body.address,
+      district: req.body.district,
+      pin_code: req.body.pin_code,
+      alternate_phone: req.body.alternate_phone,
+      address_type: req.body.address_type,
+    });
+    data
+      .save()
+
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          data: data,
+          message: "Address successfully  Added",
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
+//--- View All Address
+
+userroutes.get("/view-address", Checkauth, async (req, res) => {
+  try {
+    const data = await AddressDB.find({
+      login_id: req.userData.userId,
+    });
+
+    if (data) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: " Address successfully displayed",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
+//--- Set address As Primary
+
+userroutes.put("/primary-address/:id", Checkauth, async (req, res) => {
+  try {
+    const temp = await AddressDB.updateMany(
+      {
+        login_id: req.userData.userId,
+      },
+      {
+        $set: {
+          category: "",
+        },
+      }
+    );
+    const data = await AddressDB.updateOne(
+      {
+        login_id: req.userData.userId,
+        _id: req.params.id,
+      },
+      {
+        $set: {
+          category: "primary",
+        },
+      }
+    );
+
+    if (data && temp) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: " Primary address Successful",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
 });
 
 module.exports = userroutes;

@@ -107,11 +107,12 @@
   height: 100%;
   width: 70%;
   font-size: 0.9rem;
+  color: #ffffff;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 5px;
   text-transform: uppercase;
   border: 1px solid rgb(149, 240, 110);
-  background-color: rgb(219, 255, 196);
+  background-color: rgb(68, 247, 101);
   cursor: pointer;
 }
 .order-request-nodata {

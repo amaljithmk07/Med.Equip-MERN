@@ -53,6 +53,7 @@
 .profile-home-content {
   box-shadow: 10px 10px 20px rgba(47, 47, 47, 0.125);
 
+  /* border-radius: 15px; */
   border-radius: 35px;
   height: 50rem;
   width: 60%;

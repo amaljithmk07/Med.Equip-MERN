@@ -13,9 +13,9 @@ registerroutes.post("/user", async (req, res) => {
     const email = req.body.email;
     const lower_email = email.toLowerCase();
     console.log(lower_email);
-    const oldUser = await loginDB.findOne({ email:lower_email });
+    const oldUser = await loginDB.findOne({ email: lower_email });
     if (oldUser) {
-      return res  
+      return res
         .status(400)
         .json({ success: false, error: true, message: "User already exists" });
     }
@@ -45,13 +45,10 @@ registerroutes.post("/user", async (req, res) => {
 
     let reg = {
       login_id: result._id,
-
       name: req.body.name,
       age: req.body.age,
       phone_number: req.body.phone_number,
       user_id: uuidsliced,
-      //   address: req.body.address,
-      //   pin_code: req.body.pin_code,
     };
     const result2 = await registerDB(reg).save();
     if (result2) {
@@ -79,7 +76,7 @@ registerroutes.post("/volunteer", async (req, res) => {
   try {
     const email = req.body.email;
     const lower_email = email.toLowerCase();
-    const oldUser = await loginDB.findOne({ email:lower_email });
+    const oldUser = await loginDB.findOne({ email: lower_email });
     if (oldUser) {
       return res
         .status(400)
@@ -101,7 +98,7 @@ registerroutes.post("/volunteer", async (req, res) => {
 
     let log = {
       email: lower_email,
-      password: hashedPassword, 
+      password: hashedPassword,
       role: 3,
     };
     const result = await loginDB(log).save();

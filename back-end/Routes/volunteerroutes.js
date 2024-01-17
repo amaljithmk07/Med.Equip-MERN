@@ -217,7 +217,7 @@ volunteerroutes.get("/volunteerrequestlist", Checkauth, (req, res) => {
     });
 });
 
-//volunteer  Status Update to accepted
+//volunteer 'Pending'  Status Update to 'accepted'
 
 volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
   try {
@@ -327,7 +327,7 @@ volunteerroutes.get("/order-status", Checkauth, async (req, res) => {
   }
 });
 
-//OrderStatus  'Accept' if volunteer accept the order
+//OrderStatus 'pending' to 'Accept' when volunteer accept the order
 
 volunteerroutes.put("/order-accept/:id", Checkauth, async (req, res) => {
   const vol_id = req.userData.userId;
@@ -385,6 +385,40 @@ volunteerroutes.get("/accepted-orders", Checkauth, async (req, res) => {
     });
   }
   // console.log("accepted", accepted);
+});
+
+//Order Placed
+
+volunteerroutes.put("/order-placed/:id", Checkauth, async (req, res) => {
+  const vol_id = req.userData.userId;
+  console.log(vol_id);
+  const display = await OrdersDB.updateOne(
+    {
+      _id: req.params.id,
+      volunteerdetails: vol_id,
+    },
+    {
+      $set: {
+        orderstatus: "Delivered",
+      },
+    }
+  );
+
+  if (display) {
+    res.status(200).json({
+      success: true,
+      error: false,
+      message: "Order Placed successful",
+      data: display,
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      error: true,
+      message: " failed",
+      ErrorMessage: err.message,
+    });
+  }
 });
 
 module.exports = volunteerroutes;

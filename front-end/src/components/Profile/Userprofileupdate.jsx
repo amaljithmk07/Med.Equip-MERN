@@ -55,7 +55,7 @@ const Userprofileupdate = () => {
     setProfile({ ...profile, [name]: e.target.files[0] });
   };
 
-  const profileUpdate = (e,id) => {
+  const profileUpdate = (e, id) => {
     e.preventDefault();
     var formDetails = new FormData();
     formDetails.append("image", profile.image);
@@ -163,6 +163,14 @@ const Userprofileupdate = () => {
                   className="userprofile-input"
                 />
               </div>
+              <Link to={"/user/address"} className="address-sec">
+                <img src="/addaddress.png" alt="" className="address-img" />
+                 add address{" "}
+              </Link>
+              <Link to={"/user/address"} className="address-sec">
+                <img src="/address.png" alt="" className="address-img" />
+                saved addressess{" "}
+              </Link>
 
               <button
                 type="button"
