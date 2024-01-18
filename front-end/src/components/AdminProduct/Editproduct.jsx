@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 const Editproduct = () => {
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const ref = useRef();
   const { id } = useParams();
   //   console.log(id);

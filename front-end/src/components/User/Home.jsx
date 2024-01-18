@@ -3,8 +3,8 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const token = localStorage.getItem("Token");
-  const role = localStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
   console.log(token);
   return (
     <div>

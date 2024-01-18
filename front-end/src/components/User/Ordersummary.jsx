@@ -6,14 +6,16 @@ import toast from "react-hot-toast";
 
 const Ordersummary = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const [profile, setProfile] = useState({});
 
   const [orders, setOrders] = useState([]);
-  var login_id = localStorage.getItem("LoginId");
+  var login_id = sessionStorage.getItem("LoginId");
+
+  // ----------Profile View-----------
 
   useEffect(() => {
-    const userprofile = `http://localhost:2222/api/user/profile`;
+    const userprofile = `http://localhost:2222/api/user/profile-address`;
     axios
       .get(userprofile, {
         headers: {
@@ -21,22 +23,27 @@ const Ordersummary = () => {
         },
       })
       .then((data) => {
-        // console.log(data.data.data[0]);
+        console.log(data.data.data[0]);
         setProfile(data.data.data[0]);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err.response.data.message);
+        setProfile(err.response.data.message);
+
         if (err.response.status == 401) {
           toast.error("Session Time Out", {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }
       });
   }, []);
+
+  // -----Order List--------
+
   useEffect(() => {
     axios
       .get(`http://localhost:2222/api/user/ordersummary/${login_id}`, {
@@ -55,7 +62,7 @@ const Ordersummary = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }
@@ -69,13 +76,31 @@ const Ordersummary = () => {
         <div className="order-card-head">ORDER SUMMARY</div>
         <div className="order-card-body">
           <div className="order-card-personal-info">
-            <div className="card-profile">id : {profile._id}</div>
-            <div className="card-profile">name : {profile.name}</div>
-            <div className="card-profile"> Phone : {profile.phone_number}</div>
-            <div className="card-profile"> email : {profile.email}</div>
-            <div className="card-profile"> address : {profile.address}</div>
-            <div className="card-profile"> state : {profile.state}</div>
-            <div className="card-profile"> pincode : {profile.pin_code}</div>
+            {profile !== "No data" ? (
+              <>
+                <div className="card-profile">id : {profile._id}</div>
+                <div className="card-profile">name : {profile.name}</div>
+                <div className="card-profile">
+                  {" "}
+                  Phone : {profile.alternate_phone}
+                </div>
+                <div className="card-profile"> email : {profile.email}</div>
+                <div className="card-profile"> address : {profile.address}</div>
+                <div className="card-profile"> state : {profile.state}</div>
+                <div className="card-profile">
+                  {" "}
+                  district : {profile.district}
+                </div>
+                <div className="card-profile">
+                  {" "}
+                  pincode : {profile.pin_code}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>Address error !!!</h2>
+              </>
+            )}
           </div>
           <div className="order-card-product">
             {orders.length != 0 ? (

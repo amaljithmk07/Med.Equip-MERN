@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 
 const Useraddproduct = () => {
-  const token = localStorage.getItem("Token");
-  const uuid = localStorage.getItem("uuid");
+  const token = sessionStorage.getItem("Token");
+  const uuid = sessionStorage.getItem("uuid");
   console.log(uuid);
   const [products, setProducts] = useState({});
   const navigate = useNavigate();

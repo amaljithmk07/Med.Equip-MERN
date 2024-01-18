@@ -1,10 +1,16 @@
 .address-body {
   min-height: 630px;
   width: 100%;
-  /* background-color: rgb(159, 32, 244); */
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(245, 229, 255); */
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 0px;
 }
 .address-sub-body {
   min-height: 580px;
@@ -14,23 +20,29 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  row-gap: 50px;
 }
 
 /* ///-----Saved Address section */
 
 .saved-address {
   min-height: 300px;
+  padding: 20px 0px;
   width: 90%;
-  background-color: rgb(86, 38, 38);
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
   flex-direction: column;
 }
 .saved-address-head {
-  height: 30px;
+  height: 60px;
   width: 95%;
-  background-color: rgb(116, 255, 172);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  /* background-color: rgb(116, 255, 172); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +50,7 @@
 .saved-address-body {
   min-height: 230px;
   width: 95%;
-  background-color: rgb(21, 161, 77);
+  /* background-color: rgb(21, 161, 77); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,25 +60,27 @@
 .saved-address-sec {
   min-height: 80px;
   width: 100%;
-  background-color: rgb(175, 208, 255);
+  border: 1px dashed rgb(223, 223, 223);
+  background-color: rgb(255, 255, 255);
   display: flex;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   /* flex-direction: column; */
 }
-.radio-btn {
+.radio-btn-sec {
   height: 80px;
   width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .saved-address-details {
   min-height: 80px;
-  width: 90%;
-  /* background-color: rgb(16, 59, 119); */
+  width: 80%;
+  /* background-color: rgb(255, 198, 198); */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -75,23 +89,23 @@
 .s-a-personal {
   /* background-color: chocolate; */
   display: flex;
-  height: 30px;
+  height: 25px;
   width: 60%;
-  /* column-gap: 10px; */
+  column-gap: 5px;
   justify-content: flex-start;
   align-items: center;
 }
 .s-a-type {
-  background-color: rgb(198, 198, 198);
+  background-color: rgb(234, 234, 234);
   height: 15px;
-  min-width: 10%;
+  min-width: 12%;
   font-weight: 700;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .s-a-name {
   /* background-color: rgb(91, 91, 91); */
@@ -109,27 +123,38 @@
   font-size: 0.85rem;
   display: flex;
   font-weight: 600;
-  height: 45px;
+  height: 30px;
   width: 80%;
   justify-content: flex-start;
   align-items: center;
 }
-
+.saved-address-edit-delete {
+  width: 10%;
+  height: 80px;
+  /* background-color: rgb(242, 255, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* ///-----Add Address section */
 
 .add-address {
   min-height: 400px;
   width: 90%;
-  /* background-color: rgb(191, 91, 91); */
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
+  border-radius: 10px;
   align-items: center;
   flex-direction: column;
 }
 .add-address-head {
-  height: 30px;
+  height: 40px;
   width: 95%;
-  /* background-color: rgb(116, 255, 172); */
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  /* background-color: rgb(228, 255, 239); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,11 +169,86 @@
   /* flex-direction: column; */
 }
 .add-address-sec {
-  min-height: 80px;
+  min-height: 200px;
   width: 100%;
   /* background-color: rgb(175, 208, 255); */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* flex-direction: column; */
+  text-transform: capitalize;
+}
+.add-address-sec-left {
+  min-height: 200px;
+  width: 50%;
+  /* background-color: rgb(175, 208, 255); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* row-gap: 10px; */
   flex-direction: column;
+  text-transform: uppercase;
+}
+.add-address-sec-right {
+  min-height: 200px;
+  width: 50%;
+  /* background-color: rgb(156, 187, 230); */
+  display: flex;
+  /* row-gap: 10px; */
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+.add-address-input-sec {
+  /* background-color: red; */
+  border: 1px dotted rgb(214, 214, 214);
+
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.add-address-input-radio {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  height: 30px;
+}
+.add-address-input {
+  /* background-color: blueviolet; */
+  width: 95%;
+  height: 25px;
+  font-weight: 600;
+  border: 0px;
+  /* border-bottom: 1px dotted rgb(189, 189, 189); */
+  padding: 0px 5px;
+}
+
+.add-address-input:focus {
+  border-bottom: 0px solid rgb(227, 227, 227);
+  outline: none;
+  /* outline: 2px dotted rgb(201  , 201, 201); */
+}
+.add-address-btn {
+  cursor: pointer;
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 5px;
+  background-color: rgb(253, 231, 189);
+  border: 0px;
+  height: 35px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 120px;
 }

@@ -7,8 +7,8 @@ const Profilehome = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState([{}]);
 
-  const token = localStorage.getItem("Token");
-  const role = localStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
 
   useEffect(() => {
     const userprofile = `http://localhost:2222/api/user/profile`;
@@ -31,7 +31,7 @@ const Profilehome = () => {
               position: "bottom-center",
             });
             setTimeout(() => {
-              localStorage.clear();
+              sessionStorage.clear();
 
               navigate("/login");
             }, 2000);
@@ -55,7 +55,7 @@ const Profilehome = () => {
               position: "bottom-center",
             });
             setTimeout(() => {
-              localStorage.clear();
+              sessionStorage.clear();
               navigate("/login");
             }, 2000);
           }

@@ -705,4 +705,122 @@ userroutes.put("/primary-address/:id", Checkauth, async (req, res) => {
   }
 });
 
+//--- View Primary Address
+
+userroutes.get("/view-primary-address", Checkauth, async (req, res) => {
+  try {
+    const data = await AddressDB.find({
+      login_id: req.userData.userId,
+      address_type: "primary",
+    });
+
+    if (data) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: "primary Address successfully displayed",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
+//profile with address
+
+userroutes.get("/profile-address", Checkauth, async (req, res) => {
+  const primary = await AddressDB.findOne({
+    login_id: req.userData.userId,
+    category: "primary",
+  });
+  if (primary) {
+    await AddressDB.aggregate([
+      {
+        $lookup: {
+          from: "login_tbs",
+          localField: "login_id",
+          foreignField: "_id",
+          as: "results",
+        },
+      },
+      {
+        $unwind: {
+          path: "$results",
+        },
+      },
+      {
+        $match: {
+          login_id: new mongoose.Types.ObjectId(req.userData.userId),
+          category: "primary",
+        },
+      },
+
+      {
+        $group: {
+          _id: "$_id",
+          name: {
+            $first: "$name",
+          },
+          state: {
+            $first: "$state",
+          },
+          district: {
+            $first: "$district",
+          },
+          address: {
+            $first: "$address",
+          },
+          address_type: {
+            $first: "$address_type",
+          },
+          pin_code: {
+            $first: "$pin_code",
+          },
+          alternate_phone: {
+            $first: "$alternate_phone",
+          },
+          email: {
+            $first: "$results.email",
+          },
+        },
+      },
+    ])
+      .then((data) => {
+        res.status(200).json({
+          data: data,
+          success: true,
+          error: false,
+          message: "Profile data fetched successfully",
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Profile data fetched unsuccessful",
+        });
+      });
+  } else {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "No data",
+    });
+  }
+});
 module.exports = userroutes;

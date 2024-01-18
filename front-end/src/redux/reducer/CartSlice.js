@@ -6,8 +6,8 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const token = localStorage.getItem("Token");
-const id=localStorage.getItem('LoginId')
+const token = sessionStorage.getItem("Token");
+const id=sessionStorage.getItem('LoginId')
 // console.log(token);
 export const cartView = createAsyncThunk("content/cartView", async () => {
   const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {

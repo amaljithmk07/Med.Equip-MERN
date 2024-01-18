@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Volunteerprofileupdate = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
-  const role = localStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
   const [profile, setProfile] = useState([
     {
       image: "",
@@ -36,7 +36,7 @@ const Volunteerprofileupdate = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }

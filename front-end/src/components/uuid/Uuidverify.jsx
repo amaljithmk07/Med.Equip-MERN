@@ -19,7 +19,7 @@ const Uuidverify = () => {
     setLetter({ [name]: value });
   };
   console.log(letter);
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   console.log(token);
   const handleClick = () => {
     axios
@@ -33,7 +33,7 @@ const Uuidverify = () => {
         setWrong(true);
         console.log(data);
         if (data.status == 200) {
-          localStorage.setItem("uuid", data.data.uuid);
+          sessionStorage.setItem("uuid", data.data.uuid);
           setTimeout(() => {
             navigate("/user/addproduct");
           }, 1000);

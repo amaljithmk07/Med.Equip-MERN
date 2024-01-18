@@ -45,7 +45,7 @@
 
 .profile-photo {
   max-height: 120px;
-  max-width: 120px;  
+  max-width: 120px;
   border-radius: 50%;
   box-shadow: 2px 5px 10px rgba(85, 85, 85, 0.429);
   border: 10px solid rgb(255, 255, 255);
@@ -121,7 +121,7 @@
   font-weight: 600;
   text-align: center;
   width: 40%;
-cursor: pointer;
+  cursor: pointer;
   background-image: url("/public/navbar1.jpeg");
   background-position: center;
   background-repeat: no-repeat;

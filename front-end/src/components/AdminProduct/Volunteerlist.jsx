@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Volunteerlist = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const [volunteerlist, SetVolunteerlist] = useState([]);
   useEffect(() => {
     axios
@@ -28,7 +28,7 @@ const Volunteerlist = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }

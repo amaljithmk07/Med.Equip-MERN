@@ -10,13 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const Token = localStorage.getItem("Token");
-  const Role = localStorage.getItem("Role");
+  const Token = sessionStorage.getItem("Token");
+  const Role = sessionStorage.getItem("Role");
   console.log("Role:", Role);
   const Logout = () => {
-    localStorage.removeItem("Token");
-    localStorage.removeItem("Role");
-    localStorage.removeItem("uuid");
+    sessionStorage.removeItem("Token");
+    sessionStorage.removeItem("Role");
+    sessionStorage.removeItem("uuid");
     navigate("/");
     window.location.reload();
   };

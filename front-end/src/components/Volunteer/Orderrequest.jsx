@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Orderrequest = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const [ordersrequest, setOrdersrequest] = useState([]);
   useEffect(() => {
     axios

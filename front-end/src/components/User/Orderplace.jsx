@@ -14,7 +14,7 @@ import {
 
 const Orderplace = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const [profile, setProfile] = useState([
     {
       address: "",
@@ -23,14 +23,13 @@ const Orderplace = () => {
     },
   ]);
 
-  var login_id = localStorage.getItem("LoginId");
+  var login_id = sessionStorage.getItem("LoginId");
 
   // -----------Profile Display-------------
 
   useEffect(() => {
-    const userprofile = `http://localhost:2222/api/user/profile`;
     axios
-      .get(userprofile, {
+      .get(`http://localhost:2222/api/user/profile-address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,20 +39,22 @@ const Orderplace = () => {
         setProfile(data.data.data[0]);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
+        setProfile(err.response.data.message);
         if (err.response.status == 401) {
           toast.error("Session Time Out", {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }
       });
   }, []);
-
+  console.log(profile);
   // --------Cart Items Display----------
+  var id = sessionStorage.getItem("LoginId");
 
   const dispatch = useDispatch();
   const cartitems = useSelector((state) => state.content.cartitems);
@@ -129,98 +130,49 @@ const Orderplace = () => {
     }
   };
 
-  // ------------User Profile Update--------------
-
-  var id = localStorage.getItem("LoginId");
-
-  const profileUpdate = (e) => {
-    const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
-  };
-
-  // const profileUpdateHandler = (e) => {
-  //   // console.log(e);
-  //   axios
-  //     .post(`http://localhost:2222/api/user/profileupdate/${id}`, profile, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  
-  
-  console.log(profile.address);
   return (
     <div className="order-place-body">
       <div className="order-place-card">
         <div className="order-place-card-head">ORDER PLACE</div>
         <div className="order-place-card-body">
-          <div
-            className="order-place-card-personal-info"
-            // onMouseLeave={profileUpdateHandler}
-          >
-            <div className="order-place-card-profile">id : {profile._id}</div>
-            <div className="order-place-card-profile">
-              name : {profile.name}
-            </div>
-            <div className="order-place-card-profile">
-              {" "}
-              Phone : {profile.phone_number}
-            </div>
-            <div className="order-place-card-profile">
-              {" "}
-              email : {profile.email}
-            </div>
-            <div className="order-place-card-profile">
-              {" "}
-              Address :{" "}
-              <input
-                required
-                type="text"
-                name="address"
-                value={profile.address}
-                className="order-place-card-profile-input"
-                onChange={profileUpdate}
-              />{" "}
-            </div>
-            <div className="order-place-card-profile">
-              {" "}
-              State :{" "}
-              <input
-                required
-                type="text"
-                name="state"
-                className="order-place-card-profile-input"
-                value={profile.state}
-                onChange={profileUpdate}
-              />{" "}
-            </div>
-            <div className="order-place-card-profile">
-              Pin code :{" "}
-              <input
-                required
-                type="number"
-                className="order-place-card-profile-input"
-                name="pin_code"
-                value={profile.pin_code}
-                onChange={profileUpdate}
-                onFocus={(e) =>
-                  e.target.addEventListener(
-                    "wheel",
-                    function (e) {
-                      e.preventDefault();
-                    },
-                    { passive: false }
-                  )
-                }
-              />{" "}
-            </div>
+          <div className="order-place-card-personal-info">
+            {profile !== "No data" ? (
+              <>
+                <div className="order-place-card-profile">
+                  id : {profile._id}
+                </div>
+                <div className="order-place-card-profile">
+                  name : {profile.name}
+                </div>
+                <div className="order-place-card-profile">
+                  {" "}
+                  Phone : {profile.alternate_phone}
+                </div>
+                <div className="order-place-card-profile">
+                  {" "}
+                  email : {profile.email}
+                </div>
+                <div className="order-place-card-profile">
+                  {" "}
+                  State :{profile.state}
+                </div>
+                <div className="order-place-card-profile">
+                  {" "}
+                  District :{profile.district}{" "}
+                </div>
+                <div className="order-place-card-profile">
+                  {" "}
+                  Address :{profile.address}{" "}
+                </div>
+                <div className="order-place-card-profile">
+                  Pin code : {profile.pin_code}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>Address error !!!</h2>
+              </>
+            )}
           </div>
           <div className="order-place-card-product">
             <div className="order-place-card-product-head">

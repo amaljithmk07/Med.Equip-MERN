@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { toast, ToastContainer } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
 function LoginPage() {
@@ -23,13 +23,16 @@ function LoginPage() {
       .post(`http://localhost:2222/api/login`, loginLetter)
       .then((data) => {
         console.log(data);
-        localStorage.setItem("Token", data.data.token);
-        localStorage.setItem("Role", data.data.userRole);
-        localStorage.setItem("LoginId", data.data.loginId);
+        toast.success(data.data.data, {
+          position: "bottom-center",
+        });
+        sessionStorage.setItem("Token", data.data.token);
+        sessionStorage.setItem("Role", data.data.userRole);
+        sessionStorage.setItem("LoginId", data.data.loginId);
         // setTimeout(() => {
         // }, 5000);
         // setload(false);s
-        
+
         navigate("/home");
         // window.location.reload();
       })
@@ -37,13 +40,6 @@ function LoginPage() {
         console.log(err);
         toast.error(err.response.data.message, {
           position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
         });
       });
   };
@@ -55,7 +51,6 @@ function LoginPage() {
   };
   return (
     <div>
-
       <div className="body">
         <div className="login">
           <div className="components">
@@ -114,13 +109,13 @@ function LoginPage() {
             <h4 className="login-h4">
               Don't have an account?
               <Link to={"/register"} id="anchor">
-              &nbsp;Register
+                &nbsp;Register
               </Link>
             </h4>
           </div>
         </div>
       </div>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 }

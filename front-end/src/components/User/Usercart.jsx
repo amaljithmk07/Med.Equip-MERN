@@ -18,8 +18,8 @@ const Usercart = () => {
   // const [cartitems, setCartitems] = useState([]);
   // console.log("cart length:", cartitems.length);
 
-  const token = localStorage.getItem("Token");
-  var login_id = localStorage.getItem("LoginId");
+  const token = sessionStorage.getItem("Token");
+  var login_id = sessionStorage.getItem("LoginId");
 
   const dispatch = useDispatch();
   const cartitems = useSelector((state) => state.content.cartitems);
@@ -55,7 +55,7 @@ const Usercart = () => {
   //         position: "bottom-center",
   //       });
   //       setTimeout(() => {
-  //         localStorage.clear();
+  //         sessionStorage.clear();
   //         navigate("/login");
   //       }, 2000);
   //     }

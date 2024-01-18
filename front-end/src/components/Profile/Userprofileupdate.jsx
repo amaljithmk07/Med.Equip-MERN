@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Userprofileupdate = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
-  // const role = localStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
+  // const role = sessionStorage.getItem("Role");
 
   const [profile, setProfile] = useState([
     {
@@ -36,7 +36,7 @@ const Userprofileupdate = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }
@@ -81,7 +81,7 @@ const Userprofileupdate = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }
@@ -163,12 +163,12 @@ const Userprofileupdate = () => {
                   className="userprofile-input"
                 />
               </div>
+              {/* <Link to={"/user/address"} className="address-sec">
+                <img src="/address.png" alt="" className="address-img" />
+                 add address{" "}
+                </Link> */}
               <Link to={"/user/address"} className="address-sec">
                 <img src="/addaddress.png" alt="" className="address-img" />
-                 add address{" "}
-              </Link>
-              <Link to={"/user/address"} className="address-sec">
-                <img src="/address.png" alt="" className="address-img" />
                 saved addressess{" "}
               </Link>
 

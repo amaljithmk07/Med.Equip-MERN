@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Registration.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import toast,  { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
 const RegistrationPage = () => {
@@ -25,13 +25,13 @@ const RegistrationPage = () => {
         console.log(err);
         toast.error(err.response.data.message, {
           position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+          // autoClose: 5000,
+          // hideProgressBar: false,
+          // closeOnClick: true,
+          // pauseOnHover: false,
+          // draggable: true,
+          // progress: undefined,
+          // theme: "colored",
         });
       });
   };
@@ -113,7 +113,7 @@ const RegistrationPage = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 };

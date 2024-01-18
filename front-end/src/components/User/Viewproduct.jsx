@@ -8,8 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 const Viewproduct = () => {
   const navigate = useNavigate();
   const [product, setproduct] = useState([]);
-  const token = localStorage.getItem("Token");
-  const role = localStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
   useEffect(() => {
     if (role == 2 || role == 1) {
       axios
@@ -29,7 +29,7 @@ const Viewproduct = () => {
               position: "bottom-center",
             });
             setTimeout(() => {
-              localStorage.clear();
+              sessionStorage.clear();
               navigate("/login");
             }, 3000);
           }

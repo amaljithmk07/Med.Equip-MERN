@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Volunteerrequest = () => {
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const navigate = useNavigate();
   const [volunteerreqlist, setVolunteerreqlist] = useState([]);
   useEffect(() => {
@@ -26,7 +26,7 @@ const Volunteerrequest = () => {
             position: "bottom-center",
           });
           setTimeout(() => {
-            localStorage.clear();
+            sessionStorage.clear();
             navigate("/login");
           }, 2000);
         }

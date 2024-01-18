@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Acceptedorders.css";
 const AcceptedOrders = () => {
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem("Token");
   const [acceptedorders, setAcceptedorders] = useState([]);
   useEffect(() => {
     axios

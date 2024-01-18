@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 const Addproduct = () => {
-  const role = localStorage.getItem("Role");
-  const token = localStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
+  const token = sessionStorage.getItem("Token");
   const [products, setProducts] = useState({});
   const navigate = useNavigate();
 
