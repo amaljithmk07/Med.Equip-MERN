@@ -65,6 +65,11 @@ const Navbar = () => {
                   <Link to={"/user/viewproduct "} className="general-a">
                     View Products
                   </Link>
+                </li>{" "}
+                <li>
+                  <Link to={"/user/donated-products"} className="general-a">
+                    Donated Products
+                  </Link>
                 </li>
                 <li>
                   <Link to={"/usercart"} className="general-a">
@@ -81,11 +86,6 @@ const Navbar = () => {
                 <li>
                   <Link to={"/user/order-summary"} className="general-a">
                     Orders
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/user/donated-products"} className="general-a">
-                    Donated Products
                   </Link>
                 </li>
               </>
@@ -151,6 +151,7 @@ const Navbar = () => {
                 <li>
                   <Link to={"/profile"} className="general-a">
                     Profile
+                    {/* <img src="/profileicon.png" alt="" className="profileicon" /> */}
                   </Link>
                 </li>
                 <li>

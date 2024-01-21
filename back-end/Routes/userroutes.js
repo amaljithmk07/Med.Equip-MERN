@@ -72,7 +72,7 @@ userroutes.get("/view", Checkauth, (req, res) => {
     });
 });
 
-//---Product Single View
+//---Donated Product Display
 
 userroutes.get("/donated-products", Checkauth, async (req, res) => {
   const donatedproducts = await products
@@ -158,45 +158,102 @@ userroutes.get("/donated-products", Checkauth, async (req, res) => {
     });
 });
 
-//---Product update
+//Editing product Single view
 
-userroutes.put("/update/:id", (req, res) => {
+userroutes.get("/viewone/:id", (req, res) => {
   products
     .findOne({
       _id: req.params.id,
     })
     .then((data) => {
-      (data.name = req.body.name),
-        (data.address = req.body.address),
-        (data.email = req.body.email),
-        (data.description = req.body.description);
-      data.category = req.body.category;
-      data.sub_category = req.body.sub_category;
-      data.purchased_date = req.body.purchased_date;
-      data.phone_number = req.body.phone_number;
-      data.pin_code = req.body.pin_code;
-    });
-  data
-    .save()
-    .then((data) => {
-      res.status(200),
-        json({
-          success: true,
-          error: false,
-          message: "data updated successfully",
-          data: data,
-        });
+      res.status(200).json({
+        Success: true,
+        Error: false,
+        Message: "Data fetched successfully",
+        data: data,
+      });
     })
     .catch((err) => {
-      // console.log(err);
       res.status(400).json({
-        success: true,
-        error: false,
-        message: "data updated unsuccessfull",
+        Success: false,
+        Error: true,
+        Message: "Data fetched Unsuccessfull",
         ErrorMessage: err.message,
       });
     });
 });
+
+//---Product update
+
+userroutes.put(
+  "/edit-product/:id",
+  Checkauth,
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const olddata = await products.findOne({
+        _id: req.params.id,
+      });
+      console.log(olddata);
+      const newdata = {
+        image: req.body.image ? req.body.image : olddata.image,
+        name: req.body.name ? req.body.name : olddata.name,
+        description: req.body.description
+          ? req.body.description
+          : olddata.description,
+        available_qty: req.body.available_qty
+          ? req.body.available_qty
+          : olddata.available_qty,
+        category: req.body.category ? req.body.category : olddata.category,
+        sub_category: req.body.sub_category
+          ? req.body.sub_category
+          : olddata.sub_category,
+        email: req.body.email ? req.body.email : olddata.email,
+        purchased_date: req.body.purchased_date
+          ? req.body.purchased_date
+          : olddata.purchased_date,
+        phone_number: req.body.phone_number
+          ? req.body.phone_number
+          : olddata.phone_number,
+        address: req.body.address ? req.body.address : olddata.address,
+        pin_code: req.body.pin_code ? req.body.pin_code : olddata.pin_code,
+      };
+      console.log("newdata", newdata);
+      const updatedData = await products.updateMany(
+        {
+          _id: req.params.id,
+        },
+        {
+          $set: newdata,
+        }
+      );
+
+      if (updatedData) {
+        return res.status(200).json({
+          success: true,
+          error: false,
+          message: "data updated successfully",
+          data: newdata,
+        });
+      } else
+        (err) => {
+          return res.status(400).json({
+            success: false,
+            error: true,
+            message: "Failed",
+            ErrorMessage: err.message,
+          });
+        };
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        error: true,
+        message: "Internal server error",
+        ErrorMessage: err.message,
+      });
+    }
+  }
+);
 
 //---Product delete
 

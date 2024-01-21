@@ -63,6 +63,7 @@ const Userprofileupdate = () => {
     formDetails.append("age", profile.age);
     formDetails.append("phone_number", profile.phone_number);
     formDetails.append("email", profile.email);
+    console.log(formDetails);
     axios
       .post(`http://localhost:2222/api/user/profileupdate/${id}`, formDetails, {
         headers: {

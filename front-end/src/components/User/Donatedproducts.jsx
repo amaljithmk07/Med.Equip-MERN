@@ -24,6 +24,15 @@ const Donatedproducts = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status == 401) {
+          toast.error("Session Time Out", {
+            position: "bottom-center",
+          });
+          setTimeout(() => {
+            sessionStorage.clear();
+            navigate("/login");
+          }, 2000);
+        }
       });
   }, []);
 
@@ -83,7 +92,12 @@ const Donatedproducts = () => {
                   </h4>
                 </div>
                 <div className="donatedproducts-card-buttons">
-                  <div className="donatedproducts-edit">Edit</div>
+                  <Link
+                    className="donatedproducts-edit"
+                    to={`/user/editproduct/${item._id}`}
+                  >
+                    Edit
+                  </Link>
                   <div
                     className="donatedproducts-delete"
                     onClick={() => deleteHandler(item._id)}

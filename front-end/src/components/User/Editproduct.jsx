@@ -10,20 +10,20 @@ const Editproduct = () => {
   const [products, setProducts] = useState({
     name: "",
     image: "",
+    description: "",
     available_qty: "",
     category: "",
     sub_category: "",
-    description: "",
+    email: "",
     purchased_date: "",
     pin_code: "",
     phone_number: "",
-    date: "",
     address: "",
-    email: "",
+    pin_code: "",
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/admin/viewone/${id}`)
+      .get(`http://localhost:2222/api/user/viewone/${id}`)
       .then((data) => {
         console.log(data.data.data);
         setProducts(data.data.data);
@@ -47,7 +47,7 @@ const Editproduct = () => {
 
   //////////////////////////////////
 
-  const productSubmit = async ( id) => {
+  const productSubmit = async (id) => {
     const formData = new FormData();
     formData.append("image", products.image);
     formData.append("name", products.name);
@@ -60,16 +60,15 @@ const Editproduct = () => {
     formData.append("phone_number", products.phone_number);
     formData.append("address", products.address);
     formData.append("pin_code", products.pin_code);
-    console.log("form data:", formData);
     try {
       await axios
-        .put(`http://localhost:2222/api/admin/update/${id}`, formData, {
+        .put(`http://localhost:2222/api/user/edit-product/${id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((data) => {
-          navigate("/admin/viewproduct");
+          navigate("/user/viewproduct");
           console.log(data);
         })
         .catch((err) => {
@@ -78,7 +77,6 @@ const Editproduct = () => {
     } catch (err) {
       console.log(err);
     }
-    navigate("/admin/viewproduct");
   };
 
   return (
@@ -128,7 +126,7 @@ const Editproduct = () => {
                       // id=""
                       className="edit-product-input-dropdown"
                       name="available_qty"
-                      placeholder="Category"
+                      placeholder="Available Qty"
                     >
                       <option disabled={true} value="" selected>
                         {products.available_qty}{" "}
@@ -312,15 +310,14 @@ const Editproduct = () => {
                       type="button"
                       value={"UPDATE"}
                       className="edit-product-update"
-                      onClick={()=>productSubmit(products._id)}
-                      />
+                      onClick={() => productSubmit(products._id)}
+                    />
                     {/* <button
                       type="button"
                       // value={"UPDATE"}
                       className="edit-product-update"
                         onClick={()=>productSubmit(products._id)}
                     >Update</button> */}
-
                   </div>
                 </div>
               </form>

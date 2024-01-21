@@ -95,7 +95,10 @@
   align-items: center;
   border-radius: 50%;
 }
-
+.profileicon{
+  height: 60px;
+  width: auto;
+}
 @media screen and (max-width: 1280px) and (min-width: 900px) {
   .general-navbar {
     height: 65px;

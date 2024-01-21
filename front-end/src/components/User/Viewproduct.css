@@ -147,6 +147,7 @@
   text-decoration: none;
   /* font-weight: 600; */
   cursor: pointer;
+  column-gap: 5px;
   text-transform: uppercase;
 }
 .user-addtocart:hover {
@@ -154,7 +155,7 @@
 }
 
 .user-addtocart-logo {
-  height: 20px;
+  height: 18px;
   width: auto;
 }
 

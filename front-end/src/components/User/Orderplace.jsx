@@ -3,7 +3,7 @@ import "./Orderplace.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cartView,
@@ -134,6 +134,7 @@ const Orderplace = () => {
   console.log(cartitems);
   return (
     <div className="order-place-body">
+      <Toaster/>
       <div className="order-place-card">
         <div className="order-place-card-head">ORDER PLACE</div>
         <div className="order-place-card-body">

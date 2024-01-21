@@ -9,7 +9,7 @@ import LoginPage from "./components/loginpage/LoginPage";
 import RegistrationPage from "./components/registrationpage/RegistrationPage";
 import Addproduct from "./components/AdminProduct/Addproduct";
 import Navbar from "./components/Navbar/Navbar";
-import Editproduct from "./components/AdminProduct/Editproduct";
+import Editproduct from "./components/User/Editproduct";
 import Useraddproduct from "./components/User/Useraddproduct";
 import Volunteerhome from "./components/Volunteer/Volunteerhome";
 import Profilehome from "./components/Profile/Profilehome";
@@ -47,7 +47,6 @@ function App() {
 
         <Route path="/admin" element={<Home />} />
         <Route path="/admin/addproduct" element={<Addproduct />} />
-        <Route path="/admin/editproduct/:id" element={<Editproduct />} />
         <Route path="/admin/viewproduct" element={<Viewproduct />} />
 
         <Route path="/profile" element={<Profilehome />} />
@@ -58,6 +57,7 @@ function App() {
         />
 
         <Route path="/user/donated-products" element={<Donatedproducts />} />
+        <Route path="/user/editproduct/:id" element={<Editproduct />} />
         <Route path="/user/address" element={<Address />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Viewproduct />} />
