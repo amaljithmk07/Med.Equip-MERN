@@ -50,11 +50,12 @@
   width: 85%;
   /* background-color: rgb(71, 21, 21); */
   display: flex;
+  margin: 10px 0px 0px 0px;
   justify-content: space-evenly;
   align-items: flex-start;
   flex-direction: column;
   font-weight: 700;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
 }
 .order-card-product {

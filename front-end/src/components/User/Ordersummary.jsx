@@ -144,7 +144,7 @@ const Ordersummary = () => {
             )}
           </div>
           <div className="order-button">
-            <Link to={"/home"} className="order-home-link">
+            <Link to={"/user/viewproduct"} className="order-home-link">
               Return to home
             </Link>
           </div>

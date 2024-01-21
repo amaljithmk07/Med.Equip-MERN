@@ -17,9 +17,9 @@ const Orderplace = () => {
   const token = sessionStorage.getItem("Token");
   const [profile, setProfile] = useState([
     {
-      address: "",
-      state: "",
-      pin_code: "",
+      // address: "",
+      // state: "",
+      // pin_code: "",
     },
   ]);
 
@@ -29,14 +29,14 @@ const Orderplace = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/profile-address`, {
+      .get(`http://localhost:2222/api/user/orderplace-address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((data) => {
-        console.log(data.data.data[0]);
-        setProfile(data.data.data[0]);
+        console.log(data.data.data);
+        setProfile(data.data.data);
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -53,7 +53,9 @@ const Orderplace = () => {
       });
   }, []);
   console.log(profile);
+
   // --------Cart Items Display----------
+
   var id = sessionStorage.getItem("LoginId");
 
   const dispatch = useDispatch();
@@ -107,7 +109,7 @@ const Orderplace = () => {
 
           axios
             .post(
-              `http://localhost:2222/api/volunteer/order-status/${login_id}`,
+              `http://localhost:2222/api/volunteer/order-status`,
               {},
               {
                 headers: {
@@ -129,7 +131,7 @@ const Orderplace = () => {
       navigate("/user/viewproduct");
     }
   };
-
+  console.log(cartitems);
   return (
     <div className="order-place-body">
       <div className="order-place-card">
@@ -175,35 +177,42 @@ const Orderplace = () => {
             )}
           </div>
           <div className="order-place-card-product">
-            <div className="order-place-card-product-head">
-              <div className="order-place-product-head-title">Name</div>
-              <div className="order-place-product-head-title-qty">Qty</div>
-              <div className="order-place-product-head-title">Category</div>
-            </div>
-            <>
-              {" "}
-              {cartitems.map((data) => (
-                <div
-                  className="order-place-card-product-details"
-                  key={data._id}
-                >
-                  <div className="order-place-product-details-data">
-                    {data.name}
-                  </div>
-                  <div className="order-place-product-details-data-qty">
-                    {data.cart_qty}
-                  </div>
-                  <div className="order-place-product-details-data">
-                    {data.category}
-                  </div>
+            {cartitems.length != 0 ? (
+              <>
+                <div className="order-place-card-product-head">
+                  <div className="order-place-product-head-title">Name</div>
+                  <div className="order-place-product-head-title-qty">Qty</div>
+                  <div className="order-place-product-head-title">Category</div>
                 </div>
-              ))}
-            </>
+                <>
+                  {cartitems.map((data) => (
+                    <div
+                      className="order-place-card-product-details"
+                      key={data._id}
+                    >
+                      <div className="order-place-product-details-data">
+                        {data.name}
+                      </div>
+                      <div className="order-place-product-details-data-qty">
+                        {data.cart_qty}
+                      </div>
+                      <div className="order-place-product-details-data">
+                        {data.category}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              </>
+            ) : (
+              <>
+                <h2>No Items</h2>
+              </>
+            )}
           </div>
         </div>
         <div className="order-place-button">
-          <button className="order-place-home-link" onClick={orderplace}>
-            Place Order{" "}
+          <button className="order-place-home-link" onClick={ orderplace}>
+            Place Order
           </button>
         </div>
       </div>

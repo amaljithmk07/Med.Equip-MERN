@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//volunteer profile
+//----volunteer profile
 
 volunteerroutes.get("/profile", Checkauth, (req, res) => {
   try {
@@ -104,7 +104,7 @@ volunteerroutes.get("/profile", Checkauth, (req, res) => {
   }
 });
 
-//Volunteer profile update
+//----Volunteer profile update
 
 volunteerroutes.post(
   "/profileupdate/:id",
@@ -167,7 +167,7 @@ volunteerroutes.post(
   }
 );
 
-//Volunteer list
+//----Volunteer list
 
 volunteerroutes.get("/volunteerlist", Checkauth, (req, res) => {
   volunteerDB
@@ -193,7 +193,7 @@ volunteerroutes.get("/volunteerlist", Checkauth, (req, res) => {
     });
 });
 
-//Volunteer Request list
+//----Volunteer Request list
 
 volunteerroutes.get("/volunteerrequestlist", Checkauth, (req, res) => {
   volunteerDB
@@ -217,7 +217,7 @@ volunteerroutes.get("/volunteerrequestlist", Checkauth, (req, res) => {
     });
 });
 
-//volunteer 'Pending'  Status Update to 'accepted'
+//----volunteer 'Pending'  Status Update to 'accepted'
 
 volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
   try {
@@ -258,7 +258,7 @@ volunteerroutes.put("/statusupdate/:id", Checkauth, async (req, res) => {
   }
 });
 
-//volunteer status Reject Request
+//----volunteer status Reject Request
 
 volunteerroutes.put("/reject/:id", Checkauth, (req, res) => {
   volunteerDB
@@ -289,9 +289,11 @@ volunteerroutes.put("/reject/:id", Checkauth, (req, res) => {
     });
 });
 
-//OrderStatus 'pending' list in volunteer
+// -------Orders-------
 
-volunteerroutes.get("/order-status", Checkauth, async (req, res) => {
+//----OrderStatus 'pending' list in volunteer
+
+volunteerroutes.post("/order-status", Checkauth, async (req, res) => {
   try {
     const Order = await OrdersDB.find({
       orderstatus: "pending",
@@ -327,7 +329,7 @@ volunteerroutes.get("/order-status", Checkauth, async (req, res) => {
   }
 });
 
-//OrderStatus 'pending' to 'Accept' when volunteer accept the order
+//----OrderStatus 'pending' to 'Accept' when volunteer accept the order
 
 volunteerroutes.put("/order-accept/:id", Checkauth, async (req, res) => {
   const vol_id = req.userData.userId;
@@ -361,33 +363,42 @@ volunteerroutes.put("/order-accept/:id", Checkauth, async (req, res) => {
   // console.log("accepted", accepted);
 });
 
-// Displaying accepted orders for the individual volunteers
+//---- Displaying accepted orders for the individual volunteers
 
 volunteerroutes.get("/accepted-orders", Checkauth, async (req, res) => {
-  const vol_id = req.userData.userId;
-  const display = await OrdersDB.find({
-    volunteerdetails: vol_id,
-  });
-
-  if (display) {
-    res.status(200).json({
-      success: true,
-      error: false,
-      message: "Accepted orders displayed successful",
-      data: display,
+  try {
+    const vol_id = req.userData.userId;
+    const display = await OrdersDB.find({
+      volunteerdetails: vol_id,
     });
-  } else {
-    res.status(400).json({
+
+    if (display) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "Accepted orders displayed successful",
+        data: display,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: true,
+        message: " failed",
+        ErrorMessage: err.message,
+      });
+    }
+    // console.log("accepted", accepted);
+  } catch (err) {
+    res.status(500).json({
       success: false,
       error: true,
-      message: " failed",
+      message: "Internal Server error",
       ErrorMessage: err.message,
     });
   }
-  // console.log("accepted", accepted);
 });
 
-//Order Placed
+//----Order Placed/Delivered
 
 volunteerroutes.put("/order-placed/:id", Checkauth, async (req, res) => {
   const vol_id = req.userData.userId;
@@ -416,6 +427,113 @@ volunteerroutes.put("/order-placed/:id", Checkauth, async (req, res) => {
       success: false,
       error: true,
       message: " failed",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
+// ----Display address details with Orders
+
+volunteerroutes.get("/view-details/:id", Checkauth, async (req, res) => {
+  try {
+    // console.log(req.params.id);
+    const viewdetails = await OrdersDB.aggregate([
+      {
+        $lookup: {
+          from: "address_tbs",
+          localField: "login_id",
+          foreignField: "login_id",
+          as: "results",
+        },
+      },
+      {
+        $unwind: {
+          path: "$results",
+        },
+      },
+      {
+        $match: {
+          volunteerdetails: new mongoose.Types.ObjectId(req.userData.userId),
+          // login_id: new mongoose.Types.ObjectId(req.userData.userId),
+          _id: new mongoose.Types.ObjectId(req.params.id),
+          // volunteerdetails: req.userData.userId,
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          login_id: {
+            $first: "$login_id",
+          },
+          volunteerdetails: {
+            $first: "$volunteerdetails",
+          },
+          product_name: {
+            $first: "$name",
+          },
+          description: {
+            $first: "$description",
+          },
+          cart_qty: {
+            $first: "$cart_qty",
+          },
+          category: {
+            $first: "$category",
+          },
+          sub_category: {
+            $first: "$sub_category",
+          },
+          email: {
+            $first: "$email",
+          },
+          orderstatus: {
+            $first: "$orderstatus",
+          },
+          name: {
+            $first: "$results.name",
+          },
+          state: {
+            $first: "$results.state",
+          },
+          district: {
+            $first: "$results.district",
+          },
+          address: {
+            $first: "$results.address",
+          },
+          pin_code: {
+            $first: "$results.pin_code",
+          },
+          alternate_phone: {
+            $first: "$results.alternate_phone",
+          },
+          address_type: {
+            $first: "$results.address_type",
+          },
+        },
+      },
+    ]);
+    // console.log(viewdetails);
+    if (viewdetails) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "Details displayed successful",
+        data: viewdetails,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: true,
+        message: "Failed",
+        ErrorMessage: err.message,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Network failed",
       ErrorMessage: err.message,
     });
   }

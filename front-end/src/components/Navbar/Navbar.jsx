@@ -83,6 +83,11 @@ const Navbar = () => {
                     Orders
                   </Link>
                 </li>
+                <li>
+                  <Link to={"/user/donated-products"} className="general-a">
+                    Donated Products
+                  </Link>
+                </li>
               </>
             ) : (
               <>

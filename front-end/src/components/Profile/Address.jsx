@@ -10,7 +10,9 @@ const Address = () => {
   const token = sessionStorage.getItem("Token");
   const [savedaddress, setSavedaddress] = useState([{}]);
   const [address, setAddress] = useState({});
+
   // Address View
+
   useEffect(() => {
     axios
       .get(`http://localhost:2222/api/user/view-address`, {
@@ -184,9 +186,18 @@ const Address = () => {
                 </div>
                 <div className="add-address-sec-right">
                   <div className="add-address-input-sec">
-                    pin code:{" "}
+                    email:{" "}
                     <input
                       type="text"
+                      name="email"
+                      className="add-address-input"
+                      onChange={addressInput}
+                    />{" "}
+                  </div>
+                  <div className="add-address-input-sec">
+                    pin code:{" "}
+                    <input
+                      type="number"
                       name="pin_code"
                       className="add-address-input"
                       onChange={addressInput}
@@ -196,7 +207,7 @@ const Address = () => {
                     {" "}
                     phone:{" "}
                     <input
-                      type="text"
+                      type="number"
                       className="add-address-input"
                       name="alternate_phone"
                       onChange={addressInput}

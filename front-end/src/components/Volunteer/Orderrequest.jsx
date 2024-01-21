@@ -8,13 +8,17 @@ const Orderrequest = () => {
   const [ordersrequest, setOrdersrequest] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/volunteer/order-status`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `http://localhost:2222/api/volunteer/order-status`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((data) => {
-        // console.log(data.data.data);
+        console.log(data.data.data);
         setOrdersrequest(data.data.data);
       })
       .catch((err) => {
@@ -61,7 +65,7 @@ const Orderrequest = () => {
                 <div className="order-request-content-title">action</div>
               </div>
               {ordersrequest.map((data) => (
-                <div className="order-request-content">
+                <div className="order-request-content" key={data._id}>
                   <div className="order-request-content-item">
                     {" "}
                     {data.name}{" "}

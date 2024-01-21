@@ -10,6 +10,7 @@ const addressshcema = new mongoose.Schema({
   state: { type: String, required: true },
   district: { type: String, required: true },
   address: { type: String, required: true },
+  email: { type: String, required: true },
   pin_code: { type: Number, required: true },
   alternate_phone: { type: Number, required: true },
   address_type: { type: String, required: true },

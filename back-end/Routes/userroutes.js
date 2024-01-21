@@ -74,11 +74,72 @@ userroutes.get("/view", Checkauth, (req, res) => {
 
 //---Product Single View
 
-userroutes.get("view/:id", (req, res) => {
-  products
-    .findOne({
-      _id: req.params.id,
-    })
+userroutes.get("/donated-products", Checkauth, async (req, res) => {
+  const donatedproducts = await products
+    .aggregate([
+      {
+        $lookup: {
+          from: "login_tbs",
+          localField: "login_id",
+          foreignField: "_id",
+          as: "results",
+        },
+      },
+      {
+        $unwind: {
+          path: "$results",
+        },
+      },
+      {
+        $match: {
+          login_id: new mongoose.Types.ObjectId(req.userData.userId),
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          login_id: {
+            $first: "$login_id",
+          },
+          image: {
+            $first: "$image",
+          },
+          name: {
+            $first: "$name",
+          },
+          available_qty: {
+            $first: "$available_qty",
+          },
+          description: {
+            $first: "$description",
+          },
+          category: {
+            $first: "$category",
+          },
+          sub_category: {
+            $first: "$sub_category",
+          },
+          email: {
+            $first: "$email",
+          },
+          purchased_date: {
+            $first: "$purchased_date",
+          },
+          phone_number: {
+            $first: "$phone_number",
+          },
+          address: {
+            $first: "$address",
+          },
+          pin_code: {
+            $first: "$pin_code",
+          },
+          role: {
+            $first: "$results.role",
+          },
+        },
+      },
+    ])
     .then((data) => {
       res.status(200).json({
         success: true,
@@ -286,6 +347,7 @@ userroutes.post(
 //--- Cart Add
 
 userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
+  console.log(req.body._id);
   const Data = new CartDB({
     login_id: req.userData.userId,
     image: req.body.image,
@@ -300,6 +362,7 @@ userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
     phone_number: req.body.phone_number,
     address: req.body.address,
     pin_code: req.body.pin_code,
+    product_id: req.body._id,
   });
   Data.save()
     .then((data) => {
@@ -486,110 +549,143 @@ userroutes.get("/cartdecrement/:id", Checkauth, async (req, res) => {
   }
 });
 
-// ---------Order Details-----------
+// ---------Address-------------
 
-//--- Order Place
+//profile with address
 
-userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
-  // console.log(req.params.id);
-  try {
-    const cartdata = await CartDB.find({
-      login_id: req.params.id,
-    });
-    const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
-    const orderdetail = await OrdersDB.insertMany(orderdata);
-    const deletedcart = await CartDB.deleteMany({
-      login_id: req.params.id,
-    });
-
-    const [{ _id }] = orderdata;
-    // console.log(available_qty);
-    // console.log(cart_qty);
-
-    var new_available_qty = orderdata.map((data) => ({
-      ...data,
-      [available_qty]: data.available_qty - data.cart_qty,
-    }));
-
-    // console.log('data',data)
-    // console.log("type", typeof new_available_qty);
-    // console.log(new_available_qty);
-    var updated_qty = await products.updateMany(
+userroutes.get("/profile-address", Checkauth, async (req, res) => {
+  const primary = await AddressDB.findOne({
+    login_id: req.userData.userId,
+    category: "primary",
+  });
+  if (primary) {
+    await AddressDB.aggregate([
       {
-        _id: _id,
+        $lookup: {
+          from: "login_tbs",
+          localField: "login_id",
+          foreignField: "_id",
+          as: "results",
+        },
       },
       {
-        $set: {
-          available_qty: new_available_qty.Updated_Qty,
+        $unwind: {
+          path: "$results",
         },
-      }
-    );
-    var updated = await products(updated_qty).save();
+      },
+      {
+        $match: {
+          login_id: new mongoose.Types.ObjectId(req.userData.userId),
+          category: "primary",
+        },
+      },
 
-    if (orderdetail && deletedcart) {
-      return res.status(200).json({
-        success: true,
-        error: false,
-        data: orderdetail,
-        message: "Order placed successful",
+      {
+        $group: {
+          _id: "$_id",
+          name: {
+            $first: "$name",
+          },
+          state: {
+            $first: "$state",
+          },
+          district: {
+            $first: "$district",
+          },
+          address: {
+            $first: "$address",
+          },
+          address_type: {
+            $first: "$address_type",
+          },
+          pin_code: {
+            $first: "$pin_code",
+          },
+          alternate_phone: {
+            $first: "$alternate_phone",
+          },
+          email: {
+            $first: "$results.email",
+          },
+        },
+      },
+    ])
+      .then((data) => {
+        res.status(200).json({
+          data: data,
+          success: true,
+          error: false,
+          message: "Profile data fetched successfully",
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Profile data fetched unsuccessful",
+        });
       });
-    } else {
-      return res.status(400).json({
-        success: false,
-        error: true,
-        message: "Network error",
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({
+  } else {
+    res.status(500).json({
       success: false,
       error: true,
-      message: "Order failed",
-      ErrorMessage: err.message,
+      message: "No data",
     });
   }
 });
 
-//---Order Details
+//Order Place address
 
-userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
-  OrdersDB.find({
-    login_id: req.params.id,
-  })
-    .then((data) => {
-      res.status(200).json({
-        success: true,
-        error: false,
-        data: data,
-        message: "OrderSummary successfully displayed",
-      });
-    })
-    .catch((err) => {
-      res.status(400).json({
-        success: false,
-        error: true,
-        ErrorMessage: err.message,
-        message: "Network error",
-      });
+userroutes.get("/orderplace-address", Checkauth, async (req, res) => {
+  const primary = await AddressDB.findOne({
+    login_id: req.userData.userId,
+    category: "primary",
+  });
+  if (primary) {
+    return res.status(200).json({
+      data: primary,
+      success: true,
+      error: false,
+      message: "Profile data fetched successfully",
     });
+  } else {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "No data",
+    });
+  }
 });
-
-// ---------Address-------------
 
 //---Add Address
 
 userroutes.post("/add-address", Checkauth, async (req, res) => {
   try {
+    const temp = await AddressDB.updateMany(
+      {
+        login_id: req.userData.userId,
+      },
+      {
+        $set: {
+          category: "",
+        },
+      }
+    );
+
     const data = new AddressDB({
       login_id: req.userData.userId,
       name: req.body.name,
       state: req.body.state,
       address: req.body.address,
       district: req.body.district,
+      email: req.body.email,
       pin_code: req.body.pin_code,
       alternate_phone: req.body.alternate_phone,
       address_type: req.body.address_type,
+      category: "primary",
     });
+
     data
       .save()
 
@@ -740,87 +836,131 @@ userroutes.get("/view-primary-address", Checkauth, async (req, res) => {
   }
 });
 
-//profile with address
+// ---------Order Details-----------
 
-userroutes.get("/profile-address", Checkauth, async (req, res) => {
-  const primary = await AddressDB.findOne({
-    login_id: req.userData.userId,
-    category: "primary",
-  });
-  if (primary) {
-    await AddressDB.aggregate([
-      {
-        $lookup: {
-          from: "login_tbs",
-          localField: "login_id",
-          foreignField: "_id",
-          as: "results",
-        },
-      },
-      {
-        $unwind: {
-          path: "$results",
-        },
-      },
-      {
-        $match: {
-          login_id: new mongoose.Types.ObjectId(req.userData.userId),
-          category: "primary",
-        },
-      },
+//--- Order Place
 
+// const address = await AddressDB.find({
+//   login_id: req.params.id,
+//   category: "primary",
+// });
+// // // console.log(address);
+
+// // //Address Id
+
+// const addressId = Object.assign(...address);
+// console.log(addressId);
+
+userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
+  try {
+    const cartdata = await CartDB.find({
+      login_id: req.params.id,
+    });
+
+    const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
+
+    // console.log(orderdata);
+
+    const orderdetail = await OrdersDB.insertMany(orderdata);
+
+    const deletedcart = await CartDB.deleteMany({
+      login_id: req.params.id,
+    });
+
+    const productId = orderdata.map((id) => ({
+      product_id: id.product_id,
+    }));
+
+    console.log("product id", productId);
+
+    // console.log("available_qty", available_qty);
+
+    var new_available_qty = orderdata.map((data) => ({
+      ...data,
+      available_qty: data.available_qty - data.cart_qty,
+    }));
+    console.log("new_available_qty", new_available_qty);
+
+    ///////////\\\\\\\\\\\
+
+    var new1_available_qty = new_available_qty.map(
+      (data1) => data1.available_qty
+    );
+    const numberqty = Number(new1_available_qty);
+
+    var updated_qty = await products.updateMany(
       {
-        $group: {
-          _id: "$_id",
-          name: {
-            $first: "$name",
-          },
-          state: {
-            $first: "$state",
-          },
-          district: {
-            $first: "$district",
-          },
-          address: {
-            $first: "$address",
-          },
-          address_type: {
-            $first: "$address_type",
-          },
-          pin_code: {
-            $first: "$pin_code",
-          },
-          alternate_phone: {
-            $first: "$alternate_phone",
-          },
-          email: {
-            $first: "$results.email",
-          },
-        },
+        _id: productId,
       },
-    ])
-      .then((data) => {
-        res.status(200).json({
-          data: data,
-          success: true,
-          error: false,
-          message: "Profile data fetched successfully",
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({
+      {
+        $set: { available_qty: numberqty },
+      }
+    );
+    if (updated_qty) {
+      return res.status(200).json({
+        success: true,
+        error: false,
+        data: updated_qty,
+        message: " XXXXXXXX",
+      });
+    } else
+      (err) => {
+        return res.status(400).json({
           success: false,
           error: true,
           ErrorMessage: err.message,
-          message: "Profile data fetched unsuccessful",
+          message: "Network error",
         });
+      };
+
+    // console.log("updated_qty", updated_qty);
+
+    if (orderdetail && deletedcart) {
+      return res.status(200).json({
+        success: true,
+        error: false,
+        data: orderdetail,
+        message: "Order placed successful",
       });
-  } else {
-    res.status(500).json({
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: true,
+        message: "Network error",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
       success: false,
       error: true,
-      message: "No data",
+      message: "Order failed",
+      ErrorMessage: err.message,
     });
   }
 });
+
+//---Order Summary
+
+userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
+  OrdersDB.find({
+    login_id: req.params.id,
+  })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: "OrderSummary successfully displayed",
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        success: false,
+        error: true,
+        ErrorMessage: err.message,
+        message: "Network error",
+      });
+    });
+});
+
 module.exports = userroutes;

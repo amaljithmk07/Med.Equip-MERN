@@ -3,12 +3,10 @@ import "./Editproduct.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../Navbar/Navbar";
 const Editproduct = () => {
   const token = sessionStorage.getItem("Token");
   const ref = useRef();
   const { id } = useParams();
-  //   console.log(id);
   const [products, setProducts] = useState({
     name: "",
     image: "",
@@ -23,7 +21,6 @@ const Editproduct = () => {
     address: "",
     email: "",
   });
-  // const [letter, setletter] = useState();
   useEffect(() => {
     axios
       .get(`http://localhost:2222/api/admin/viewone/${id}`)
@@ -35,13 +32,9 @@ const Editproduct = () => {
         console.log(err);
       });
   }, []);
-  //   var date = products.purchased_date
-  //   console.log(date);
-  //   var newdate = date.split("/").reverse().join("/");
   const editHandler = (event) => {
     const { name, value } = event.target;
     setProducts({ ...products, [name]: value });
-    // console.log(products);
   };
 
   const handlePhoto = (e) => {
@@ -55,9 +48,6 @@ const Editproduct = () => {
   //////////////////////////////////
 
   const productSubmit = async ( id) => {
-    // console.log(id);
-    // event.preventDefault();
-    // try {
     const formData = new FormData();
     formData.append("image", products.image);
     formData.append("name", products.name);

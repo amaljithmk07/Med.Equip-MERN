@@ -1,9 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Acceptedorders.css";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
 const AcceptedOrders = () => {
+  const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
   const [acceptedorders, setAcceptedorders] = useState([]);
+
+  //Display Accepted Orders
+
   useEffect(() => {
     axios
       .get(`http://localhost:2222/api/volunteer/accepted-orders`, {
@@ -17,9 +24,22 @@ const AcceptedOrders = () => {
       })
       .catch((err) => {
         console.log(err);
+        // if (err.response.status == 401) {
+        //   toast.error("Session Time Out", {
+        //     position: "bottom-center",
+        //   });
+        //   setTimeout(() => {
+        //     sessionStorage.clear();
+
+        //     navigate("/login");
+        //   }, 2000);
+        // }
       });
   }, []);
   console.log(acceptedorders);
+
+  //Status Delivered
+
   const deliveredHandler = (id) => {
     axios
       .put(
@@ -45,8 +65,10 @@ const AcceptedOrders = () => {
         console.log(err);
       });
   };
+
   return (
     <div className="accepted-orders-main-body">
+      <Toaster />
       <div className="a-o-sub-body">
         <div className="a-o-body-head">Accepted Orders</div>
         <div className="a-o-content-body">
@@ -57,7 +79,7 @@ const AcceptedOrders = () => {
                 <div className="a-o-content-title">category</div>
                 <div className="a-o-content-title">sub category</div>
                 <div className="a-o-content-title-qty">qty</div>
-                <div className="a-o-content-title">status</div>
+                <div className="a-o-content-title">details</div>
                 <div className="a-o-content-title">Deliver Status</div>
               </div>
               {acceptedorders.map((data) => (
@@ -66,7 +88,16 @@ const AcceptedOrders = () => {
                   <div className="a-o-content-item">{data.category} </div>
                   <div className="a-o-content-item">{data.sub_category}</div>
                   <div className="a-o-content-item-qty">{data.cart_qty}</div>
-                  <div className="a-o-content-item">{data.orderstatus}</div>
+                  {/* <div className="a-o-content-item">{data.orderstatus}</div> */}
+                  <div className="a-o-content-item">
+                    {" "}
+                    <Link
+                      to={`/volunteer/view-details/${data._id}`}
+                      className="a-o-content-item-viewdetails"
+                    >
+                      View Details{" "}
+                    </Link>
+                  </div>
                   <div className="a-o-content-item">
                     {data.orderstatus !== "Delivered" ? (
                       <button
@@ -76,7 +107,15 @@ const AcceptedOrders = () => {
                         Order Place
                       </button>
                     ) : (
-                      <> Order Placed<img src="/order-delivered-tick.png" alt=""  className="order-delivered"/></>
+                      <>
+                        {" "}
+                        Order Placed
+                        <img
+                          src="/order-delivered-tick.png"
+                          alt=""
+                          className="order-delivered"
+                        />
+                      </>
                     )}
                   </div>
                 </div>

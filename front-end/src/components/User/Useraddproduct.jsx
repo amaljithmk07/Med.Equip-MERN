@@ -221,10 +221,10 @@ const Useraddproduct = () => {
                         )}
                         {products.category == "Patient Lift" ? (
                           <>
-                            <option value="Male"> Manual Lift</option>
-                            <option value="Male"> Power Lift</option>
-                            <option value="Male"> Stand-up Lift</option>
-                            <option value="Male"> Heavy Duty Lift</option>
+                            <option value="Manual Lift"> Manual Lift</option>
+                            <option value="Power Lift"> Power Lift</option>
+                            <option value="Stand-up Lift"> Stand-up Lift</option>
+                            <option value="Heavy Duty Lift"> Heavy Duty Lift</option>
                           </>
                         ) : (
                           ""

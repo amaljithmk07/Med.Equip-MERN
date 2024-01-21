@@ -54,6 +54,11 @@ const cartschema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  product_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Product_details",
+    required: true,
+  },
 });
-const data=mongoose.model("Cart Details", cartschema)
+const data = mongoose.model("Cart Details", cartschema);
 module.exports = data;

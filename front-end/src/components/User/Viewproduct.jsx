@@ -39,19 +39,7 @@ const Viewproduct = () => {
     }
   }, []);
 
-  const deleteHandler = (id) => {
-    axios
-      .delete(`http://localhost:2222/api/user/delete/${id}`)
-      .then((data) => {
-        console.log(data);
-        window.location.reload();
-        navigate("/user/viewproduct");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // console.log(id);
-  };
+
   const cartHandler = (item) => {
     axios
       .post(`http://localhost:2222/api/user/addtocart`, item, {
@@ -112,38 +100,22 @@ const Viewproduct = () => {
                     {" "}
                     {item.description}
                   </h4>
-                  {/* {anime == true ? (
-                    <img
-                      src="/addtocartanimation.gif"
-                      className="addtocartanime"
-                    />
-                  ) : (
-                    <></>
-                  )} */}
+              
                 </div>
                 <div className="user-view-card-buttons">
-                  <div className="user-btn-sec">
-                    <button
-                      className="user-addtocart"
-                      onClick={() => cartHandler(item)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                  <div className="user-btn-sec">
-                    <Link className="user-edit" to={``}>
-                      <button className="user-edit">Edit</button>
-                    </Link>
-                    {/* <Link className="delete"> */}
-                    <button
-                      className="user-delete"
-                      onClick={() => deleteHandler(item._id)}
-                    >
-                      Delete
-                    </button>
-
-                    {/* </Link> */}
-                  </div>
+                  {/* <div className="user-btn-sec"> */}
+                  <button
+                    className="user-addtocart"
+                    onClick={() => cartHandler(item)}
+                  >
+                    Add to Cart
+                    <img
+                      src="/addtocart.png"
+                      alt=""
+                      className="user-addtocart-logo"
+                    />
+                  </button>
+                  {/* </div> */}
                 </div>
               </div>
             ))}

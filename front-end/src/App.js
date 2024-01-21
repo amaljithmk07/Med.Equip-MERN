@@ -28,6 +28,8 @@ import Acceptedorders from "./components/Volunteer/Acceptedorders";
 import Viewproduct from "./components/User/Viewproduct";
 import Orderplace from "./components/User/Orderplace";
 import Address from "./components/Profile/Address";
+import Donatedproducts from "./components/User/Donatedproducts";
+import Viewdetails from "./components/Volunteer/Viewdetails";
 
 function App() {
   // const navigate = useNavigate();
@@ -55,6 +57,7 @@ function App() {
           element={<Volunteerprofileupdate />}
         />
 
+        <Route path="/user/donated-products" element={<Donatedproducts />} />
         <Route path="/user/address" element={<Address />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Viewproduct />} />
@@ -69,6 +72,7 @@ function App() {
         <Route path="/volunteer/request" element={<Volunteerrequest />} />
         <Route path="/volunteer/order-request" element={<Orderrequest />} />
         <Route path="/volunteer/accepted-orders" element={<Acceptedorders />} />
+        <Route path="/volunteer/view-details/:id" element={<Viewdetails />} />
       </Routes>
       <Footer />
     </Router>
