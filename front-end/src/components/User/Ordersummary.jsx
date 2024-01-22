@@ -70,6 +70,27 @@ const Ordersummary = () => {
   }, []);
   console.log(orders);
   console.log(profile);
+
+  ////////////
+
+  const ordersDelete = () => {
+    axios
+      .delete(`http://localhost:2222/api/user/delete-orderdb`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        const filter = orders.filter((data) => {
+          return data;
+        });
+        setOrders(filter);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="order-body">
       <div className="order-card">
@@ -110,7 +131,12 @@ const Ordersummary = () => {
                   <div className="product-head-title-qty">Qty</div>
                   <div className="product-head-title">Category</div>
                   <div className="product-head-title">Sub Category</div>
-                  <div className="product-head-title">Status</div>
+                  <div
+                    className="product-head-title"
+                    onMouseLeave={ordersDelete}
+                  >
+                    Status
+                  </div>
                 </div>{" "}
                 {orders.map((data) => (
                   <div className="order-card-product-details" key={data._id}>

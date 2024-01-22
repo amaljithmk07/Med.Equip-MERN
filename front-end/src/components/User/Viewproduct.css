@@ -44,16 +44,65 @@
   border-radius: 10px;
 }
 .user-view-cards-heading {
-  height: 50%;
+  height: 50px;
   width: 100%;
   font-size: 35px;
   font-weight: 700;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   color: #242424;
   justify-content: center;
   /* background-color: rebeccapurple; */
 }
+.user-view-cards-search {
+  height: 50px;
+  width: 95%;
+  font-size: 35px;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-start;
+  color: #242424;
+  justify-content: flex-end;
+  /* background-color: rebeccapurple; */
+}
+
+.user-view-searchBar-sec {
+  width: 25%;
+  height: 35px;
+  border-radius: 50px;
+
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-view-searchBar {
+  height: 35px;
+  border: 0px;
+  font-size: 1rem;
+  border-radius: 50px;
+  width: 80%;
+  text-align: center;
+  padding: 0px 10px;
+  text-transform: capitalize;
+  /* background-color: red; */
+}
+.user-view-searchBar::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.user-view-searchBar:focus {
+  outline: none;
+}
+.user-view-searchBar-img {
+  /* position: absolute; */
+  /* filter: invert(1); */
+  cursor: pointer;
+  height: 35px;
+  padding: 0px 10px 0px 0px;
+  /* background-color: red; */
+}
+
 .user-view-card {
   height: 400px;
   width: 250px;
@@ -127,7 +176,7 @@
 }
 .user-addtocart {
   height: 100%;
-  width: 90%;
+  width: 75%;
   /* background-color: #ffb300; */
   background: linear-gradient(
     45deg,
@@ -142,9 +191,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   color: rgb(0, 0, 0);
-  text-decoration: none;
   /* font-weight: 600; */
   cursor: pointer;
   column-gap: 5px;
@@ -155,6 +202,25 @@
 }
 
 .user-addtocart-logo {
+  height: 18px;
+  width: auto;
+}
+
+.user-saved-item {
+  height: 100%;
+  width: 20%;
+  background-color: #ffb300;
+  border-radius: 5px;
+  border: 1px solid #ffda4763;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.user-saved-item:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.182);
+}
+.user-saveditem-logo {
   height: 18px;
   width: auto;
 }

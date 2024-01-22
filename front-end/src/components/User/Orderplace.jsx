@@ -104,6 +104,7 @@ const Orderplace = () => {
             .catch((err) => {
               console.log(err);
             });
+          navigate("/user/order-summary");
 
           // ---------User sending order status 'pending' to volunteer-----//
 
@@ -123,8 +124,6 @@ const Orderplace = () => {
             .catch((err) => {
               console.log(err);
             });
-
-          navigate("/user/order-summary");
         }
       });
     } else {
@@ -134,7 +133,7 @@ const Orderplace = () => {
   console.log(cartitems);
   return (
     <div className="order-place-body">
-      <Toaster/>
+      <Toaster />
       <div className="order-place-card">
         <div className="order-place-card-head">ORDER PLACE</div>
         <div className="order-place-card-body">
@@ -212,7 +211,7 @@ const Orderplace = () => {
           </div>
         </div>
         <div className="order-place-button">
-          <button className="order-place-home-link" onClick={ orderplace}>
+          <button className="order-place-home-link" onClick={orderplace}>
             Place Order
           </button>
         </div>

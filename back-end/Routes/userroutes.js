@@ -49,7 +49,7 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
     });
 });
 
-//---Product view
+//---Product Display
 
 userroutes.get("/view", Checkauth, (req, res) => {
   products
@@ -158,7 +158,7 @@ userroutes.get("/donated-products", Checkauth, async (req, res) => {
     });
 });
 
-//Editing product Single view
+// View Editing product
 
 userroutes.get("/viewone/:id", (req, res) => {
   products
@@ -268,6 +268,128 @@ userroutes.delete("/delete/:id", (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+//---Product  Wishlist
+
+userroutes.put("/wishlist/:id", async (req, res) => {
+  const wishlist = await products
+    .updateOne(
+      {
+        _id: req.params.id,
+      },
+      {
+        $set: {
+          wishlist: "approved",
+        },
+      }
+    )
+    if (wishlist) {
+      return res.send("approved Successfull");
+    } else
+      (err) => {
+      return  res.send(err);
+      };
+  });
+  
+//---Product  Wishlist REMOVE
+
+userroutes.put("/wishlist-remove/:id", async (req, res) => {
+  const wishlist = await products.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: {
+        wishlist: "",
+      },
+    }
+  );
+  if (wishlist) {
+    return res.send("Canceled Successfull");
+  } else
+    (err) => {
+    return  res.send(err);
+    };
+});
+
+//Product Search
+
+userroutes.get("/search-product", async (req, res) => {
+  try {
+    console.log(req.body.search);
+    const searchproduct = await products.aggregate([
+      {
+        $match: {
+          name: req.body.search,
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          login_id: {
+            $first: "$login_id",
+          },
+          image: {
+            $first: "$image",
+          },
+          name: {
+            $first: "$name",
+          },
+          available_qty: {
+            $first: "$available_qty",
+          },
+          description: {
+            $first: "$description",
+          },
+          category: {
+            $first: "$category",
+          },
+          sub_category: {
+            $first: "$sub_category",
+          },
+          email: {
+            $first: "$email",
+          },
+          purchased_date: {
+            $first: "$purchased_date",
+          },
+          phone_number: {
+            $first: "$phone_number",
+          },
+          address: {
+            $first: "$address",
+          },
+          pin_code: {
+            $first: "$pin_code",
+          },
+        },
+      },
+    ]);
+    if (searchproduct) {
+      return res.status(200).json({
+        data: searchproduct,
+        success: true,
+        error: false,
+        message: "Search Products successfully",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Search Products Failed",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Server Error",
+      ErrorMessage: err.message,
+    });
+  }
 });
 
 // -------------Profile---------------
@@ -908,56 +1030,165 @@ userroutes.get("/view-primary-address", Checkauth, async (req, res) => {
 // const addressId = Object.assign(...address);
 // console.log(addressId);
 
+// userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
+//   try {
+//     const cartdata = await CartDB.find({
+//       login_id: req.params.id,
+//     });
+
+//     const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
+
+//     // console.log(orderdata);
+
+//     const orderdetail = await OrdersDB.insertMany(orderdata);
+
+//     ////////////
+
+//     var new_available_qty = orderdata.map((data) => ({
+//       ...data,
+//       available_qty: data.available_qty - data.cart_qty,
+//     }));
+//     console.log("new_available_qty", new_available_qty);
+
+//     //////////
+
+//     var new1_available_qty = new_available_qty.map(
+//       (data1) => data1.available_qty
+//     );
+//     const numberqty = Number(new1_available_qty);
+
+//     const productOneId = orderdata.map((id) => ({
+//       product_id: id.product_id,
+//     }));
+//     const productsId = orderdata.map((id) => ({
+//       product_id: id.product_id,
+//     }));
+
+//     console.log("product id", productsId);
+//     console.log(productOneId.length);
+
+//     for (i = 0; i < productOneId.length; i++) {
+//       console.log("i", i);
+//       console.log(
+//         "productsId WWW",
+//         new mongoose.Types.ObjectId(productsId)
+//       );
+//       // console.log(productsId.product_id);
+//       console.log(typeof numberqty);
+//       var updated_qty = await products.updateMany(
+//         {
+//           _id: new mongoose.Types.ObjectId(productsId.product_id),
+//         },
+//         {
+//           $set: {
+//             available_qty: 10,
+//           },
+//         }
+//       );
+//     }
+//     console.log(updated_qty);
+//     // const deletedcart = await CartDB.deleteMany({
+//     //   login_id: req.params.id,
+//     // });
+//     if (updated_qty) {
+//       return res.status(200).json({
+//         success: true,
+//         error: false,
+//         data: updated_qty,
+//         message: " XXXXXXXX",
+//       });
+//     } else
+//       (err) => {
+//         return res.status(400).json({
+//           success: false,
+//           error: true,
+//           ErrorMessage: err.message,
+//           message: "Network error",
+//         });
+//       };
+
+//     // console.log("updated_qty", updated_qty);
+
+//     if (orderdetail && deletedcart) {
+//       return res.status(200).json({
+//         success: true,
+//         error: false,
+//         data: orderdetail,
+//         message: "Order placed successful",
+//       });
+//     } else {
+//       return res.status(400).json({
+//         success: false,
+//         error: true,
+//         message: "Network error",
+//       });
+//     }
+//   } catch (err) {
+//     return res.status(500).json({
+//       success: false,
+//       error: true,
+//       message: "Order failed",
+//       ErrorMessage: err.message,
+//     });
+//   }
+// });
+
+///////////////////////////////
+
 userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
   try {
-    const cartdata = await CartDB.find({
+    const Oldcartdata = await CartDB.find({
       login_id: req.params.id,
     });
 
-    const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
+    const objCartdata = Oldcartdata.map((item) => ({ ...item.toObject() }));
 
     // console.log(orderdata);
 
-    const orderdetail = await OrdersDB.insertMany(orderdata);
+    const orderDB_newdata = await OrdersDB.insertMany(objCartdata);
+
+    ////////////
+
+    var updated_AvailableQtyObj = objCartdata.map((data) => ({
+      ...data,
+      available_qty: data.available_qty - data.cart_qty,
+    }));
+    console.log("updated_AvailableQtyObj", updated_AvailableQtyObj);
+
+    var updated_Qty = updated_AvailableQtyObj.map(
+      (details) => details.available_qty
+    );
+    console.log("updated_Qty", updated_Qty);
+
+    const numberqty = Number(updated_Qty);
+    console.log("numberqty", numberqty);
+
+    const [productsId] = Oldcartdata.map((id) => ({
+      product_id: id.product_id,
+    }));
+
+    console.log("product id", productsId);
+    var updated_product_qty = await products.updateMany(
+      {
+        _id: new mongoose.Types.ObjectId(productsId.product_id),
+      },
+      {
+        $set: {
+          available_qty: available_qty,
+        },
+      }
+    );
+    console.log("updated product qty", updated_product_qty);
 
     const deletedcart = await CartDB.deleteMany({
       login_id: req.params.id,
     });
 
-    const productId = orderdata.map((id) => ({
-      product_id: id.product_id,
-    }));
-
-    console.log("product id", productId);
-
-    // console.log("available_qty", available_qty);
-
-    var new_available_qty = orderdata.map((data) => ({
-      ...data,
-      available_qty: data.available_qty - data.cart_qty,
-    }));
-    console.log("new_available_qty", new_available_qty);
-
-    ///////////\\\\\\\\\\\
-
-    var new1_available_qty = new_available_qty.map(
-      (data1) => data1.available_qty
-    );
-    const numberqty = Number(new1_available_qty);
-
-    var updated_qty = await products.updateMany(
-      {
-        _id: productId,
-      },
-      {
-        $set: { available_qty: numberqty },
-      }
-    );
-    if (updated_qty) {
+    if (updated_product_qty) {
       return res.status(200).json({
         success: true,
         error: false,
-        data: updated_qty,
+        data: updated_product_qty,
         message: " XXXXXXXX",
       });
     } else
@@ -995,6 +1226,28 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
     });
   }
 });
+
+///////////
+////////////
+////////////////////
+////////////////
+////////
+////////
+///////////
+userroutes.delete("/delete-orderdb", Checkauth, async (req, res) => {
+  const del = OrdersDB.deleteMany()
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+////////////
+////////////////////
+////////////////
+////////
+////////
 
 //---Order Summary
 

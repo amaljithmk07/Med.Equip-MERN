@@ -50,6 +50,11 @@ const productschema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  wishlist: {
+    type: String,
+    require: true,
+    default: "",
+  },
 });
 const data = mongoose.model("Product_details", productschema);
 module.exports = data;
