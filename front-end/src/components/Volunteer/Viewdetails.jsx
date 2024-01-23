@@ -13,7 +13,7 @@ const steps = ["Item picked ", "Order accepted", "Delvered"];
 const Viewdetails = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
-  const [viewdetails, setViewdetails] = useState([]);
+  const [viewdetails, setViewdetails] = useState({});
 
   const { id } = useParams();
   //Display Accepted Orders
@@ -28,7 +28,7 @@ const Viewdetails = () => {
       })
       .then((data) => {
         console.log(data.data.data);
-        setViewdetails(data.data.data);
+        setViewdetails(data.data.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -44,23 +44,69 @@ const Viewdetails = () => {
         }
       });
   }, []);
-
+  console.log(viewdetails);
   return (
     <div>
       <Toaster />
       <div className="addressdetails-body">
         <div className="a-d-sub-body">
-          {viewdetails.map((data) => (
-            <div className="a-d-details" key={data._id}>
-              <div className="a-d-address">{data.name}</div>
-              <div className="a-d-address"></div>
+          <div className="a-d-sub-body-head">View Details</div>
+
+          {/* {viewdetails.map((data) => ( */}
+          <div className="a-d-details" key={viewdetails._id}>
+            <div className="a-d-address">
+              <div className="a-d-address-data">{viewdetails._id}</div>
+              <div className="a-d-address-data">{viewdetails.product_name}</div>
+              <div className="a-d-address-data">{viewdetails.cart_qty}</div>
+              <div className="a-d-address-data">{viewdetails.category}</div>
+              <div className="a-d-address-data">{viewdetails.sub_category}</div>
+              <div className="a-d-address-data">{viewdetails.orderstatus}</div>
+              <div className="a-d-address-data">{viewdetails.description}</div>
+              <div className="a-d-address-data">{viewdetails.sub_category}</div>
             </div>
-          ))}
+            <div className="a-d-address">
+              {viewdetails.orderstatus == "Order Accepted" ? (
+                <>
+                  <video width={"200"} height={"50"} autoPlay muted loop>
+                    <source src="/delivery.mp4" type="video/mp4" />
+                  </video>
+                </>
+              ) : (
+                <>
+                  {viewdetails.orderstatus == "Delivered" ? (
+                    <>
+                      <video width={"200"} height={"150"} autoPlay muted loop>
+                        <source src="/delivered.mp4" type="video/mp4" />
+                      </video>
+                    </>
+                  ) : (
+                    <>
+                      <video width={"200"} height={"100"} autoPlay muted loop>
+                        <source src="/pending.mp4" type="video/mp4" />
+                      </video>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+            <div className="a-d-address">
+              <div className="a-d-address-data">{viewdetails.name}</div>
+              <div className="a-d-address-data">{viewdetails.email}</div>
+              <div className="a-d-address-data">
+                {viewdetails.alternate_phone}
+              </div>
+              <div className="a-d-address-data">{viewdetails.address}</div>
+              <div className="a-d-address-data">{viewdetails.district}</div>
+              <div className="a-d-address-data">{viewdetails.state}</div>
+              <div className="a-d-address-data">{viewdetails.pin_code}</div>
+            </div>
+          </div>
+          {/* ))} */}
           <div className="a-d-track">
-            {viewdetails.orderstatus == "Order Accepted" ? (
+            {viewdetails.orderstatus == "Delivered" ? (
               <>
                 <Box sx={{ width: "100%" }}>
-                  <Stepper activeStep={2} alternativeLabel>
+                  <Stepper activeStep={3} alternativeLabel>
                     {steps.map((label) => (
                       <Step key={label}>
                         <StepLabel>{label}</StepLabel>
@@ -71,20 +117,30 @@ const Viewdetails = () => {
               </>
             ) : (
               <>
-                {viewdetails.orderstatus == "Delivered" ? (
+                {viewdetails.orderstatus == "Order Accepted" ? (
                   <>
                     <Box sx={{ width: "100%" }}>
-                      <Stepper activeStep={3} alternativeLabel>
+                      <Stepper activeStep={2} alternativeLabel>
                         {steps.map((label) => (
                           <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
+                            <StepLabel>{label} </StepLabel>
                           </Step>
                         ))}
                       </Stepper>
                     </Box>
                   </>
                 ) : (
-                  <> </>
+                  <>
+                    <Box sx={{ width: "100%" }}>
+                      <Stepper activeStep={1} alternativeLabel>
+                        {steps.map((label) => (
+                          <Step key={label}>
+                            <StepLabel>{label} </StepLabel>
+                          </Step>
+                        ))}
+                      </Stepper>
+                    </Box>
+                  </>
                 )}
               </>
             )}

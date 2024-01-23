@@ -52,7 +52,7 @@ const Ordersummary = () => {
         },
       })
       .then((data) => {
-        // console.log(data.data);
+        console.log("order Summary", data.data.data);
         setOrders(data.data.data);
       })
       .catch((err) => {
@@ -149,18 +149,24 @@ const Ordersummary = () => {
                       {data.sub_category}
                     </div>
                     {data.orderstatus == "Delivered" ? (
-                      <div className="product-details-data-orderplaced">
+                      <Link
+                        className="product-details-data-orderplaced"
+                        to={`/volunteer/view-details/${data._id}`}
+                      >
                         {data.orderstatus}
                         <img
                           src="/order-delivered-tick.png"
                           alt=""
                           className="order-placed-tick"
                         />
-                      </div>
+                      </Link>
                     ) : (
-                      <div className="product-details-data">
+                      <Link
+                        className="product-details-data"
+                        to={`/volunteer/view-details/${data._id}`}
+                      >
                         {data.orderstatus}
-                      </div>
+                      </Link>
                     )}
                   </div>
                 ))}

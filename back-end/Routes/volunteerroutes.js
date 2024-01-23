@@ -441,8 +441,8 @@ volunteerroutes.get("/view-details/:id", Checkauth, async (req, res) => {
       {
         $lookup: {
           from: "address_tbs",
-          localField: "login_id",
-          foreignField: "login_id",
+          localField: "address_id",
+          foreignField: "_id",
           as: "results",
         },
       },
@@ -453,10 +453,8 @@ volunteerroutes.get("/view-details/:id", Checkauth, async (req, res) => {
       },
       {
         $match: {
-          volunteerdetails: new mongoose.Types.ObjectId(req.userData.userId),
-          // login_id: new mongoose.Types.ObjectId(req.userData.userId),
+          // volunteerdetails: new mongoose.Types.ObjectId(req.userData.userId),
           _id: new mongoose.Types.ObjectId(req.params.id),
-          // volunteerdetails: req.userData.userId,
         },
       },
       {

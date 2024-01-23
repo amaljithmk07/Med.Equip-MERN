@@ -59,6 +59,11 @@ const cartschema = new mongoose.Schema({
     ref: "Product_details",
     required: true,
   },
+  address_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Address_tb",
+    required: true,
+  },
 });
 const data = mongoose.model("Cart Details", cartschema);
 module.exports = data;

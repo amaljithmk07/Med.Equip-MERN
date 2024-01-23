@@ -103,6 +103,19 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
+.order-request-content-item-viewdetails {
+  border: 0px;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.order-request-content-item-viewdetails:hover {
+  color: rgb(255, 179, 0);
+  text-decoration: underline;
+}
+
 .order-request-content-button {
   height: 100%;
   width: 70%;
@@ -112,8 +125,12 @@
   border-radius: 5px;
   text-transform: uppercase;
   border: 1px solid rgb(149, 240, 110);
-  background-color: rgb(68, 247, 101);
-  cursor: pointer;
+  background-image: linear-gradient(
+    260deg,
+    rgb(69, 223, 49),
+    rgb(99, 254, 79),
+    rgb(128, 255, 111)
+  );  cursor: pointer;
 }
 .order-request-nodata {
   height: 400px;

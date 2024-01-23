@@ -233,16 +233,12 @@ const Usercart = () => {
             <div className="cart-items-number">
               Cart Items: &nbsp; {cartitems.length}
             </div>
+            <Link to={"/user/order-place"} className="cart-orderplace">
+              Make Order
+            </Link>
           </>
         )}
       </div>
-      {cartitems[0] == null ? (
-        <></>
-      ) : (
-        <Link to={"/user/order-place"} className="cart-orderplace">
-          Make Order
-        </Link>
-      )}
     </div>
   );
 };

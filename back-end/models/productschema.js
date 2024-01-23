@@ -50,6 +50,11 @@ const productschema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  product_status: {
+    type: String,
+    require: true,
+    default: "",
+  },
   wishlist: {
     type: String,
     require: true,

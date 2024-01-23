@@ -64,6 +64,11 @@ const orderschema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     require: true,
   },
+  address_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Address_tb",
+    required: true,
+  },
 });
 const data = mongoose.model("orders_tb", orderschema);
 module.exports = data;

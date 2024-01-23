@@ -68,23 +68,24 @@
 
 .user-view-searchBar-sec {
   width: 25%;
-  height: 35px;
+  height: 37px;
   border-radius: 50px;
 
   background-color: rgb(255, 255, 255);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .user-view-searchBar {
-  height: 35px;
+  height: 100%;
   border: 0px;
   font-size: 1rem;
-  border-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
   width: 80%;
   text-align: center;
   padding: 0px 10px;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   /* background-color: red; */
 }
 .user-view-searchBar::placeholder {
@@ -93,11 +94,17 @@
 }
 .user-view-searchBar:focus {
   outline: none;
+  background-color: transparent;
 }
+/* .user-view-searchBar {
+  outline: none;
+  background-color: red;
+} */
 .user-view-searchBar-img {
   /* position: absolute; */
   /* filter: invert(1); */
   cursor: pointer;
+  width: 35px;
   height: 35px;
   padding: 0px 10px 0px 0px;
   /* background-color: red; */

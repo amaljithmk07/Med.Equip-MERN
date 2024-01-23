@@ -57,7 +57,10 @@ function LoginPage() {
             <h1 className="login-h1">Login</h1>
             <form action="" className="components1">
               <div className="login-input-box">
-                <img src="/login-user.png" alt="" className="login-png" />
+              <div className="login-input-field-sec">
+
+                {/* <img src="/login-user.png" alt="" className="login-png" /> */}
+                <img src="/email.png" alt="" className="login-png" />
                 <input
                   type="text"
                   placeholder=" Email"
@@ -66,38 +69,42 @@ function LoginPage() {
                   onChange={loginDetails}
                 />
               </div>
+              </div>
               <div className="login-input-box">
-                {pass == false ? (
-                  <img
-                    id="check"
-                    src="/login-pass-view.png"
-                    //closed eye
-                    alt=""
-                    className="login-png"
-                    value={showPassword}
-                    onClick={passShow}
-                  />
-                ) : (
-                  <>
+                <div className="login-input-field-sec">
+                  {" "}
+                  {pass == false ? (
                     <img
                       id="check"
-                      src="/login-pass.png"
+                      src="/login-pass-view.png"
+                      //closed eye
                       alt=""
+                      className="login-png"
                       value={showPassword}
                       onClick={passShow}
-                      className="login-png"
                     />
-                  </>
-                )}
-                <input
-                  // type="password"
-                  placeholder=" Password"
-                  name="password"
-                  className="login-input"
-                  type={showPassword ? "text" : "password"}
-                  // onChange={(e) =>setPassword(e.target.value) }
-                  onChange={loginDetails}
-                />
+                  ) : (
+                    <>
+                      <img
+                        id="check"
+                        src="/login-pass.png"
+                        alt=""
+                        value={showPassword}
+                        onClick={passShow}
+                        className="login-png"
+                      />
+                    </>
+                  )}
+                  <input
+                    // type="password"
+                    placeholder=" Password"
+                    name="password"
+                    className="login-input"
+                    type={showPassword ? "text" : "password"}
+                    // onChange={(e) =>setPassword(e.target.value) }
+                    onChange={loginDetails}
+                  />
+                </div>
               </div>
               <input
                 type="submit"

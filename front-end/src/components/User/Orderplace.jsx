@@ -91,7 +91,7 @@ const Orderplace = () => {
           axios
             .post(
               `http://localhost:2222/api/user/orderplace/${login_id}`,
-              {},
+              cartitems,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -135,7 +135,7 @@ const Orderplace = () => {
     <div className="order-place-body">
       <Toaster />
       <div className="order-place-card">
-        <div className="order-place-card-head">ORDER PLACE</div>
+        <div className="order-place-card-head"> PLACE ORDER</div>
         <div className="order-place-card-body">
           <div className="order-place-card-personal-info">
             {profile !== "No data" ? (

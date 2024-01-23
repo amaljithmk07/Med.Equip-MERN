@@ -52,7 +52,7 @@ loginroutes.post("/", async (req, res) => {
         loginId: oldUser._id,
         userRole: oldUser.role,
         email: oldUser.email,
-        data:'Login Successful'
+        data: "Login Successful",
       });
     } else {
       return res.status(400).json({

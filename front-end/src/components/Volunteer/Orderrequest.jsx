@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Orderrequest.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Orderrequest = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
@@ -80,7 +80,13 @@ const Orderrequest = () => {
                     {data.cart_qty}{" "}
                   </div>
                   <div className="order-request-content-item">
-                    {data.orderstatus}
+                    {" "}
+                    <Link
+                      to={`/volunteer/view-details/${data._id}`}
+                      className="order-request-content-item-viewdetails"
+                    >
+                      View Details{" "}
+                    </Link>
                   </div>
                   <div className="order-request-content-item">
                     <button

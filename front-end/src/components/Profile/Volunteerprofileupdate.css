@@ -52,18 +52,18 @@
   border: 10px solid rgb(255, 255, 255);
 }
 .vol-profile-home-content {
-  box-shadow: 10px 10px 20px rgba(47, 47, 47, 0.125);
+  box-shadow: 5px 0px 20px rgba(47, 47, 47, 0.125);
 
   border-radius: 35px;
   height: 50rem;
   width: 60%;
   display: flex;
-  /* border: 2px solid #00000046; */
+  border: 2px solid #ffffff46;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* background-color: rgb(255, 255, 255); */
-  background-image: url("/public/cardbody.jpg");
+  background-image: linear-gradient(200deg, white, rgb(254, 244, 214), rgb(253, 244, 223));
+  /* background-image: url("/public/cardbody.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -97,16 +97,16 @@
   font-weight: 600;
   /* text-align: start; */
   /* text-transform: capitalize; */
-  border: 0px;
+  border: 1px dashed rgb(215, 214, 214);
   /* border-bottom: 1px solid rgba(212, 133, 15, 0.603); */
   color: rgb(62, 26, 0);
-  height: 20px;
+  height: 25px;
   min-width: 20%;
-  background-color: rgba(117, 251, 0, 0);
+  background-color: transparent;
 }
 .vol-profile-input:focus {
   outline: none;
-  border-bottom: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(154, 154, 154);
 }
 #vol-profile-input-edit {
   height: 20px;

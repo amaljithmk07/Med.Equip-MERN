@@ -112,7 +112,12 @@
   width: auto;
 }
 .order-place-btn {
-  background-color: rgb(99, 254, 79);
+  background-image: linear-gradient(
+    300deg,
+    rgb(75, 229, 54),
+    rgb(99, 254, 79),
+    rgb(128, 255, 111)
+  );
   border: 0px;
   height: 35px;
   width: 120px;

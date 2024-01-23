@@ -52,24 +52,33 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
 //---Product Display
 
 userroutes.get("/view", Checkauth, (req, res) => {
-  products
-    .find()
-    .then((data) => {
-      res.status(200).json({
-        success: true,
-        error: false,
-        message: "Data fetched successfully",
-        data: data,
+  try {
+    products
+      .find()
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Data fetched successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "data fetched failed",
+          ErrorMessage: err.message,
+        });
       });
-    })
-    .catch((err) => {
-      res.status(400).json({
-        success: false,
-        error: true,
-        message: "data fetched failed",
-        ErrorMessage: err.message,
-      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Error",
+      ErrorMessage: err.message,
     });
+  }
 });
 
 //---Donated Product Display
@@ -273,25 +282,24 @@ userroutes.delete("/delete/:id", (req, res) => {
 //---Product  Wishlist
 
 userroutes.put("/wishlist/:id", async (req, res) => {
-  const wishlist = await products
-    .updateOne(
-      {
-        _id: req.params.id,
+  const wishlist = await products.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: {
+        wishlist: "approved",
       },
-      {
-        $set: {
-          wishlist: "approved",
-        },
-      }
-    )
-    if (wishlist) {
-      return res.send("approved Successfull");
-    } else
-      (err) => {
-      return  res.send(err);
-      };
-  });
-  
+    }
+  );
+  if (wishlist) {
+    return res.send("approved Successfull");
+  } else
+    (err) => {
+      return res.send(err);
+    };
+});
+
 //---Product  Wishlist REMOVE
 
 userroutes.put("/wishlist-remove/:id", async (req, res) => {
@@ -309,87 +317,8 @@ userroutes.put("/wishlist-remove/:id", async (req, res) => {
     return res.send("Canceled Successfull");
   } else
     (err) => {
-    return  res.send(err);
+      return res.send(err);
     };
-});
-
-//Product Search
-
-userroutes.get("/search-product", async (req, res) => {
-  try {
-    console.log(req.body.search);
-    const searchproduct = await products.aggregate([
-      {
-        $match: {
-          name: req.body.search,
-        },
-      },
-      {
-        $group: {
-          _id: "$_id",
-          login_id: {
-            $first: "$login_id",
-          },
-          image: {
-            $first: "$image",
-          },
-          name: {
-            $first: "$name",
-          },
-          available_qty: {
-            $first: "$available_qty",
-          },
-          description: {
-            $first: "$description",
-          },
-          category: {
-            $first: "$category",
-          },
-          sub_category: {
-            $first: "$sub_category",
-          },
-          email: {
-            $first: "$email",
-          },
-          purchased_date: {
-            $first: "$purchased_date",
-          },
-          phone_number: {
-            $first: "$phone_number",
-          },
-          address: {
-            $first: "$address",
-          },
-          pin_code: {
-            $first: "$pin_code",
-          },
-        },
-      },
-    ]);
-    if (searchproduct) {
-      return res.status(200).json({
-        data: searchproduct,
-        success: true,
-        error: false,
-        message: "Search Products successfully",
-      });
-    } else
-      (err) => {
-        res.status(400).json({
-          success: false,
-          error: true,
-          ErrorMessage: err.message,
-          message: "Search Products Failed",
-        });
-      };
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: true,
-      message: "Internal Server Error",
-      ErrorMessage: err.message,
-    });
-  }
 });
 
 // -------------Profile---------------
@@ -525,41 +454,53 @@ userroutes.post(
 
 //--- Cart Add
 
-userroutes.post("/addtocart", Checkauth, upload.single("image"), (req, res) => {
-  console.log(req.body._id);
-  const Data = new CartDB({
-    login_id: req.userData.userId,
-    image: req.body.image,
-    available_qty: req.body.available_qty,
-    cart_qty: req.body.cart_qty,
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    sub_category: req.body.sub_category,
-    email: req.body.email,
-    purchased_date: req.body.purchased_date,
-    phone_number: req.body.phone_number,
-    address: req.body.address,
-    pin_code: req.body.pin_code,
-    product_id: req.body._id,
-  });
-  Data.save()
-    .then((data) => {
-      res.status(200).json({
-        success: true,
-        error: false,
-        message: "Add to cart successfully",
-        data: data,
-      });
-    })
-    .catch((err) => {
-      res.status(400).json({
-        success: false,
-        error: true,
-        ErrorMessage: err.message,
-      });
+userroutes.post(
+  "/addtocart",
+  Checkauth,
+  upload.single("image"),
+  async (req, res) => {
+    console.log(req.body._id);
+    const address = await AddressDB.find({
+      login_id: req.userData.userId,
+      category: "primary",
     });
-});
+    const addressId = new mongoose.Types.ObjectId(address[0]._id);
+
+    const Data = new CartDB({
+      login_id: req.userData.userId,
+      image: req.body.image,
+      available_qty: req.body.available_qty,
+      cart_qty: req.body.cart_qty,
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      sub_category: req.body.sub_category,
+      email: req.body.email,
+      purchased_date: req.body.purchased_date,
+      phone_number: req.body.phone_number,
+      address: req.body.address,
+      pin_code: req.body.pin_code,
+      product_id: req.body._id,
+      address_id: addressId,
+    });
+    Data.save()
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Add to cart successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+        });
+      });
+  }
+);
 
 // ---cart products View
 
@@ -588,6 +529,7 @@ userroutes.get("/cartview/:id", Checkauth, async (req, res) => {
     res.status.json({
       success: false,
       error: true,
+      errorMessage: err.message,
       message: "Something wrong",
     });
   }
@@ -1019,235 +961,68 @@ userroutes.get("/view-primary-address", Checkauth, async (req, res) => {
 
 //--- Order Place
 
-// const address = await AddressDB.find({
-//   login_id: req.params.id,
-//   category: "primary",
-// });
-// // // console.log(address);
-
-// // //Address Id
-
-// const addressId = Object.assign(...address);
-// console.log(addressId);
-
-// userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
-//   try {
-//     const cartdata = await CartDB.find({
-//       login_id: req.params.id,
-//     });
-
-//     const orderdata = cartdata.map((item) => ({ ...item.toObject() }));
-
-//     // console.log(orderdata);
-
-//     const orderdetail = await OrdersDB.insertMany(orderdata);
-
-//     ////////////
-
-//     var new_available_qty = orderdata.map((data) => ({
-//       ...data,
-//       available_qty: data.available_qty - data.cart_qty,
-//     }));
-//     console.log("new_available_qty", new_available_qty);
-
-//     //////////
-
-//     var new1_available_qty = new_available_qty.map(
-//       (data1) => data1.available_qty
-//     );
-//     const numberqty = Number(new1_available_qty);
-
-//     const productOneId = orderdata.map((id) => ({
-//       product_id: id.product_id,
-//     }));
-//     const productsId = orderdata.map((id) => ({
-//       product_id: id.product_id,
-//     }));
-
-//     console.log("product id", productsId);
-//     console.log(productOneId.length);
-
-//     for (i = 0; i < productOneId.length; i++) {
-//       console.log("i", i);
-//       console.log(
-//         "productsId WWW",
-//         new mongoose.Types.ObjectId(productsId)
-//       );
-//       // console.log(productsId.product_id);
-//       console.log(typeof numberqty);
-//       var updated_qty = await products.updateMany(
-//         {
-//           _id: new mongoose.Types.ObjectId(productsId.product_id),
-//         },
-//         {
-//           $set: {
-//             available_qty: 10,
-//           },
-//         }
-//       );
-//     }
-//     console.log(updated_qty);
-//     // const deletedcart = await CartDB.deleteMany({
-//     //   login_id: req.params.id,
-//     // });
-//     if (updated_qty) {
-//       return res.status(200).json({
-//         success: true,
-//         error: false,
-//         data: updated_qty,
-//         message: " XXXXXXXX",
-//       });
-//     } else
-//       (err) => {
-//         return res.status(400).json({
-//           success: false,
-//           error: true,
-//           ErrorMessage: err.message,
-//           message: "Network error",
-//         });
-//       };
-
-//     // console.log("updated_qty", updated_qty);
-
-//     if (orderdetail && deletedcart) {
-//       return res.status(200).json({
-//         success: true,
-//         error: false,
-//         data: orderdetail,
-//         message: "Order placed successful",
-//       });
-//     } else {
-//       return res.status(400).json({
-//         success: false,
-//         error: true,
-//         message: "Network error",
-//       });
-//     }
-//   } catch (err) {
-//     return res.status(500).json({
-//       success: false,
-//       error: true,
-//       message: "Order failed",
-//       ErrorMessage: err.message,
-//     });
-//   }
-// });
-
-///////////////////////////////
-
 userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
   try {
     const Oldcartdata = await CartDB.find({
       login_id: req.params.id,
     });
+    const address = await AddressDB.find({
+      login_id: req.params.id,
+      category: "primary",
+    });
+    console.log(address);
 
     const objCartdata = Oldcartdata.map((item) => ({ ...item.toObject() }));
-
-    // console.log(orderdata);
-
     const orderDB_newdata = await OrdersDB.insertMany(objCartdata);
 
-    ////////////
+    const cartitems = req.body;
+    for (const i of cartitems) {
+      var _id = i._id;
+      var product_id = i.product_id;
+      var available_qty = i.available_qty;
+      var cart_qty = i.cart_qty;
+      console.log("test");
+      console.log(_id, product_id, available_qty, cart_qty);
 
-    var updated_AvailableQtyObj = objCartdata.map((data) => ({
-      ...data,
-      available_qty: data.available_qty - data.cart_qty,
-    }));
-    console.log("updated_AvailableQtyObj", updated_AvailableQtyObj);
-
-    var updated_Qty = updated_AvailableQtyObj.map(
-      (details) => details.available_qty
-    );
-    console.log("updated_Qty", updated_Qty);
-
-    const numberqty = Number(updated_Qty);
-    console.log("numberqty", numberqty);
-
-    const [productsId] = Oldcartdata.map((id) => ({
-      product_id: id.product_id,
-    }));
-
-    console.log("product id", productsId);
-    var updated_product_qty = await products.updateMany(
-      {
-        _id: new mongoose.Types.ObjectId(productsId.product_id),
-      },
-      {
-        $set: {
-          available_qty: available_qty,
+      var updated_product_qty = await products.updateMany(
+        {
+          _id: product_id,
         },
-      }
-    );
-    console.log("updated product qty", updated_product_qty);
-
+        {
+          $set: {
+            available_qty: available_qty - cart_qty,
+          },
+        }
+      );
+    }
     const deletedcart = await CartDB.deleteMany({
       login_id: req.params.id,
     });
-
-    if (updated_product_qty) {
+    if (updated_product_qty && orderDB_newdata && deletedcart) {
       return res.status(200).json({
         success: true,
         error: false,
+        message: "Updated Successful",
         data: updated_product_qty,
-        message: " XXXXXXXX",
       });
     } else
       (err) => {
         return res.status(400).json({
           success: false,
           error: true,
+          message: "Order failed",
           ErrorMessage: err.message,
-          message: "Network error",
         });
       };
-
-    // console.log("updated_qty", updated_qty);
-
-    if (orderdetail && deletedcart) {
-      return res.status(200).json({
-        success: true,
-        error: false,
-        data: orderdetail,
-        message: "Order placed successful",
-      });
-    } else {
-      return res.status(400).json({
-        success: false,
-        error: true,
-        message: "Network error",
-      });
-    }
   } catch (err) {
     return res.status(500).json({
       success: false,
       error: true,
-      message: "Order failed",
+      message: "Internal Server Error",
       ErrorMessage: err.message,
     });
   }
 });
-
-///////////
-////////////
-////////////////////
-////////////////
-////////
-////////
-///////////
-userroutes.delete("/delete-orderdb", Checkauth, async (req, res) => {
-  const del = OrdersDB.deleteMany()
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-////////////
-////////////////////
-////////////////
-////////
-////////
 
 //---Order Summary
 

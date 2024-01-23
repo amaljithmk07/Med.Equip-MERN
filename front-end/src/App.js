@@ -66,13 +66,14 @@ function App() {
         <Route path="/user/order-place" element={<Orderplace />} />
         <Route path="/user/order-summary" element={<Ordersummary />} />
 
+        <Route path="/volunteer/view-details/:id" element={<Viewdetails />} />
+
         <Route path="/volunteer" element={<Volunteerhome />} />
         <Route path="/volunteer/register" element={<Volunteerregister />} />
         <Route path="/volunteer/list" element={<Volunteerlist />} />
         <Route path="/volunteer/request" element={<Volunteerrequest />} />
         <Route path="/volunteer/order-request" element={<Orderrequest />} />
         <Route path="/volunteer/accepted-orders" element={<Acceptedorders />} />
-        <Route path="/volunteer/view-details/:id" element={<Viewdetails />} />
       </Routes>
       <Footer />
     </Router>
