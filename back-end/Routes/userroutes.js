@@ -464,8 +464,7 @@ userroutes.post(
       login_id: req.userData.userId,
       category: "primary",
     });
-    const addressId = new mongoose.Types.ObjectId(address[0]._id);
-
+    const addressId = new mongoose.Types.ObjectId(address[0]);
     const Data = new CartDB({
       login_id: req.userData.userId,
       image: req.body.image,
@@ -870,6 +869,127 @@ userroutes.get("/view-address", Checkauth, async (req, res) => {
   }
 });
 
+
+//---Single View for edit Address
+
+userroutes.get("/singleview-address/:id", Checkauth, async (req, res) => {
+  try {
+    const data = await AddressDB.find({
+      login_id: req.userData.userId,
+      _id: req.params.id,
+
+    });
+
+    if (data) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: " Address successfully displayed",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
+//--- Delete Address
+
+userroutes.get("/delete-address/:id", Checkauth, async (req, res) => {
+  try {
+    const data = await AddressDB.deleteMany({
+      login_id: req.userData.userId,
+      _id: req.params.id,
+    });
+
+    if (data) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: " Address successfully Deleted",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
+//--- Edit Address
+
+userroutes.get("/edit-address/:id", Checkauth, async (req, res) => {
+  try {
+    const oldaddress = await AddressDB.find({
+      login_id: req.userData.userId,
+      _id: req.params.id,
+    });
+    const newAddress = {
+      login_id: req.userData.userId ? req.userData.userId : oldaddress.login_id,
+      name: req.body.name ? req.body.name : oldaddress.name,
+      state: req.body.state ? req.body.state : oldaddress.state,
+      address: req.body.address ? req.body.address : oldaddress.address,
+      district: req.body.district ? req.body.district : oldaddress.district,
+      email: req.body.email ? req.body.email : oldaddress.email,
+      pin_code: req.body.pin_code ? req.body.pin_code : oldaddress.pin_code,
+      alternate_phone: req.body.alternate_phone
+        ? req.body.alternate_phone
+        : oldaddress.alternate_phone,
+      address_type: req.body.address_type
+        ? req.body.address_type
+        : oldaddress.address_type,
+    };
+
+    if (data) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        data: data,
+        message: " Address successfully displayed",
+      });
+    } else
+      (err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          ErrorMessage: err.message,
+          message: "Network error",
+        });
+      };
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      ErrorMessage: err.message,
+      message: "Internal Server error",
+    });
+  }
+});
+
 //--- Set address As Primary
 
 userroutes.put("/primary-address/:id", Checkauth, async (req, res) => {
@@ -963,17 +1083,11 @@ userroutes.get("/view-primary-address", Checkauth, async (req, res) => {
 
 userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
   try {
-    const Oldcartdata = await CartDB.find({
-      login_id: req.params.id,
-    });
     const address = await AddressDB.find({
       login_id: req.params.id,
       category: "primary",
     });
-    console.log(address);
-
-    const objCartdata = Oldcartdata.map((item) => ({ ...item.toObject() }));
-    const orderDB_newdata = await OrdersDB.insertMany(objCartdata);
+    const addressId = new mongoose.Types.ObjectId(address[0]);
 
     const cartitems = req.body;
     for (const i of cartitems) {
@@ -981,8 +1095,10 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
       var product_id = i.product_id;
       var available_qty = i.available_qty;
       var cart_qty = i.cart_qty;
+      var addressID = i.address_id;
+
       console.log("test");
-      console.log(_id, product_id, available_qty, cart_qty);
+      console.log(_id, product_id, available_qty, cart_qty, addressID);
 
       var updated_product_qty = await products.updateMany(
         {
@@ -994,11 +1110,32 @@ userroutes.post("/orderplace/:id", Checkauth, async (req, res) => {
           },
         }
       );
+      var updated_address = await CartDB.updateMany(
+        {
+          _id: _id,
+        },
+        {
+          $set: {
+            address_id: addressId,
+          },
+        }
+      );
     }
+    const Oldcartdata = await CartDB.find({
+      login_id: req.params.id,
+    });
+    const objCartdata = Oldcartdata.map((item) => ({ ...item.toObject() }));
+    const orderDB_newdata = await OrdersDB.insertMany(objCartdata);
+
     const deletedcart = await CartDB.deleteMany({
       login_id: req.params.id,
     });
-    if (updated_product_qty && orderDB_newdata && deletedcart) {
+    if (
+      updated_product_qty &&
+      updated_address &&
+      orderDB_newdata &&
+      deletedcart
+    ) {
       return res.status(200).json({
         success: true,
         error: false,

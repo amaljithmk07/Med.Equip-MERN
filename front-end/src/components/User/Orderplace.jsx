@@ -105,25 +105,6 @@ const Orderplace = () => {
               console.log(err);
             });
           navigate("/user/order-summary");
-
-          // ---------User sending order status 'pending' to volunteer-----//
-
-          axios
-            .post(
-              `http://localhost:2222/api/volunteer/order-status`,
-              {},
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
-            .then((data) => {
-              console.log(data.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
         }
       });
     } else {
@@ -131,6 +112,12 @@ const Orderplace = () => {
     }
   };
   console.log(cartitems);
+
+  const addressChange = (e) => {
+    // console.log(e);
+    // navigate("/");
+    const item = sessionStorage.setItem("item", cartitems.length);
+  };
   return (
     <div className="order-place-body">
       <Toaster />
@@ -169,6 +156,13 @@ const Orderplace = () => {
                 <div className="order-place-card-profile">
                   Pin code : {profile.pin_code}
                 </div>
+                <Link
+                  className="order-place-card-profile"
+                  onClick={addressChange}
+                  to={"/user/address"}
+                >
+                  Change Address{" "}
+                </Link>
               </>
             ) : (
               <>

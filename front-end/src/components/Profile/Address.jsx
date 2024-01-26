@@ -3,13 +3,37 @@ import "./Address.css";
 import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Address = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
   const [savedaddress, setSavedaddress] = useState([{}]);
   const [address, setAddress] = useState({});
+  const [editaddress, setEditaddress] = useState({});
+  const cartitem = sessionStorage.getItem("item");
+  console.log("cartitem", cartitem);
+
+  //Address Add
+
+  const addressInput = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+  };
+  const addAddress = (e) => {
+    axios
+      .post(`http://localhost:2222/api/user/add-address`, address, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // Address View
 
@@ -75,29 +99,50 @@ const Address = () => {
       });
   };
 
-  //Address Add
-
-  const addressInput = (e) => {
-    const { name, value } = e.target;
-    setAddress({ ...address, [name]: value });
+  // Change Address On Order Place;
+  const OrderplaceAddressChange = (id) => {
+    sessionStorage.removeItem("item");
+    navigate("/user/order-place");
   };
-  const addAddress = (e) => {
+
+  // Delete Address;
+
+  const addressDelete = (id) => {
     axios
-      .post(`http://localhost:2222/api/user/add-address`, address, {
+      .get(`http://localhost:2222/api/user/delete-address/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((data) => {
         console.log(data);
+        const filter = savedaddress.map((data) => {
+          return data._id !== id;
+        });
+        setSavedaddress(filter);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // console.log(address);
+  // edit Address;
 
+  const addressEdit = (id) => {
+    axios
+      .get(`http://localhost:2222/api/user/singleview-address/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        setEditaddress(data.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <Toaster />
@@ -135,11 +180,39 @@ const Address = () => {
                     <div className="s-a-address">
                       {details.address},{details.state},{details.district},
                       {details.pin_code}
+                      {details.email}
                     </div>
                   </div>
-                  <div className="saved-address-edit-delete">edit</div>
+                  <div className="saved-address-edit-delete-sec">
+                    <img
+                      src="/address-edit.png"
+                      onClick={() => addressEdit(details._id)}
+                      alt=""
+                      className="s-a-edit"
+                    />
+                    <img
+                      src="/address-delete.png"
+                      alt=""
+                      onClick={() => addressDelete(details._id)}
+                      className="s-a-delete"
+                    />
+                  </div>
                 </div>
               ))}
+              {cartitem ? (
+                <button
+                  className="saved-address-btn"
+                  onClick={OrderplaceAddressChange}
+                >
+                  Return to Order
+                </button>
+              ) : (
+                <>
+                  <Link className="saved-address-btn" to={"/profile"}>
+                    Return to Profile
+                  </Link>
+                </>
+              )}
             </div>
           </div>
           <div className="add-address">

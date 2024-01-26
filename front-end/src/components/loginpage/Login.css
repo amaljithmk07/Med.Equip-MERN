@@ -13,7 +13,7 @@
 }
 .login {
   height: 350px;
-  width: 350px;
+  width: 330px;
   background-color: #ffffff3c;
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
 }
 .components {
   height: 350px;
-  width: 300px;
+  width: 280px;
   /* background-color: rgb(141, 196, 130); */
   display: flex;
   flex-wrap: wrap;

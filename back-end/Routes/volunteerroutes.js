@@ -481,14 +481,14 @@ volunteerroutes.get("/view-details/:id", Checkauth, async (req, res) => {
           sub_category: {
             $first: "$sub_category",
           },
-          email: {
-            $first: "$email",
-          },
           orderstatus: {
             $first: "$orderstatus",
           },
           name: {
             $first: "$results.name",
+          },
+          email: {
+            $first: "$results.email",
           },
           state: {
             $first: "$results.state",

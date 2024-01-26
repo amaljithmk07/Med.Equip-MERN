@@ -66,8 +66,15 @@ const orderschema = new mongoose.Schema({
   },
   address_id: {
     type: Schema.Types.ObjectId,
-    ref: "Address_tb",
-    required: true,
+    ref: "cart Details",
+    // default: "",
+    require: true,
+  },
+  cart_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Cart Details",
+    // default: "",
+    require: true,
   },
 });
 const data = mongoose.model("orders_tb", orderschema);
