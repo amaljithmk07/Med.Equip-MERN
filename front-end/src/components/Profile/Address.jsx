@@ -49,14 +49,14 @@ const Address = () => {
       })
       .then((data) => {
         // const DATA = data.data.data;
-        console.log("DATA", data.data.data[0].status);
+        console.log("DATA", data.data.data);
         // const activeadress = data.map((data) => {
         //   return (data.status = "active");
         // });
         setSavedaddress(data.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         if (err.response.status == 401) {
           toast.error("Session Time Out", {
             position: "bottom-center",
@@ -143,6 +143,7 @@ const Address = () => {
       });
   };
 
+  console.log(savedaddress);
   // edit Address;
 
   const addressEdit = (id) => {
@@ -214,9 +215,18 @@ const Address = () => {
                 </button>
               ) : (
                 <>
-                  <Link className="saved-address-btn" to={"/userprofileupdate"}>
-                    Return to Profile
-                  </Link>
+                  {savedaddress.length !== 0 ? (
+                    <Link
+                      className="saved-address-btn"
+                      to={"/userprofileupdate"}
+                    >
+                      Return to Profile
+                    </Link>
+                  ) : (
+                    <>
+                      <h2>Addres Empty</h2>
+                    </>
+                  )}
                 </>
               )}
             </div>
