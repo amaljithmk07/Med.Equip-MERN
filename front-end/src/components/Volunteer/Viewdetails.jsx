@@ -8,11 +8,12 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-const steps = ["Item picked ", "Order accepted", "Delvered"];
+const steps = ["Order Placed ", "Order accepted", "Delvered"];
 
 const Viewdetails = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
+  const role = sessionStorage.getItem("Role");
   const [viewdetails, setViewdetails] = useState({});
 
   const { id } = useParams();
@@ -20,29 +21,55 @@ const Viewdetails = () => {
   console.log(id);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:2222/api/volunteer/view-details/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data.data.data);
-        setViewdetails(data.data.data[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.status == 401) {
-          toast.error("Session Time Out", {
-            position: "bottom-center",
-          });
-          setTimeout(() => {
-            sessionStorage.clear();
+    if (role == 3) {
+      axios
+        .get(`http://localhost:2222/api/volunteer/view-details/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          console.log(data.data.data);
+          setViewdetails(data.data.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status == 401) {
+            toast.error("Session Time Out", {
+              position: "bottom-center",
+            });
+            setTimeout(() => {
+              sessionStorage.clear();
 
-            navigate("/login");
-          }, 2000);
-        }
-      });
+              navigate("/login");
+            }, 2000);
+          }
+        });
+    } else {
+      axios
+        .get(`http://localhost:2222/api/user/view-details/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          console.log(data.data.data);
+          setViewdetails(data.data.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status == 401) {
+            toast.error("Session Time Out", {
+              position: "bottom-center",
+            });
+            setTimeout(() => {
+              sessionStorage.clear();
+
+              navigate("/login");
+            }, 2000);
+          }
+        });
+    }
   }, []);
   console.log(viewdetails);
   return (
@@ -60,7 +87,6 @@ const Viewdetails = () => {
               <div className="a-d-address-data">{viewdetails.cart_qty}</div>
               <div className="a-d-address-data">{viewdetails.category}</div>
               <div className="a-d-address-data">{viewdetails.sub_category}</div>
-              <div className="a-d-address-data">{viewdetails.orderstatus}</div>
               <div className="a-d-address-data">{viewdetails.description}</div>
               <div className="a-d-address-data">{viewdetails.sub_category}</div>
             </div>
@@ -70,6 +96,7 @@ const Viewdetails = () => {
                   <video width={"200"} height={"50"} autoPlay muted loop>
                     <source src="/delivery.mp4" type="video/mp4" />
                   </video>
+                  <div className="order-accepted">Order accepted</div>
                 </>
               ) : (
                 <>
@@ -78,12 +105,14 @@ const Viewdetails = () => {
                       <video width={"200"} height={"150"} autoPlay muted loop>
                         <source src="/delivered.mp4" type="video/mp4" />
                       </video>
+                      <div className="delivered">Delivered</div>
                     </>
                   ) : (
                     <>
                       <video width={"200"} height={"100"} autoPlay muted loop>
                         <source src="/pending.mp4" type="video/mp4" />
                       </video>
+                      <div className="pending">Pending</div>
                     </>
                   )}
                 </>

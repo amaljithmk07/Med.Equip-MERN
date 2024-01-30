@@ -48,6 +48,10 @@ const Navbar = () => {
       </div>
       <div className="general-nav">
         <div className="general-sub">
+          <input type="checkbox" id="check-hamb" />
+          <label htmlFor="check-hamb" className="label-hamb">
+            <img src="/hamburger.png" alt=""  className="hamburger"/>{" "}
+          </label>
           <ul>
             <li>
               <Link to={"/home"} className="general-a">
@@ -181,6 +185,7 @@ const Navbar = () => {
             )}
           </ul>
         </div>
+        {/* <Toggle /> */}
       </div>
     </div>
   );

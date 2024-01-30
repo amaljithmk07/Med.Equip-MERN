@@ -7,10 +7,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Address = () => {
   const navigate = useNavigate();
+
   const token = sessionStorage.getItem("Token");
   const [savedaddress, setSavedaddress] = useState([{}]);
+
   const [address, setAddress] = useState({});
-  const [editaddress, setEditaddress] = useState({});
+
   const cartitem = sessionStorage.getItem("item");
   console.log("cartitem", cartitem);
 
@@ -20,6 +22,7 @@ const Address = () => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
   };
+
   const addAddress = (e) => {
     axios
       .post(`http://localhost:2222/api/user/add-address`, address, {
@@ -45,7 +48,11 @@ const Address = () => {
         },
       })
       .then((data) => {
-        console.log(data);
+        // const DATA = data.data.data;
+        console.log("DATA", data.data.data[0].status);
+        // const activeadress = data.map((data) => {
+        //   return (data.status = "active");
+        // });
         setSavedaddress(data.data.data);
       })
       .catch((err) => {
@@ -62,6 +69,12 @@ const Address = () => {
         }
       });
   }, []);
+
+  // Active Address List
+
+  const addressActive = savedaddress.filter((data) => {
+    return data.status == "active";
+  });
 
   // set Primary Address
 
@@ -99,7 +112,8 @@ const Address = () => {
       });
   };
 
-  // Change Address On Order Place;
+  // Change Address On Order Place
+
   const OrderplaceAddressChange = (id) => {
     sessionStorage.removeItem("item");
     navigate("/user/order-place");
@@ -117,7 +131,10 @@ const Address = () => {
       .then((data) => {
         console.log(data);
         const filter = savedaddress.map((data) => {
-          return data._id !== id;
+          if (data._id == id) {
+            data.status = "deleted";
+          }
+          return data;
         });
         setSavedaddress(filter);
       })
@@ -129,29 +146,18 @@ const Address = () => {
   // edit Address;
 
   const addressEdit = (id) => {
-    axios
-      .get(`http://localhost:2222/api/user/singleview-address/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-        setEditaddress(data.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    navigate(`/user/update-address/${id}`);
   };
+
   return (
     <div>
       <Toaster />
-      <div className="address-body">
+      <div className="address-main-body">
         <div className="address-sub-body">
           <div className="saved-address">
             <div className="saved-address-head">Saved Address</div>
             <div className="saved-address-body">
-              {savedaddress.map((details) => (
+              {addressActive.map((details) => (
                 <div className="saved-address-sec" key={details._id}>
                   <div className="radio-btn-sec">
                     {details.category == "primary" ? (
@@ -208,13 +214,14 @@ const Address = () => {
                 </button>
               ) : (
                 <>
-                  <Link className="saved-address-btn" to={"/profile"}>
+                  <Link className="saved-address-btn" to={"/userprofileupdate"}>
                     Return to Profile
                   </Link>
                 </>
               )}
             </div>
           </div>
+
           <div className="add-address">
             <div className="add-address-head">Add New Address</div>
             <div className="add-address-body">

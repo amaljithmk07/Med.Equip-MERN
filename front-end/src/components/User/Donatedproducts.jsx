@@ -58,7 +58,7 @@ const Donatedproducts = () => {
         <div className="donatedproducts-content-body">
           <div className="donatedproducts-cards-body">
             <div className="donatedproducts-cards-heading">
-              DONATED PRRODUCTS
+              DONATED PRODUCTS
             </div>
             {donatedproduct.map((item) => (
               <div className="donatedproducts-card" key={item._id}>

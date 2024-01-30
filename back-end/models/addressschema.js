@@ -15,6 +15,7 @@ const addressshcema = new mongoose.Schema({
   alternate_phone: { type: Number, required: true },
   address_type: { type: String, required: true },
   category: { type: String, require: true, default: "" },
+  status: { type: String, require: true, default: "active" },
 });
 const data = mongoose.model("Address_tb", addressshcema);
 module.exports = data;

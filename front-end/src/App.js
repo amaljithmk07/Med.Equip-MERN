@@ -30,6 +30,7 @@ import Orderplace from "./components/User/Orderplace";
 import Address from "./components/Profile/Address";
 import Donatedproducts from "./components/User/Donatedproducts";
 import Viewdetails from "./components/Volunteer/Viewdetails";
+import Updateaddress from "./components/Profile/Updateaddress";
 
 function App() {
   // const navigate = useNavigate();
@@ -59,6 +60,7 @@ function App() {
         <Route path="/user/donated-products" element={<Donatedproducts />} />
         <Route path="/user/editproduct/:id" element={<Editproduct />} />
         <Route path="/user/address" element={<Address />} />
+        <Route path="/user/update-address/:id" element={<Updateaddress />} />
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Viewproduct />} />
         <Route path="/uuidverify" element={<Uuidverify />} />

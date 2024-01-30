@@ -132,6 +132,7 @@
   justify-content: center;
   font-weight: 600;
 }
+
 .cart-items-qty {
   height: 90%;
   width: 10%;
@@ -216,4 +217,120 @@
 }
 .cart-orderplace:hover {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.178);
+}
+
+@media screen and (max-width: 1050px) {
+  .cart-content {
+    width: 90%;
+    min-height: 300px;
+  }
+  .cart-qty-btn {
+    border: 0px;
+    background-color: rgb(224, 221, 221);
+    height: 25px;
+    width: 25px;
+    font-size: 0.8rem;
+  }
+  .cart-items {
+    font-size: 0.8rem;
+    justify-content: space-evenly;
+  }
+  .cart-items-delete {
+    /* background-color: red; */
+    width: 5%;
+  }
+  .cart-orderplace {
+    width: 150px;
+    height: 45px;
+    font-size: 0.8rem;
+  }
+
+  .cart-items-number {
+    height: 50px;
+    width: 70%;
+    font-size: 0.8rem;
+  }
+  .cart-heading {
+    height: 50%;
+    width: 100%;
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cart-content {
+    width: 90%;
+    min-height: 300px;
+  }
+  .cart-items {
+    font-size: 0.8rem;
+    justify-content: space-evenly;
+  }
+  .cart-heading {
+    height: 50%;
+    width: 100%;
+    font-size: 28px;
+  }
+  .cart-empty {
+    max-height: 249px;
+    width: auto;
+  }
+  .cart-items-delete {
+    /* background-color: red; */
+    width: 5%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cart-items {
+    flex-direction: column;
+    row-gap: 5px;
+    height: auto;
+    font-size: 0.8rem;
+    justify-content: space-evenly;
+    padding: 10px 0px;
+  }
+  .cart-items-img {
+    height: 90%;
+    width: 100%;
+  }
+  .cart-items-type,
+  .cart-items-available-qty,
+  .cart-items-category,
+  .cart-items-sub-category,
+  .cart-items-qty,
+  .cart-items-delete {
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
+  }
+  .cart-items-qty {
+    justify-content: center;
+    column-gap: 5px;
+  }
+  .cart-qty-btn {
+    height: 20px;
+    width: 20px;
+  }
+
+  .cart-img {
+    background-color: red;
+    height: 50px;
+    width: auto;
+  }
+  .cart-remove-item {
+    height: 30px;
+    width: auto;
+  }
+  .cart-content {
+    width: 90%;
+    min-height: 300px;
+  }
+  .cart-heading {
+    height: 50%;
+    width: 100%;
+    font-size: 28px;
+  }
+  .cart-empty {
+    max-height: 249px;
+    width: auto;
+  }
 }

@@ -85,6 +85,7 @@ const Useraddproduct = () => {
                       />
                       <label htmlFor="file-upload">
                         <img
+
                           src="/admin-product-add-1.png"
                           alt=""
                           id="user-product-add"
@@ -223,8 +224,14 @@ const Useraddproduct = () => {
                           <>
                             <option value="Manual Lift"> Manual Lift</option>
                             <option value="Power Lift"> Power Lift</option>
-                            <option value="Stand-up Lift"> Stand-up Lift</option>
-                            <option value="Heavy Duty Lift"> Heavy Duty Lift</option>
+                            <option value="Stand-up Lift">
+                              {" "}
+                              Stand-up Lift
+                            </option>
+                            <option value="Heavy Duty Lift">
+                              {" "}
+                              Heavy Duty Lift
+                            </option>
                           </>
                         ) : (
                           ""

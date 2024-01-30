@@ -804,6 +804,7 @@ userroutes.post("/add-address", Checkauth, async (req, res) => {
       alternate_phone: req.body.alternate_phone,
       address_type: req.body.address_type,
       category: "primary",
+      status: "active",
     });
 
     data
@@ -841,6 +842,7 @@ userroutes.get("/view-address", Checkauth, async (req, res) => {
   try {
     const data = await AddressDB.find({
       login_id: req.userData.userId,
+      status: "active",
     });
 
     if (data) {
@@ -869,7 +871,6 @@ userroutes.get("/view-address", Checkauth, async (req, res) => {
   }
 });
 
-
 //---Single View for edit Address
 
 userroutes.get("/singleview-address/:id", Checkauth, async (req, res) => {
@@ -877,7 +878,6 @@ userroutes.get("/singleview-address/:id", Checkauth, async (req, res) => {
     const data = await AddressDB.find({
       login_id: req.userData.userId,
       _id: req.params.id,
-
     });
 
     if (data) {
@@ -910,15 +910,23 @@ userroutes.get("/singleview-address/:id", Checkauth, async (req, res) => {
 
 userroutes.get("/delete-address/:id", Checkauth, async (req, res) => {
   try {
-    const data = await AddressDB.deleteMany({
-      login_id: req.userData.userId,
-      _id: req.params.id,
-    });
+    const data = await AddressDB.updateMany(
+      {
+        login_id: req.userData.userId,
+        _id: req.params.id,
+      },
+      {
+        $set: {
+          status: "deleted",
+        },
+      }
+    );
 
     if (data) {
       res.status(200).json({
         success: true,
         error: false,
+        data: data,
         message: " Address successfully Deleted",
       });
     } else
@@ -940,9 +948,9 @@ userroutes.get("/delete-address/:id", Checkauth, async (req, res) => {
   }
 });
 
-//--- Edit Address
+//--- Update Address
 
-userroutes.get("/edit-address/:id", Checkauth, async (req, res) => {
+userroutes.put("/update-address/:id", Checkauth, async (req, res) => {
   try {
     const oldaddress = await AddressDB.find({
       login_id: req.userData.userId,
@@ -964,11 +972,21 @@ userroutes.get("/edit-address/:id", Checkauth, async (req, res) => {
         : oldaddress.address_type,
     };
 
-    if (data) {
+    const updated_address = await AddressDB.updateMany(
+      {
+        login_id: req.userData.userId,
+        _id: req.params.id,
+      },
+      {
+        $set: newAddress,
+      }
+    );
+
+    if (updated_address) {
       res.status(200).json({
         success: true,
         error: false,
-        data: data,
+        data: updated_address,
         message: " Address successfully displayed",
       });
     } else
@@ -1183,6 +1201,110 @@ userroutes.get("/ordersummary/:id", Checkauth, (req, res) => {
         message: "Network error",
       });
     });
+});
+
+// ----Display address details with Orders
+
+userroutes.get("/view-details/:id", Checkauth, async (req, res) => {
+  try {
+    // console.log(req.params.id);
+    const viewdetails = await OrdersDB.aggregate([
+      {
+        $lookup: {
+          from: "address_tbs",
+          localField: "address_id",
+          foreignField: "_id",
+          as: "results",
+        },
+      },
+      {
+        $unwind: {
+          path: "$results",
+        },
+      },
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(req.params.id),
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          login_id: {
+            $first: "$login_id",
+          },
+          volunteerdetails: {
+            $first: "$volunteerdetails",
+          },
+          product_name: {
+            $first: "$name",
+          },
+          description: {
+            $first: "$description",
+          },
+          cart_qty: {
+            $first: "$cart_qty",
+          },
+          category: {
+            $first: "$category",
+          },
+          sub_category: {
+            $first: "$sub_category",
+          },
+          orderstatus: {
+            $first: "$orderstatus",
+          },
+          name: {
+            $first: "$results.name",
+          },
+          email: {
+            $first: "$results.email",
+          },
+          state: {
+            $first: "$results.state",
+          },
+          district: {
+            $first: "$results.district",
+          },
+          address: {
+            $first: "$results.address",
+          },
+          pin_code: {
+            $first: "$results.pin_code",
+          },
+          alternate_phone: {
+            $first: "$results.alternate_phone",
+          },
+          address_type: {
+            $first: "$results.address_type",
+          },
+        },
+      },
+    ]);
+    // console.log(viewdetails);
+    if (viewdetails) {
+      res.status(200).json({
+        success: true,
+        error: false,
+        message: "Details displayed successful",
+        data: viewdetails,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: true,
+        message: "Failed",
+        ErrorMessage: err.message,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Network failed",
+      ErrorMessage: err.message,
+    });
+  }
 });
 
 module.exports = userroutes;

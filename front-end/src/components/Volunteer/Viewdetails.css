@@ -75,3 +75,18 @@
   justify-content: center;
   align-items: center;
 }
+.pending,
+.delivered,
+.order-accepted {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.pending {
+  color: rgb(0, 0, 0);
+}
+.delivered {
+  color: rgb(15, 227, 0);
+}
+.order-accepted {
+  color: rgb(5, 104, 243);
+}

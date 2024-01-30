@@ -73,24 +73,6 @@ const Ordersummary = () => {
 
   ////////////
 
-  const ordersDelete = () => {
-    axios
-      .delete(`http://localhost:2222/api/user/delete-orderdb`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-        const filter = orders.filter((data) => {
-          return data;
-        });
-        setOrders(filter);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   return (
     <div className="order-body">
       <div className="order-card">
@@ -131,12 +113,7 @@ const Ordersummary = () => {
                   <div className="product-head-title-qty">Qty</div>
                   <div className="product-head-title">Category</div>
                   <div className="product-head-title">Sub Category</div>
-                  <div
-                    className="product-head-title"
-                    onMouseLeave={ordersDelete}
-                  >
-                    Status
-                  </div>
+                  <div className="product-head-title">Status</div>
                 </div>{" "}
                 {orders.map((data) => (
                   <div className="order-card-product-details" key={data._id}>
@@ -148,24 +125,20 @@ const Ordersummary = () => {
                     <div className="product-details-data">
                       {data.sub_category}
                     </div>
+
                     {data.orderstatus == "Delivered" ? (
                       <Link
-                        className="product-details-data-orderplaced"
+                        className="product-details-data-view-details-delivered"
                         to={`/volunteer/view-details/${data._id}`}
                       >
-                        {data.orderstatus}
-                        <img
-                          src="/order-delivered-tick.png"
-                          alt=""
-                          className="order-placed-tick"
-                        />
+                        View Details{" "}
                       </Link>
                     ) : (
                       <Link
-                        className="product-details-data"
+                        className="product-details-data-view-details"
                         to={`/volunteer/view-details/${data._id}`}
                       >
-                        {data.orderstatus}
+                        View Details{" "}
                       </Link>
                     )}
                   </div>

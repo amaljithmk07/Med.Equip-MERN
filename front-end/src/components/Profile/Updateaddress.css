@@ -1,0 +1,137 @@
+.update-address-main-body {
+  min-height: 630px;
+  width: 100%;
+  background-image: url("/public/cardbody1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  /* background-color: rgb(245, 229, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+}
+.update-address-sub-body {
+  min-height: 580px;
+  width: 50%;
+  /* background-color: rgb(215, 244, 163); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.update-address {
+  min-height: 400px;
+  width: 90%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.update-address-head {
+  height: 40px;
+  width: 95%;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  /* background-color: rgb(228, 255, 239); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.update-address-body {
+  min-height: 250px;
+  width: 95%;
+  /* background-color: rgb(21, 161, 77); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+}
+.update-address-sec {
+  min-height: 200px;
+  width: 100%;
+  /* background-color: rgb(175, 208, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+  text-transform: capitalize;
+}
+.update-address-sec-left {
+  min-height: 200px;
+  width: 50%;
+  /* background-color: rgb(175, 208, 255); */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* row-gap: 10px; */
+  flex-direction: column;
+  text-transform: uppercase;
+}
+.update-address-sec-right {
+  min-height: 200px;
+  width: 50%;
+  /* background-color: rgb(156, 187, 230); */
+  display: flex;
+  /* row-gap: 10px; */
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+.update-address-input-sec {
+  /* background-color: red; */
+  border: 1px dotted rgb(214, 214, 214);
+
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.update-address-input-radio {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  height: 28px;
+}
+.update-address-input {
+  /* background-color: blueviolet; */
+  width: 95%;
+  height: 25px;
+  font-weight: 600;
+  border: 0px;
+  /* border-bottom: 1px dotted rgb(189, 189, 189); */
+  padding: 0px 5px;
+}
+
+.update-address-input:focus {
+  border-bottom: 0px solid rgb(227, 227, 227);
+  outline: none;
+  /* outline: 2px dotted rgb(201  , 201, 201); */
+}
+.update-address-btn {
+  cursor: pointer;
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 5px;
+  background-color: rgb(253, 222, 189);
+  border: 0px;
+  height: 35px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 150px;
+}

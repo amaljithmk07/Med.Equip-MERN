@@ -18,6 +18,7 @@
 .user-addproduct-sub-body {
   height: 80%;
   width: 90%;
+  row-gap: 20px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

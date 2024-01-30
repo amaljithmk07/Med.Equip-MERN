@@ -57,31 +57,28 @@ function LoginPage() {
             <h1 className="login-h1">Login</h1>
             <form action="" className="components1">
               <div className="login-input-box">
-              <div className="login-input-field-sec">
-
-                {/* <img src="/login-user.png" alt="" className="login-png" /> */}
-                <img src="/email.png" alt="" className="login-png" />
-                <input
-                  type="text"
-                  placeholder=" Email"
-                  name="email"
-                  className="login-input"
-                  onChange={loginDetails}
-                />
-              </div>
+                <div className="login-input-field-sec">
+                  {/* <img src="/login-user.png" alt="" className="login-png" /> */}
+                  <img src="/email.png" alt="" className="login-png" />
+                  <input
+                    type="text"
+                    placeholder=" Email"
+                    name="email"
+                    className="login-input"
+                    onChange={loginDetails}
+                  />
+                </div>
               </div>
               <div className="login-input-box">
                 <div className="login-input-field-sec">
-                  {" "}
                   {pass == false ? (
                     <img
-                      id="check"
                       src="/login-pass-view.png"
-                      //closed eye
-                      alt=""
-                      className="login-png"
+                      id="check"
                       value={showPassword}
                       onClick={passShow}
+                      alt=""
+                      className="login-png"
                     />
                   ) : (
                     <>
