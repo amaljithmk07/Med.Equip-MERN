@@ -58,6 +58,7 @@
   width: 90%;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   /* background-color: yellow; */
   column-gap: 20px;
@@ -76,14 +77,14 @@
 
 .userprofile-input-box {
   width: 80%;
-  /* background-color: red; */
+  /* background-color: rgb(255, 255, 255); */
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 1rem;
   font-weight: 700;
   column-gap: 5px;
-  height: 20px;
+  height: 25px;
 }
 .userprofile-input-label {
   font-size: 1rem;
@@ -98,16 +99,15 @@
 }
 .userprofile-input {
   text-align: start;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  /* text-align: start; */
-  /* text-transform: capitalize; */
-  border: 0px;
-  /* border-bottom: 1px solid rgba(212, 133, 15, 0.603); */
+  border: 1px solid rgb(239, 239, 239);
+  padding: 0px 10px;
+  border-radius: 5px;
   color: rgb(62, 26, 0);
-  height: 20px;
+  height: 30px;
   min-width: 20%;
-  background-color: rgba(117, 251, 0, 0);
+  background-color: rgba(255, 255, 255, 0.719);
 }
 .userprofile-input:focus {
   outline: none;

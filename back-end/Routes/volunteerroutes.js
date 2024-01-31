@@ -3,6 +3,7 @@ const Checkauth = require("../middle-ware/Checkauth");
 const volunteerroutes = express.Router();
 const volunteerDB = require("../models/volunteerRegisterschema");
 const LoginDB = require("../models/loginschema");
+const Products = require("../models/productschema");
 const OrdersDB = require("../models/orderschema");
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
@@ -17,6 +18,45 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+//---Product Approval By Volunteer
+
+volunteerroutes.get("/product-approve/:id", Checkauth, async (req, res) => {
+  try {
+    const oldData = await Products.updateMany(
+      { _id: req.params.id },
+      {
+        $set: {
+          product_status: "Approved",
+        },
+      }
+    )
+
+      .then((oldData) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Data fetched successfully",
+          data: oldData,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "data fetched failed",
+          ErrorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Error",
+      ErrorMessage: err.message,
+    });
+  }
+});
 
 //----volunteer profile
 

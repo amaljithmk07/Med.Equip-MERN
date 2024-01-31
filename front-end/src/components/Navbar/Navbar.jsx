@@ -50,7 +50,7 @@ const Navbar = () => {
         <div className="general-sub">
           <input type="checkbox" id="check-hamb" />
           <label htmlFor="check-hamb" className="label-hamb">
-            <img src="/hamburger.png" alt=""  className="hamburger"/>{" "}
+            <img src="/hamburger.png" alt="" className="hamburger" />{" "}
           </label>
           <ul>
             <li>
@@ -125,6 +125,11 @@ const Navbar = () => {
                   <>
                     {Token !== null && Role == 3 ? (
                       <>
+                        <li>
+                          <Link to={"/user/viewproduct "} className="general-a">
+                            View Products
+                          </Link>
+                        </li>{" "}
                         <li>
                           <Link
                             to={"/volunteer/order-request"}

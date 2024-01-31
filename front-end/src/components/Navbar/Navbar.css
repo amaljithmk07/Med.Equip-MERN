@@ -279,7 +279,7 @@
   display: none;
 }
 .hamburger {
-  height: 50px;
+  height: 40px;
   width: auto;
   filter: invert(1);
 }
@@ -332,7 +332,7 @@
     right: -45%;
     width: 30%;
     height: 80vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: start;
@@ -340,7 +340,7 @@
       45deg,
       rgb(255, 135, 23),
       rgb(255, 214, 127)
-    );    /* background-color: rgba(232, 232, 232, 0); */
+    ); /* background-color: rgba(232, 232, 232, 0); */
     transition: all 0.5s;
   }
   .general-sub ul li .general-a {
@@ -404,7 +404,7 @@
     align-items: center;
   }
   .hamburger {
-    height: 45px;
+    height: 40px;
     width: auto;
   }
 
@@ -422,7 +422,7 @@
       45deg,
       rgb(255, 135, 23),
       rgb(255, 214, 127)
-    );  
+    );
     /* background-color: rgba(232, 232, 232, 0); */
     transition: all 0.5s;
   }
@@ -507,7 +507,7 @@
       45deg,
       rgb(255, 135, 23),
       rgb(255, 214, 127)
-    );  
+    );
     /* background-color: rgba(232, 232, 232, 0); */
     transition: all 0.5s;
   }

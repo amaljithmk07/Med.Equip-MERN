@@ -13,7 +13,37 @@ const Viewproduct = () => {
   const token = sessionStorage.getItem("Token");
   const role = sessionStorage.getItem("Role");
   useEffect(() => {
-    if (role == 2 || role == 1) {
+    if (role == 2) {
+      //Products User View
+
+      axios
+        .get(`http://localhost:2222/api/user/view`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((data) => {
+          console.log(data.data.data);
+          const approvedproducts = data.data.data.filter((data) => {
+            return data.product_status == "Approved";
+          });
+          setproduct(approvedproducts);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status == 401) {
+            toast.error("Session Time Out", {
+              position: "bottom-center",
+            });
+            setTimeout(() => {
+              sessionStorage.clear();
+              navigate("/login");
+            }, 3000);
+          }
+        });
+    } else {
+      //Products Admin And Volunteer View
+
       axios
         .get(`http://localhost:2222/api/user/view`, {
           headers: {
@@ -36,10 +66,10 @@ const Viewproduct = () => {
             }, 3000);
           }
         });
-    } else {
-      // sdf
     }
   }, []);
+
+  //Add to Cart
 
   const cartHandler = (item) => {
     axios
@@ -56,6 +86,26 @@ const Viewproduct = () => {
         setTimeout(() => {
           navigate("/usercart");
         }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //Product Approval
+
+  const productApprove = (id) => {
+    axios
+      .get(`http://localhost:2222/api/volunteer/product-approve/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        toast.success("Product Approved  !", {
+          position: "bottom-center",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -167,17 +217,26 @@ const Viewproduct = () => {
                   </div>
                   <div className="user-view-card-buttons">
                     {/* <div className="user-btn-sec"> */}
-                    <button
-                      className="user-addtocart"
-                      onClick={() => cartHandler(item)}
-                    >
-                      Add to Cart
-                      <img
-                        src="/addtocart.png"
-                        alt=""
-                        className="user-addtocart-logo"
-                      />
-                    </button>
+                    {role == 3 ? (
+                      <button
+                        className="user-addtocart"
+                        onClick={() => productApprove(item._id)}
+                      >
+                        Approve
+                      </button>
+                    ) : (
+                      <button
+                        className="user-addtocart"
+                        onClick={() => cartHandler(item)}
+                      >
+                        Add to Cart
+                        <img
+                          src="/addtocart.png"
+                          alt=""
+                          className="user-addtocart-logo"
+                        />
+                      </button>
+                    )}
                     <button
                       className="user-saved-item"
                       onClick={() => savedItemHandler(item._id, item.wishlist)}

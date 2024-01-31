@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 
 const loginSchema = require("../models/loginschema");
 const register = require("../models/registerschema");
+const VolunteerDB = require("../models/volunteerRegisterschema");
 const Checkauth = require("../middle-ware/Checkauth");
+const { default: mongoose } = require("mongoose");
 const loginroutes = express.Router();
 
 loginroutes.post("/", async (req, res) => {
@@ -24,6 +26,14 @@ loginroutes.post("/", async (req, res) => {
           error: true,
           message: "Email doesn't Exist",
         });
+
+      // if (oldUser.role == 3) {
+      //   const loginId = new mongoose.Types.ObjectId(oldUser._id);
+      //   const oldvolunteer = await VolunteerDB.findOne({ login_id: loginId });
+      //   const isapproved = oldvolunteer.status;
+      //   if (isapproved == "Approved") {
+      //   }
+      // }
       const isPasswordCorrect = await bcrypt.compare(
         req.body.password,
         oldUser.password

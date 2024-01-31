@@ -6,9 +6,14 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const token = sessionStorage.getItem("Token");
-const id=sessionStorage.getItem('LoginId')
-// console.log(token);
+
+
+var token = sessionStorage.getItem("Token");
+var id = sessionStorage.getItem("LoginId");
+console.log("tokeldkfgslfdgjdshgfkshfdgdkjfhsgkjfhdgn", token);
+
+
+
 export const cartView = createAsyncThunk("content/cartView", async () => {
   const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {
     headers: {
@@ -163,5 +168,5 @@ export const contentSlice = createSlice({
     });
   },
 });
-export const { extraReducers } = contentSlice.actions;
+// export const { extraReducers } = contentSlice.actions;
 export default contentSlice.reducer;
