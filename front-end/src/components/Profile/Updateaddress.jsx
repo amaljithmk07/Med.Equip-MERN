@@ -149,26 +149,30 @@ const Updateaddress = () => {
                   <div className="update-address-input-sec">
                     {" "}
                     Address type:{" "}
-                    <div className="update-address-input-radio">
-                      <input
-                        type="radio"
-                        id="home"
-                        name="address_type"
-                        className="update-address-radio"
-                        onChange={addressInput}
-                        value="home"
-                      />
-                      home
-                      <input
-                        type="radio"
-                        id="work"
-                        className="update-address-radio"
-                        name="address_type"
-                        onChange={addressInput}
-                        value="work"
-                      />
-                      work
-                    </div>{" "}
+                    <div className="update-address-input-radio-sec">
+                      <div className="update-address-input-radio">
+                        <input
+                          type="radio"
+                          id="home"
+                          name="address_type"
+                          className="update-address-radio"
+                          onChange={addressInput}
+                          value="home"
+                        />
+                        home
+                      </div>
+                      <div className="update-address-input-radio">
+                        <input
+                          type="radio"
+                          id="work"
+                          className="update-address-radio"
+                          name="address_type"
+                          onChange={addressInput}
+                          value="work"
+                        />
+                        work
+                      </div>{" "}
+                    </div>
                   </div>
                 </div>
               </div>

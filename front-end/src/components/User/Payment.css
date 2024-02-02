@@ -15,8 +15,9 @@
   min-height: 500px;
   width: 60%;
   display: flex;
+  row-gap: 20px;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
@@ -50,7 +51,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border: 2px dashed rgb(236, 236, 236);
+  border: 2px dashed rgb(223, 223, 223);
   row-gap: 20px;
   flex-direction: column;
   align-items: center;
@@ -59,7 +60,18 @@
 
   /* background-color: #cfcfcf; */
 }
-
+.payment-details-head {
+  height: auto;
+  width: 80%;
+  /* background-color: red; */
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  color: rgb(79, 79, 79);
+  justify-content: center;
+  align-items: center;
+}
 .payment-details-sec {
   height: 50px;
   width: 70%;
@@ -108,24 +120,26 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   /* background-color: #e93434; */
 }
-.payment-button {
+.qr-button {
   height: 40px;
-  width: 60%;
+  width: 50%;
   border: 0px;
   font-weight: 700;
   border-radius: 5px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  letter-spacing: .2px;
-  font-size: 0.91rem;
-  color: white;
+  letter-spacing: 0.2px;
+  font-size: 0.81rem;
+  color: rgb(41, 41, 41);
+  cursor: pointer;
+  background-color: rgba(232, 232, 232, 0.222);
   text-transform: uppercase;
-  background-color: #ffca95;
+
 }
 .payment-details,
 .payment-amount:focus {
@@ -154,7 +168,6 @@
   align-items: center;
   flex-direction: column;
   /* row-gap: 10px; */
-
 }
 .payment-scan-head {
   height: auto;
@@ -178,5 +191,26 @@
 }
 .payment-option {
   height: auto;
-  width: 50%;
+  width: 30%;
+}
+.payment-button {
+  height: 40px;
+  width: 30%;
+  border: 0px;
+  font-weight: 700;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  letter-spacing: 0.2px;
+  font-size: 0.91rem;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: linear-gradient(
+    45deg,
+    rgb(255, 200, 59),
+    rgb(255, 182, 12),
+    #ff9900
+  );
 }

@@ -185,9 +185,11 @@ const Address = () => {
                       <div className="s-a-name"> {details.alternate_phone}</div>
                     </div>
                     <div className="s-a-address">
-                      {details.address},{details.state},{details.district},
-                      {details.pin_code}
-                      {details.email}
+                      <> {details.address},</>
+                      <> {details.state},</>
+                      <> {details.district},</>
+                      <> {details.pin_code},</>
+                      <> {details.email}</>
                     </div>
                   </div>
                   <div className="saved-address-edit-delete-sec">
@@ -306,25 +308,29 @@ const Address = () => {
                   <div className="add-address-input-sec">
                     {" "}
                     Address type:{" "}
-                    <div className="add-address-input-radio">
-                      <input
-                        type="radio"
-                        id="home"
-                        name="address_type"
-                        className="add-address-radio"
-                        onChange={addressInput}
-                        value="home"
-                      />
-                      home
-                      <input
-                        type="radio"
-                        id="work"
-                        className="add-address-radio"
-                        name="address_type"
-                        onChange={addressInput}
-                        value="work"
-                      />
-                      work
+                    <div className="add-address-input-radio-sec">
+                      <div className="add-address-input-radio">
+                        <input
+                          type="radio"
+                          id="home"
+                          name="address_type"
+                          className="add-address-radio"
+                          onChange={addressInput}
+                          value="home"
+                        />
+                        home
+                      </div>
+                      <div className="add-address-input-radio">
+                        <input
+                          type="radio"
+                          id="work"
+                          className="add-address-radio"
+                          name="address_type"
+                          onChange={addressInput}
+                          value="work"
+                        />
+                        work
+                      </div>
                     </div>{" "}
                   </div>
                 </div>

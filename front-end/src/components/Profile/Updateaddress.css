@@ -14,8 +14,8 @@
 }
 .update-address-sub-body {
   min-height: 580px;
-  width: 50%;
-  /* background-color: rgb(215, 244, 163); */
+  min-width: 50%;
+  /* background-color: rgb(163, 239, 21); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@
 }
 .update-address {
   min-height: 400px;
-  width: 90%;
+  min-width: 90%;
   background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
@@ -88,6 +88,7 @@
   border: 1px dotted rgb(214, 214, 214);
 
   width: 70%;
+  /* width: 200px; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -95,7 +96,7 @@
   font-size: 0.7rem;
   font-weight: 700;
 }
-.update-address-input-radio {
+.update-address-input-radio-sec {
   /* background-color: red; */
   display: flex;
   justify-content: center;
@@ -103,6 +104,14 @@
   font-size: 0.8rem;
   font-weight: 600;
   height: 28px;
+}
+.update-address-input-radio {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* height: 28px; */
 }
 .update-address-input {
   /* background-color: blueviolet; */
@@ -122,10 +131,7 @@
 .update-address-btn {
   cursor: pointer;
   /* background-image: url("/public/cardbody1.jpg"); */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: cover;
+
   border-radius: 5px;
   background-color: rgb(253, 222, 189);
   border: 0px;
@@ -134,4 +140,110 @@
   font-weight: 700;
   text-transform: uppercase;
   width: 150px;
+}
+
+@media screen and (max-width: 1100px) {
+  .update-address-sub-body {
+    min-height: 580px;
+    min-width: 60%;
+  }
+}
+@media screen and (max-width: 820px) {
+  .update-address-sub-body {
+    min-height: 580px;
+    min-width: 70%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .update-address-sub-body {
+    min-height: 580px;
+    min-width: 80%;
+  }
+}
+@media screen and (max-width: 620px) {
+  .update-address-body {
+    min-height: 250px;
+    width: 95%;
+    /* background-color: rgb(21, 161, 77); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+  }
+  .update-address-sub-body {
+    min-height: 580px;
+    min-width: 90%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .update-address-sub-body {
+    min-height: 580px;
+    min-width: 95%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .update-address-head {
+    height: 40px;
+    width: 95%;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    /* background-color: rgb(228, 255, 239); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .update-address {
+    /* background-color: red; */
+    width: 90%;
+    padding: 30px 0px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .update-address-sec {
+    /* background-color: red; */
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+  }
+  .update-address-sec-left,
+  .update-address-sec-right {
+    min-height: 200px;
+    width: 100%;
+    /* background-color: rgb(156, 187, 230); */
+    display: flex;
+    /* row-gap: 10px; */
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    text-transform: uppercase;
+  }
+  .update-address-input-sec {
+    /* background-color: red; */
+    min-height: 30px;
+    width: 80%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .update-address-input {
+    /* background-color: rgb(148, 96, 96); */
+    min-width: 70%;
+    height: 30px;
+  }
+  .update-address-input-radio-sec {
+    /* background-color: rgb(148, 127, 127); */
+    flex-wrap: wrap;
+    width: 50%;
+    min-height: 30px;
+    justify-content: flex-start;
+    font-size: 0.7rem;
+  }
 }

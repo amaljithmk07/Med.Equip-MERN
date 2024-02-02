@@ -1,17 +1,60 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Payment.css";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
+import upiqr from "upiqr";
 
 const Payment = () => {
-  const Navigate = useNavigate();
+  const token = sessionStorage.getItem("Token");
+
   const [price, setprice] = useState([]);
-  const paymentValue = (e) => {
-    setprice(e.target.value);
-    console.log(e.target.value);
+  const [qr, setqr] = useState([]);
+
+  //Payment Details Input
+
+  const paymentInput = (e) => {
+    const { name, value } = e.target;
+    setprice({ ...price, [name]: value });
   };
+
+  //Payment submit
+
+  const qrGenerate = (e) => {
+    const { amount } = price;
+    upiqr({
+      payeeVPA: "8086171296@paytm",
+      payeeName: "Amaljith",
+      amount: amount,
+    })
+      .then((upi) => {
+        setqr(upi.qr);
+        toast.success("QR Code Generated", {
+          position: "bottom-center",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const paymentSubmit = (e) => {
+    axios
+      .post(`http://localhost:2222/api/user/donation`, price, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        toast.success("Payment Done ", {
+          position: "bottom-center",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  // console.log("p", qr.length);
 
   return (
     <div>
@@ -20,31 +63,50 @@ const Payment = () => {
           <div className="payment-sub-body-head">Donation </div>
           <div className="payment-body-container">
             <div className="payment-left-body">
+              <div className="payment-details-head"> details</div>
               <div className="payment-details-sec">
-                Name : <input type="text" className="payment-details" />{" "}
+                Name :{" "}
+                <input
+                  type="text"
+                  className="payment-details"
+                  name="name"
+                  onChange={paymentInput}
+                />{" "}
               </div>
               <div className="payment-details-sec">
-                UPI : <input type="text" className="payment-details" />{" "}
+                phone :{" "}
+                <input
+                  type="number"
+                  className="payment-details"
+                  name="phone"
+                  onChange={paymentInput}
+                />{" "}
               </div>
               <div className="payment-details-amount-sec">
                 AMOUNT :{" "}
                 <input
                   type="number"
-                  max={2}
+                  name="amount"
                   className="payment-amount"
-                  onChange={paymentValue}
+                  onChange={paymentInput}
                 />{" "}
               </div>
-              <button className="payment-button">Generate QR Code </button>
+              <button className="qr-button" onClick={qrGenerate}>
+                Generate QR Code{" "}
+              </button>
             </div>
             <div className="payment-right-body">
               <div className="payment-qr-sec">
                 <div className="payment-scan-head">Scan Here</div>
-                <img
-                  src="/qrcode.png"
-                  alt="sadas"
-                  className="payment-qr-code"
-                />
+                {qr.length == 0 ? (
+                  <img
+                    src="/qrcode.png"
+                    alt="sadas"
+                    className="payment-qr-code"
+                  />
+                ) : (
+                  <img src={qr} alt="" className="payment-qr-code" />
+                )}
                 <img
                   src="/payment-option.png"
                   alt="sadas"
@@ -52,6 +114,9 @@ const Payment = () => {
                 />
               </div>
             </div>
+            <button className="payment-button" onClick={paymentSubmit}>
+           Make   Payment
+            </button>
           </div>
         </div>
       </div>

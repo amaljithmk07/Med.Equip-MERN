@@ -37,7 +37,8 @@
 
   border-radius: 35px;
   min-height: 600px;
-  width: 70%;
+  /* width: 70%; */
+  width: 450px;
   display: flex;
   /* border: 2px solid #00000046; */
   flex-direction: column;
@@ -163,4 +164,25 @@
 }
 .address-img {
   height: 15px;
+}
+@media screen and (max-width: 475px) {
+  .userprofile-home-sub-body {
+    width: 100%;
+  }
+  .userprofile-home-content {
+    width: 100%;
+    border-radius: 15px;
+  }
+  .userprofile-home-image {
+    column-gap: 10px;
+    font-size: 1.8rem;
+  }
+  .userprofile-photo {
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .userprofile-input-label,
+  .userprofile-input {
+    font-size: 0.91rem;
+  }
 }

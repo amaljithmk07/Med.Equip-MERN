@@ -8,6 +8,7 @@ const CartDB = require("../models/cartschema");
 const OrdersDB = require("../models/orderschema");
 const Checkauth = require("../middle-ware/Checkauth");
 const AddressDB = require("../models/addressschema");
+const DonationDB = require("../models/donationsschema");
 const { default: mongoose } = require("mongoose");
 
 const storage = multer.diskStorage({
@@ -1302,6 +1303,43 @@ userroutes.get("/view-details/:id", Checkauth, async (req, res) => {
       success: false,
       error: true,
       message: "Network failed",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
+//---Donation
+
+userroutes.post("/donation", Checkauth, (req, res) => {
+  try {
+    const Data = new DonationDB({
+      name: req.body.name,
+      phone: req.body.phone,
+      amount: req.body.amount,
+    });
+    Data.save()
+
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Donation successfull",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "Donated failed",
+          ErrorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Error",
       ErrorMessage: err.message,
     });
   }
