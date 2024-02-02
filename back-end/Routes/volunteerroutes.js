@@ -58,6 +58,45 @@ volunteerroutes.get("/product-approve/:id", Checkauth, async (req, res) => {
   }
 });
 
+//---Product Reject By Volunteer
+
+volunteerroutes.get("/product-reject/:id", Checkauth, async (req, res) => {
+  try {
+    const oldData = await Products.updateMany(
+      { _id: req.params.id },
+      {
+        $set: {
+          product_status: "Rejected",
+        },
+      }
+    )
+
+      .then((oldData) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Data fetched successfully",
+          data: oldData,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "data fetched failed",
+          ErrorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Error",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
 //----volunteer profile
 
 volunteerroutes.get("/profile", Checkauth, (req, res) => {

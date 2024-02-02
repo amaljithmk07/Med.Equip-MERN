@@ -76,7 +76,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/usercart"} className="general-a">
+                  <Link to={"/user/cart"} className="general-a">
                     Cart{" "}
                     <sup>
                       {cartitems != 0 ? (
@@ -126,8 +126,11 @@ const Navbar = () => {
                     {Token !== null && Role == 3 ? (
                       <>
                         <li>
-                          <Link to={"/user/viewproduct "} className="general-a">
-                            View Products
+                          <Link
+                            to={"/volunteer/approve-product "}
+                            className="general-a"
+                          >
+                            Product Lists
                           </Link>
                         </li>{" "}
                         <li>

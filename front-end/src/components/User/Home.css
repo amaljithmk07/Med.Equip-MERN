@@ -69,15 +69,27 @@
 }
 
 .home-p {
-  /* width: 80%; */
+  /* width: 80%;  */
   color: #061a3d;
   /* background-color: rgb(69, 54, 54); */
   text-align: center;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-size: 17px;
+  font-style: italic;
+  text-transform: capitalize;
+  font-weight: 600;
   line-height: 25px;
   letter-spacing: 0.5px;
+}
+.home-btn-group {
+  width: 330px;
+  /* background-color: red;  */
+  text-decoration: none;
+  display: flex;
+  flex-direction: column-reverse;
+
+  align-items: center;
+  height: auto;
+  justify-content: space-evenly;
 }
 #button-arrow {
   width: 330px;
@@ -93,7 +105,7 @@
   height: 43px;
   text-transform: uppercase;
   width: 260px;
-  font-size: 18px;
+  font-size: 17px;
   /* background-color: #f47920; */
   background-image: url("/public/navbar.jpeg");
   background-position: center;

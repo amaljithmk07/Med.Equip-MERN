@@ -41,7 +41,7 @@ const Usercart = () => {
         {/* //////////////////////////////////// */}
         {cartitems[0] == null ? (
           <>
-            <img src="./Empty-cart.png" alt="" className="cart-empty" />{" "}
+            <img src="/Empty-cart.png" alt="" className="cart-empty" />{" "}
           </>
         ) : (
           <>

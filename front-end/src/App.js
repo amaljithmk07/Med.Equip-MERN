@@ -31,6 +31,8 @@ import Address from "./components/Profile/Address";
 import Donatedproducts from "./components/User/Donatedproducts";
 import Viewdetails from "./components/Volunteer/Viewdetails";
 import Updateaddress from "./components/Profile/Updateaddress";
+import Approveproduct from "./components/Volunteer/Approveproduct";
+import Payment from "./components/User/Payment";
 
 function App() {
   // const navigate = useNavigate();
@@ -64,7 +66,8 @@ function App() {
         <Route path="/user/addproduct" element={<Useraddproduct />} />
         <Route path="/user/viewproduct" element={<Viewproduct />} />
         <Route path="/uuidverify" element={<Uuidverify />} />
-        <Route path="/usercart" element={<Usercart />} />
+        <Route path="/user/cart" element={<Usercart />} />
+        <Route path="/user/payment" element={<Payment />} />
         <Route path="/user/order-place" element={<Orderplace />} />
         <Route path="/user/order-summary" element={<Ordersummary />} />
 
@@ -76,6 +79,7 @@ function App() {
         <Route path="/volunteer/request" element={<Volunteerrequest />} />
         <Route path="/volunteer/order-request" element={<Orderrequest />} />
         <Route path="/volunteer/accepted-orders" element={<Acceptedorders />} />
+        <Route path="/volunteer/approve-product" element={<Approveproduct />} />
       </Routes>
       <Footer />
     </Router>

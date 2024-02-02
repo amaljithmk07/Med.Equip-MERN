@@ -42,7 +42,7 @@ const Viewproduct = () => {
           }
         });
     } else {
-      //Products Admin And Volunteer View
+      //Products Admin  View
 
       axios
         .get(`http://localhost:2222/api/user/view`, {
@@ -84,28 +84,8 @@ const Viewproduct = () => {
           position: "bottom-center",
         });
         setTimeout(() => {
-          navigate("/usercart");
+          navigate("/user/cart");
         }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  //Product Approval
-
-  const productApprove = (id) => {
-    axios
-      .get(`http://localhost:2222/api/volunteer/product-approve/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((data) => {
-        console.log(data);
-        toast.success("Product Approved  !", {
-          position: "bottom-center",
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -217,26 +197,18 @@ const Viewproduct = () => {
                   </div>
                   <div className="user-view-card-buttons">
                     {/* <div className="user-btn-sec"> */}
-                    {role == 3 ? (
-                      <button
-                        className="user-addtocart"
-                        onClick={() => productApprove(item._id)}
-                      >
-                        Approve
-                      </button>
-                    ) : (
-                      <button
-                        className="user-addtocart"
-                        onClick={() => cartHandler(item)}
-                      >
-                        Add to Cart
-                        <img
-                          src="/addtocart.png"
-                          alt=""
-                          className="user-addtocart-logo"
-                        />
-                      </button>
-                    )}
+
+                    <button
+                      className="user-addtocart"
+                      onClick={() => cartHandler(item)}
+                    >
+                      Add to Cart
+                      <img
+                        src="/addtocart.png"
+                        alt=""
+                        className="user-addtocart-logo"
+                      />
+                    </button>
                     <button
                       className="user-saved-item"
                       onClick={() => savedItemHandler(item._id, item.wishlist)}

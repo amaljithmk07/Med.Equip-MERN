@@ -43,7 +43,7 @@ const Home = () => {
                 ) : (
                   <>
                     {token != null && role == 2 ? (
-                      <>
+                      <div className="home-btn-group">
                         <Link to={"/uuidverify"} id="button-arrow">
                           <button id="donate-button">Donate Your Love </button>
                           <img
@@ -52,7 +52,10 @@ const Home = () => {
                             id="right-arrow"
                           />
                         </Link>
-                      </>
+                        <Link to={"/user/payment"} id="button-arrow">
+                          Donate
+                        </Link>
+                      </div>
                     ) : (
                       <>
                         <Link to={"/volunteer/order-request"} id="button-arrow">
