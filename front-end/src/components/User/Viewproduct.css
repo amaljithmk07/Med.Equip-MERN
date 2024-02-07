@@ -291,4 +291,20 @@
     justify-content: space-between;
     align-items: center;
   }
+  .user-view-card {
+    height: 300px;
+    width: 200px;
+  }
+  .user-view-card-details-h3,
+  .user-view-card-details-h4 {
+    font-size: 0.75rem;
+  }
+  .user-addtocart {
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+  .user-saveditem-logo {
+    height: 16px;
+    width: auto;
+  }
 }

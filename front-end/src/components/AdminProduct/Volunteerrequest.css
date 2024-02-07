@@ -117,7 +117,7 @@
   /* background-color: yellow; */
   letter-spacing: 0.5px;
   width: 40%;
-  cursor: pointer;
+  cursor: not-allowed;
   font-weight: 600;
   color: #ffffff;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.652);

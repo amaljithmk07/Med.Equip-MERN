@@ -27,33 +27,38 @@ loginroutes.post("/", async (req, res) => {
           message: "Email doesn't Exist",
         });
 
-      // if (oldUser.role == 3) {
-      //   const loginId = new mongoose.Types.ObjectId(oldUser._id);
-      //   const oldvolunteer = await VolunteerDB.findOne({ login_id: loginId });
-      //   const isapproved = oldvolunteer.status;
-      //   if (isapproved == "Approved") {
-      //   }
-      // }
+      if (oldUser.role == 3) {
+        const loginId = new mongoose.Types.ObjectId(oldUser._id);
+        const oldvolunteer = await VolunteerDB.findOne({ login_id: loginId });
+        const isapproved = oldvolunteer.status;
+        if (isapproved !== "Approved") {
+          return res.status(400).json({
+            success: false,
+            error: true,
+            message: " Request not approved",
+          });
+        }
+      }
       const isPasswordCorrect = await bcrypt.compare(
         req.body.password,
         oldUser.password
       );
       if (!isPasswordCorrect)
-        return res
-          .status(400)
-          .json({ success: false, error: true, message: "Incorrect password" });
-
+        return res.status(400).json({
+          success: false,
+          error: true,
+          message: "Incorrect password",
+        });
+      // console.log('oldUser',oldUser);
       const token = jwt.sign(
         {
           userId: oldUser._id,
           userRole: oldUser.role,
-          email: oldUser.email,
+          userEmail: oldUser.email,
         },
         "secret_this_should_be_longer",
         { expiresIn: "1h" }
       );
-      // console.log("token:", token);
-      // console.log("Role:", userRole);
       return res.status(200).json({
         success: true,
         error: false,
@@ -64,6 +69,9 @@ loginroutes.post("/", async (req, res) => {
         email: oldUser.email,
         data: "Login Successful",
       });
+
+      // console.log("token:", token);
+      // console.log("Role:", userRole);
     } else {
       return res.status(400).json({
         success: false,

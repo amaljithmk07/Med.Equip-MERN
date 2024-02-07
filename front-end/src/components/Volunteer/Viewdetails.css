@@ -14,7 +14,7 @@
 .a-d-sub-body {
   height: 530px;
   width: 60%;
-  border: 1px solid black;
+  border: 1px solid rgb(170, 170, 170);
   background-color: rgb(255, 255, 255);
 
   display: flex;
@@ -89,4 +89,62 @@
 }
 .order-accepted {
   color: rgb(5, 104, 243);
+}
+@media screen and (max-width: 1060px) {
+  .a-d-sub-body {
+    height: 530px;
+    width: 90%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .a-d-sub-body {
+    height: 530px;
+    width: 95%;
+  }
+  .a-d-address {
+    width: 33%;
+    background-color: rebeccapurple;
+  }
+  .a-d-address-data {
+    width: 80px;
+    width: 90%;
+    /* background-color: red; */
+    font-size: 0.62rem;
+  }
+  .pending,
+  .delivered,
+  .order-accepted {
+    font-size: 0.92rem;
+  }
+  .status-video {
+    /* background-color: red; */
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .addressdetails-body {
+    min-height: auto;
+    /* width: 100%; */
+  }
+  .a-d-sub-body {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .a-d-details {
+    height: 200px;
+    width: 100%;
+    /* background-color: rgb(211, 41, 41); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .a-d-address {
+    width: 90%;
+    background-color: rebeccapurple;
+  }
 }

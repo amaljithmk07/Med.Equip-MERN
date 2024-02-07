@@ -1308,7 +1308,7 @@ userroutes.get("/view-details/:id", Checkauth, async (req, res) => {
   }
 });
 
-//---Donation
+//---Financial Donation
 
 userroutes.post("/donation", Checkauth, (req, res) => {
   try {

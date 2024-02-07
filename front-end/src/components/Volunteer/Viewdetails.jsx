@@ -93,7 +93,7 @@ const Viewdetails = () => {
             <div className="a-d-address">
               {viewdetails.orderstatus == "Order Accepted" ? (
                 <>
-                  <video width={"200"} height={"50"} autoPlay muted loop>
+                  <video width={"200"} height={"50"} autoPlay muted loop className="status-video">
                     <source src="/delivery.mp4" type="video/mp4" />
                   </video>
                   <div className="order-accepted">Order accepted</div>
@@ -102,14 +102,14 @@ const Viewdetails = () => {
                 <>
                   {viewdetails.orderstatus == "Delivered" ? (
                     <>
-                      <video width={"200"} height={"150"} autoPlay muted loop>
+                      <video width={"200"} height={"150"} autoPlay muted loop className="status-video">
                         <source src="/delivered.mp4" type="video/mp4" />
                       </video>
                       <div className="delivered">Delivered</div>
                     </>
                   ) : (
                     <>
-                      <video width={"200"} height={"100"} autoPlay muted loop>
+                      <video width={"200"} height={"100"} autoPlay muted loop className="status-video">
                         <source src="/pending.mp4" type="video/mp4" />
                       </video>
                       <div className="pending">Pending</div>
