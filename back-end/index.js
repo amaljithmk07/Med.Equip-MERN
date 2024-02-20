@@ -7,9 +7,11 @@ const loginroutes = require("./Routes/loginroutes");
 const cors = require("cors");
 const userroutes = require("./Routes/userroutes");
 const volunteerroutes = require("./Routes/volunteerroutes");
+require("dotenv").config();
+
 mongoose
   .connect(
-    "mongodb+srv://amaljithmk123:8086171296@medical.tctqxnz.mongodb.net/Medical-equipment",
+   process.env.MONGO_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -31,7 +33,7 @@ server.use("/api/admin", adminroutes);
 server.use("/api/user", userroutes);
 server.use("/api/volunteer", volunteerroutes);
 
-const port = 2222;
+const port = process.env.PORT;
 server.listen(port, () => {
   console.log(`server started on port ${port}`);
 });

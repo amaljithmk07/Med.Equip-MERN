@@ -8,6 +8,7 @@ const VolunteerDB = require("../models/volunteerRegisterschema");
 const Checkauth = require("../middle-ware/Checkauth");
 const { default: mongoose } = require("mongoose");
 const loginroutes = express.Router();
+require("dotenv").config();
 
 loginroutes.post("/", async (req, res) => {
   // const { email, password } = req.body;
@@ -56,7 +57,7 @@ loginroutes.post("/", async (req, res) => {
           userRole: oldUser.role,
           userEmail: oldUser.email,
         },
-        "secret_this_should_be_longer",
+        process.env.SECRET_KEY,
         { expiresIn: "1h" }
       );
       return res.status(200).json({
