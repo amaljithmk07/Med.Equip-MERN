@@ -86,8 +86,9 @@
   flex-direction: column;
 }
 .footer-data {
-  /* color: blue; */
-
+  color: rgb(0, 0, 21);
+  text-decoration: none;
+  font-weight: 500;
   font-size: 0.9rem;
   /* top: 10px; */
   margin: 10px 0px 0px 0px;
@@ -272,5 +273,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  
+  .footer-head {
+    height: 20%;
+    width: 100%;
+    /* background-color: rgb(9, 9, 117); */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    text-transform: uppercase;
+    /* border: 2px solid white; */
+    font-weight: 700;
+    color: rgb(0, 0, 0);
   }
 }

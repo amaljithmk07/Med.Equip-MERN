@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer-home">
@@ -12,21 +13,21 @@ const Footer = () => {
             </div>
             <div className="footer-container1">
               <div className="footer-content1">
-                <p className="footer-data">About Us</p>
-                <p className="footer-data">Annual Checkup</p>
-                <p className="footer-data">Blog</p>
-                <p className="footer-data">Carrers</p>
+                <Link className="footer-data">About Us</Link>
+                <Link className="footer-data">Annual Checkup</Link>
+                <Link className="footer-data">Blog</Link>
+                <Link className="footer-data">Carrers</Link>
               </div>
               <div className="footer-content1">
                 {" "}
-                <p className="footer-data">Get A Diagnosis</p>
-                <p className="footer-data">How It Works</p>
-                <p className="footer-data">Privacy Policy</p>
+                <Link className="footer-data">Get A Diagnosis</Link>
+                <Link className="footer-data">How It Works</Link>
+                <Link className="footer-data">Privacy Policy</Link>
               </div>
               <div className="footer-content1">
                 {" "}
-                <p className="footer-data">Contact Us</p>
-                <p className="footer-data">FAQ's</p>
+                <Link className="footer-data">Contact Us</Link>
+                <Link className="footer-data">FAQ's</Link>
               </div>
             </div>
           </div>
@@ -34,15 +35,15 @@ const Footer = () => {
             <div className="footer-head">Top Insurance</div>
             <div className="footer-container2">
               <div className="footer-content2">
-                <p className="footer-data">Aetna</p>
-                <p className="footer-data">Health Plan</p>
-                <p className="footer-data">Blue Shield</p>
-                <p className="footer-data">Carrers</p>
+                <Link className="footer-data">Aetna</Link>
+                <Link className="footer-data">Health Plan</Link>
+                <Link className="footer-data">Blue Shield</Link>
+                <Link className="footer-data">Carrers</Link>
               </div>
               <div className="footer-content2">
-                <p className="footer-data">Health Net</p>
-                <p className="footer-data">Health Smart</p>
-                <p className="footer-data">View More</p>
+                <Link className="footer-data">Health Net</Link>
+                <Link className="footer-data">Health Smart</Link>
+                <Link className="footer-data">View More</Link>
               </div>
             </div>
           </div>
@@ -55,7 +56,7 @@ const Footer = () => {
         </div>
         <div className="footer-footer">
           <div className="footer-footer-1">
-            All rights reserved by team Maitexa Software Developers
+            All rights reserved by respective owners
           </div>
           <div className="footer-footer-2">Privacy Policy</div>
           <div className="footer-footer-3">Terms & Conditions</div>
