@@ -24,7 +24,7 @@
   /* background-color: rgb(67, 226, 43); */
   height: 60%;
   width: 100%;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   display: flex;
 }
@@ -35,14 +35,16 @@
   background-size: cover;
   object-fit: cover;
   display: flex;
+  flex-wrap: wrap;
+  text-wrap: wrap;
   justify-content: center;
   align-items: center;
   font-style: italic;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 600;
-  padding: 0px 5%;
+  padding: 0px 50px;
   height: 100%;
-  width: 30%;
+  width: 20%;
   /* background-color: blue; */
   /* border: 1px solid white; */
 }
@@ -57,20 +59,54 @@
   align-items: center;
 }
 .vol-home-create {
-    width: 100px;
-    height: 40px;
-    border: 0px ;
-    /* border-radius: 10px; */
-    background-color: #ffffff;
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    margin: 0px 5px;
-    transition: background-color 0.3s, color.2s;
+  width: 100px;
+  height: 40px;
+  border: 0px;
+  /* border-radius: 10px; */
+  background-color: #ffffff;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  margin: 0px 5px;
+  transition: background-color 0.3s, color.2s;
+}
+.vol-home-create:hover {
+  border: 2px solid rgb(255, 183, 0);
+  background-color: rgb(255, 181, 84);
+
+  color: rgb(0, 0, 0);
+}
+
+@media screen and (max-width: 1300px) {
+  .vol-home-body {
+    width: 100%;
+    height: auto;
+    padding: 50px 0;
+    /* background-color: red; */
   }
-  .vol-home-create:hover {
-    border: 2px solid rgb(255, 183, 0);
-    background-color: rgb(255, 181, 84);
-  
-    color: rgb(0, 0, 0);
+  .vol-home-container {
+    /* background-color: rgb(162, 186, 45); */
+    width: 80%;
+    height: auto;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
+  .vol-home-quotes-box {
+    /* background-color: rgb(67, 226, 43); */
+    height: auto;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+  }
+  .vol-home-quote {
+    font-size: 13px;
+    height: 250px;
+    width: 350px;
+    /* background-color: rgb(22, 22, 155); */
+    /* border: 1px solid white; */
+  }
+}
