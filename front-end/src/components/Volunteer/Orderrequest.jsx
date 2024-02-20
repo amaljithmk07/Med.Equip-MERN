@@ -9,7 +9,8 @@ const Orderrequest = () => {
   useEffect(() => {
     axios
       .post(
-        `http://localhost:2222/api/volunteer/order-status`,
+        // `http://localhost:2222/api/volunteer/order-status`,
+        `https://med-equip.onrender.com/api/volunteer/order-status`,
         {},
         {
           headers: {
@@ -29,7 +30,8 @@ const Orderrequest = () => {
   const acceptHandler = (id) => {
     axios
       .put(
-        `http://localhost:2222/api/volunteer/order-accept/${id}`,
+        // `http://localhost:2222/api/volunteer/order-accept/${id}`,
+        `https://med-equip.onrender.com/api/volunteer/order-accept/${id}`,
         {},
         {
           headers: {

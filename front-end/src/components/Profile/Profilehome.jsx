@@ -11,8 +11,10 @@ const Profilehome = () => {
   const role = sessionStorage.getItem("Role");
 
   useEffect(() => {
-    const userprofile = `http://localhost:2222/api/user/profile`;
-    const volunteerprofile = `http://localhost:2222/api/volunteer/profile`;
+    // const userprofile = `http://localhost:2222/api/user/profile`;
+    const userprofile = `https://med-equip.onrender.com/api/user/profile`;
+    // const volunteerprofile = `http://localhost:2222/api/volunteer/profile`;
+    const volunteerprofile = `https://med-equip.onrender.com/api/volunteer/profile`;
     if (role == 3) {
       axios
         .get(volunteerprofile, {

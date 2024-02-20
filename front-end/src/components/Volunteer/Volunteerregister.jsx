@@ -15,7 +15,8 @@ const Volunteerregister = () => {
   };
   const createHandler = () => {
     axios
-      .post(`http://localhost:2222/api/register/volunteer`, letter)
+      // .post(`http://localhost:2222/api/register/volunteer`, letter)
+      .post(`https://med-equip.onrender.com/api/register/volunteer`, letter)
       .then((data) => {
         console.log(data);
         toast.success('Register Successful', {

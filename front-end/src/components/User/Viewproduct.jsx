@@ -17,7 +17,8 @@ const Viewproduct = () => {
       //Products User View
 
       axios
-        .get(`http://localhost:2222/api/user/view`, {
+        // .get(`http://localhost:2222/api/user/view`, {
+        .get(`https://med-equip.onrender.com/api/user/view`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -45,7 +46,8 @@ const Viewproduct = () => {
       //Products Admin  View
 
       axios
-        .get(`http://localhost:2222/api/user/view`, {
+        // .get(`http://localhost:2222/api/user/view`, {
+        .get(`https://med-equip.onrender.com/api/user/view`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -73,7 +75,8 @@ const Viewproduct = () => {
 
   const cartHandler = (item) => {
     axios
-      .post(`http://localhost:2222/api/user/addtocart`, item, {
+      // .post(`http://localhost:2222/api/user/addtocart`, item, {
+      .post(`https://med-equip.onrender.com/api/user/addtocart`, item, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -108,7 +111,8 @@ const Viewproduct = () => {
     // console.log(wishlist);
     if (wishlist == "") {
       axios
-        .put(`http://localhost:2222/api/user/wishlist/${id}`, {})
+        // .put(`http://localhost:2222/api/user/wishlist/${id}`, {})
+        .put(`https://med-equip.onrender.com/api/user/wishlist/${id}`, {})
         .then((data) => {
           const filter = product.filter((data) => {
             if (data._id == id) {
@@ -124,7 +128,8 @@ const Viewproduct = () => {
         });
     } else {
       axios
-        .put(`http://localhost:2222/api/user/wishlist-remove/${id}`, {})
+        // .put(`http://localhost:2222/api/user/wishlist-remove/${id}`, {})
+        .put(`https://med-equip.onrender.com/api/user/wishlist-remove/${id}`, {})
         .then((data) => {
           console.log(data);
           const filter = product.filter((data) => {

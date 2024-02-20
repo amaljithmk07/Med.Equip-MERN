@@ -20,7 +20,8 @@ function LoginPage() {
     // setload(true);
     event.preventDefault();
     axios
-      .post(`http://localhost:2222/api/login`, loginLetter)
+      // .post(`http://localhost:2222/api/login`, loginLetter)
+      .post(`https://med-equip.onrender.com/api/login`, loginLetter)
       .then((data) => {
         console.log(data);
         toast.success(data.data.data, {

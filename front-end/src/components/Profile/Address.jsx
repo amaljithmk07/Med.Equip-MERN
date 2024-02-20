@@ -25,7 +25,8 @@ const Address = () => {
 
   const addAddress = (e) => {
     axios
-      .post(`http://localhost:2222/api/user/add-address`, address, {
+      // .post(`http://localhost:2222/api/user/add-address`, address, {
+      .post(`https://med-equip.onrender.com/api/user/add-address`, address, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +43,8 @@ const Address = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/view-address`, {
+      // .get(`http://localhost:2222/api/user/view-address`, {
+      .get(`https://med-equip.onrender.com/api/user/view-address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -82,7 +84,8 @@ const Address = () => {
     // console.log(savedaddress);
     axios
       .put(
-        `http://localhost:2222/api/user/primary-address/${id}`,
+        // `http://localhost:2222/api/user/primary-address/${id}`,
+        `https://med-equip.onrender.com/api/user/primary-address/${id}`,
         {},
         {
           headers: {
@@ -123,7 +126,8 @@ const Address = () => {
 
   const addressDelete = (id) => {
     axios
-      .get(`http://localhost:2222/api/user/delete-address/${id}`, {
+      // .get(`http://localhost:2222/api/user/delete-address/${id}`, {
+      .get(`https://med-equip.onrender.com/api/user/delete-address/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

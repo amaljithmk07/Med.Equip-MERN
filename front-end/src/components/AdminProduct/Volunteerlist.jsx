@@ -12,7 +12,8 @@ const Volunteerlist = () => {
   const [volunteerlist, SetVolunteerlist] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/volunteer/volunteerlist`, {
+      // .get(`http://localhost:2222/api/volunteer/volunteerlist`, {
+      .get(`https://med-equip.onrender.com/api/volunteer/volunteerlist`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

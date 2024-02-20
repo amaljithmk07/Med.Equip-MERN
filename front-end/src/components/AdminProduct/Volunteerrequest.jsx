@@ -10,7 +10,8 @@ const Volunteerrequest = () => {
   const [volunteerreqlist, setVolunteerreqlist] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:2222/api/volunteer/volunteerrequestlist", {
+      // .get("http://localhost:2222/api/volunteer/volunteerrequestlist", {
+      .get("https://med-equip.onrender.com/api/volunteer/volunteerrequestlist", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,7 +42,8 @@ const Volunteerrequest = () => {
       console.log(token);
       await axios
         .put(
-          `http://localhost:2222/api/volunteer/statusupdate/${id}`,
+          // `http://localhost:2222/api/volunteer/statusupdate/${id}`,
+          `https://med-equip.onrender.com/api/volunteer/statusupdate/${id}`,
           {},
           {
             headers: {
@@ -72,7 +74,8 @@ const Volunteerrequest = () => {
   const rejectHandler = (id) => {
     axios
       .put(
-        `http://localhost:2222/api/volunteer/reject/${id}`,
+        // `http://localhost:2222/api/volunteer/reject/${id}`,
+        `https://med-equip.onrender.com/api/volunteer/reject/${id}`,
         {},
         {
           headers: {

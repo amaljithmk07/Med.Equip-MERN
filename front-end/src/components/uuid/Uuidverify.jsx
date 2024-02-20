@@ -23,7 +23,8 @@ const Uuidverify = () => {
   console.log(token);
   const handleClick = () => {
     axios
-      .post("http://localhost:2222/api/login/uuidverify", letter, {
+      // .post("http://localhost:2222/api/login/uuidverify", letter, {
+      .post("https://med-equip.onrender.com/api/login/uuidverify", letter, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -13,7 +13,8 @@ const Donatedproducts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/donated-products`, {
+      // .get(`http://localhost:2222/api/user/donated-products`, {
+      .get(`https://med-equip.onrender.com/api/user/donated-products`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +39,8 @@ const Donatedproducts = () => {
 
   const deleteHandler = (id) => {
     axios
-      .delete(`http://localhost:2222/api/user/delete/${id}`)
+      // .delete(`http://localhost:2222/api/user/delete/${id}`)
+      .delete(`https://med-equip.onrender.com/api/user/delete/${id}`)
       .then((data) => {
         console.log(data);
         window.location.reload();

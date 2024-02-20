@@ -33,7 +33,8 @@ const Updateaddress = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/singleview-address/${id}`, {
+      // .get(`http://localhost:2222/api/user/singleview-address/${id}`, {
+      .get(`https://med-equip.onrender.com/api/user/singleview-address/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +50,8 @@ const Updateaddress = () => {
 
   const updateAddress = (id) => {
     axios
-      .put(`http://localhost:2222/api/user/update-address/${id}`, editaddress, {
+      // .put(`http://localhost:2222/api/user/update-address/${id}`, editaddress, {
+      .put(`https://med-equip.onrender.com/api/user/update-address/${id}`, editaddress, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -16,7 +16,8 @@ const RegistrationPage = () => {
   const createHandler = (event) => {
     event.preventDefault();
     axios
-      .post(`http://localhost:2222/api/register/user`, letter)
+      // .post(`http://localhost:2222/api/register/user`, letter)
+      .post(`https://med-equip.onrender.com/api/register/user`, letter)
       .then((data) => {
         console.log(data);
         Navigate("/login");

@@ -15,7 +15,8 @@ const Ordersummary = () => {
   // ----------Profile View-----------
 
   useEffect(() => {
-    const userprofile = `http://localhost:2222/api/user/profile-address`;
+    // const userprofile = `http://localhost:2222/api/user/profile-address`;
+    const userprofile = `https://med-equip.onrender.com/api/user/profile-address`;
     axios
       .get(userprofile, {
         headers: {
@@ -46,7 +47,8 @@ const Ordersummary = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/ordersummary/${login_id}`, {
+      // .get(`http://localhost:2222/api/user/ordersummary/${login_id}`, {
+      .get(`https://med-equip.onrender.com/api/user/ordersummary/${login_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

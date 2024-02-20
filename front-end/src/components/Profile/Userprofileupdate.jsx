@@ -20,7 +20,8 @@ const Userprofileupdate = () => {
   ]);
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/profile`, {
+      // .get(`http://localhost:2222/api/user/profile`, {
+      .get(`https://med-equip.onrender.com/api/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +66,8 @@ const Userprofileupdate = () => {
     formDetails.append("email", profile.email);
     console.log(formDetails);
     axios
-      .post(`http://localhost:2222/api/user/profileupdate/${id}`, formDetails, {
+      // .post(`http://localhost:2222/api/user/profileupdate/${id}`, formDetails, {
+      .post(`https://med-equip.onrender.com/api/user/profileupdate/${id}`, formDetails, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

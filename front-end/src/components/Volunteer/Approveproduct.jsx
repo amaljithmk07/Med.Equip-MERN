@@ -15,7 +15,8 @@ const Approveproduct = () => {
     //Products Volunteer  View
 
     axios
-      .get(`http://localhost:2222/api/user/view`, {
+      // .get(`http://localhost:2222/api/user/view`, {
+      .get(`https://med-equip.onrender.com/api/user/view`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,7 +47,8 @@ const Approveproduct = () => {
 
   const productApprove = (id) => {
     axios
-      .get(`http://localhost:2222/api/volunteer/product-approve/${id}`, {
+      // .get(`http://localhost:2222/api/volunteer/product-approve/${id}`, {
+      .get(`https://med-equip.onrender.com/api/volunteer/product-approve/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,7 +72,8 @@ const Approveproduct = () => {
 
   const productReject = (id) => {
     axios
-      .get(`http://localhost:2222/api/volunteer/product-reject/${id}`, {
+      // .get(`http://localhost:2222/api/volunteer/product-reject/${id}`, {
+      .get(`https://med-equip.onrender.com/api/volunteer/product-reject/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

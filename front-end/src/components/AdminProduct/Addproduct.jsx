@@ -39,7 +39,8 @@ const Addproduct = () => {
 
     console.log(products);
     axios
-      .post(`http://localhost:2222/api/admin/add`, formData, {
+      // .post(`http://localhost:2222/api/admin/add`, formData, {
+      .post(`https://med-equip.onrender.com/api/admin/add`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

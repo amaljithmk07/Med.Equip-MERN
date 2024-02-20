@@ -39,7 +39,8 @@ const Payment = () => {
   };
   const paymentSubmit = (e) => {
     axios
-      .post(`http://localhost:2222/api/user/donation`, price, {
+      // .post(`http://localhost:2222/api/user/donation`, price, {
+      .post(`https://med-equip.onrender.com/api/user/donation`, price, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

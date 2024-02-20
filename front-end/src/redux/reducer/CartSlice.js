@@ -7,19 +7,20 @@ const initialState = {
   error: null,
 };
 
-
 var token = sessionStorage.getItem("Token");
 var id = sessionStorage.getItem("LoginId");
 console.log("tokeldkfgslfdgjdshgfkshfdgdkjfhsgkjfhdgn", token);
 
-
-
 export const cartView = createAsyncThunk("content/cartView", async () => {
-  const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  // const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {
+  const res = await axios.get(
+    `https://med-equip.onrender.com/api/user/cartview/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   const data = await res.data.data;
   return data;
 });
@@ -30,7 +31,8 @@ export const incrementqty = createAsyncThunk(
     // console.log(item);
 
     const res = await axios.get(
-      `http://localhost:2222/api/user/cartincrement/${id}`,
+      // `http://localhost:2222/api/user/cartincrement/${id}`,
+      `https://med-equip.onrender.com/api/user/cartincrement/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -48,7 +50,8 @@ export const decrementqty = createAsyncThunk(
     // console.log(item);
 
     const res = await axios.get(
-      `http://localhost:2222/api/user/cartdecrement/${id}`,
+      // `http://localhost:2222/api/user/cartdecrement/${id}`,
+      `https://med-equip.onrender.com/api/user/cartdecrement/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -62,7 +65,8 @@ export const decrementqty = createAsyncThunk(
 
 export const cartdelete = createAsyncThunk("content/cartdelete", async (id) => {
   const res = await axios.get(
-    `http://localhost:2222/api/user/cartdelete/${id}`,
+    // `http://localhost:2222/api/user/cartdelete/${id}`,
+    `https://med-equip.onrender.com/api/user/cartdelete/${id}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

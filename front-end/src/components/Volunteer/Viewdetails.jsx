@@ -23,7 +23,8 @@ const Viewdetails = () => {
   useEffect(() => {
     if (role == 3) {
       axios
-        .get(`http://localhost:2222/api/volunteer/view-details/${id}`, {
+        // .get(`http://localhost:2222/api/volunteer/view-details/${id}`, {
+        .get(`https://med-equip.onrender.com/api/volunteer/view-details/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +48,8 @@ const Viewdetails = () => {
         });
     } else {
       axios
-        .get(`http://localhost:2222/api/user/view-details/${id}`, {
+        // .get(`http://localhost:2222/api/user/view-details/${id}`, {
+        .get(`https://med-equip.onrender.com/api/user/view-details/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

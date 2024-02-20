@@ -41,7 +41,8 @@ const Useraddproduct = () => {
     // }
     try {
       axios
-        .post(`http://localhost:2222/api/user/add`, formData, {
+        // .post(`http://localhost:2222/api/user/add`, formData, {
+        .post(`https://med-equip.onrender.com/api/user/add`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

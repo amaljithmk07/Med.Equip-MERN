@@ -23,7 +23,8 @@ const Editproduct = () => {
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/user/viewone/${id}`)
+      // .get(`http://localhost:2222/api/user/viewone/${id}`)
+      .get(`https://med-equip.onrender.com/api/user/viewone/${id}`)
       .then((data) => {
         console.log(data.data.data);
         setProducts(data.data.data);
@@ -62,7 +63,8 @@ const Editproduct = () => {
     formData.append("pin_code", products.pin_code);
     try {
       await axios
-        .put(`http://localhost:2222/api/user/edit-product/${id}`, formData, {
+        // .put(`http://localhost:2222/api/user/edit-product/${id}`, formData, {
+        .put(`https://med-equip.onrender.com/api/user/edit-product/${id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

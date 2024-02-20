@@ -13,7 +13,8 @@ const AcceptedOrders = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2222/api/volunteer/accepted-orders`, {
+      // .get(`http://localhost:2222/api/volunteer/accepted-orders`, {
+      .get(`https://med-equip.onrender.com/api/volunteer/accepted-orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,7 +44,8 @@ const AcceptedOrders = () => {
   const deliveredHandler = (id) => {
     axios
       .put(
-        `http://localhost:2222/api/volunteer/order-placed/${id}`,
+        // `http://localhost:2222/api/volunteer/order-placed/${id}`,
+        `https://med-equip.onrender.com/api/volunteer/order-placed/${id}`,
         {},
         {
           headers: {
