@@ -251,7 +251,7 @@ const Address = () => {
                   <div className="add-address-input-sec">
                     state:{" "}
                     <input
-                      type="text"
+                      type="text" 
                       name="state"
                       onChange={addressInput}
                       className="add-address-input"
