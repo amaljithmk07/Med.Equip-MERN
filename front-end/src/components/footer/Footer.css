@@ -253,7 +253,7 @@
     align-items: center;
     height: 20%;
     /* flex-wrap: wrap; */
-    background-color: aqua;
+    /* background-color: aqua; */
   }
   .footer-footer-1 {
     width: 50rem;
@@ -310,7 +310,7 @@
     align-items: center;
     height: 20%;
     flex-wrap: wrap;
-    background-color: aqua;
+    /* background-color: aqua; */
   }
   .footer-footer-1 {
     width: 50rem;
