@@ -3,6 +3,7 @@ import "./Addproduct.css";
 import axios, { toFormData } from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Base_URL from "../User/constant";
 
 const Addproduct = () => {
   const role = sessionStorage.getItem("Role");
@@ -40,7 +41,7 @@ const Addproduct = () => {
     console.log(products);
     axios
       // .post(`http://localhost:2222/api/admin/add`, formData, {
-      .post(`https://med-equip.onrender.com/api/admin/add`, formData, {
+      .post(`${Base_URL}/api/admin/add`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

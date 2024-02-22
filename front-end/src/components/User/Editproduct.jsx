@@ -3,6 +3,7 @@ import "./Editproduct.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Base_URL from "./constant";
 const Editproduct = () => {
   const token = sessionStorage.getItem("Token");
   const ref = useRef();
@@ -24,7 +25,7 @@ const Editproduct = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/viewone/${id}`)
-      .get(`https://med-equip.onrender.com/api/user/viewone/${id}`)
+      .get(`${Base_URL}/api/user/viewone/${id}`)
       .then((data) => {
         console.log(data.data.data);
         setProducts(data.data.data);
@@ -64,7 +65,7 @@ const Editproduct = () => {
     try {
       await axios
         // .put(`http://localhost:2222/api/user/edit-product/${id}`, formData, {
-        .put(`https://med-equip.onrender.com/api/user/edit-product/${id}`, formData, {
+        .put(`${Base_URL}/api/user/edit-product/${id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -3,6 +3,7 @@ import "./Profilehome.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 const Profilehome = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState([{}]);
@@ -12,9 +13,9 @@ const Profilehome = () => {
 
   useEffect(() => {
     // const userprofile = `http://localhost:2222/api/user/profile`;
-    const userprofile = `https://med-equip.onrender.com/api/user/profile`;
+    const userprofile = `${Base_URL}/api/user/profile`;
     // const volunteerprofile = `http://localhost:2222/api/volunteer/profile`;
-    const volunteerprofile = `https://med-equip.onrender.com/api/volunteer/profile`;
+    const volunteerprofile = `${Base_URL}/api/volunteer/profile`;
     if (role == 3) {
       axios
         .get(volunteerprofile, {

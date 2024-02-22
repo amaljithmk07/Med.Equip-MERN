@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Base_URL from "../../components/User/constant";
 
 const initialState = {
   cartitems: [],
@@ -14,7 +15,7 @@ console.log("tokeldkfgslfdgjdshgfkshfdgdkjfhsgkjfhdgn", token);
 export const cartView = createAsyncThunk("content/cartView", async () => {
   // const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {
   const res = await axios.get(
-    `https://med-equip.onrender.com/api/user/cartview/${id}`,
+    `${Base_URL}/api/user/cartview/${id}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,7 +33,7 @@ export const incrementqty = createAsyncThunk(
 
     const res = await axios.get(
       // `http://localhost:2222/api/user/cartincrement/${id}`,
-      `https://med-equip.onrender.com/api/user/cartincrement/${id}`,
+      `${Base_URL}/api/user/cartincrement/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -51,7 +52,7 @@ export const decrementqty = createAsyncThunk(
 
     const res = await axios.get(
       // `http://localhost:2222/api/user/cartdecrement/${id}`,
-      `https://med-equip.onrender.com/api/user/cartdecrement/${id}`,
+      `${Base_URL}/api/user/cartdecrement/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,7 +67,7 @@ export const decrementqty = createAsyncThunk(
 export const cartdelete = createAsyncThunk("content/cartdelete", async (id) => {
   const res = await axios.get(
     // `http://localhost:2222/api/user/cartdelete/${id}`,
-    `https://med-equip.onrender.com/api/user/cartdelete/${id}`,
+    `${Base_URL}/api/user/cartdelete/${id}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

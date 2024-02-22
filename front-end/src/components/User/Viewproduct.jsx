@@ -4,7 +4,9 @@ import axios from "axios";
 import "./Viewproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-// import Usernavbar from "../UserNavbar/Usernavbar";
+import Base_URL from "./constant";
+
+
 const Viewproduct = () => {
   const navigate = useNavigate();
   const [product, setproduct] = useState([]);
@@ -18,7 +20,7 @@ const Viewproduct = () => {
 
       axios
         // .get(`http://localhost:2222/api/user/view`, {
-        .get(`https://med-equip.onrender.com/api/user/view`, {
+        .get(`${Base_URL}/api/user/view`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +49,7 @@ const Viewproduct = () => {
 
       axios
         // .get(`http://localhost:2222/api/user/view`, {
-        .get(`https://med-equip.onrender.com/api/user/view`, {
+        .get(`${Base_URL}/api/user/view`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -76,7 +78,7 @@ const Viewproduct = () => {
   const cartHandler = (item) => {
     axios
       // .post(`http://localhost:2222/api/user/addtocart`, item, {
-      .post(`https://med-equip.onrender.com/api/user/addtocart`, item, {
+      .post(`${Base_URL}/api/user/addtocart`, item, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -112,7 +114,7 @@ const Viewproduct = () => {
     if (wishlist == "") {
       axios
         // .put(`http://localhost:2222/api/user/wishlist/${id}`, {})
-        .put(`https://med-equip.onrender.com/api/user/wishlist/${id}`, {})
+        .put(`${Base_URL}/api/user/wishlist/${id}`, {})
         .then((data) => {
           const filter = product.filter((data) => {
             if (data._id == id) {
@@ -129,7 +131,7 @@ const Viewproduct = () => {
     } else {
       axios
         // .put(`http://localhost:2222/api/user/wishlist-remove/${id}`, {})
-        .put(`https://med-equip.onrender.com/api/user/wishlist-remove/${id}`, {})
+        .put(`${Base_URL}/api/user/wishlist-remove/${id}`, {})
         .then((data) => {
           console.log(data);
           const filter = product.filter((data) => {

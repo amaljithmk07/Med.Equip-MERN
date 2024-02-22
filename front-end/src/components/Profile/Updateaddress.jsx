@@ -4,6 +4,7 @@ import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Base_URL from "../User/constant";
 
 const Updateaddress = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Updateaddress = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/singleview-address/${id}`, {
-      .get(`https://med-equip.onrender.com/api/user/singleview-address/${id}`, {
+      .get(`${Base_URL}/api/user/singleview-address/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +52,7 @@ const Updateaddress = () => {
   const updateAddress = (id) => {
     axios
       // .put(`http://localhost:2222/api/user/update-address/${id}`, editaddress, {
-      .put(`https://med-equip.onrender.com/api/user/update-address/${id}`, editaddress, {
+      .put(`${Base_URL}/api/user/update-address/${id}`, editaddress, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -11,6 +11,7 @@ import {
   decrementqty,
   incrementqty,
 } from "../../redux/reducer/CartSlice";
+import Base_URL from "./constant";
 
 const Orderplace = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Orderplace = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/orderplace-address`, {
-      .get(`https://med-equip.onrender.com/api/user/orderplace-address`, {
+      .get(`${Base_URL}/api/user/orderplace-address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -92,7 +93,7 @@ const Orderplace = () => {
           axios
             .post(
               // `http://localhost:2222/api/user/orderplace/${login_id}`,
-              `https://med-equip.onrender.com/api/user/orderplace/${login_id}`,
+              `${Base_URL}/api/user/orderplace/${login_id}`,
               cartitems,
               {
                 headers: {

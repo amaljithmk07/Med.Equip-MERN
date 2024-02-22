@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import Base_URL from "../User/constant";
 
 const Volunteerregister = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Volunteerregister = () => {
   const createHandler = () => {
     axios
       // .post(`http://localhost:2222/api/register/volunteer`, letter)
-      .post(`https://med-equip.onrender.com/api/register/volunteer`, letter)
+      .post(`${Base_URL}/api/register/volunteer`, letter)
       .then((data) => {
         console.log(data);
         toast.success('Register Successful', {

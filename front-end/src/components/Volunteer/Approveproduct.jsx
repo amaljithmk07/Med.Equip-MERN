@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Approveproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import Base_URL from "../User/constant";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 const Approveproduct = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Approveproduct = () => {
 
     axios
       // .get(`http://localhost:2222/api/user/view`, {
-      .get(`https://med-equip.onrender.com/api/user/view`, {
+      .get(`${Base_URL}/api/user/view`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +49,7 @@ const Approveproduct = () => {
   const productApprove = (id) => {
     axios
       // .get(`http://localhost:2222/api/volunteer/product-approve/${id}`, {
-      .get(`https://med-equip.onrender.com/api/volunteer/product-approve/${id}`, {
+      .get(`${Base_URL}/api/volunteer/product-approve/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +74,7 @@ const Approveproduct = () => {
   const productReject = (id) => {
     axios
       // .get(`http://localhost:2222/api/volunteer/product-reject/${id}`, {
-      .get(`https://med-equip.onrender.com/api/volunteer/product-reject/${id}`, {
+      .get(`${Base_URL}/api/volunteer/product-reject/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

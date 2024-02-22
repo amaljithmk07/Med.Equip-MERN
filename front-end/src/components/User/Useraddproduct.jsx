@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Useraddproduct.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "./constant";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 
 const Useraddproduct = () => {
@@ -21,6 +22,7 @@ const Useraddproduct = () => {
     console.log(e.target.files[0].name);
   };
   console.log(products.image);
+
 
   //Products adding section
 
@@ -45,7 +47,7 @@ const Useraddproduct = () => {
     try {
       axios
         // .post(`http://localhost:2222/api/user/add`, formData, {
-        .post(`https://med-equip.onrender.com/api/user/add`, formData, {
+        .post(`${Base_URL}/api/user/add`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -3,6 +3,7 @@ import "./Ordersummary.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Base_URL from "./constant";
 
 const Ordersummary = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Ordersummary = () => {
 
   useEffect(() => {
     // const userprofile = `http://localhost:2222/api/user/profile-address`;
-    const userprofile = `https://med-equip.onrender.com/api/user/profile-address`;
+    const userprofile = `${Base_URL}/api/user/profile-address`;
     axios
       .get(userprofile, {
         headers: {
@@ -48,7 +49,7 @@ const Ordersummary = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/ordersummary/${login_id}`, {
-      .get(`https://med-equip.onrender.com/api/user/ordersummary/${login_id}`, {
+      .get(`${Base_URL}/api/user/ordersummary/${login_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

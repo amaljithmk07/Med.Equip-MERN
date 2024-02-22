@@ -3,6 +3,7 @@ import "./Volunteerlist.css";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 // import { Link, useNavigate } from "react-router-dom";
 // import { Toast, ToastContainer } from "react-toastify/dist/components";
 
@@ -13,7 +14,7 @@ const Volunteerlist = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/volunteer/volunteerlist`, {
-      .get(`https://med-equip.onrender.com/api/volunteer/volunteerlist`, {
+      .get(`${Base_URL}/api/volunteer/volunteerlist`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

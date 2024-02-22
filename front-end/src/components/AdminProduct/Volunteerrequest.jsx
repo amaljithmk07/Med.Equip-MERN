@@ -3,6 +3,7 @@ import "./Volunteerrequest.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 
 const Volunteerrequest = () => {
   const token = sessionStorage.getItem("Token");
@@ -11,7 +12,7 @@ const Volunteerrequest = () => {
   useEffect(() => {
     axios
       // .get("http://localhost:2222/api/volunteer/volunteerrequestlist", {
-      .get("https://med-equip.onrender.com/api/volunteer/volunteerrequestlist", {
+      .get(`${Base_URL}/api/volunteer/volunteerrequestlist`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,7 +44,7 @@ const Volunteerrequest = () => {
       await axios
         .put(
           // `http://localhost:2222/api/volunteer/statusupdate/${id}`,
-          `https://med-equip.onrender.com/api/volunteer/statusupdate/${id}`,
+          `${Base_URL}/api/volunteer/statusupdate/${id}`,
           {},
           {
             headers: {
@@ -75,7 +76,7 @@ const Volunteerrequest = () => {
     axios
       .put(
         // `http://localhost:2222/api/volunteer/reject/${id}`,
-        `https://med-equip.onrender.com/api/volunteer/reject/${id}`,
+        `${Base_URL}/api/volunteer/reject/${id}`,
         {},
         {
           headers: {

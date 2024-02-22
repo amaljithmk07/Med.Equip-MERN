@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Acceptedorders.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 
 const AcceptedOrders = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const AcceptedOrders = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/volunteer/accepted-orders`, {
-      .get(`https://med-equip.onrender.com/api/volunteer/accepted-orders`, {
+      .get(`${Base_URL}/api/volunteer/accepted-orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -45,7 +46,7 @@ const AcceptedOrders = () => {
     axios
       .put(
         // `http://localhost:2222/api/volunteer/order-placed/${id}`,
-        `https://med-equip.onrender.com/api/volunteer/order-placed/${id}`,
+        `${Base_URL}/api/volunteer/order-placed/${id}`,
         {},
         {
           headers: {

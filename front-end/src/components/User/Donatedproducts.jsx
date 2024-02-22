@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Donatedproducts.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import Base_URL from "./constant";
 
 const Donatedproducts = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Donatedproducts = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/donated-products`, {
-      .get(`https://med-equip.onrender.com/api/user/donated-products`, {
+      .get(`${Base_URL}/api/user/donated-products`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +41,7 @@ const Donatedproducts = () => {
   const deleteHandler = (id) => {
     axios
       // .delete(`http://localhost:2222/api/user/delete/${id}`)
-      .delete(`https://med-equip.onrender.com/api/user/delete/${id}`)
+      .delete(`${Base_URL}/api/user/delete/${id}`)
       .then((data) => {
         console.log(data);
         window.location.reload();

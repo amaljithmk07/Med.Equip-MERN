@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import Loading from "../uuid-Animations/Loading";
 import Verify from "../uuid-Animations/Verify";
 import Wrong from "../uuid-Animations/Wrong";
+import Base_URL from "../User/constant";
 
 const Uuidverify = () => {
   const [wrong, setWrong] = useState();
@@ -24,7 +25,7 @@ const Uuidverify = () => {
   const handleClick = () => {
     axios
       // .post("http://localhost:2222/api/login/uuidverify", letter, {
-      .post("https://med-equip.onrender.com/api/login/uuidverify", letter, {
+      .post(`${Base_URL}/api/login/uuidverify`, letter, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

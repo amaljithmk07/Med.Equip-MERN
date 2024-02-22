@@ -3,6 +3,7 @@ import "./Userprofileupdate.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 
 const Userprofileupdate = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Userprofileupdate = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/profile`, {
-      .get(`https://med-equip.onrender.com/api/user/profile`, {
+      .get(`${Base_URL}/api/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +68,7 @@ const Userprofileupdate = () => {
     console.log(formDetails);
     axios
       // .post(`http://localhost:2222/api/user/profileupdate/${id}`, formDetails, {
-      .post(`https://med-equip.onrender.com/api/user/profileupdate/${id}`, formDetails, {
+      .post(`${Base_URL}/api/user/profileupdate/${id}`, formDetails, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

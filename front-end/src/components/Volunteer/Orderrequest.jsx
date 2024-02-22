@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Orderrequest.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 const Orderrequest = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
@@ -10,7 +11,7 @@ const Orderrequest = () => {
     axios
       .post(
         // `http://localhost:2222/api/volunteer/order-status`,
-        `https://med-equip.onrender.com/api/volunteer/order-status`,
+        `${Base_URL}/api/volunteer/order-status`,
         {},
         {
           headers: {
@@ -31,7 +32,7 @@ const Orderrequest = () => {
     axios
       .put(
         // `http://localhost:2222/api/volunteer/order-accept/${id}`,
-        `https://med-equip.onrender.com/api/volunteer/order-accept/${id}`,
+        `${Base_URL}/api/volunteer/order-accept/${id}`,
         {},
         {
           headers: {

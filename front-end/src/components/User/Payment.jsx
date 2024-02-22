@@ -4,6 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import upiqr from "upiqr";
+import Base_URL from "./constant";
 
 const Payment = () => {
   const token = sessionStorage.getItem("Token");
@@ -40,7 +41,7 @@ const Payment = () => {
   const paymentSubmit = (e) => {
     axios
       // .post(`http://localhost:2222/api/user/donation`, price, {
-      .post(`https://med-equip.onrender.com/api/user/donation`, price, {
+      .post(`${Base_URL}/api/user/donation`, price, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

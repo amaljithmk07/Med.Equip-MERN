@@ -3,6 +3,7 @@ import "./Volunteerprofileupdate.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Base_URL from "../User/constant";
 
 const Volunteerprofileupdate = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Volunteerprofileupdate = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/volunteer/profile`, {
-      .get(`https://med-equip.onrender.com/api/volunteer/profile`, {
+      .get(`${Base_URL}/api/volunteer/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -69,7 +70,7 @@ const Volunteerprofileupdate = () => {
     axios
       .post(
         // `http://localhost:2222/api/volunteer/profileupdate/${id}`,
-        `https://med-equip.onrender.com/api/volunteer/profileupdate/${id}`,
+        `${Base_URL}/api/volunteer/profileupdate/${id}`,
         formDetails,
         {
           headers: {

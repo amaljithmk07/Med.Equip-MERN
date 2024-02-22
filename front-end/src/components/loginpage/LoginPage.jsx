@@ -5,6 +5,7 @@ import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
+import Base_URL from "../User/constant";
 
 function LoginPage() {
   const [loginLetter, setloginLetter] = useState({});
@@ -21,7 +22,7 @@ function LoginPage() {
     event.preventDefault();
     axios
       // .post(`http://localhost:2222/api/login`, loginLetter)
-      .post(`https://med-equip.onrender.com/api/login`, loginLetter)
+      .post(`${Base_URL}/api/login`, loginLetter)
       .then((data) => {
         console.log(data);
         toast.success(data.data.data, {

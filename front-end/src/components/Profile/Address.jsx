@@ -4,6 +4,7 @@ import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Base_URL from "../User/constant";
 
 const Address = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Address = () => {
   const addAddress = (e) => {
     axios
       // .post(`http://localhost:2222/api/user/add-address`, address, {
-      .post(`https://med-equip.onrender.com/api/user/add-address`, address, {
+      .post(`${Base_URL}/api/user/add-address`, address, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,7 +45,7 @@ const Address = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:2222/api/user/view-address`, {
-      .get(`https://med-equip.onrender.com/api/user/view-address`, {
+      .get(`${Base_URL}/api/user/view-address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +86,7 @@ const Address = () => {
     axios
       .put(
         // `http://localhost:2222/api/user/primary-address/${id}`,
-        `https://med-equip.onrender.com/api/user/primary-address/${id}`,
+        `${Base_URL}/api/user/primary-address/${id}`,
         {},
         {
           headers: {
@@ -127,7 +128,7 @@ const Address = () => {
   const addressDelete = (id) => {
     axios
       // .get(`http://localhost:2222/api/user/delete-address/${id}`, {
-      .get(`https://med-equip.onrender.com/api/user/delete-address/${id}`, {
+      .get(`${Base_URL}/api/user/delete-address/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

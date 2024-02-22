@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast,  { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
+import Base_URL from "../User/constant";
 
 const RegistrationPage = () => {
   const Navigate = useNavigate();
@@ -17,7 +18,7 @@ const RegistrationPage = () => {
     event.preventDefault();
     axios
       // .post(`http://localhost:2222/api/register/user`, letter)
-      .post(`https://med-equip.onrender.com/api/register/user`, letter)
+      .post(`${Base_URL}/api/register/user`, letter)
       .then((data) => {
         console.log(data);
         Navigate("/login");
