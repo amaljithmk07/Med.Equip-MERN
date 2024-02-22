@@ -20,7 +20,7 @@ const Useraddproduct = () => {
     setProducts({ ...products, [name]: e.target.files[0] });
     console.log(e.target.files[0].name);
   };
-  // console.log(products);
+  console.log(products.image);
 
   //Products adding section
 
@@ -95,6 +95,11 @@ const Useraddproduct = () => {
                         />
                       </label>
                     </div>
+                    {products.image ? (
+                      <>{products.image.name}</>
+                    ) : (
+                      <>Image Upload here</>
+                    )}
                   </div>
                   <div className="usercontent-right">
                     <div className="userinput-field">
