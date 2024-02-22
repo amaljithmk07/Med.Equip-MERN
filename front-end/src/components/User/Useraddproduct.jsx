@@ -20,7 +20,10 @@ const Useraddproduct = () => {
     setProducts({ ...products, [name]: e.target.files[0] });
     console.log(e.target.files[0].name);
   };
-  console.log(products);
+  // console.log(products);
+
+  //Products adding section
+
   const productSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -35,7 +38,7 @@ const Useraddproduct = () => {
     formData.append("phone_number", products.phone_number);
     formData.append("address", products.address);
     formData.append("pin_code", products.pin_code);
-    console.log(products);
+    // console.log(products);
     // for (var pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
     // }
@@ -56,7 +59,7 @@ const Useraddproduct = () => {
           console.log(err);
         });
     } catch (err) {
-      console.log("catch :", err);
+      console.log(err);
     }
   };
 
@@ -86,7 +89,6 @@ const Useraddproduct = () => {
                       />
                       <label htmlFor="file-upload">
                         <img
-
                           src="/admin-product-add-1.png"
                           alt=""
                           id="user-product-add"

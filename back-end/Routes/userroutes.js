@@ -43,27 +43,49 @@ const upload = multer({ storage: storage });
 //---Product add
 
 userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
-  const Data = new products({
-    image: req.file ? req.file.filename : null,
-    login_id: req.userData.userId,
-    available_qty: req.body.available_qty,
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    sub_category: req.body.sub_category,
-    email: req.body.email,
-    purchased_date: req.body.purchased_date,
-    phone_number: req.body.phone_number,
-    address: req.body.address,
-    pin_code: req.body.pin_code,
-  });
-  Data.save()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.send(err);
+  try {
+    const Data = new products({
+      // image: req.file ? req.file.filename : null,
+      image: req.file ? req.file.path : null,
+      login_id: req.userData.userId,
+      available_qty: req.body.available_qty,
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      sub_category: req.body.sub_category,
+      email: req.body.email,
+      purchased_date: req.body.purchased_date,
+      phone_number: req.body.phone_number,
+      address: req.body.address,
+      pin_code: req.body.pin_code,
     });
+    Data.save()
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Data added successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          error: true,
+          success: false,
+          message: "data add failed ",
+          errorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      error: true,
+      success: false,
+      message: "Internal server error",
+      errorMessage: err.message,
+    });
+  }
 });
 
 //---Product Display
