@@ -55,9 +55,20 @@
   font-weight: 700;
   text-align: center;
   letter-spacing: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #uuid-input:focus {
   outline: none;
+}
+#uuid-input::placeholder {
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: cadetblue; */
+  letter-spacing: 0px;
 }
 #uuid-verify {
   height: 45px;
@@ -76,9 +87,6 @@
   font-weight: 700;
   cursor: pointer;
 }
-
-
-
 
 @media screen and (max-width: 1330px) and (min-width: 1145px) {
   .uuid-container {

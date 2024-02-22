@@ -10,6 +10,7 @@ const Checkauth = require("../middle-ware/Checkauth");
 const AddressDB = require("../models/addressschema");
 const DonationDB = require("../models/donationsschema");
 const { default: mongoose } = require("mongoose");
+require("dotenv").config();
 
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
@@ -77,7 +78,7 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
         });
       });
   } catch (err) {
-    console.log(err);
+    console.log("err", err);
 
     res.status(500).json({
       error: true,
@@ -244,7 +245,8 @@ userroutes.put(
       });
       console.log(olddata);
       const newdata = {
-        image: req.body.image ? req.body.image : olddata.image,
+        // image: req.body.image ? req.body.image : olddata.image,
+        image: req.file.path ? req.file.path : olddata.image,
         name: req.body.name ? req.body.name : olddata.name,
         description: req.body.description
           ? req.body.description
@@ -445,7 +447,7 @@ userroutes.post(
         _id: req.params.id,
       });
       const userprofile = {
-        image: req.file ? req.file.filename : olddata.image,
+        image: req.file.path ? req.file.path : olddata.image,
         name: req.body ? req.body.name : olddata.name,
         email: req.body ? req.body.email : olddata.email,
         age: req.body ? req.body.age : olddata.age,
@@ -506,7 +508,8 @@ userroutes.post(
     const addressId = new mongoose.Types.ObjectId(address[0]);
     const Data = new CartDB({
       login_id: req.userData.userId,
-      image: req.body.image,
+      // image: req.body.image,
+      image: req.file.path,
       available_qty: req.body.available_qty,
       cart_qty: req.body.cart_qty,
       name: req.body.name,

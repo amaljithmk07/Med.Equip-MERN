@@ -67,7 +67,7 @@ const Donatedproducts = () => {
               <div className="donatedproducts-card" key={item._id}>
                 <div className="donatedproducts-card-image-sec">
                   <img
-                    src={`/upload/${item.image}`}
+                    src={item.image}
                     alt=""
                     className="donatedproducts-card-image"
                   />

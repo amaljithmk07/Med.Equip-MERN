@@ -178,7 +178,7 @@ const Viewproduct = () => {
                 <div className="user-view-card" key={item._id}>
                   <div className="user-view-card-image">
                     <img
-                      src={`/upload/${item.image}`}
+                      src={item.image}
                       alt=""
                       className="user-card-image"
                     />

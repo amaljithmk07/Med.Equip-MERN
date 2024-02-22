@@ -23,7 +23,6 @@ const Useraddproduct = () => {
   };
   console.log(products.image);
 
-
   //Products adding section
 
   const productSubmit = (event) => {
@@ -40,10 +39,7 @@ const Useraddproduct = () => {
     formData.append("phone_number", products.phone_number);
     formData.append("address", products.address);
     formData.append("pin_code", products.pin_code);
-    // console.log(products);
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+ 
     try {
       axios
         // .post(`http://localhost:2222/api/user/add`, formData, {
@@ -97,7 +93,14 @@ const Useraddproduct = () => {
                         />
                       </label>
                       {products.image ? (
-                        <>{products.image.name}</>
+                        <div className="user-product-add-filename-sec">
+                          {products.image.name}
+                          <img
+                            src="/blue-tick.png"
+                            alt=""
+                            className="user-product-add-blue-tick"
+                          />
+                        </div>
                       ) : (
                         <>Image Upload here</>
                       )}

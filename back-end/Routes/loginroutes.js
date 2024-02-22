@@ -14,8 +14,8 @@ loginroutes.post("/", async (req, res) => {
   // const { email, password } = req.body;
 
   try {
-    // console.log(req.body.password);
-    // console.log(req.body.email);
+    console.log(req.body.password);
+    console.log(req.body.email);
     const email = req.body.email;
     const loweremail = email.toLowerCase();
 

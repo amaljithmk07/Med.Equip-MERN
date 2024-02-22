@@ -17,6 +17,7 @@ function LoginPage() {
     // console.log(loginLetter);
   };
   // const [load, setload] = useState(false);
+  // console.log(Base_URL);
   const loginSubmit = (event) => {
     // setload(true);
     event.preventDefault();

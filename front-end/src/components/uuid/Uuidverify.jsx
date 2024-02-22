@@ -75,8 +75,10 @@ const Uuidverify = () => {
               name="user_id"
               id="uuid-input"
               maxLength={4}
+              placeholder=" Check your profile for UUID"
               onChange={verify}
             />
+
             <input
               type="submit"
               value={"Verify"}

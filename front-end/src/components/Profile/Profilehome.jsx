@@ -98,11 +98,7 @@ const Profilehome = () => {
                   {role == 3 ? (*/}
                 {/* <> */}
                 {profile.image !== null ? (
-                  <img
-                    src={`/upload/${profile.image}`}
-                    alt=""
-                    className="profile-photo"
-                  />
+                  <img src={profile.image} alt="" className="profile-photo" />
                 ) : (
                   <img src="/profile1.png" alt="" className="profile-photo" />
                 )}

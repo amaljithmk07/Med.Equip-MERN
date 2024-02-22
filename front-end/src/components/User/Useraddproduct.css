@@ -56,9 +56,11 @@
   width: 70%;
   /* background-color: blue; */
   border-radius: 20px;
+  row-gap: 10px;
   border: 3px dashed rgb(93, 93, 93);
   display: flex;
-  font-size: 13px;
+  font-size: 14px;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -68,6 +70,17 @@
   width: 100px;
   /* background-color: red; */
   /* filter: invert(1); */
+}
+.user-product-add-filename-sec {
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: red; */
+  justify-content: center;
+  align-items: center
+}
+.user-product-add-blue-tick {
+  height: 22px;
+  width: auto;
 }
 .usercontent-right {
   width: 60%;
