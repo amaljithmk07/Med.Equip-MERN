@@ -58,13 +58,15 @@
   border-radius: 20px;
   border: 3px dashed rgb(93, 93, 93);
   display: flex;
+  font-size: 13px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 #user-product-add {
   height: auto;
   width: 100px;
-    /* background-color: red; */
+  /* background-color: red; */
   /* filter: invert(1); */
 }
 .usercontent-right {
@@ -106,7 +108,6 @@
   font-weight: 600;
 }
 .user-product-input-dropdown:focus {
-
   outline: 1px solid rgba(255, 170, 0, 0.651);
 }
 
@@ -156,23 +157,23 @@
   background-size: cover;
   object-fit: cover;
 }
-.login-first-body{
-width: 100%;
-height: 600px;
-background-color: rgb(255, 247, 238);
-display: flex;
-justify-content: center;
-align-items: center;
+.login-first-body {
+  width: 100%;
+  height: 600px;
+  background-color: rgb(255, 247, 238);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login-first-body-link{
-width: 40%;
-height: 600px;
-/* background-color: rgb(255, 136, 0); */
-display: flex;
-justify-content: center;
-align-items: center;
+.login-first-body-link {
+  width: 40%;
+  height: 600px;
+  /* background-color: rgb(255, 136, 0); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.login-first{
+.login-first {
   height: auto;
   width: 100%;
   /* background-color: red; */

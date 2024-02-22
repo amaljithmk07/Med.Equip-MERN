@@ -94,12 +94,12 @@ const Useraddproduct = () => {
                           id="user-product-add"
                         />
                       </label>
+                      {products.image ? (
+                        <>{products.image.name}</>
+                      ) : (
+                        <>Image Upload here</>
+                      )}
                     </div>
-                    {products.image ? (
-                      <>{products.image.name}</>
-                    ) : (
-                      <>Image Upload here</>
-                    )}
                   </div>
                   <div className="usercontent-right">
                     <div className="userinput-field">
