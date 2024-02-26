@@ -3,7 +3,7 @@ import "./Volunteerlist.css";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 // import { Link, useNavigate } from "react-router-dom";
 // import { Toast, ToastContainer } from "react-toastify/dist/components";
 

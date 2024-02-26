@@ -3,7 +3,7 @@ import "./Addproduct.css";
 import axios, { toFormData } from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const Addproduct = () => {
   const role = sessionStorage.getItem("Role");

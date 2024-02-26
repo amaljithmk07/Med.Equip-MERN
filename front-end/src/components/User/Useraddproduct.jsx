@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Useraddproduct.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 
 const Useraddproduct = () => {

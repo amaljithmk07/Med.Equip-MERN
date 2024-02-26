@@ -3,7 +3,7 @@ import "./Editproduct.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 const Editproduct = () => {
   const token = sessionStorage.getItem("Token");
   const ref = useRef();

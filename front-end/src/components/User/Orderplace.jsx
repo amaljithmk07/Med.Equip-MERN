@@ -11,7 +11,7 @@ import {
   decrementqty,
   incrementqty,
 } from "../../redux/reducer/CartSlice";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 
 const Orderplace = () => {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import "./Volunteerprofileupdate.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const Volunteerprofileupdate = () => {
   const navigate = useNavigate();

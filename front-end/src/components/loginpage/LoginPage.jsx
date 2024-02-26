@@ -5,7 +5,7 @@ import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 function LoginPage() {
   const [loginLetter, setloginLetter] = useState({});

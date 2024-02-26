@@ -4,7 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import upiqr from "upiqr";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 
 const Payment = () => {
   const token = sessionStorage.getItem("Token");
@@ -116,10 +116,10 @@ const Payment = () => {
                 />
               </div>
             </div>
+          </div>
             <button className="payment-button" onClick={paymentSubmit}>
            Make   Payment
             </button>
-          </div>
         </div>
       </div>
       <Toaster />

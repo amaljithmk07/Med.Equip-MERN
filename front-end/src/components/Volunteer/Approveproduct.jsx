@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Approveproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 // import Usernavbar from "../UserNavbar/Usernavbar";
 const Approveproduct = () => {
   const navigate = useNavigate();

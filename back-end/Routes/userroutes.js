@@ -89,6 +89,38 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
   }
 });
 
+// UnAuthorised Product View
+
+userroutes.get("/demo-view", (req, res) => {
+  try {
+    products
+      .find()
+      .then((data) => {
+        res.status(200).json({
+          success: true,
+          error: false,
+          message: "Data fetched successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "data fetched failed",
+          ErrorMessage: err.message,
+        });
+      });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "Internal Error",
+      ErrorMessage: err.message,
+    });
+  }
+});
+
 //---Product Display
 
 userroutes.get("/view", Checkauth, (req, res) => {

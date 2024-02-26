@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const steps = ["Order Placed ", "Order accepted", "Delvered"];
 

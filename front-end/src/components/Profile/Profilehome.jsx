@@ -3,7 +3,7 @@ import "./Profilehome.css";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 const Profilehome = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState([{}]);

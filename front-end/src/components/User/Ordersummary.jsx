@@ -3,7 +3,7 @@ import "./Ordersummary.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 
 const Ordersummary = () => {
   const navigate = useNavigate();

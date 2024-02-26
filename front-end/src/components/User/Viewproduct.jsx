@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Viewproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import Base_URL from "./constant";
+import Base_URL from "../Constant/constant";
 
 
 const Viewproduct = () => {
@@ -16,6 +16,7 @@ const Viewproduct = () => {
   const role = sessionStorage.getItem("Role");
   useEffect(() => {
     if (role == 2) {
+
       //Products User View
 
       axios
@@ -187,7 +188,7 @@ const Viewproduct = () => {
                     <h3 className="user-view-card-details-h3"> {item.name}</h3>
                     <h4 className="user-view-card-details-h4">
                       {" "}
-                      {item.available_qty}
+                      {item.available_qty} Qty
                     </h4>
                     <h4 className="user-view-card-details-h4">
                       {" "}

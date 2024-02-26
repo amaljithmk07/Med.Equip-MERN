@@ -4,7 +4,7 @@ import axios from "axios";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const Updateaddress = () => {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const Volunteerregister = () => {
   const navigate = useNavigate();

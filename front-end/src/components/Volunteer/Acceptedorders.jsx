@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Acceptedorders.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const AcceptedOrders = () => {
   const navigate = useNavigate();

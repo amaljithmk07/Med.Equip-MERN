@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast,  { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const RegistrationPage = () => {
   const Navigate = useNavigate();

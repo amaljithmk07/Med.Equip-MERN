@@ -10,12 +10,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 50px 0;
 }
 .payment-sub-body {
   min-height: 500px;
   width: 60%;
   display: flex;
-  row-gap: 20px;
+  /* row-gap: 20px; */
+  padding: 10px 0;
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
@@ -35,19 +37,21 @@
   /* background-color: #b73d3d48; */
 }
 .payment-body-container {
-  min-height: 450px;
+  min-height: 400px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  row-gap: 20px;
   /* background-color: #711d1d; */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 .payment-left-body {
   min-height: 350px;
-  width: 40%;
+  /* width: 40%; */
+  width: 350px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -147,7 +151,9 @@
 }
 .payment-right-body {
   min-height: 350px;
-  width: 40%;
+  /* width: 40%; */
+  width: 350px;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

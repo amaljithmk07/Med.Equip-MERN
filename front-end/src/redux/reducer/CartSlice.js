@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import Base_URL from "../../components/User/constant";
+import Base_URL from "../../components/Constant/constant";
 
 const initialState = {
   cartitems: [],

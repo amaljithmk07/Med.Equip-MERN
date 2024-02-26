@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import Loading from "../uuid-Animations/Loading";
 import Verify from "../uuid-Animations/Verify";
 import Wrong from "../uuid-Animations/Wrong";
-import Base_URL from "../User/constant";
+import Base_URL from "../Constant/constant";
 
 const Uuidverify = () => {
   const [wrong, setWrong] = useState();
