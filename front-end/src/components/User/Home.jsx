@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,30 +12,25 @@ const Home = () => {
   const role = sessionStorage.getItem("Role");
   console.log(token);
   const navigate = useNavigate();
-  axios
-    .get(`${Base_URL}/api/user/demo-view`, {})
-    .then((data) => {
-      console.log(data.data.data);
-      const approvedproducts = data.data.data.filter((data) => {
-        return data.product_status == "Approved";
+
+  useEffect(() => {
+    axios
+      .get(`${Base_URL}/api/user/demo-view`, {})
+      .then((data) => {
+        console.log(data.data.data);
+        const approvedproducts = data.data.data.filter((data) => {
+          return data.product_status == "Approved";
+        });
+        setproduct(approvedproducts);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err, {
+          position: "bottom-center",
+        });
       });
-      setproduct(approvedproducts);
-    })
-    .catch((err) => {
-      console.log(err);
-      toast.error(err, {
-        position: "bottom-center",
-      });
-      // if (err.response.status == 401) {
-      //   toast.error("Session Time Out", {
-      //     position: "bottom-center",
-      //   });
-      //   setTimeout(() => {
-      //     sessionStorage.clear();
-      //     navigate("/login");
-      //   }, 3000);
-      // }
-    });
+  },[]);
+
   const cardError = () => {
     toast.error("You need to login first", {
       position: "bottom-center",

@@ -10,18 +10,15 @@ const initialState = {
 
 var token = sessionStorage.getItem("Token");
 var id = sessionStorage.getItem("LoginId");
-console.log("tokeldkfgslfdgjdshgfkshfdgdkjfhsgkjfhdgn", token);
+console.log("token", token);
 
 export const cartView = createAsyncThunk("content/cartView", async () => {
   // const res = await axios.get(`http://localhost:2222/api/user/cartview/${id}`, {
-  const res = await axios.get(
-    `${Base_URL}/api/user/cartview/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const res = await axios.get(`${Base_URL}/api/user/cartview/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = await res.data.data;
   return data;
 });

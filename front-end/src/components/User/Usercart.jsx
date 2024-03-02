@@ -28,7 +28,7 @@ const Usercart = () => {
     dispatch(cartView());
   }, []);
 
-  console.log(cartitems);
+  // console.log(cartitems);
 
   return (
     <div className="cart-home">

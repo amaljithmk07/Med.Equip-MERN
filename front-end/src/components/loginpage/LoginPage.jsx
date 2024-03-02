@@ -21,6 +21,22 @@ function LoginPage() {
   const loginSubmit = (event) => {
     // setload(true);
     event.preventDefault();
+
+    let email = document.forms["myForm"]["email"].value;
+    let password = document.forms["myForm"]["password"].value;
+    if (email == "") {
+      toast.error("Email is empty", {
+        position: "bottom-center",
+      });
+      return false;
+    } else if (password == "") {
+      toast.error("Password is empty", {
+        position: "bottom-center",
+      });
+
+      return false;
+    }
+
     axios
       // .post(`http://localhost:2222/api/login`, loginLetter)
       .post(`${Base_URL}/api/login`, loginLetter)
@@ -52,13 +68,14 @@ function LoginPage() {
     setShowPassword((prev) => !prev);
     setpass((prev) => !prev);
   };
+
   return (
     <div>
       <div className="body">
         <div className="login">
           <div className="components">
             <h1 className="login-h1">Login</h1>
-            <form action="" className="components1">
+            <form action="" name="myForm" className="components1">
               <div className="login-input-box">
                 <div className="login-input-field-sec">
                   {/* <img src="/login-user.png" alt="" className="login-png" /> */}

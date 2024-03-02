@@ -141,7 +141,7 @@
   font-size: 0.81rem;
   color: rgb(41, 41, 41);
   cursor: pointer;
-  background-color: rgba(232, 232, 232, 0.222);
+  background-color: rgb(232, 232, 232);
   text-transform: uppercase;
 
 }

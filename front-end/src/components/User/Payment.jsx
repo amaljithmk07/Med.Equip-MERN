@@ -58,6 +58,14 @@ const Payment = () => {
   };
   // console.log("p", qr.length);
 
+  function validateForm() {
+    let x = document.forms["Form"]["name"].value;
+    if (x == "") {
+      alert("Name must be filled out");
+      return false;
+    }
+  }
+
   return (
     <div>
       <div className="payment-body">
@@ -65,6 +73,7 @@ const Payment = () => {
           <div className="payment-sub-body-head">Donation </div>
           <div className="payment-body-container">
             <div className="payment-left-body">
+              {/* <form name="Form" onSubmit={validateForm}> */}
               <div className="payment-details-head"> details</div>
               <div className="payment-details-sec">
                 Name :{" "}
@@ -96,6 +105,7 @@ const Payment = () => {
               <button className="qr-button" onClick={qrGenerate}>
                 Generate QR Code{" "}
               </button>
+              {/* </form> */}
             </div>
             <div className="payment-right-body">
               <div className="payment-qr-sec">
@@ -117,9 +127,9 @@ const Payment = () => {
               </div>
             </div>
           </div>
-            <button className="payment-button" onClick={paymentSubmit}>
-           Make   Payment
-            </button>
+          <button className="payment-button" onClick={paymentSubmit}>
+            Make Payment
+          </button>
         </div>
       </div>
       <Toaster />

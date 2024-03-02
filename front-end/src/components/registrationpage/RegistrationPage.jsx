@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Registration.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast,  { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import Base_URL from "../Constant/constant";
 
@@ -14,8 +14,24 @@ const RegistrationPage = () => {
     setletter({ ...letter, [name]: value });
     // console.log(letter);
   };
+
+  ///Regisration Section
+
   const createHandler = (event) => {
     event.preventDefault();
+
+    let email = document.forms["RegisterForm"]["email"].value;
+    console.log(email);
+    let validemail = email.match(
+      /^([a-zA-Z0-9._-]+)@([a-zA-Z]+)\.([a-zA-Z]{2,})$/
+    );
+    console.log(validemail);
+    if (validemail == null) {
+      toast.error("Please enter valid email", {
+        position: "bottom-center",
+      });
+      return false
+    }
     axios
       // .post(`http://localhost:2222/api/register/user`, letter)
       .post(`${Base_URL}/api/register/user`, letter)
@@ -54,7 +70,7 @@ const RegistrationPage = () => {
         <div className="content">
           <div className="registrationform">
             <h1 className="reg-h1">Register</h1>
-            <form action="" className="registrationform1">
+            <form action="" className="registrationform1" name="RegisterForm">
               {/* //User Part */}
 
               <input
