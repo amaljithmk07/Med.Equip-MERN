@@ -1,5 +1,5 @@
 .addressdetails-body {
-  height: 630px;
+  min-height: 630px;
   width: 100%;
   /* background-color: red; */
   background-image: url("/public/cardbody1.jpg");
@@ -12,7 +12,7 @@
   align-items: center;
 }
 .a-d-sub-body {
-  height: 530px;
+  min-height: 530px;
   width: 60%;
   border: 1px solid rgb(170, 170, 170);
   background-color: rgb(255, 255, 255);
@@ -34,7 +34,7 @@
   align-items: center;
 }
 .a-d-details {
-  height: 200px;
+  min-height: 200px;
   width: 100%;
   /* background-color: rgb(211, 41, 41); */
   display: flex;
@@ -57,7 +57,6 @@
   /* background-color: red; */
 }
 .a-d-address-data {
-  width: 80px;
   width: 80%;
   display: flex;
   justify-content: center;
@@ -98,15 +97,14 @@
 }
 @media screen and (max-width: 700px) {
   .a-d-sub-body {
-    height: 530px;
+    min-height: 530px;
     width: 95%;
   }
   .a-d-address {
     width: 33%;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
   }
   .a-d-address-data {
-    width: 80px;
     width: 90%;
     /* background-color: red; */
     font-size: 0.62rem;
@@ -124,27 +122,46 @@
 
 @media screen and (max-width: 500px) {
   .addressdetails-body {
-    min-height: auto;
-    /* width: 100%; */
+    min-height: 630px;
+    width: 100%;
+    padding: 50px 0;
+  }
+  .a-d-sub-body-head {
+    height: 70px;
+    width: 100%;
+    /* background-color: rgb(211, 41, 41); */
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
   }
   .a-d-sub-body {
+    /* min-height: 530px; */
     height: auto;
+    width: 90%;
+    border: 1px solid rgb(170, 170, 170);
+    background-color: rgb(255, 255, 255);
+
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+
   .a-d-details {
-    height: 200px;
+    min-height: 200px;
     width: 100%;
-    /* background-color: rgb(211, 41, 41); */
+    /* background-color: rgb(0, 22, 7); */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
+    flex-direction: column;
+    /* justify-content: space-between; */
     align-items: center;
   }
+
   .a-d-address {
+    min-height: 150px;
     width: 90%;
-    background-color: rebeccapurple;
+    flex-direction: column;
+    /* background-color: rgb(128, 0, 255); */
   }
 }

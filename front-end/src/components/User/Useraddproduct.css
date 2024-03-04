@@ -8,7 +8,7 @@
 
 .user-addproduct-body {
   background-color: rgb(255, 255, 255);
-  height: 628px;
+  min-height: 628px;
   width: 100%;
   /* background-color: rgb(255, 255, 255); */
   display: flex;
@@ -28,7 +28,7 @@
   color: rgb(0, 0, 0);
 }
 .user-addproduct-content {
-  height: 450px;
+  min-height: 450px;
   width: 60%;
   border: 2px solid rgb(255, 244, 208);
   border-radius: 20px;
@@ -43,16 +43,34 @@
   justify-content: center;
   align-items: center;
 }
+.userforminput-field {
+  height: 95%;
+  width: 100%;
+  /* background-color: rgb(255, 55, 0); */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-direction: column; */
+}
 .usercontent-left {
   width: 40%;
   height: 100%;
-  /* background-color: beige; */
+  /* background-color: rgb(0, 73, 129); */
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
+.usercontent-right {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: rgb(220, 220, 38); */
+}
+
 .userimage-sec {
-  height: 60%;
+  min-height: 250px;
   width: 70%;
   /* background-color: blue; */
   border-radius: 20px;
@@ -76,34 +94,18 @@
   flex-wrap: wrap;
   /* background-color: red; */
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 .user-product-add-blue-tick {
   height: 22px;
   width: auto;
 }
-.usercontent-right {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  /* background-color: rgb(220, 220, 38); */
-}
 
-.userforminput-field {
-  height: 95%;
-  width: 100%;
-  /* background-color: rgb(255, 55, 0); */
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* flex-direction: column; */
-}
 .userinput-field {
   height: 95%;
   width: 90%;
-  /* background-color: blue; */
+  /* background-color: blue  ; */
+  row-gap: 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -170,6 +172,10 @@
   background-size: cover;
   object-fit: cover;
 }
+
+/* ///Condition */
+
+
 .login-first-body {
   width: 100%;
   height: 600px;
@@ -190,4 +196,178 @@
   height: auto;
   width: 100%;
   /* background-color: red; */
+}
+@media screen and (max-width: 1200px) {
+  .user-addproduct-content {
+    min-height: 450px;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .user-addproduct-content {
+    min-height: 450px;
+    width: 90%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .user-addproduct-content {
+    min-height: 450px;
+    width: 90%;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 700px) {
+  .user-addproduct-sub-body {
+    height: 80%;
+    width: 90%;
+    row-gap: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 700;
+    margin: 50px 0;
+    /* background-color: red; */
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+  }
+  .user-addproduct-content {
+    min-height: 450px;
+    width: 95%;
+    border: 2px solid rgb(255, 244, 208);
+    border-radius: 20px;
+    /* background-color: #ffefe4; */
+    background-image: url("/public/cardbody1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .userforminput-field {
+    height: auto;
+    width: 100%;
+    /* background-color: rgb(255, 55, 0); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+    row-gap: 20px;
+    /* flex-direction: column; */
+  }
+  .usercontent-left {
+    width: 60%;
+    min-height: 180px;
+    /* background-color: rgb(0, 73, 129); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .usercontent-right {
+    width: 80%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(220, 220, 38); */
+  }
+}
+@media screen and (max-width: 550px) {
+  .user-addproduct-content {
+    min-height: 450px;
+    width: 95%;
+    border: 2px solid rgb(255, 244, 208);
+    border-radius: 20px;
+    /* background-color: #ffefe4; */
+    background-image: url("/public/cardbody1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .userforminput-field {
+    height: auto;
+    width: 100%;
+    /* background-color: rgb(255, 55, 0); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+    row-gap: 20px;
+    /* flex-direction: column; */
+  }
+  .usercontent-left {
+    width: 100%;
+    min-height: 180px;
+    /* background-color: rgb(0, 73, 129); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .usercontent-right {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(220, 220, 38); */
+  }
+}
+@media screen and (max-width: 400px) {
+  .user-addproduct-sub-body {
+    height: 80%;
+    width: 95%;
+    row-gap: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 700;
+    margin: 50px 0;
+    /* background-color: red; */
+    font-size: 23px;
+    color: rgb(0, 0, 0);
+  }
+
+  .user-product-input {
+    padding: 0px 10px;
+    height: 30px;
+    width: 90%;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 14px;
+    border: 1px solid rgb(229, 229, 229);
+    font-weight: 700;
+  }
+  .user-product-input-dropdown {
+    padding: 0px 5px;
+    height: 30px;
+    width: 97%;
+    color: rgb(112, 112, 112);
+    /* color: rgb(255, 0, 0); */
+    border-radius: 5px;
+    border: 0px;
+    font-size: 14px;
+    border: 1px solid rgb(231, 231, 231);
+    font-weight: 600;
+  }
+  .user-product-submit {
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+    background-color: #915328;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0px;
+  }
+
 }

@@ -140,7 +140,7 @@ const Useraddproduct = () => {
                       />
                       <select
                         onChange={keyHandler}
-                        className="admin-product-input-dropdown"
+                        className="user-product-input-dropdown"
                         name="category"
                         placeholder="Category"
 

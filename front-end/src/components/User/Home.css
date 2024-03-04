@@ -223,74 +223,6 @@
   margin: 0px;
   color: black;
 }
-.home-card-buttons {
-  height: 10%;
-  width: 90%;
-  /* background-color: rgb(255, 255, 255); */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-}
-.user-btn-sec {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* background-color: rgb(58, 53, 20); */
-}
-.user-addtocart {
-  height: 100%;
-  width: 75%;
-  /* background-color: #ffb300; */
-  background: linear-gradient(
-    45deg,
-    rgb(255, 208, 89),
-    rgb(255, 212, 113),
-    #ffb300
-  );
-  border-radius: 5px;
-  border: 1px solid #ffda4763;
-  font-weight: 800;
-  font-size: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(0, 0, 0);
-  /* font-weight: 600; */
-  cursor: pointer;
-  column-gap: 5px;
-  text-transform: uppercase;
-}
-.user-addtocart:hover {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.182);
-}
-
-.user-addtocart-logo {
-  height: 18px;
-  width: auto;
-}
-
-.user-saved-item {
-  height: 100%;
-  width: 20%;
-  background-color: #ffb300;
-  border-radius: 5px;
-  border: 1px solid #ffda4763;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.user-saved-item:hover {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.182);
-}
-.user-saveditem-logo {
-  height: 18px;
-  width: auto;
-}
 
 @media screen and (max-width: 980px) and (min-width: 750px) {
   .homemain-body {
@@ -410,6 +342,36 @@
     width: 20px;
     height: auto;
   }
+
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 750px) and (min-width: 640px) {
@@ -455,6 +417,34 @@
     width: 20px;
     height: auto;
   }
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
+  }
 }
 @media screen and (max-width: 640px) and (min-width: 580px) {
   .homeproduct-sub-body {
@@ -491,6 +481,34 @@
   #right-arrow {
     width: 20px;
     height: auto;
+  }
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
   }
 }
 @media screen and (max-width: 580px) and (min-width: 485px) {
@@ -538,6 +556,36 @@
   #right-arrow {
     width: 20px;
     height: auto;
+  }
+
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
   }
 }
 
@@ -592,6 +640,34 @@
     width: 20px;
     height: auto;
   }
+
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
+  }
 }
 @media screen and (max-width: 455px) and (min-width: 407px) {
   .homemain-body {
@@ -643,6 +719,35 @@
     width: 20px;
     height: auto;
   }
+
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 407px) and (min-width: 300px) {
@@ -691,5 +796,34 @@
     height: 2rem;
     min-width: 50%;
     font-size: 12px;
+  }
+
+  .home-cards-sec {
+    min-height: 400px;
+    width: 90%;
+  }
+
+  .home-available-product-head {
+    font-size: 1.3rem;
+  }
+  .home-card {
+    cursor: pointer;
+    height: 320px;
+    width: 220px;
+    /* background-color: #ba5406; */
+  }
+  .home-card-image {
+    height: 40%;
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-card-details-h3,
+  .home-card-details-h4 {
+    font-size: 0.8rem;
   }
 }
