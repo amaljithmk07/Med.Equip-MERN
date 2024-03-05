@@ -39,7 +39,7 @@ const Useraddproduct = () => {
     formData.append("phone_number", products.phone_number);
     formData.append("address", products.address);
     formData.append("pin_code", products.pin_code);
- 
+
     try {
       axios
         // .post(`http://localhost:2222/api/user/add`, formData, {
@@ -87,7 +87,8 @@ const Useraddproduct = () => {
                       />
                       <label htmlFor="file-upload">
                         <img
-                          src="/admin-product-add-1.png"
+                          // src="/admin-product-add-1.png"
+                          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/adui0jkezcokvirtopti.png"
                           alt=""
                           id="user-product-add"
                         />
@@ -96,7 +97,8 @@ const Useraddproduct = () => {
                         <div className="user-product-add-filename-sec">
                           {products.image.name}
                           <img
-                            src="/blue-tick.png"
+                            // src="/blue-tick.png"
+                            src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583149/Med-equip/acluf0fcuzoveo11xwbo.png"
                             alt=""
                             className="user-product-add-blue-tick"
                           />
@@ -304,7 +306,12 @@ const Useraddproduct = () => {
           {token == null ? (
             <div className="login-first-body">
               <Link to={"/login"} className="login-first-body-link">
-                <img src="/login-first.png" alt="" className="login-first" />
+                {/* <img src="/login-first.png" alt="" className="login-first" /> */}
+                <img
+                  src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583153/Med-equip/nnmpbbkmuht88qgdgv2v.png"
+                  alt=""
+                  className="login-first"
+                />
               </Link>
             </div>
           ) : (
@@ -313,7 +320,8 @@ const Useraddproduct = () => {
                 <div className="login-first-body">
                   <Link to={"/uuidverify"} className="login-first-body-link">
                     <img
-                      src="/login-first.png"
+                      // src="/login-first.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583153/Med-equip/nnmpbbkmuht88qgdgv2v.png"
                       alt=""
                       className="login-first"
                     />

@@ -50,13 +50,14 @@ const Volunteerlist = () => {
                 <div className="volunteerlist-card-image-sec">
                   {data.image !== "" ? (
                     <img
-                      src={`/upload/${data.image}`}
+                      src={data.image}
                       alt=""
                       className="volunteerlist-card-img"
                     />
                   ) : (
                     <img
-                      src="/volunteerprofile.png"
+                      // src="/volunteerprofile.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/jss7plr1flat4l5j2qub.png"
                       alt=""
                       className="volunteerlist-card-img"
                     />
@@ -75,7 +76,8 @@ const Volunteerlist = () => {
         ) : (
           <>
             <img
-              src="/user-no-data.png"
+              // src="/user-no-data.png"
+              src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/zqcstw2436ip6awww37z.png"
               alt=""
               className="volunteerlist-vol-no-data"
             />

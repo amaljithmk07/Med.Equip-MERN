@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Orderrequest.css";
+import "./PendingOrders.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Base_URL from "../Constant/constant";
-const Orderrequest = () => {
+const PendingOrders = () => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("Token");
   const [ordersrequest, setOrdersrequest] = useState([]);
@@ -73,7 +73,7 @@ const Orderrequest = () => {
                     {" "}
                     {data.name}{" "}
                   </div>
-                  <div className="order-request-content-item">
+                  <div className="order-request-content-item ">
                     {data.category}{" "}
                   </div>
                   <div className="order-request-content-item">
@@ -103,7 +103,12 @@ const Orderrequest = () => {
               ))}
             </>
           ) : (
-            <img src="/no-data.png" alt="" className="order-request-nodata" />
+            // <img src="/no-data.png" alt="" className="order-request-nodata" />
+            <img
+              src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/zqcstw2436ip6awww37z.png"
+              alt=""
+              className="order-request-nodata"
+            />
           )}
         </div>
       </div>
@@ -111,4 +116,4 @@ const Orderrequest = () => {
   );
 };
 
-export default Orderrequest;
+export default PendingOrders;

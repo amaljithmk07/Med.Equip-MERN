@@ -8,7 +8,12 @@ const Footer = () => {
         <div className="footer-body">
           <div className="footer-content-body1">
             <div className="footer-head">
-              <img src="/logo1.png" alt="" id="footer-med-logo-png" />
+              {/* <img src="/logo1.png" alt="" id="footer-med-logo-png" /> */}
+              <img
+                src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583156/Med-equip/yyoyl5fhjwfzx6karjs1.png"
+                alt=""
+                id="footer-med-logo-png"
+              />
               Medical Equipment
             </div>
             <div className="footer-container1">
@@ -16,7 +21,7 @@ const Footer = () => {
                 <Link className="footer-data">About Us</Link>
                 <Link className="footer-data">Annual Checkup</Link>
                 <Link className="footer-data">Blog</Link>
-                <Link className="footer-data">Carrers</Link>
+                <Link className="footer-data">Careers</Link>
               </div>
               <div className="footer-content1">
                 {" "}
@@ -50,7 +55,12 @@ const Footer = () => {
           <div className="footer-content-body3">
             <div className="footer-head">Follow Us</div>
             <div className="footer-content3">
-              <img src="/footer-icon.png" alt="" className="footer-icon" />
+              {/* <img src="/footer-icon.png" alt="" className="footer-icon" /> */}
+              <img
+                src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hjylepb0ixofqfhjdk5c.png"
+                alt=""
+                className="footer-icon"
+              />
             </div>
           </div>
         </div>

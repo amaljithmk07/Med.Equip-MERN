@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./Approveproduct.css";
+import "./NewProductList.css";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Base_URL from "../Constant/constant";
 // import Usernavbar from "../UserNavbar/Usernavbar";
-const Approveproduct = () => {
+const NewProductList = () => {
   const navigate = useNavigate();
   const [product, setproduct] = useState([]);
   // const [saveditem, setsaveditem] = useState(true);
@@ -101,7 +101,7 @@ const Approveproduct = () => {
       <div className="volunteer-pro-approve-content-body">
         <div className="volunteer-pro-approve-cards-body">
           <div className="volunteer-pro-approve-cards-heading">
-            PENDING PRODUCTS{" "}
+            NEW ARRIVALS{" "}
           </div>
 
           {product.length > 0 ? (
@@ -110,7 +110,7 @@ const Approveproduct = () => {
                 <div className="volunteer-pro-approve-card" key={item._id}>
                   <div className="volunteer-pro-approve-card-image-sec">
                     <img
-                      src={`/upload/${item.image}`}
+                      src={item.image}
                       alt=""
                       className="volunteer-pro-approve-card-image"
                     />
@@ -143,7 +143,8 @@ const Approveproduct = () => {
 
                     <button className="volunteer-pro-approve-item">
                       <img
-                        src="/cart-cross.png"
+                        // src="/cart-cross.png"
+                        src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/tbypsdgwgnzvnbthgdfd.png"
                         onClick={() => productReject(item._id)}
                         alt=""
                         className="volunteer-pro-approve-logo"
@@ -154,7 +155,12 @@ const Approveproduct = () => {
               ))}
             </>
           ) : (
-            <img src="/user-no-data.png" alt="" className="user-no-data" />
+            // <img src="/user-no-data.png" alt="" className="user-no-data" />
+            <img
+              src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/zqcstw2436ip6awww37z.png"
+              alt=""
+              className="user-no-data"
+            />
           )}
         </div>
       </div>
@@ -162,4 +168,4 @@ const Approveproduct = () => {
   );
 };
 
-export default Approveproduct;
+export default NewProductList;

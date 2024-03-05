@@ -1,7 +1,8 @@
 .payment-body {
   min-height: 647px;
   width: 100%;
-  background: url("/public/cardbody1.jpg");
+  /* background: url("/public/cardbody1.jpg"); */
+  background: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -143,7 +144,6 @@
   cursor: pointer;
   background-color: rgb(232, 232, 232);
   text-transform: uppercase;
-
 }
 .payment-details,
 .payment-amount:focus {

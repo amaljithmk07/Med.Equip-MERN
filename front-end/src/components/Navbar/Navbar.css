@@ -2,9 +2,8 @@
   height: 65px;
   width: 100%;
   /* background-color: #4c4a8a; */
-  /* background-color: #59f4bb; */
-  /* background-color: #f49959; */
-  background-image: url("/public/navbar1.jpeg");
+  /* background-image: url("/public/navbar1.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/m1vlvemymvsgvxzgghty.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

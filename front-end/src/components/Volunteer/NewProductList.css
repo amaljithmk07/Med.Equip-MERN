@@ -6,7 +6,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +29,8 @@
 .volunteer-pro-approve-cards-body {
   height: 90%;
   width: 98%;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,7 +48,7 @@
 .volunteer-pro-approve-cards-heading {
   height: 50px;
   width: 100%;
-  font-size: 35px;
+  font-size: 32px;
   font-weight: 700;
   display: flex;
   align-items: flex-end;
@@ -114,7 +116,8 @@
   height: 400px;
   width: 250px;
   /* background-color: #ba5406; */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -137,7 +140,7 @@
   justify-content: center;
   align-items: center;
 }
-.volunteer-pro-approve-card-image  {
+.volunteer-pro-approve-card-image {
   max-height: 100%;
   max-width: 90%;
   /* background-color: rgb(191, 168, 214); */
@@ -246,7 +249,7 @@
   .volunteer-pro-approve-cards-heading {
     height: 50px;
     width: 100%;
-    font-size: 35px;
+    /* font-size: 35px; */
     font-weight: 700;
     display: flex;
     align-items: flex-end;
@@ -271,7 +274,7 @@
   .volunteer-pro-approve-cards-heading {
     height: 50px;
     width: 100%;
-    font-size: 30px;
+    /* font-size: 30px; */
     font-weight: 700;
     display: flex;
     align-items: flex-end;

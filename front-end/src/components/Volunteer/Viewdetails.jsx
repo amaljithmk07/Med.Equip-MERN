@@ -96,8 +96,19 @@ const Viewdetails = () => {
             <div className="a-d-address">
               {viewdetails.orderstatus == "Order Accepted" ? (
                 <>
-                  <video width={"200"} height={"50"} autoPlay muted loop className="status-video">
-                    <source src="/delivery.mp4" type="video/mp4" />
+                  <video
+                    width={"200"}
+                    height={"50"}
+                    autoPlay
+                    muted
+                    loop
+                    className="status-video"
+                  >
+                    {/* <source src="/delivery.mp4" type="video/mp4" /> */}
+                    <source
+                      src="https://res.cloudinary.com/dqc2xhnac/video/upload/v1708583150/Med-equip/nn7qnp7drkqcvlyoe0zc.mp4"
+                      type="video/mp4"
+                    />
                   </video>
                   <div className="order-accepted">Order accepted</div>
                 </>
@@ -105,15 +116,37 @@ const Viewdetails = () => {
                 <>
                   {viewdetails.orderstatus == "Delivered" ? (
                     <>
-                      <video width={"200"} height={"150"} autoPlay muted loop className="status-video">
-                        <source src="/delivered.mp4" type="video/mp4" />
+                      <video
+                        width={"200"}
+                        height={"150"}
+                        autoPlay
+                        muted
+                        loop
+                        className="status-video"
+                      >
+                        {/* <source src="/delivered.mp4" type="video/mp4" /> */}
+                        <source
+                          src="https://res.cloudinary.com/dqc2xhnac/video/upload/v1708583151/Med-equip/tsrry2zsstanb5acm7mb.mp4"
+                          type="video/mp4"
+                        />
                       </video>
                       <div className="delivered">Delivered</div>
                     </>
                   ) : (
                     <>
-                      <video width={"200"} height={"100"} autoPlay muted loop className="status-video">
-                        <source src="/pending.mp4" type="video/mp4" />
+                      <video
+                        width={"200"}
+                        height={"100"}
+                        autoPlay
+                        muted
+                        loop
+                        className="status-video"
+                      >
+                        {/* <source src="/pending.mp4" type="video/mp4" /> */}
+                        <source
+                          src="https://res.cloudinary.com/dqc2xhnac/video/upload/v1708583160/Med-equip/cgorunasnzfv8fcvwqve.mp4 "
+                          type="video/mp4"
+                        />
                       </video>
                       <div className="pending">Pending</div>
                     </>

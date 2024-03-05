@@ -114,7 +114,8 @@ const Donatedproducts = () => {
         </div>
       ) : (
         <img
-          src="/user-no-data.png"
+          // src="/user-no-data.png"
+          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/zqcstw2436ip6awww37z.png"
           alt=""
           className="donatedproducts-no-data"
         />

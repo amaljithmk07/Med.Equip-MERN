@@ -100,7 +100,12 @@ const Profilehome = () => {
                 {profile.image !== null ? (
                   <img src={profile.image} alt="" className="profile-photo" />
                 ) : (
-                  <img src="/profile1.png" alt="" className="profile-photo" />
+                  // <img src="/profile1.png" alt="" className="profile-photo" />
+                  <img
+                    src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583159/Med-equip/p3sq9ishi7myfxij6wxy.png"
+                    alt=""
+                    className="profile-photo"
+                  />
                 )}
                 {/*    </>
                   ) : (

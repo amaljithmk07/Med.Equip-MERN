@@ -6,7 +6,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +29,8 @@
 .donatedproducts-cards-body {
   height: 90%;
   width: 98%;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,7 +60,8 @@
   height: 200px;
   width: 600px;
   /* background-color: #ba5406; */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -167,8 +170,8 @@
 
 /* no data available */
 .donatedproducts-no-data {
-  height: 450px;
-  width: auto;
+  max-height: 450px;
+  max-width: 70%;
   /* background-color: red; */
 }
 
@@ -226,8 +229,11 @@
     width: 90%;
   }
   .donatedproducts-card {
-    height: 200px;
+    min-height: 200px;
     width: 100%;
+    background-color: red;
+    flex-direction: column;
+
   }
   .donatedproducts-card-details {
     height: 70%;
@@ -246,6 +252,6 @@
   .donatedproducts-edit {
     height: 20%;
     width: 85%;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }

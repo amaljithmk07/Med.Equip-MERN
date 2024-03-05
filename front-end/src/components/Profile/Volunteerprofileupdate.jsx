@@ -112,7 +112,8 @@ const Volunteerprofileupdate = () => {
                 />
                 <label htmlFor="image">
                   <img
-                    src="/profile1.png"
+                    // src="/profile1.png"
+                    src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583159/Med-equip/p3sq9ishi7myfxij6wxy.png"
                     alt=""
                     className="vol-profile-photo"
                   />

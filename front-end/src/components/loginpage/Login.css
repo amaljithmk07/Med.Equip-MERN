@@ -1,7 +1,8 @@
 .body {
   height: 647px;
   width: 100%;
-  background: url("/public/login-wallpaper2.jpeg");
+  /* background: url("/public/login-wallpaper2.jpeg"); */
+  background: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/jl8qwdwokcy1fpyepd13.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -127,7 +128,8 @@
 }
 .login-submit:hover {
   transition-timing-function: ease;
-  background-image: url("/public/navbar1.jpeg");
+  /* background-image: url("/public/navbar1.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/m1vlvemymvsgvxzgghty.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

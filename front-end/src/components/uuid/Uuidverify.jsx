@@ -13,6 +13,9 @@ const Uuidverify = () => {
   const navigate = useNavigate();
   const [letter, setLetter] = useState("");
   const [loading, setloading] = useState("");
+
+  //Letter
+
   const verify = (event) => {
     const { name, value } = event.target;
     // console.log(event.target.value);
@@ -59,7 +62,12 @@ const Uuidverify = () => {
             <div className="uuid-heading">
               {" "}
               SECRET KEY{" "}
-              <img src="/uuid-key.png" alt="" className="head-key-img" />
+              {/* <img src="/uuid-key.png" alt="" className="head-key-img" /> */}
+              <img
+                src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/esteopvwq3ej3w2fcg2i.png"
+                alt=""
+                className="head-key-img"
+              />
             </div>{" "}
             {wrong == null || loading.length !== 4 ? (
               <>
@@ -75,10 +83,9 @@ const Uuidverify = () => {
               name="user_id"
               id="uuid-input"
               maxLength={4}
-              placeholder=" Check your profile for UUID"
+              placeholder=" Enter Your UUID"
               onChange={verify}
             />
-
             <input
               type="submit"
               value={"Verify"}
@@ -86,6 +93,11 @@ const Uuidverify = () => {
               onClick={handleClick}
             />
           </div>
+          {letter == "" ? (
+            <div className="uuid-warning">* Check Your Profile For UUID</div>
+          ) : (
+            <></>
+          )}{" "}
         </div>
       </div>
     </div>

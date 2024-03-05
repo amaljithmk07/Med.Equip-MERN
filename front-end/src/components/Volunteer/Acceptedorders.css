@@ -11,7 +11,8 @@
   min-height: 550px;
   width: 80%;
   /* background-color: cyan; */
-  background-image: url("/public/cardbody.jpg");
+  /* background-image: url("/public/cardbody.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583153/Med-equip/jrdnovvcos58rudtfcat.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

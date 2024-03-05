@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Base_URL from "../Constant/constant";
 
-
 const Viewproduct = () => {
   const navigate = useNavigate();
   const [product, setproduct] = useState([]);
@@ -16,7 +15,6 @@ const Viewproduct = () => {
   const role = sessionStorage.getItem("Role");
   useEffect(() => {
     if (role == 2) {
-
       //Products User View
 
       axios
@@ -166,7 +164,8 @@ const Viewproduct = () => {
                 onChange={searchInput}
               />
               <img
-                src="/search.png"
+                // src="/search.png"
+                src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583162/Med-equip/fi84cuj3tmqypighkpxz.png"
                 alt=""
                 className="user-view-searchBar-img"
                 onClick={searchsubmit}
@@ -178,11 +177,7 @@ const Viewproduct = () => {
               {product.map((item) => (
                 <div className="user-view-card" key={item._id}>
                   <div className="user-view-card-image">
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="user-card-image"
-                    />
+                    <img src={item.image} alt="" className="user-card-image" />
                   </div>
                   <div className="user-view-card-details">
                     <h3 className="user-view-card-details-h3"> {item.name}</h3>
@@ -212,7 +207,8 @@ const Viewproduct = () => {
                     >
                       Add to Cart
                       <img
-                        src="/addtocart.png"
+                        // src="/addtocart.png"
+                        src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/b1rwmfaq2vieebdnzvmi.png"
                         alt=""
                         className="user-addtocart-logo"
                       />
@@ -223,13 +219,15 @@ const Viewproduct = () => {
                     >
                       {item.wishlist == "" ? (
                         <img
-                          src="/unsaved-item.png"
+                          // src="/unsaved-item.png"
+                          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583162/Med-equip/vpt2uqdeqdhylewq9zju.png"
                           alt=""
                           className="user-saveditem-logo"
                         />
                       ) : (
                         <img
-                          src="/saved-item.png"
+                          // src="/saved-item.png"
+                          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583161/Med-equip/hnmdyowf8kv91igeswqa.png"
                           alt=""
                           className="user-saveditem-logo"
                         />
@@ -240,7 +238,12 @@ const Viewproduct = () => {
               ))}
             </>
           ) : (
-            <img src="/user-no-data.png" alt="" className="user-no-data" />
+            // <img src="/user-no-data.png" alt="" className="user-no-data" />
+            <img
+              src="  https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/zqcstw2436ip6awww37z.png"
+              alt=""
+              className="user-no-data"
+            />
           )}
         </div>
       </div>

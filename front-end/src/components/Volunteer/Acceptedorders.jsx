@@ -93,7 +93,6 @@ const AcceptedOrders = () => {
                   <div className="a-o-content-item-qty">{data.cart_qty}</div>
                   {/* <div className="a-o-content-item">{data.orderstatus}</div> */}
                   <div className="a-o-content-item">
-                    {" "}
                     <Link
                       to={`/volunteer/view-details/${data._id}`}
                       className="a-o-content-item-viewdetails"
@@ -114,7 +113,8 @@ const AcceptedOrders = () => {
                         {" "}
                         Order Placed
                         <img
-                          src="/order-delivered-tick.png"
+                          // src="/order-delivered-tick.png"
+                          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583158/Med-equip/etm7upipvfudkneftinh.png"
                           alt=""
                           className="order-delivered"
                         />
@@ -125,7 +125,12 @@ const AcceptedOrders = () => {
               ))}
             </>
           ) : (
-            <img src="/no-data.png" alt="" className="a-o-nodata" />
+            // <img src="/no-data.png" alt="" className="a-o-nodata" />
+            <img
+              src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583159/Med-equip/wyoytdmiqhpdgfkf4puz.png"
+              alt=""
+              className="a-o-nodata"
+            />
           )}
         </div>
       </div>

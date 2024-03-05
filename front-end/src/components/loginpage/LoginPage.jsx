@@ -79,7 +79,12 @@ function LoginPage() {
               <div className="login-input-box">
                 <div className="login-input-field-sec">
                   {/* <img src="/login-user.png" alt="" className="login-png" /> */}
-                  <img src="/email.png" alt="" className="login-png" />
+                  {/* <img src="/email.png" alt="" className="login-png" /> */}
+                  <img
+                    src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583149/Med-equip/g5etl3wsnk8pbmngkdff.png"
+                    alt=""
+                    className="login-png"
+                  />
                   <input
                     type="text"
                     placeholder=" Email"
@@ -93,7 +98,8 @@ function LoginPage() {
                 <div className="login-input-field-sec">
                   {pass == false ? (
                     <img
-                      src="/login-pass-view.png"
+                      // src="/login-pass-view.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583153/Med-equip/rcfxwyr2zc9yp7xrwheg.png"
                       id="check"
                       value={showPassword}
                       onClick={passShow}
@@ -104,7 +110,8 @@ function LoginPage() {
                     <>
                       <img
                         id="check"
-                        src="/login-pass.png"
+                        // src="/login-pass.png"
+                        src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583152/Med-equip/fszpi0qgjec0su3fwdzw.png"
                         alt=""
                         value={showPassword}
                         onClick={passShow}

@@ -15,7 +15,8 @@
   width: 70%;
   min-height: 300px;
   /* background-color: rgb(159, 57, 57); */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -197,7 +198,8 @@
   margin: 20px 0px 0px 0px;
   /* background-color: rgb(255, 170, 67); */
   /* background-image: url("/public/cardbody1.jpg"); */
-  background-image: url("/public/make-order.jpg");
+  /* background-image: url("/public/make-order.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583156/Med-equip/a3kex58fqt3th5vqmzhu.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -312,7 +314,7 @@
   }
 
   .cart-img {
-    background-color: red;
+    /* background-color: red; */
     height: 50px;
     width: auto;
   }

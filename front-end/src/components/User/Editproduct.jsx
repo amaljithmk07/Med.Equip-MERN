@@ -41,10 +41,10 @@ const Editproduct = () => {
 
   const handlePhoto = (e) => {
     const { name } = e.target;
-    console.log(name);
+    // console.log(name);
     setProducts({ ...products, [name]: e.target.files[0] });
   };
-  console.log("new:", products);
+  // console.log("new:", products);
   const navigate = useNavigate();
 
   //////////////////////////////////
@@ -107,7 +107,7 @@ const Editproduct = () => {
                     />
                     <label htmlFor="file-upload">
                       <img
-                        src={`/upload/${products.image}`}
+                        src={products.image}
                         alt=""
                         id="edit-product-add"
                       />

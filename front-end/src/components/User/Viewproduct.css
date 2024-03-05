@@ -6,7 +6,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +29,8 @@
 .user-view-cards-body {
   height: 90%;
   width: 98%;
-  background-image: url("/public/view-product-back.jpeg");
+  /* background-image: url("/public/view-product-back.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583164/Med-equip/qozu1k7wyslgezvewgau.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -115,7 +117,8 @@
   height: 400px;
   width: 250px;
   /* background-color: #ba5406; */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -235,8 +238,8 @@
 
 /* no data available */
 .user-no-data {
-  height: 450px;
-  width: auto;
+  max-height: 450px;
+  max-width: 70%;
   /* background-color: red; */
 }
 

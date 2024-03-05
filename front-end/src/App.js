@@ -23,7 +23,7 @@ import Userprofileupdate from "./components/Profile/Userprofileupdate";
 import Volunteerprofileupdate from "./components/Profile/Volunteerprofileupdate";
 import Home from "./components/User/Home";
 import Ordersummary from "./components/User/Ordersummary";
-import Orderrequest from "./components/Volunteer/Orderrequest";
+import Orderrequest from "./components/Volunteer/PendingOrders";
 import Acceptedorders from "./components/Volunteer/Acceptedorders";
 import Viewproduct from "./components/User/Viewproduct";
 import Orderplace from "./components/User/Orderplace";
@@ -31,8 +31,9 @@ import Address from "./components/Profile/Address";
 import Donatedproducts from "./components/User/Donatedproducts";
 import Viewdetails from "./components/Volunteer/Viewdetails";
 import Updateaddress from "./components/Profile/Updateaddress";
-import Approveproduct from "./components/Volunteer/Approveproduct";
 import Payment from "./components/User/Payment";
+import NewProductList from "./components/Volunteer/NewProductList";
+import PendingOrders from "./components/Volunteer/PendingOrders";
 
 function App() {
   // const navigate = useNavigate();
@@ -77,9 +78,9 @@ function App() {
         <Route path="/volunteer/register" element={<Volunteerregister />} />
         <Route path="/volunteer/list" element={<Volunteerlist />} />
         <Route path="/volunteer/request" element={<Volunteerrequest />} />
-        <Route path="/volunteer/order-request" element={<Orderrequest />} />
+        <Route path="/volunteer/pending-orders" element={<PendingOrders />} />
         <Route path="/volunteer/accepted-orders" element={<Acceptedorders />} />
-        <Route path="/volunteer/approve-product" element={<Approveproduct />} />
+        <Route path="/volunteer/new-product-list" element={<NewProductList />} />
       </Routes>
       <Footer />
     </Router>

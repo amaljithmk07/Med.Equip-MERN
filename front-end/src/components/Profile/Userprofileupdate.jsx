@@ -115,7 +115,8 @@ const Userprofileupdate = () => {
                 />
                 <label htmlFor="image">
                   <img
-                    src="/profile1.png"
+                    // src="/profile1.png"
+                    src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583159/Med-equip/p3sq9ishi7myfxij6wxy.png"
                     alt=""
                     className="userprofile-photo"
                   />
@@ -172,7 +173,12 @@ const Userprofileupdate = () => {
                  add address{" "}
                 </Link> */}
               <Link to={"/user/address"} className="address-sec">
-                <img src="/addaddress.png" alt="" className="address-img" />
+                {/* <img src="/addaddress.png" alt="" className="address-img" /> */}
+                <img
+                  src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583165/Med-equip/t0d9cnlc7o6yq3gugawl.png"
+                  alt=""
+                  className="address-img"
+                />
                 saved addressess{" "}
               </Link>
 

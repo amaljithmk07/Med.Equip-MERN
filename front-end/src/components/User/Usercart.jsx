@@ -41,7 +41,12 @@ const Usercart = () => {
         {/* //////////////////////////////////// */}
         {cartitems[0] == null ? (
           <>
-            <img src="/Empty-cart.png" alt="" className="cart-empty" />{" "}
+            {/* <img src="/Empty-cart.png" alt="" className="cart-empty" />{" "} */}
+            <img
+              src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583149/Med-equip/yipwefyjgikkea58zb6w.png"
+              alt=""
+              className="cart-empty"
+            />{" "}
           </>
         ) : (
           <>
@@ -49,11 +54,7 @@ const Usercart = () => {
               {cartitems.map((item) => (
                 <div className="cart-items" key={item._id}>
                   <div className="cart-items-img">
-                    <img
-                      src={`/upload/${item.image}`}
-                      alt=""
-                      className="cart-img"
-                    />
+                    <img src={item.image} alt="" className="cart-img" />
                   </div>
                   <div className="cart-items-type">{item.name}</div>
                   <div className="cart-items-available-qty">
@@ -86,7 +87,8 @@ const Usercart = () => {
                   </div>
                   <div className="cart-items-delete">
                     <img
-                      src="/cart-cross.png"
+                      // src="/cart-cross.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/tbypsdgwgnzvnbthgdfd.png"
                       alt=""
                       className="cart-remove-item"
                       onClick={() => dispatch(cartdelete(item._id))}

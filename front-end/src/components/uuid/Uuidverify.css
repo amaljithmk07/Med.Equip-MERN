@@ -13,12 +13,14 @@
   flex-direction: column;
   height: 100%;
   /* background-color: rgba(251, 247, 247, 0.626); */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
   width: 100%;
+  row-gap: 5px;
 }
 .uuid-container {
   font-size: 25px;
@@ -50,7 +52,7 @@
   border-radius: 10px;
   border: 0px;
   background-color: rgb(255, 255, 255);
-  font-size: 35px;
+  font-size: 32px;
   border: 2px solid rgb(209, 209, 209);
   font-weight: 700;
   text-align: center;
@@ -76,7 +78,8 @@
   border: 0px;
   /* background-color: rgb(0, 136, 255); */
   /* background-color: #f49959; */
-  background-image: url("/public/navbar.jpeg");
+  /* background-image: url("/public/navbar.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/fntyslxttnvefmsosy6v.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -87,7 +90,11 @@
   font-weight: 700;
   cursor: pointer;
 }
-
+.uuid-warning{
+  font-size: .65rem;
+  color: red;
+  font-weight: 700;
+}
 @media screen and (max-width: 1330px) and (min-width: 1145px) {
   .uuid-container {
     font-size: 21px;
@@ -405,7 +412,7 @@
   .uuid-container {
     font-size: 25px;
     height: 40%;
-    width: 79%;
+    width: 80%;
     /* background-color: red; */
   }
   .uuid-heading {

@@ -112,7 +112,8 @@ const Payment = () => {
                 <div className="payment-scan-head">Scan Here</div>
                 {qr.length == 0 ? (
                   <img
-                    src="/qrcode.png"
+                    // src="/qrcode.png"
+                    src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583160/Med-equip/kcipwuujfvkyj4pycp7q.png"
                     alt="sadas"
                     className="payment-qr-code"
                   />
@@ -120,7 +121,8 @@ const Payment = () => {
                   <img src={qr} alt="" className="payment-qr-code" />
                 )}
                 <img
-                  src="/payment-option.png"
+                  // src="/payment-option.png"
+                  src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583159/Med-equip/av61ce3jrha40rjqlywk.png"
                   alt="sadas"
                   className="payment-option"
                 />

@@ -199,13 +199,15 @@ const Address = () => {
                   </div>
                   <div className="saved-address-edit-delete-sec">
                     <img
-                      src="/address-edit.png"
+                      // src="/address-edit.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/a43hgdxd1t71jpwjyo2j.png"
                       onClick={() => addressEdit(details._id)}
                       alt=""
                       className="s-a-edit"
                     />
                     <img
-                      src="/address-delete.png"
+                      // src="/address-delete.png"
+                      src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583166/Med-equip/wntsekqmtyoxh6k6rv4b.png"
                       alt=""
                       onClick={() => addressDelete(details._id)}
                       className="s-a-delete"
@@ -256,7 +258,7 @@ const Address = () => {
                   <div className="add-address-input-sec">
                     state:{" "}
                     <input
-                      type="text" 
+                      type="text"
                       name="state"
                       onChange={addressInput}
                       className="add-address-input"

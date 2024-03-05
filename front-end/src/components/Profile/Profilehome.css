@@ -5,7 +5,8 @@
   justify-content: center;
   align-items: center;
   /* background-color: rgb(255, 255, 255); */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,7 +65,8 @@
   justify-content: space-evenly;
   align-items: center;
   /* background-color: rgb(255, 255, 255); */
-  background-image: url("/public/cardbody.jpg");
+  /* background-image: url("/public/cardbody.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583153/Med-equip/jrdnovvcos58rudtfcat.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -123,7 +125,8 @@
   text-align: center;
   width: 40%;
   cursor: pointer;
-  background-image: url("/public/navbar1.jpeg");
+  /* background-image: url("/public/navbar1.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/m1vlvemymvsgvxzgghty.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

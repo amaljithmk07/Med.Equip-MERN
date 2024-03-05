@@ -12,7 +12,8 @@
   min-height: 580px;
   row-gap: 30px;
   width: 70%;
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -182,7 +183,8 @@
   font-weight: 700;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  background-image: url("/public/navbar.jpeg");
+  /* background-image: url("/public/navbar.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/fntyslxttnvefmsosy6v.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -309,7 +311,7 @@
 }
 @media screen and (max-width: 400px) {
   .order-card-product-head {
-width: 100%;
+    width: 100%;
   }
   .product-head-title,
   .product-head-title-qty {
@@ -323,9 +325,7 @@ width: 100%;
     text-align: center;
     /* background-color: rebeccapurple; */
   }
- 
- 
- 
+
   .order-button {
     width: 70%;
   }

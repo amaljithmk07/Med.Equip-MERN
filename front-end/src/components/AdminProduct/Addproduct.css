@@ -32,7 +32,8 @@
   border: 2px solid rgb(255, 244, 208);
   border-radius: 20px;
   /* background-color: #d8edff; */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -115,7 +116,6 @@
   font-weight: 600;
 }
 .admin-product-input-dropdown:focus {
-
   outline: 1px solid rgba(255, 170, 0, 0.651);
 }
 
@@ -131,7 +131,8 @@
   margin: 10px 0px;
 }
 .admin-product-submit:hover {
-  background-image: url("/public/navbar.jpeg");
+  /* background-image: url("/public/navbar.jpeg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583157/Med-equip/fntyslxttnvefmsosy6v.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -29,7 +29,7 @@ const Home = () => {
           position: "bottom-center",
         });
       });
-  },[]);
+  }, []);
 
   const cardError = () => {
     toast.error("You need to login first", {
@@ -79,11 +79,6 @@ const Home = () => {
                   <>
                     <Link to={"/admin/addproduct"} id="button-arrow">
                       <button id="donate-button">Donate Your Equip </button>
-                      {/* <img
-                        src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583152/Med-equip/qpc6vwdqtkplhnkoojim.png"
-                        alt=""
-                        id="right-arrow"
-                      /> */}
                     </Link>
                   </>
                 ) : (
@@ -92,11 +87,6 @@ const Home = () => {
                       <div className="home-btn-group">
                         <Link to={"/uuidverify"} id="button-arrow">
                           <button id="donate-button">Equipments </button>
-                          {/* <img
-                            src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583152/Med-equip/qpc6vwdqtkplhnkoojim.png"
-                            alt=""
-                            id="right-arrow"
-                          /> */}
                         </Link>
                         OR
                         <Link to={"/user/payment"} id="button-arrow">
@@ -107,11 +97,6 @@ const Home = () => {
                       <>
                         <Link to={"/volunteer/order-request"} id="button-arrow">
                           <button id="donate-button">Order requests </button>
-                          {/* <img
-                            src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583152/Med-equip/qpc6vwdqtkplhnkoojim.png"
-                            alt=""
-                            id="right-arrow"
-                          /> */}
                         </Link>
                       </>
                     )}

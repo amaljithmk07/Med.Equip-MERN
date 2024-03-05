@@ -81,7 +81,8 @@ const Addproduct = () => {
                       />
                       <label htmlFor="file-upload">
                         <img
-                          src="/admin-product-add-1.png"
+                          // src="/admin-product-add-1.png"
+                          src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/adui0jkezcokvirtopti.png"
                           alt=""
                           id="admin-product-add"
                         />

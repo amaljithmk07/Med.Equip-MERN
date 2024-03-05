@@ -1,6 +1,7 @@
 .vol-home-body {
   /* background-color: red; */
-  background-image: url("/public/cardbody1.jpg");
+  /* background-image: url("/public/cardbody1.jpg"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/hrxjh4lqnafcysp5l96g.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,7 +30,8 @@
   display: flex;
 }
 .vol-home-quote {
-  background-image: url("/public/quotes.png");
+  /* background-image: url("/public/quotes.png"); */
+  background-image: url("https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583161/Med-equip/nplq4eec5fzxj980jwp7.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
