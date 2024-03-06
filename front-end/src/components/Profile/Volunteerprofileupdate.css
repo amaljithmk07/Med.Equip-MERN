@@ -56,8 +56,8 @@
   box-shadow: 5px 0px 20px rgba(47, 47, 47, 0.125);
 
   border-radius: 35px;
-  height: 50rem;
-  width: 60%;
+  min-height: 550px;
+  width: 450px;
   display: flex;
   border: 2px solid #ffffff46;
   flex-direction: column;
@@ -146,4 +146,38 @@
     background-size: cover;
     object-fit: cover; */
   box-shadow: 0px 1px 8px rgba(47, 47, 47, 0.538);
+}
+@media screen and (max-width: 475px) {
+  .vol-profile-home-sub-body {
+    width: 100%;
+  }
+  .vol-profile-home-content {
+    width: 100%;
+    border-radius: 1px;
+    background-image: linear-gradient(
+      200deg,
+      white,white
+    );
+  }
+  .vol-profile-home-image {
+    column-gap: 20px;
+    font-size: 1.5rem;
+  }
+  .vol-profile-photo {
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .vol-profile-input-box {
+    width: 90%;
+    /* background-color: red; */
+  }
+  .vol-profile-input-label {
+    width: 35%;
+    font-size: 0.91rem;
+  }
+  .vol-profile-input {
+    width: 65%;
+    /* background-color: cadetblue; */
+    font-size: 0.91rem;
+  }
 }

@@ -43,7 +43,7 @@ const HomePage = () => {
     <div>
       <div className="homemain-body">
         <div className="homeproduct-sub-body">
-          <div className="homeproduct-content" data-aos="fade-up">
+          <div className="homeproduct-content" >
             <div className="home-head" >Medical Equipment</div>
             <div className="homeproduct-image">
               {/* <img src="/donate.png" alt="" className="home-img" /> */}

@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
+
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="footer-home">
+    <div className="footer-home" data-aos="fade-up">
       <div className="footer-main-body">
         <div className="footer-body">
           <div className="footer-content-body1">
-            <div className="footer-head">
+            <div className="footer-head" >
               {/* <img src="/logo1.png" alt="" id="footer-med-logo-png" /> */}
               <img
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583156/Med-equip/yyoyl5fhjwfzx6karjs1.png"
