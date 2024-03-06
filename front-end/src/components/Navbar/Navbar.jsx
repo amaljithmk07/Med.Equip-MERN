@@ -135,29 +135,10 @@ const Navbar = () => {
                     <li>
                       <Link
                         onClick={Uncheck}
-                        to={"/admin/Addproduct"}
-                        className="general-a"
-                      >
-                        Add Products
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={Uncheck}
                         to={"/admin/new-product"}
                         className="general-a"
                       >
                         New Products
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={Uncheck}
-                        to={"/volunteer/list"}
-                        className="general-a"
-                      >
-                        {" "}
-                        volunteer List
                       </Link>
                     </li>
 
@@ -168,6 +149,16 @@ const Navbar = () => {
                         className="general-a"
                       >
                         Volunteer Request
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={Uncheck}
+                        to={"/volunteer/list"}
+                        className="general-a"
+                      >
+                        {" "}
+                        volunteer List
                       </Link>
                     </li>
                   </>
@@ -220,11 +211,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to={""}
-                    onClick={Logout}
-                    className="general-a"
-                  >
+                  <Link to={""} onClick={Logout} className="general-a">
                     Logout
                   </Link>
                 </li>

@@ -40,11 +40,7 @@ const upload = multer({ storage: storage });
 
 adminroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
   try {
-    // adminroutes.post("/add",  (req, res) => {
-    // console.log(req.file.Image);
     const Data = new products({
-      // const Data = new formData({
-      // image: req.file.filename,
       image: req.file ? req.file.path : null,
       name: req.body.name,
       login_id: req.userData.userId,

@@ -15,7 +15,6 @@
 .vol-req-sub-body {
   height: 70%;
   width: 90%;
-  /* background-color: rgb(132, 255, 0); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +22,7 @@
 .vol-req-container {
   min-height: 400px;
   width: 100%;
-  /* background-color: rgb(255, 0, 204); */
+  background-color: rgb(255, 255, 255);
 
   display: flex;
   flex-direction: column;
@@ -31,9 +30,10 @@
   align-items: center;
 }
 .vol-req-container-head {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   height: 80px;
+  text-transform: uppercase;
   width: 90%;
   /* background-color: red; */
   display: flex;
@@ -50,9 +50,10 @@
 }
 .vol-req-title {
   height: 20px;
-  width: 16%;
+  width: 15%;
   /* background-color: red; */
-  font-size: 1.1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
   font-weight: 700;
   display: flex;
   justify-content: center;
@@ -62,7 +63,7 @@
   min-height: 60px;
   width: 95%;
   border-radius: 10px;
-  /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.181)); */
+
   border-bottom: 1px dashed rgb(202, 202, 202);
   display: flex;
   justify-content: space-evenly;
@@ -78,23 +79,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.vol-req-btn {
-  /* height: 100px; */
-  width: 16%;
-  /* background-color: red; */
-  font-size: 0.95rem;
-  color: rgb(60, 60, 60);
-  font-weight: 700;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  column-gap: 5px;
 }
 #btn-approve {
   background-image: linear-gradient(to bottom, rgb(4, 255, 0), rgb(0, 200, 0));
 
   border: 0px solid rgb(15, 100, 0);
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
   /* background-color: yellow; */
   letter-spacing: 0.5px;
@@ -112,11 +103,11 @@
   );
 
   border: 0px solid rgb(15, 100, 0);
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
   /* background-color: yellow; */
   letter-spacing: 0.5px;
-  width: 40%;
+  width: 50%;
   cursor: not-allowed;
   font-weight: 600;
   color: #ffffff;
@@ -125,7 +116,7 @@
 #btn-reject {
   background-image: linear-gradient(to bottom, rgb(255, 0, 0), rgb(209, 4, 4));
   border: 0px solid rgb(255, 255, 255);
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
   cursor: pointer;
 
@@ -138,12 +129,12 @@
 #btn-declined {
   background-image: linear-gradient(to bottom, rgb(255, 77, 0), rgb(157, 5, 0));
   border: 0px solid rgb(255, 255, 255);
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
-  cursor: pointer;
+  cursor: not-allowed;
 
   letter-spacing: 0.5px;
-  width: 40%;
+  width: 50%;
   font-weight: 600;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.652);
   color: #fff;
@@ -156,4 +147,60 @@
 #btn-reject:active {
   transition: box-shadow 0.1s;
   box-shadow: 0px 0px 1px rgb(0, 0, 0);
+}
+@media screen and (max-width: 1200px) {
+  .vol-req-sub-body {
+    height: 70%;
+    width: 95%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .vol-req-sub-body {
+    height: 70%;
+    width: 95%;
+    padding: 20px 0;
+  }
+  .vol-req-container-components {
+    display: none;
+  }
+
+  .vol-req-container {
+    row-gap: 10px;
+  }
+
+  .vol-req-container-body {
+    flex-direction: column;
+    width: 300px;
+    padding: 10px 0;
+    height: 250px;
+    border: 1px dashed rgb(172, 172, 172);
+    /* background-color: red; */
+  }
+  .vol-req-data {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .vol-req-sub-body {
+    height: 70%;
+    width: 95%;
+    padding: 20px 0;
+  }
+
+
+
+  .vol-req-container-head {
+font-size: 1.5rem;  }
+
+  .vol-req-container-body {
+    flex-direction: column;
+    width: 80%;
+    padding: 10px 0;
+    height: 250px;
+    border: 1px dashed rgb(172, 172, 172);
+    /* background-color: red; */
+  }
+  .vol-req-data {
+    width: 80%;
+  }
 }

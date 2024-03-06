@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import LoginPage from "./components/loginpage/LoginPage";
 import RegistrationPage from "./components/registrationpage/RegistrationPage";
-import Addproduct from "./components/AdminProduct/Addproduct";
 import Navbar from "./components/Navbar/Navbar";
 import Editproduct from "./components/User/Editproduct";
 import Useraddproduct from "./components/User/Useraddproduct";
@@ -49,7 +48,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/admin" element={<HomePage />} />
-        <Route path="/admin/addproduct" element={<Addproduct />} />
         <Route path="/admin/new-product" element={<NewProductList />} />
 
         <Route path="/profile" element={<Profilehome />} />

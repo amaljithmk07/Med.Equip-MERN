@@ -108,7 +108,7 @@ const Volunteerrequest = () => {
       <div className="vol-req-main-body">
         <div className="vol-req-sub-body">
           <div className="vol-req-container">
-            <div className="vol-req-container-head">New Volunteer Request</div>
+            <div className="vol-req-container-head"> Volunteer Request</div>
             <div className="vol-req-container-components">
               <div className="vol-req-title"> ID</div>
               <div className="vol-req-title"> Name</div>
@@ -120,13 +120,13 @@ const Volunteerrequest = () => {
             </div>
             {volunteerreqlist.map((data) => (
               <div className="vol-req-container-body" key={data._id}>
-                <div className="vol-req-data">{data._id}</div>
+                <div className="vol-req-data">{data._id.slice(18,25)}</div>
                 <div className="vol-req-data">{data.name}</div>
                 <div className="vol-req-data">{data.age}</div>
                 <div className="vol-req-data">{data.phone_number}</div>
                 <div className="vol-req-data">{data.qualification}</div>
                 <div className="vol-req-data">{data.status}</div>
-                <div className="vol-req-btn">
+                <div className="vol-req-data">
                   {data.status === "Approved" ? (
                     <button
                       id="btn-accepted"

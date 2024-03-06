@@ -8,6 +8,7 @@ import Base_URL from "../Constant/constant";
 const Useraddproduct = () => {
   const token = sessionStorage.getItem("Token");
   const uuid = sessionStorage.getItem("uuid");
+  const role = sessionStorage.getItem("Role");
   console.log(uuid);
   const [products, setProducts] = useState({});
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ const Useraddproduct = () => {
 
   return (
     <>
-      {uuid !== null && token !== null ? (
+      {(uuid !== null || role == 1) && token !== null ? (
         <div className="useraddproduct-main-body">
           {/* <Usernavbar/> */}
           <div className="user-addproduct-body">
