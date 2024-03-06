@@ -98,8 +98,8 @@ const HomePage = () => {
                       </div>
                     ) : (
                       <>
-                        <Link to={"/volunteer/order-request"} id="button-arrow">
-                          <button id="donate-button">Order requests </button>
+                        <Link to={"/volunteer/new-product-list"} id="button-arrow">
+                          <button id="donate-button">New Arrivals</button>
                         </Link>
                       </>
                     )}

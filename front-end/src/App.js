@@ -50,7 +50,7 @@ function App() {
 
         <Route path="/admin" element={<HomePage />} />
         <Route path="/admin/addproduct" element={<Addproduct />} />
-        <Route path="/admin/viewproduct" element={<Viewproduct />} />
+        <Route path="/admin/new-product" element={<NewProductList />} />
 
         <Route path="/profile" element={<Profilehome />} />
         <Route path="/Userprofileupdate" element={<Userprofileupdate />} />

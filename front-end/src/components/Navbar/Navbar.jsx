@@ -144,10 +144,10 @@ const Navbar = () => {
                     <li>
                       <Link
                         onClick={Uncheck}
-                        to={"/admin/viewproduct"}
+                        to={"/admin/new-product"}
                         className="general-a"
                       >
-                        View Products
+                        New Products
                       </Link>
                     </li>
                     <li>
