@@ -11,7 +11,6 @@ const Home = () => {
   const token = sessionStorage.getItem("Token");
   const role = sessionStorage.getItem("Role");
   console.log(token);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -43,7 +42,7 @@ const Home = () => {
           <div className="homeproduct-content">
             <div className="home-head">Medical Equipment</div>
             <div className="homeproduct-image">
-              <img
+              {/* <img
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/tgngjojizoxnkjkdv6ac.png"
                 alt=""
                 className="home-img"
@@ -57,7 +56,7 @@ const Home = () => {
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/jadpznv3ybnpnoby4xqd.png"
                 alt=""
                 className="home-img"
-              />
+              /> */}
               {/* <img src="/donate.png" alt="" className="home-img" />
               <img src="/refurbish.png" alt="" className="home-img" />
               <img src="/giveneed.png" alt="" className="home-img" /> */}
