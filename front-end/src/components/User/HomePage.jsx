@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Base_URL from "../Constant/constant";
 import toast from "react-hot-toast";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const HomePage = () => {
   const [product, setproduct] = useState([]);
@@ -13,6 +15,8 @@ const HomePage = () => {
   console.log(token);
 
   useEffect(() => {
+    AOS.init();
+
     axios
       .get(`${Base_URL}/api/user/demo-view`, {})
       .then((data) => {
@@ -39,8 +43,8 @@ const HomePage = () => {
     <div>
       <div className="homemain-body">
         <div className="homeproduct-sub-body">
-          <div className="homeproduct-content">
-            <div className="home-head">Medical Equipment</div>
+          <div className="homeproduct-content" data-aos="fade-up">
+            <div className="home-head" >Medical Equipment</div>
             <div className="homeproduct-image">
               {/* <img src="/donate.png" alt="" className="home-img" /> */}
               <img
@@ -114,12 +118,12 @@ const HomePage = () => {
 
         {(role == null) & (token == null) ? (
           <>
-            <div className="home-available-product-head">
+            <div className="home-available-product-head" data-aos="fade-up">
               Available Products
             </div>
             <div className="home-cards-sec">
               {product.map((item) => (
-                <div className="home-card" key={item._id} onClick={cardError}>
+                <div className="home-card" key={item._id} onClick={cardError} data-aos="fade-up">
                   <div className="home-card-image">
                     <img src={item.image} alt="" className="user-card-image" />
                   </div>
