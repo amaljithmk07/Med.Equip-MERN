@@ -209,7 +209,7 @@
     top: 48px;
     right: -45%;
     width: 30%;
-    min-height: 200px;
+    min-height: 300px;
     /* height: 80vh; */
     display: flex;
     flex-direction: column;
@@ -223,7 +223,7 @@
     transition: all 0.5s ease-in-out;
   }
   .general-sub ul li .general-a {
-    font-size: 13px;
+    font-size: 15px;
     color: #ffffff;
     /* background-color: red; */
   }
@@ -232,7 +232,7 @@
     position: absolute;
     top: 48px;
     right: 0%;
-    min-height: 200px;
+    min-height: 300px;
 
     /* height: 80vh; */
     display: flex;
@@ -297,7 +297,7 @@
     top: 48px;
     right: -65%;
     width: 50%;
-    min-height: 200px;
+    min-height: 300px;
 
     /* height: 80vh; */
     display: flex;
@@ -313,7 +313,7 @@
     transition: all 0.5s;
   }
   .general-sub ul li .general-a {
-    font-size: 13px;
+    font-size: 15px;
     color: #ffffff;
     /* backrgb(255, 0, 0)color: red; */
   }
@@ -322,7 +322,7 @@
     position: absolute;
     top: 48px;
     right: 0%;
-    min-height: 200px;
+    min-height: 300px;
 
     /* height: 80vh; */
     display: flex;
@@ -388,7 +388,7 @@
     top: 48px;
     right: -120%;
     width: 100%;
-    min-height: 100px;
+    min-height: 300px;
 
     /* height: 60vh; */
     display: flex;
@@ -405,7 +405,7 @@
   }
   .general-sub ul li .general-a {
     color: #ffffff;
-    font-size: 13px;
+    font-size: 15px;
     /* background-color: red; */
   }
 
@@ -413,7 +413,7 @@
     position: absolute;
     top: 48px;
     right: 0%;
-    min-height: 200px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
