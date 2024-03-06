@@ -479,7 +479,8 @@ userroutes.post(
         _id: req.params.id,
       });
       const userprofile = {
-        image: req.file.path ? req.file.path : olddata.image,
+        // image: req.file.path ? req.file.path : olddata.image,
+        image: req.file ? req.file.path : olddata.image,
         name: req.body ? req.body.name : olddata.name,
         email: req.body ? req.body.email : olddata.email,
         age: req.body ? req.body.age : olddata.age,
@@ -542,6 +543,7 @@ userroutes.post(
       login_id: req.userData.userId,
       // image: req.body.image,
       image: req.file.path,
+      
       available_qty: req.body.available_qty,
       cart_qty: req.body.cart_qty,
       name: req.body.name,

@@ -7,17 +7,36 @@ const Products = require("../models/productschema");
 const OrdersDB = require("../models/orderschema");
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../front-end/public/upload/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+require("dotenv").config();
+
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "Med-equip",
   },
 });
-
 const upload = multer({ storage: storage });
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "../front-end/public/upload/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({ storage: storage });
 
 //---Product Approval By Volunteer
 
@@ -198,7 +217,7 @@ volunteerroutes.post(
       });
 
       const profile = {
-        image: req.file ? req.file.filename : olddata.image,
+        image: req.file ? req.file.path : olddata.image,
         name: req.body ? req.body.name : olddata.name,
         age: req.body ? req.body.age : olddata.age,
         qualification: req.body

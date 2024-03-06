@@ -6,15 +6,35 @@ const adminroutes = express.Router();
 const products = require("../models/productschema");
 const Checkauth = require("../middle-ware/Checkauth");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../front-end/public/upload/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+require("dotenv").config();
+
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "Med-equip",
   },
 });
 const upload = multer({ storage: storage });
+
+
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "../front-end/public/upload/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
+// const upload = multer({ storage: storage });
 
 //Add
 
@@ -25,7 +45,7 @@ adminroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
     const Data = new products({
       // const Data = new formData({
       // image: req.file.filename,
-      image: req.file ? req.file.filename : null,
+      image: req.file ? req.file.path : null,
       name: req.body.name,
       login_id: req.userData.userId,
 

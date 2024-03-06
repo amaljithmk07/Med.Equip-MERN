@@ -40,7 +40,7 @@ const Navbar = () => {
   // console.log(contents.length);
 
   const Uncheck = () => {
-    document.getElementById("check-hamp").value = Uncheck;
+    // document.getElementById("check-hamp").value = Uncheck;
   };
   return (
     <div className="general-navbar">

@@ -124,15 +124,10 @@
   font-size: 0.9rem;
   color: #ffffff;
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: 3px;
   text-transform: uppercase;
-  border: 1px solid rgb(149, 240, 110);
-  background-image: linear-gradient(
-    260deg,
-    rgb(69, 223, 49),
-    rgb(99, 254, 79),
-    rgb(128, 255, 111)
-  );
+  border: 0px solid rgb(149, 240, 110);
+  background-color: rgb(255, 169, 119);
   cursor: pointer;
 }
 .order-request-nodata {
