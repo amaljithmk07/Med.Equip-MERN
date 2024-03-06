@@ -21,9 +21,7 @@ import Volunteerlist from "./components/AdminProduct/Volunteerlist";
 import Volunteerrequest from "./components/AdminProduct/Volunteerrequest";
 import Userprofileupdate from "./components/Profile/Userprofileupdate";
 import Volunteerprofileupdate from "./components/Profile/Volunteerprofileupdate";
-import Home from "./components/User/Home";
 import Ordersummary from "./components/User/Ordersummary";
-import Orderrequest from "./components/Volunteer/PendingOrders";
 import Acceptedorders from "./components/Volunteer/Acceptedorders";
 import Viewproduct from "./components/User/Viewproduct";
 import Orderplace from "./components/User/Orderplace";
@@ -34,6 +32,7 @@ import Updateaddress from "./components/Profile/Updateaddress";
 import Payment from "./components/User/Payment";
 import NewProductList from "./components/Volunteer/NewProductList";
 import PendingOrders from "./components/Volunteer/PendingOrders";
+import HomePage from "./components/User/HomePage";
 
 function App() {
   // const navigate = useNavigate();
@@ -43,13 +42,13 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
 
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        <Route path="/admin" element={<Home />} />
+        <Route path="/admin" element={<HomePage />} />
         <Route path="/admin/addproduct" element={<Addproduct />} />
         <Route path="/admin/viewproduct" element={<Viewproduct />} />
 

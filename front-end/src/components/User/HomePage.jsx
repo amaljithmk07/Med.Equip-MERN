@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
+import "./HomePage.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Base_URL from "../Constant/constant";
 import toast from "react-hot-toast";
 
-const Home = () => {
+const HomePage = () => {
   const [product, setproduct] = useState([]);
 
   const token = sessionStorage.getItem("Token");
@@ -152,4 +152,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

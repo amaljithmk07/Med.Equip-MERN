@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import Userproduct from "../User/Home";
+import Userproduct from "../User/HomePage";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { cartView } from "../../redux/reducer/CartSlice";
