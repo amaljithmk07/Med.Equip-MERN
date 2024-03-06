@@ -42,24 +42,24 @@ const HomePage = () => {
           <div className="homeproduct-content">
             <div className="home-head">Medical Equipment</div>
             <div className="homeproduct-image">
-              <img src="/donate.png" alt="" className="home-img" />
-              {/* <img
+              {/* <img src="/donate.png" alt="" className="home-img" /> */}
+              <img
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583148/Med-equip/tgngjojizoxnkjkdv6ac.png"
                 alt=""
                 className="home-img"
-              /> */}
-              <img src="/refurbish.png" alt="" className="home-img" />
-              {/* <img
+              />
+              {/* <img src="/refurbish.png" alt="" className="home-img" /> */}
+              <img
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583161/Med-equip/rfa9t9byw4mbj90uhig6.png"
                 alt=""
                 className="home-img"
-              /> */}
-              <img src="/giveneed.png" alt="" className="home-img" />
-              {/* <img
+              />
+              {/* <img src="/giveneed.png" alt="" className="home-img" /> */}
+              <img
                 src="https://res.cloudinary.com/dqc2xhnac/image/upload/v1708583150/Med-equip/jadpznv3ybnpnoby4xqd.png"
                 alt=""
                 className="home-img"
-              /> */}
+              />
             </div>
             <div className="home-p">
               We Care of Lake County is grateful for all the support and donated
@@ -106,7 +106,6 @@ const HomePage = () => {
               <>
                 <Link to={"/login"} id="button-arrow">
                   <button id="donate-button">LOGIN HERE </button>
-
                 </Link>
               </>
             )}
@@ -118,7 +117,7 @@ const HomePage = () => {
             <div className="home-available-product-head">
               Available Products
             </div>
-            {/* <div className="home-cards-sec">
+            <div className="home-cards-sec">
               {product.map((item) => (
                 <div className="home-card" key={item._id} onClick={cardError}>
                   <div className="home-card-image">
@@ -142,7 +141,7 @@ const HomePage = () => {
                   </div>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         ) : (
           <></>
