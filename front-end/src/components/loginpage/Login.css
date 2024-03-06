@@ -153,14 +153,7 @@
   .login {
     height: 330px;
     width: 85%;
-    background-color: #ffffff3c;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-    border: 2px solid #ffffff90;
-    border-radius: 20px;
+    backdrop-filter: unset;
   }
   .login-input-field-sec {
     height: 40px;
