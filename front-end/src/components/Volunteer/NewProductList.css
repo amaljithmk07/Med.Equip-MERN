@@ -274,7 +274,7 @@
   .volunteer-pro-approve-cards-heading {
     height: 50px;
     width: 100%;
-    /* font-size: 30px; */
+    font-size: 28px;
     font-weight: 700;
     display: flex;
     align-items: flex-end;
@@ -292,5 +292,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .volunteer-pro-approve-card {
+    height: 370px;
+    width: 220px;
+  }
+  .volunteer-pro-approve-card-details {
+    height: 35%;
+    font-size: .8rem;
   }
 }
