@@ -50,6 +50,7 @@ const Volunteerlist = () => {
                 <div className="volunteerlist-card-image-sec">
                   {data.image !== "" ? (
                     <img
+                      // src={`/upload/${data.image}`}
                       src={data.image}
                       alt=""
                       className="volunteerlist-card-img"

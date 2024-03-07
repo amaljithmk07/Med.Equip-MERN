@@ -22,6 +22,43 @@ const Payment = () => {
   //Payment submit
 
   const qrGenerate = (e) => {
+    e.preventDefault();
+    ///form validation
+
+    let name = document.forms["paymentForm"]["name"].value;
+    let phonenumber = document.forms["paymentForm"]["phone"].value;
+    let formamount = document.forms["paymentForm"]["amount"].value;
+    let amountverify = formamount.match(
+      /^(?!0)([0-9]{1,4})$/
+
+      // /^((0?\.((0[1-9])|[1-9]\d))|([1-9]\d*(\.\d{2})?))$/
+    );
+    console.log(formamount);
+    console.log(amountverify);
+    if (name == "") {
+      toast.error("Please Enter Name", {
+        position: "bottom-center",
+      });
+      return false;
+    } else if (phonenumber == "") {
+      toast.error("Please Enter Phone Number", {
+        position: "bottom-center",
+      });
+      return false;
+    } else if (formamount == "") {
+      toast.error("Please Enter amount", {
+        position: "bottom-center",
+      });
+      return false;
+    } else if (!amountverify) {
+      toast.error("Please Enter Valid Amount", {
+        position: "bottom-center",
+      });
+      return false;
+    }
+
+    //////////////////////////
+
     const { amount } = price;
     upiqr({
       payeeVPA: "8086171296@paytm",
@@ -38,6 +75,9 @@ const Payment = () => {
         console.log(err);
       });
   };
+
+  //Payment Submit
+
   const paymentSubmit = (e) => {
     axios
       // .post(`http://localhost:2222/api/user/donation`, price, {
@@ -58,14 +98,6 @@ const Payment = () => {
   };
   // console.log("p", qr.length);
 
-  function validateForm() {
-    let x = document.forms["Form"]["name"].value;
-    if (x == "") {
-      alert("Name must be filled out");
-      return false;
-    }
-  }
-
   return (
     <div>
       <div className="payment-body">
@@ -73,39 +105,39 @@ const Payment = () => {
           <div className="payment-sub-body-head">Donation </div>
           <div className="payment-body-container">
             <div className="payment-left-body">
-              {/* <form name="Form" onSubmit={validateForm}> */}
-              <div className="payment-details-head"> details</div>
-              <div className="payment-details-sec">
-                Name :{" "}
-                <input
-                  type="text"
-                  className="payment-details"
-                  name="name"
-                  onChange={paymentInput}
-                />{" "}
-              </div>
-              <div className="payment-details-sec">
-                phone :{" "}
-                <input
-                  type="number"
-                  className="payment-details"
-                  name="phone"
-                  onChange={paymentInput}
-                />{" "}
-              </div>
-              <div className="payment-details-amount-sec">
-                AMOUNT :{" "}
-                <input
-                  type="number"
-                  name="amount"
-                  className="payment-amount"
-                  onChange={paymentInput}
-                />{" "}
-              </div>
-              <button className="qr-button" onClick={qrGenerate}>
-                Generate QR Code{" "}
-              </button>
-              {/* </form> */}
+              <form name="paymentForm" className="payment-left-body-form">
+                <div className="payment-details-head"> details</div>
+                <div className="payment-details-sec">
+                  Name :{" "}
+                  <input
+                    type="text"
+                    className="payment-details"
+                    name="name"
+                    onChange={paymentInput}
+                  />{" "}
+                </div>
+                <div className="payment-details-sec">
+                  phone :{" "}
+                  <input
+                    type="number"
+                    className="payment-details"
+                    name="phone"
+                    onChange={paymentInput}
+                  />{" "}
+                </div>
+                <div className="payment-details-amount-sec">
+                  AMOUNT :{" "}
+                  <input
+                    type="number"
+                    name="amount"
+                    className="payment-amount"
+                    onChange={paymentInput}
+                  />{" "}
+                </div>
+                <button className="qr-button" onClick={qrGenerate}>
+                  Generate QR Code{" "}
+                </button>
+              </form>
             </div>
             <div className="payment-right-body">
               <div className="payment-qr-sec">

@@ -80,8 +80,8 @@ const HomePage = () => {
               <>
                 {token !== null && role == 1 ? (
                   <>
-                    <Link to={"/admin/addproduct"} id="button-arrow">
-                      <button id="donate-button">Donate Your Equip </button>
+                    <Link to={"/admin/new-product"} id="button-arrow">
+                      <button id="donate-button">New Arrivals </button>
                     </Link>
                   </>
                 ) : (
