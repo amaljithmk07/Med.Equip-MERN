@@ -511,13 +511,20 @@ userroutes.post(
           message: "data updated successfully",
           data: userprofile,
         });
+      } else {
+        res.status(400).json({
+          success: false,
+          error: true,
+          message: "data Fetched unsuccessful",
+          ErrorMessage: err.message,
+        });
       }
     } catch (err) {
       // console.log(err);
-      res.status(400).json({
+      res.status(500).json({
         success: false,
         error: true,
-        message: "data Fetched unsuccessful",
+        message: "Network error",
         ErrorMessage: err.message,
       });
     }
@@ -543,7 +550,7 @@ userroutes.post(
       login_id: req.userData.userId,
       // image: req.body.image,
       image: req.file.path,
-      
+
       available_qty: req.body.available_qty,
       cart_qty: req.body.cart_qty,
       name: req.body.name,
