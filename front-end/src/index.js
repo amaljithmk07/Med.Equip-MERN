@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import store from "./redux/store/Store";
 import { Provider } from "react-redux";
+import Loader from "./components/loader/Loader";
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 // {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>; */}
 // import LoginPage from "./components/loginpage/LoginPage";
@@ -15,6 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <App />
+    {/* <Loader /> */}
   </Provider>
 );
 
