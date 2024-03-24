@@ -13,10 +13,15 @@ const Useraddproduct = () => {
   const [products, setProducts] = useState({});
   const navigate = useNavigate();
 
+
+  //Input handler
   const keyHandler = (event) => {
     const { name, value } = event.target;
     setProducts({ ...products, [name]: value });
   };
+
+  //photo upload
+
   const handlePhoto = (e) => {
     const { name } = e.target;
     setProducts({ ...products, [name]: e.target.files[0] });

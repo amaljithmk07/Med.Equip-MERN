@@ -78,7 +78,6 @@ userroutes.post("/add", upload.single("image"), Checkauth, (req, res) => {
         });
       });
   } catch (err) {
-    console.log("err", err);
 
     res.status(500).json({
       error: true,
